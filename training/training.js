@@ -446,12 +446,14 @@ function d2RenderMatching() {
     d2MatchingPairs.forEach(function (pair, i) {
         var saved = d2MatchingState.answers[i] || '';
         var opts  = defs.map(function (d) {
-            var sel = d === saved ? ' selected' : '';
-            return '<option value="' + d.replace(/&/g,'&amp;').replace(/"/g,'&quot;') + '"' + sel + '>' + d + '</option>';
+            var sel  = d === saved ? ' selected' : '';
+            var safe = d.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+            return '<option value="' + safe + '"' + sel + '>' + safe + '</option>';
         }).join('');
+        var safeTerm = pair.term.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
         html += '<div class="match-row" id="matchRow' + i + '">' +
-            '<span class="match-term">' + pair.term + '</span>' +
-            '<select id="matchSel' + i + '" aria-label="Definition for ' + pair.term + '">' +
+            '<span class="match-term">' + safeTerm + '</span>' +
+            '<select id="matchSel' + i + '" aria-label="Definition for ' + safeTerm + '">' +
             '<option value="">-- Select a definition --</option>' + opts +
             '</select>' +
             '<span class="match-result" id="matchResult' + i + '" aria-hidden="true"></span>' +
@@ -781,14 +783,14 @@ window.generateSummary = function generateSummary() {
 
 /* ── Day 2 Initialisation (DOMContentLoaded) ───────────────── */
 document.addEventListener('DOMContentLoaded', function () {
-    // Guard: only run on day2.html (identified by the Part 3 quiz container)
-    if (!document.getElementById('quizBox')) return;
+    // Guard: only run on day2.html (body must carry data-page="day2")
+    if (document.body.getAttribute('data-page') !== 'day2') return;
 
     /* Restore progress from localStorage */
     try {
         var stored = localStorage.getItem(D2_STORAGE_PROGRESS);
         if (stored) d2CompletedParts = JSON.parse(stored);
-    } catch (_) { d2CompletedParts = []; }
+    } catch (e) { console.warn('Day 2: failed to restore progress:', e); d2CompletedParts = []; }
 
     d2UpdateProgress();
     d2UpdateCardStates();
@@ -814,14 +816,14 @@ document.addEventListener('DOMContentLoaded', function () {
     try {
         var storedQuiz = localStorage.getItem(D2_STORAGE_QUIZ);
         if (storedQuiz) d2QuizState = JSON.parse(storedQuiz);
-    } catch (_) { d2QuizState = { current: 0, answers: {}, checked: {} }; }
+    } catch (e) { console.warn('Day 2: failed to restore quiz state:', e); d2QuizState = { current: 0, answers: {}, checked: {} }; }
     d2RenderQuiz();
 
     /* Restore and render the Part 4 matching activity */
     try {
         var storedMatch = localStorage.getItem(D2_STORAGE_MATCHING);
         if (storedMatch) d2MatchingState = JSON.parse(storedMatch);
-    } catch (_) { d2MatchingState = { attempts: 0, answers: {} }; }
+    } catch (e) { console.warn('Day 2: failed to restore matching state:', e); d2MatchingState = { attempts: 0, answers: {} }; }
     d2RenderMatching();
 
     // Restore Part 4 complete-button state after previous attempts
@@ -838,7 +840,7 @@ document.addEventListener('DOMContentLoaded', function () {
     try {
         var storedTrouble = localStorage.getItem(D2_STORAGE_TROUBLE);
         if (storedTrouble) d2TroubleState = JSON.parse(storedTrouble);
-    } catch (_) { d2TroubleState = { current: 0, answers: {}, checked: {}, attempts: {}, correct: [] }; }
+    } catch (e) { console.warn('Day 2: failed to restore troubleshooting state:', e); d2TroubleState = { current: 0, answers: {}, checked: {}, attempts: {}, correct: [] }; }
     d2RenderTrouble();
 
     /* Restore Part 6 checklist button state */
