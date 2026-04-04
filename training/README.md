@@ -27,7 +27,6 @@ training/
 ├── training.js                        ← Shared JavaScript (theme switcher, quiz renderer)
 ├── day1.html
 ├── day2.html
-├── day2-legacy.html
 ├── day3.html
 ├── day4.html
 └── day5.html
