@@ -1,0 +1,1602 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3D Print Order Form - GCI</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 30px;
+            text-align: center;
+        }
+
+        .header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+
+        .header p {
+            font-size: 1.1em;
+            opacity: 0.9;
+        }
+
+        .form-container {
+            padding: 40px;
+        }
+
+        .form-section {
+            margin-bottom: 35px;
+            padding-bottom: 25px;
+            border-bottom: 2px solid #f0f0f0;
+        }
+
+        .form-section:last-child {
+            border-bottom: none;
+        }
+
+        .section-title {
+            font-size: 1.4em;
+            color: #333;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .section-title::before {
+            content: '';
+            width: 4px;
+            height: 25px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 2px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-row {
+            display: flex;
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+
+        .form-row .form-group {
+            flex: 1;
+            margin-bottom: 0;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #555;
+        }
+
+        .required {
+            color: #e74c3c;
+        }
+
+        input[type="text"],
+        input[type="email"],
+        input[type="tel"],
+        input[type="number"],
+        select,
+        textarea {
+            width: 100%;
+            padding: 12px 15px;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            font-size: 16px;
+            transition: all 0.3s ease;
+            background-color: #fafafa;
+        }
+
+        input[type="text"]:focus,
+        input[type="email"]:focus,
+        input[type="tel"]:focus,
+        input[type="number"]:focus,
+        select:focus,
+        textarea:focus {
+            outline: none;
+            border-color: #667eea;
+            background-color: white;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+        }
+
+        input[type="file"] {
+            width: 100%;
+            padding: 12px;
+            border: 2px dashed #667eea;
+            border-radius: 8px;
+            background-color: #f8f9ff;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        input[type="file"]:hover {
+            background-color: #f0f2ff;
+            border-color: #5a6fd8;
+        }
+
+        .checkbox-group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-top: 10px;
+        }
+
+        .checkbox-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        input[type="checkbox"],
+        input[type="radio"] {
+            width: 18px;
+            height: 18px;
+            accent-color: #667eea;
+        }
+
+        .radio-group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            margin-top: 10px;
+        }
+
+        .radio-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        textarea {
+            resize: vertical;
+            min-height: 100px;
+        }
+
+        .price-display {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            margin: 20px 0;
+        }
+
+        .price-display h3 {
+            font-size: 1.5em;
+            margin-bottom: 10px;
+        }
+
+        .price-amount {
+            font-size: 2.5em;
+            font-weight: bold;
+        }
+
+        .submit-section {
+            background: #f8f9fa;
+            padding: 30px;
+            border-radius: 10px;
+            text-align: center;
+            margin-top: 30px;
+        }
+
+        .submit-btn {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            padding: 15px 40px;
+            font-size: 1.2em;
+            font-weight: 600;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.3);
+        }
+
+        .submit-btn:hover:not(:disabled) {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(102, 126, 234, 0.4);
+        }
+
+        .submit-btn:disabled {
+            cursor: not-allowed;
+            opacity: 0.6;
+        }
+
+        .reset-btn {
+            background: #6c757d;
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            font-size: 1em;
+            border-radius: 50px;
+            cursor: pointer;
+            margin-left: 15px;
+            transition: all 0.3s ease;
+        }
+
+        .reset-btn:hover {
+            background: #5a6268;
+        }
+
+        .help-text {
+            font-size: 0.9em;
+            color: #666;
+            margin-top: 5px;
+            font-style: italic;
+        }
+
+        /* Item Selection Styles */
+        .loading-message,
+        .error-message {
+            text-align: center;
+            padding: 40px 20px;
+            font-size: 1.1em;
+        }
+
+        .loading-message {
+            color: #667eea;
+        }
+
+        .error-message {
+            color: #e74c3c;
+            background-color: #ffe6e6;
+            border-radius: 8px;
+        }
+
+        .items-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .item-card {
+            border: 2px solid #e0e0e0;
+            border-radius: 12px;
+            padding: 20px;
+            background: white;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .item-card:hover {
+            border-color: #667eea;
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.15);
+            transform: translateY(-2px);
+        }
+
+        .item-card.selected {
+            border-color: #667eea;
+            background: linear-gradient(135deg, #f8f9ff 0%, #f0f2ff 100%);
+        }
+
+        /* Image wrapper keeps a consistent box while the image scales inside */
+        .item-image-wrap {
+            width: 100%;
+            height: 200px;
+            /* fixed visual box height */
+            background: #f5f5f5;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            /* prevents image overflow glitched edges */
+            margin-bottom: 15px;
+        }
+
+        .item-image-link {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            height: 100%;
+            cursor: zoom-in;
+            text-decoration: none;
+        }
+
+        .item-image {
+            max-width: 50%;
+            /* show at half size while always fitting */
+            max-height: 50%;
+            width: auto;
+            height: auto;
+            object-fit: contain;
+            /* ensure the whole image is visible */
+            object-position: center;
+            display: block;
+        }
+
+        /* Lightbox styles */
+        .lightbox-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.75);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+        }
+
+        .lightbox-content {
+            position: relative;
+            max-width: 90vw;
+            max-height: 90vh;
+            background: #111;
+            border-radius: 10px;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+            padding: 10px;
+        }
+
+        .lightbox-img {
+            max-width: 88vw;
+            max-height: 80vh;
+            display: block;
+            border-radius: 6px;
+            background: #000;
+        }
+
+        .lightbox-close {
+            position: absolute;
+            top: 6px;
+            right: 10px;
+            background: rgba(255, 255, 255, 0.9);
+            color: #333;
+            border: none;
+            border-radius: 20px;
+            width: 32px;
+            height: 32px;
+            font-size: 20px;
+            line-height: 32px;
+            text-align: center;
+            cursor: pointer;
+        }
+
+        .item-name {
+            font-size: 1.3em;
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 10px;
+        }
+
+        .item-description {
+            color: #666;
+            font-size: 0.95em;
+            margin-bottom: 15px;
+            line-height: 1.4;
+        }
+
+        .item-price {
+            font-size: 1.4em;
+            font-weight: bold;
+            color: #667eea;
+            margin-bottom: 15px;
+        }
+
+        .item-controls {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .quantity-control {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .quantity-btn {
+            width: 30px;
+            height: 30px;
+            border: 1px solid #ddd;
+            background: white;
+            border-radius: 6px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+        }
+
+        .quantity-btn:hover {
+            background: #f0f0f0;
+        }
+
+        .quantity-input {
+            width: 60px;
+            text-align: center;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            padding: 5px;
+        }
+
+        /* Cart Styles */
+        .cart-container {
+            background: #f8f9fa;
+            border-radius: 10px;
+            padding: 20px;
+        }
+
+        .empty-cart {
+            text-align: center;
+            color: #666;
+            font-style: italic;
+            padding: 40px 20px;
+        }
+
+        .cart-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px;
+            background: white;
+            border-radius: 8px;
+            margin-bottom: 10px;
+            border: 1px solid #e0e0e0;
+        }
+
+        .cart-item-info {
+            flex: 1;
+        }
+
+        .cart-item-name {
+            font-weight: 600;
+            color: #333;
+        }
+
+        .cart-item-details {
+            color: #666;
+            font-size: 0.9em;
+        }
+
+        .cart-item-total {
+            font-weight: bold;
+            color: #667eea;
+            margin-left: 20px;
+        }
+
+        .remove-item {
+            background: #e74c3c;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            padding: 5px 10px;
+            cursor: pointer;
+            font-size: 0.8em;
+            margin-left: 10px;
+        }
+
+        .remove-item:hover {
+            background: #c0392b;
+        }
+
+        @media (max-width: 768px) {
+            .form-row {
+                flex-direction: column;
+                gap: 0;
+            }
+
+            .checkbox-group,
+            .radio-group {
+                flex-direction: column;
+                gap: 10px;
+            }
+
+            .header h1 {
+                font-size: 2em;
+            }
+
+            .form-container {
+                padding: 20px;
+            }
+
+            .items-container {
+                grid-template-columns: 1fr;
+            }
+
+            .cart-item {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 10px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Page meta: quick reference and theme -->
+    <div
+        style="position:fixed;top:12px;right:12px;z-index:9999;padding:6px 10px;border-radius:8px;background:rgba(255,255,255,0.9);color:#222;font-size:13px;box-shadow:0 6px 18px rgba(0,0,0,0.08);">
+        <a href="./GCI3Dorder.html"
+            style="color:#764ba2;font-weight:700;text-decoration:underline dotted">GCI3Dorder.html</a>
+        <div style="font-size:12px;color:#444">Theme: 3D Demo</div>
+    </div>
+    <div class="container">
+        <div class="header">
+            <h1>🖨️ 3D Print Order Form</h1>
+            <p>Turn your digital designs into real objects - we'll handle all the technical details!</p>
+        </div>
+
+        <div class="form-container">
+            <form id="orderForm" action="#" method="POST" enctype="multipart/form-data">
+
+                <!-- Customer Information Section -->
+                <div class="form-section">
+                    <h2 class="section-title">👤 Customer Information</h2>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="firstName">First Name <span class="required">*</span></label>
+                            <input type="text" id="firstName" name="firstName" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="lastName">Last Name <span class="required">*</span></label>
+                            <input type="text" id="lastName" name="lastName" required>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="email">Email Address <span class="required">*</span></label>
+                            <input type="email" id="email" name="email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="phone">Phone Number</label>
+                            <input type="tel" id="phone" name="phone">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="company">Company/Organization</label>
+                        <input type="text" id="company" name="company">
+                    </div>
+                </div>
+
+                <!-- Item Selection Section -->
+                <div class="form-section">
+                    <h2 class="section-title">�️ Choose Your Items</h2>
+
+                    <div id="loadingMessage" class="loading-message">
+                        <p>🔄 Loading available items...</p>
+                    </div>
+
+                    <div id="itemsContainer" class="items-container" style="display: none;">
+                        <!-- Items will be loaded here from Google Sheets -->
+                    </div>
+
+                    <div id="errorMessage" class="error-message" style="display: none;">
+                        <p>❌ Unable to load items. Please refresh the page or contact us.</p>
+                    </div>
+                </div>
+
+                <!-- Selected Items Summary -->
+                <div class="form-section">
+                    <h2 class="section-title">🛒 Your Selected Items</h2>
+
+                    <div id="cartContainer" class="cart-container">
+                        <div id="emptyCart" class="empty-cart">
+                            <p>No items selected yet. Choose items from above to add them to your order.</p>
+                        </div>
+                        <div id="cartItems" style="display: none;">
+                            <!-- Selected items will appear here -->
+                        </div>
+                    </div>
+                </div>
+
+
+
+
+
+
+
+
+
+
+                <!-- Special Instructions -->
+                <div class="form-section">
+                    <h2 class="section-title">💬 Anything else we should know?</h2>
+
+                    <div class="form-group">
+                        <label for="instructions">Tell us anything else that might be helpful</label>
+                        <textarea id="instructions" name="instructions"
+                            placeholder="Any special colors, concerns, or other details you want us to know about..."></textarea>
+                        <div class="help-text">This is optional, but the more you tell us, the better we can make your
+                            project!</div>
+                    </div>
+                </div>
+
+                <!-- Order Total -->
+                <div class="price-display">
+                    <h3>Order Total</h3>
+                    <div class="price-amount" id="totalPrice">$0.00</div>
+                    <p>*All prices are final. No hidden fees or additional charges.</p>
+                </div>
+
+                <!-- Submit Section -->
+                <div class="submit-section">
+                    <p style="margin-bottom: 20px; color: #666;">
+                        By proceeding to payment, you agree to our terms of service and pricing.
+                        You will be redirected to a secure payment system to complete your transaction.
+                    </p>
+
+                    <button type="submit" class="submit-btn" id="submitBtn">💳 Proceed to Payment</button>
+                    <button type="reset" class="reset-btn">🔄 Reset Form</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Lightbox Overlay for image enlarge -->
+    <div id="lightboxOverlay" class="lightbox-overlay" aria-hidden="true">
+        <div class="lightbox-content" role="dialog" aria-modal="true">
+            <button id="lightboxClose" class="lightbox-close" aria-label="Close">×</button>
+            <img id="lightboxImg" class="lightbox-img" alt="Expanded image" src="" />
+        </div>
+    </div>
+
+    <script>
+        // Global variables
+        let availableItems = [];
+        let cartItems = [];
+        let sheetsData = [];
+
+        // Configuration - Update this with your Google Sheet URLs
+        // Your Product Sheet should be published to web and have columns: Name, Description, Price, Image_URL
+        const GOOGLE_SHEET_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vSFv8ciBf5tpZ4_WKg_eV-qiUL0hF5G0-ucKI0NcETMosL2nG3gTOuyrLhR18AcH680fghVpcfhT13J/pub?gid=774284231&single=true&output=csv';
+        // Optional: Provide Spreadsheet ID and GID for JSONP fallback (GViz) to bypass CORS when opened from file://
+        const PRODUCT_SHEET_ID = '1JNJhfEzoW06db6xEVsfJW9wEyb0sWaIqX356b4foqYk';
+        const PRODUCT_SHEET_GID = '774284231';
+
+        // Accounting/Transaction Sheet Configuration
+        // Create a separate Google Sheet for logging transactions with these columns:
+        // Order_Date, Transaction_ID, Customer_Name, Customer_Email, Customer_Phone, Company, Items_Ordered, Total_Amount, Payment_Status, Instructions
+        const ACCOUNTING_SHEET_ID = '1kVKEbZmfL_ylcCRf7r29SsiBAmx3igna1JPB5NMKG1I';
+        const GOOGLE_APPS_SCRIPT_URL = `https://script.google.com/a/macros/geneseeisd.org/s/AKfycbyD1M9Nu_UnhWQW7cG-9bF0gzUvTanCH8BX1WcgAeZc9w_zyXecwZpvMBSsEj85huGmiQ/exec`;
+
+        // Alternative: CSV format (easier to use)
+        // const GOOGLE_SHEET_CSV = 'https://docs.google.com/spreadsheets/d/YOUR_SHEET_ID/export?format=csv&gid=0';
+
+        // Normalize header names: strip BOM, trim, lowercase, snake_case
+        function normalizeHeader(h) {
+            return h.replace(/^\uFEFF/, '')
+                .trim()
+                .toLowerCase()
+                .replace(/\s+/g, '_')
+                .replace(/[^a-z0-9_]/g, '');
+        }
+
+        // Parse a single CSV line with support for quotes and escaped quotes
+        function parseCsvLine(line) {
+            const values = [];
+            let current = '';
+            let inQuotes = false;
+            for (let i = 0; i < line.length; i++) {
+                const ch = line[i];
+                if (ch === '"') {
+                    if (inQuotes && line[i + 1] === '"') {
+                        // Escaped quote
+                        current += '"';
+                        i++;
+                    } else {
+                        inQuotes = !inQuotes;
+                    }
+                } else if (ch === ',' && !inQuotes) {
+                    values.push(current);
+                    current = '';
+                } else {
+                    current += ch;
+                }
+            }
+            values.push(current);
+            return values.map(v => v.replace(/^\uFEFF/, '').replace(/\r$/, ''));
+        }
+
+        // Parse CSV data into array of objects (normalized keys)
+        function parseCSV(csvText) {
+            const cleaned = csvText.replace(/^\uFEFF/, ''); // remove BOM if present
+            const lines = cleaned.split(/\r?\n/).filter(l => l.length > 0);
+            if (lines.length === 0) return [];
+            const rawHeaders = parseCsvLine(lines[0]).map(h => h.replace(/"/g, ''));
+            const headers = rawHeaders.map(normalizeHeader);
+            console.log('CSV Headers (normalized):', headers);
+
+            const rows = [];
+            for (let i = 1; i < lines.length; i++) {
+                const vals = parseCsvLine(lines[i]).map(v => v.replace(/^\uFEFF/, '').replace(/^\"|\"$/g, '').trim());
+                if (vals.every(v => v === '')) continue; // skip empty lines
+                const row = {};
+                headers.forEach((h, idx) => {
+                    row[h] = (vals[idx] ?? '').trim();
+                });
+                rows.push(row);
+            }
+            return rows;
+        }
+
+        // Load items from Google Sheets (CSV format)
+        async function loadItemsFromGoogleSheets() {
+            console.log('Loading products from Google Sheets (CSV format)...');
+            console.log('Google Sheets URL:', GOOGLE_SHEET_URL);
+
+            try {
+                // Cache-busting and CORS-friendly fetch options
+                const url = GOOGLE_SHEET_URL + (GOOGLE_SHEET_URL.includes('?') ? '&' : '?') + 't=' + Date.now();
+                console.log('Fetching CSV data from:', url);
+                const response = await fetch(url, { cache: 'no-store', mode: 'cors', credentials: 'omit', redirect: 'follow', referrerPolicy: 'no-referrer' });
+
+                console.log('Response status:', response.status);
+                console.log('Response headers:', Object.fromEntries(response.headers.entries()));
+
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status} - ${response.statusText}`);
+                }
+
+                const csvText = await response.text();
+                console.log('CSV response received, length:', csvText.length);
+                console.log('First 300 characters of CSV:', csvText.substring(0, 300));
+
+                if (!csvText || csvText.trim().length === 0) {
+                    throw new Error('Empty response from Google Sheets');
+                }
+
+                // Parse CSV data
+                const rows = parseCSV(csvText);
+                console.log('Parsed CSV rows (count):', rows.length);
+                if (rows.length === 0) {
+                    throw new Error('No data rows found in CSV');
+                }
+
+                // Convert to our expected format using normalized keys
+                const items = rows.map((row, index) => {
+                    const name = row.name || '';
+                    const description = row.description || '';
+                    const priceStr = (row.price ?? '').toString();
+                    const price = parseFloat(priceStr.replace(/[^0-9.\-]/g, '')) || 0;
+                    const image = row.image_url || row.image || '';
+                    const item = {
+                        name,
+                        description,
+                        price,
+                        image: image || 'https://via.placeholder.com/300x200/cccccc/666666?text=No+Image'
+                    };
+                    console.log(`Row ${index + 1}:`, item);
+                    return item;
+                });
+
+                console.log('Processed items from CSV:', items);
+
+                // Filter out empty items (rows that have no name)
+                const validItems = items.filter(item => typeof item.name === 'string' && item.name.trim() !== '');
+
+                if (validItems.length === 0) {
+                    throw new Error('No valid items found - make sure Name column is not empty');
+                }
+
+                availableItems = validItems;
+                console.log(`✅ Successfully loaded ${validItems.length} valid products from Google Sheets CSV`);
+                displayItems();
+
+            } catch (error) {
+                console.error('❌ Error loading items from Google Sheets CSV:', error);
+                console.error('Current URL:', GOOGLE_SHEET_URL);
+                console.error('');
+                console.error('🔧 TROUBLESHOOTING CHECKLIST:');
+                console.error('1. ✅ Make sure your Google Sheet is published to the web as CSV:');
+                console.error('   - File → Share → Publish to the web → Select your sheet tab → CSV');
+                console.error('2. ✅ Check column headers (any case; we normalize them):');
+                console.error('   - Name, Description, Price, Image_URL (or "Image URL")');
+                console.error('3. ✅ Verify you have data in Row 2 and beyond');
+                console.error('4. ✅ If opening this HTML file directly from disk, try serving over HTTP to avoid browser restrictions');
+                console.error('   - For example, use VS Code Live Server or a simple local server');
+                console.error('');
+
+                // Show error message to user
+                showErrorMessage();
+
+                // Set empty array so the rest of the app still works
+                availableItems = [];
+
+                // If likely a CORS issue from local file or network policy, try JSONP fallback
+                const isLocal = location.protocol === 'file:' || location.origin === 'null';
+                const looksLikeCors = /CORS|Access-Control-Allow-Origin|TypeError: Failed to fetch/i.test(String(error));
+                if (isLocal || looksLikeCors) {
+                    console.warn('Attempting JSONP (GViz) fallback due to possible CORS/local file restriction...');
+                    try {
+                        const items = await loadItemsViaGvizJsonp(PRODUCT_SHEET_ID, PRODUCT_SHEET_GID);
+                        if (items && items.length) {
+                            availableItems = items;
+                            console.log(`✅ Successfully loaded ${items.length} products via GViz JSONP fallback`);
+                            displayItems();
+                            return;
+                        }
+                    } catch (fallbackErr) {
+                        console.error('GViz JSONP fallback failed:', fallbackErr);
+                    }
+                }
+            }
+        }
+
+        // JSONP (GViz) fallback to bypass CORS when running from file:// or blocked environments
+        function loadItemsViaGvizJsonp(sheetId, gid) {
+            return new Promise((resolve, reject) => {
+                if (!sheetId || !gid) {
+                    return reject(new Error('Sheet ID and GID are required for GViz fallback'));
+                }
+                const url = `https://docs.google.com/spreadsheets/d/${sheetId}/gviz/tq?tqx=out:json&gid=${gid}&t=${Date.now()}`;
+                console.log('GViz JSONP URL:', url);
+
+                const timeout = setTimeout(() => {
+                    cleanup();
+                    reject(new Error('GViz JSONP request timed out'));
+                }, 15000);
+
+                let originalHandler = null;
+                let script = null;
+
+                function ensurePath(obj, pathArr) {
+                    let cur = obj;
+                    for (const key of pathArr) {
+                        if (!cur[key]) cur[key] = {};
+                        cur = cur[key];
+                    }
+                    return cur;
+                }
+
+                function cleanup() {
+                    clearTimeout(timeout);
+                    try {
+                        if (originalHandler) {
+                            ensurePath(window, ['google', 'visualization', 'Query']);
+                            window.google.visualization.Query.setResponse = originalHandler;
+                        } else if (window.google && window.google.visualization && window.google.visualization.Query) {
+                            delete window.google.visualization.Query.setResponse;
+                        }
+                    } catch (_) { }
+                    if (script && script.parentNode) script.parentNode.removeChild(script);
+                }
+
+                // Predefine the handler so GViz script can call it
+                ensurePath(window, ['google', 'visualization', 'Query']);
+                originalHandler = window.google.visualization.Query.setResponse;
+                window.google.visualization.Query.setResponse = function (response) {
+                    cleanup();
+                    try {
+                        if (!response || !response.table || !response.table.rows) {
+                            return reject(new Error('Invalid GViz response'));
+                        }
+                        const items = response.table.rows.map(row => ({
+                            name: row.c[0]?.v || '',
+                            description: row.c[1]?.v || '',
+                            price: parseFloat((row.c[2]?.v ?? '0').toString().replace(/[^0-9.\-]/g, '')) || 0,
+                            image: row.c[3]?.v || 'https://via.placeholder.com/300x200/cccccc/666666?text=No+Image'
+                        })).filter(it => it.name.trim() !== '');
+                        resolve(items);
+                    } catch (err) {
+                        reject(err);
+                    }
+                };
+
+                script = document.createElement('script');
+                script.src = url;
+                script.onerror = () => { cleanup(); reject(new Error('GViz JSONP script load error')); };
+                document.head.appendChild(script);
+            });
+        }
+
+        // Display items in the UI
+        function displayItems() {
+            const container = document.getElementById('itemsContainer');
+            const loadingMessage = document.getElementById('loadingMessage');
+            const errorMessage = document.getElementById('errorMessage');
+
+            loadingMessage.style.display = 'none';
+            container.style.display = 'block';
+            if (errorMessage) errorMessage.style.display = 'none';
+
+            container.innerHTML = availableItems.map((item, index) => `
+                <div class="item-card" data-item-id="${index}">
+                    <div class="item-image-wrap">
+                        <a href="${item.image}" class="item-image-link" data-image="${item.image}" data-title="${item.name}">
+                            <img src="${item.image}" alt="${item.name}" class="item-image" 
+                                 onerror="this.src='https://via.placeholder.com/300x200/cccccc/666666?text=No+Image'">
+                        </a>
+                    </div>
+                    <div class="item-name">${item.name}</div>
+                    <div class="item-description">${item.description}</div>
+                    <div class="item-price">$${item.price.toFixed(2)}</div>
+                    <div class="item-controls">
+                        <div class="quantity-control">
+                            <button type="button" class="quantity-btn" onclick="changeQuantity(${index}, -1)">-</button>
+                            <input type="number" class="quantity-input" id="qty-${index}" value="0" min="0" onchange="updateItemQuantity(${index})">
+                            <button type="button" class="quantity-btn" onclick="changeQuantity(${index}, 1)">+</button>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        // Show error message
+        function showErrorMessage() {
+            document.getElementById('loadingMessage').style.display = 'none';
+            document.getElementById('errorMessage').style.display = 'block';
+        }
+
+        // Change quantity of an item
+        function changeQuantity(itemId, change) {
+            const qtyInput = document.getElementById(`qty-${itemId}`);
+            const currentQty = parseInt(qtyInput.value) || 0;
+            const newQty = Math.max(0, currentQty + change);
+            qtyInput.value = newQty;
+            updateItemQuantity(itemId);
+        }
+
+        // Update item quantity and cart
+        function updateItemQuantity(itemId) {
+            const qtyInput = document.getElementById(`qty-${itemId}`);
+            const quantity = parseInt(qtyInput.value) || 0;
+            const item = availableItems[itemId];
+
+            // Remove item from cart if quantity is 0
+            if (quantity === 0) {
+                cartItems = cartItems.filter(cartItem => cartItem.id !== itemId);
+                document.querySelector(`[data-item-id="${itemId}"]`).classList.remove('selected');
+            } else {
+                // Update or add item to cart
+                const existingItem = cartItems.find(cartItem => cartItem.id === itemId);
+                if (existingItem) {
+                    existingItem.quantity = quantity;
+                } else {
+                    cartItems.push({
+                        id: itemId,
+                        name: item.name,
+                        price: item.price,
+                        quantity: quantity
+                    });
+                }
+                document.querySelector(`[data-item-id="${itemId}"]`).classList.add('selected');
+            }
+
+            updateCartDisplay();
+            calculateTotal();
+        }
+
+        // Update cart display
+        function updateCartDisplay() {
+            const cartContainer = document.getElementById('cartItems');
+            const emptyCart = document.getElementById('emptyCart');
+
+            if (cartItems.length === 0) {
+                emptyCart.style.display = 'block';
+                cartContainer.style.display = 'none';
+                return;
+            }
+
+            emptyCart.style.display = 'none';
+            cartContainer.style.display = 'block';
+
+            cartContainer.innerHTML = cartItems.map(item => `
+                <div class="cart-item">
+                    <div class="cart-item-info">
+                        <div class="cart-item-name">${item.name}</div>
+                        <div class="cart-item-details">Quantity: ${item.quantity} × $${item.price.toFixed(2)}</div>
+                    </div>
+                    <div class="cart-item-total">$${(item.quantity * item.price).toFixed(2)}</div>
+                    <button type="button" class="remove-item" onclick="removeFromCart(${item.id})">Remove</button>
+                </div>
+            `).join('');
+        }
+
+        // Remove item from cart
+        function removeFromCart(itemId) {
+            cartItems = cartItems.filter(item => item.id !== itemId);
+            document.getElementById(`qty-${itemId}`).value = 0;
+            document.querySelector(`[data-item-id="${itemId}"]`).classList.remove('selected');
+            updateCartDisplay();
+            calculateTotal();
+        }
+
+        // Calculate total price
+        function calculateTotal() {
+            const subtotal = cartItems.reduce((total, item) => total + (item.quantity * item.price), 0);
+            document.getElementById('totalPrice').textContent = `$${subtotal.toFixed(2)}`;
+            updateSubmitButton(subtotal);
+        }
+
+        // Update submit button based on cart contents
+        function updateSubmitButton(total) {
+            const submitBtn = document.getElementById('submitBtn');
+            if (total > 0) {
+                submitBtn.textContent = `💳 Pay $${total.toFixed(2)}`;
+                submitBtn.disabled = false;
+                submitBtn.style.opacity = '1';
+            } else {
+                submitBtn.textContent = '💳 Select Items to Continue';
+                submitBtn.disabled = true;
+                submitBtn.style.opacity = '0.6';
+            }
+        }
+
+        // Initialize the application
+        document.addEventListener('DOMContentLoaded', function () {
+            // Load items from Google Sheets
+            loadItemsFromGoogleSheets();
+
+            // Initialize total display
+            calculateTotal();
+
+            // Check if returning from payment (optional)
+            checkForPaymentReturn();
+
+            // Lightbox: delegate clicks on thumbnail links
+            document.addEventListener('click', function (e) {
+                const link = e.target.closest('.item-image-link');
+                if (link) {
+                    e.preventDefault();
+                    const src = link.dataset.image || link.getAttribute('href');
+                    const title = link.dataset.title || link.getAttribute('title') || '';
+                    openLightbox(src, title);
+                }
+            });
+
+            // Lightbox: clicking overlay outside image closes
+            const overlay = document.getElementById('lightboxOverlay');
+            const closeBtn = document.getElementById('lightboxClose');
+            if (overlay) {
+                overlay.addEventListener('click', function (e) {
+                    if (e.target === overlay) {
+                        closeLightbox();
+                    }
+                });
+            }
+            if (closeBtn) {
+                closeBtn.addEventListener('click', function () { closeLightbox(); });
+            }
+            // ESC to close
+            window.addEventListener('keydown', function (e) {
+                if (e.key === 'Escape') {
+                    closeLightbox();
+                }
+            });
+        });
+
+        // Open the lightbox with the given image
+        function openLightbox(src, title) {
+            try {
+                const overlay = document.getElementById('lightboxOverlay');
+                const img = document.getElementById('lightboxImg');
+                if (!overlay || !img) return;
+                img.src = src || '';
+                img.alt = title || '';
+                overlay.style.display = 'flex';
+                overlay.setAttribute('aria-hidden', 'false');
+                document.body.style.overflow = 'hidden';
+            } catch (err) {
+                console.error('Error opening lightbox:', err);
+            }
+        }
+
+        // Close the lightbox and reset content
+        function closeLightbox() {
+            try {
+                const overlay = document.getElementById('lightboxOverlay');
+                const img = document.getElementById('lightboxImg');
+                if (!overlay) return;
+                overlay.style.display = 'none';
+                overlay.setAttribute('aria-hidden', 'true');
+                document.body.style.overflow = '';
+                if (img) img.src = '';
+            } catch (err) {
+                console.error('Error closing lightbox:', err);
+            }
+        }
+
+        // Check if user is returning from payment system
+        async function checkForPaymentReturn() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const paymentStatus = urlParams.get('payment_status');
+
+            if (paymentStatus === 'success') {
+                // Update transaction status in spreadsheet
+                const pendingOrder = localStorage.getItem('pendingOrder');
+                if (pendingOrder) {
+                    const orderData = JSON.parse(pendingOrder);
+                    await updateTransactionStatus(orderData.transactionId, 'Completed');
+                }
+
+                // Clear stored order data
+                localStorage.removeItem('pendingOrder');
+                alert('Payment successful! Thank you for your order. We will begin processing your items and contact you with updates.');
+
+            } else if (paymentStatus === 'cancelled') {
+                // Update transaction status in spreadsheet
+                const pendingOrder = localStorage.getItem('pendingOrder');
+                if (pendingOrder) {
+                    const orderData = JSON.parse(pendingOrder);
+                    await updateTransactionStatus(orderData.transactionId, 'Cancelled');
+                    alert('Payment was cancelled. Your order items are still selected if you\'d like to try again.');
+                }
+            } else if (paymentStatus === 'failed') {
+                // Update transaction status in spreadsheet
+                const pendingOrder = localStorage.getItem('pendingOrder');
+                if (pendingOrder) {
+                    const orderData = JSON.parse(pendingOrder);
+                    await updateTransactionStatus(orderData.transactionId, 'Failed');
+                    alert('Payment failed. Please try again or contact us for assistance.');
+                }
+            }
+        }
+
+        // Function to update transaction status in spreadsheet
+        async function updateTransactionStatus(transactionId, status) {
+            if (!transactionId) return;
+
+            try {
+                const updateData = {
+                    action: 'updateStatus',
+                    transactionId: transactionId,
+                    status: status,
+                    updateDate: new Date().toISOString()
+                };
+
+                const response = await fetch(GOOGLE_APPS_SCRIPT_URL, {
+                    method: 'POST',
+                    mode: 'cors',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(updateData)
+                });
+
+                if (response.ok) {
+                    console.log(`Transaction ${transactionId} status updated to: ${status}`);
+                } else {
+                    console.error('Failed to update transaction status:', response.statusText);
+                }
+
+            } catch (error) {
+                console.error('Error updating transaction status:', error);
+            }
+        }
+
+        // Form submission handling
+        document.getElementById('orderForm').addEventListener('submit', async function (e) {
+            e.preventDefault();
+
+            console.log('Starting form validation...');
+
+            // Basic validation
+            const requiredFields = ['firstName', 'lastName', 'email'];
+            let isValid = true;
+            let missingFields = [];
+
+            // Validate required customer fields
+            requiredFields.forEach(fieldId => {
+                const field = document.getElementById(fieldId);
+                if (!field.value.trim()) {
+                    field.style.borderColor = '#e74c3c';
+                    missingFields.push(fieldId);
+                    isValid = false;
+                } else {
+                    field.style.borderColor = '#e0e0e0';
+                }
+            });
+
+            // Validate that at least one item is selected
+            if (cartItems.length === 0) {
+                alert('Please select at least one item to order.');
+                console.log('Validation failed: No items in cart');
+                isValid = false;
+            }
+
+            if (missingFields.length > 0) {
+                console.log('Validation failed: Missing required fields:', missingFields);
+            }
+
+            if (isValid) {
+                console.log('Form validation passed, processing order...');
+
+                // Calculate total amount
+                const totalAmount = cartItems.reduce((total, item) => total + (item.quantity * item.price), 0);
+                console.log('Cart items:', cartItems);
+                console.log('Total amount calculated:', totalAmount);
+
+                // Prepare order data for local storage (optional - for order tracking)
+                const orderData = {
+                    customer: {
+                        firstName: document.getElementById('firstName').value,
+                        lastName: document.getElementById('lastName').value,
+                        email: document.getElementById('email').value,
+                        phone: document.getElementById('phone').value,
+                        company: document.getElementById('company').value
+                    },
+                    items: cartItems,
+                    total: totalAmount,
+                    instructions: document.getElementById('instructions').value,
+                    orderDate: new Date().toISOString()
+                };
+
+                console.log('Order data prepared:', orderData);
+
+                // Store order data locally for reference
+                localStorage.setItem('pendingOrder', JSON.stringify(orderData));
+
+                // Show processing message
+                const submitBtn = document.getElementById('submitBtn');
+                const originalText = submitBtn.textContent;
+                submitBtn.textContent = 'Processing Order...';
+                submitBtn.disabled = true;
+
+                // Redirect to eFunds payment system with the total amount
+                try {
+                    await redirectToPayment(totalAmount, orderData);
+                } catch (error) {
+                    console.error('Error during payment redirect:', error);
+                    alert('There was an error processing your order. Please try again.');
+
+                    // Restore button
+                    submitBtn.textContent = originalText;
+                    submitBtn.disabled = false;
+                }
+
+            } else {
+                alert('Please fill in all required fields and select at least one item.');
+            }
+        });
+
+        // Function to redirect to eFunds payment system
+        async function redirectToPayment(amount, orderData) {
+            console.log('Starting payment process for amount:', amount);
+
+            // First, log the transaction to accounting spreadsheet
+            try {
+                const transactionLogged = await logTransactionToSheet(orderData);
+                console.log('Transaction logging result:', transactionLogged);
+
+                if (!transactionLogged) {
+                    console.warn('Transaction logging failed, but proceeding with payment');
+                }
+            } catch (error) {
+                console.error('Error during transaction logging:', error);
+                alert('There was an issue recording your order, but you can still proceed with payment. Please contact us if you encounter any problems.');
+            }
+
+            // Create a description for the payment
+            const itemsList = orderData.items.map(item => `${item.name} (${item.quantity}x)`).join(', ');
+            const description = `3D Print Order - ${itemsList}`;
+
+            // Show confirmation before redirecting
+            const confirmMessage = `You will be redirected to complete payment for your order:\n\nTotal: $${amount.toFixed(2)}\nItems: ${itemsList}\n\nClick OK to proceed to payment.`;
+
+            if (confirm(confirmMessage)) {
+                // For eFunds, we need to create a form and submit it with POST data
+                // This is the proper way to pass amount data to most payment processors
+
+                const form = document.createElement('form');
+                form.method = 'POST';
+                form.action = 'https://payments.efundsforschools.com/v3/districts/56317/add-to-cart/3B3KtRq8LrG2%7C78zzRKCjcG78%7Cgeneral-item';
+
+                // Add form fields for payment data
+                const fields = {
+                    'amount': amount.toFixed(2),
+                    'description': description.substring(0, 100),
+                    'customer_name': `${orderData.customer.firstName} ${orderData.customer.lastName}`,
+                    'customer_email': orderData.customer.email,
+                    'customer_phone': orderData.customer.phone || '',
+                    'transaction_id': orderData.transactionId || generateTransactionId(),
+                    'return_url': window.location.origin + window.location.pathname + '?payment_status=success',
+                    'cancel_url': window.location.origin + window.location.pathname + '?payment_status=cancelled'
+                };
+
+                // Create hidden input fields
+                Object.entries(fields).forEach(([key, value]) => {
+                    const input = document.createElement('input');
+                    input.type = 'hidden';
+                    input.name = key;
+                    input.value = value;
+                    form.appendChild(input);
+                });
+
+                // Add form to page and submit
+                document.body.appendChild(form);
+                console.log('Submitting payment form with data:', fields);
+                form.submit();
+            }
+        }
+
+        // Function to log transaction to Google Sheets for accounting
+        async function logTransactionToSheet(orderData) {
+            console.log('Attempting to log transaction to sheet...');
+            console.log('Google Apps Script URL:', GOOGLE_APPS_SCRIPT_URL);
+
+            try {
+                // Generate a unique transaction ID
+                const transactionId = generateTransactionId();
+                console.log('Generated transaction ID:', transactionId);
+
+                // Prepare the data to send to Google Apps Script
+                const transactionData = {
+                    action: 'logTransaction',
+                    data: {
+                        orderDate: new Date().toISOString(),
+                        transactionId: transactionId,
+                        customerName: `${orderData.customer.firstName} ${orderData.customer.lastName}`,
+                        customerEmail: orderData.customer.email,
+                        customerPhone: orderData.customer.phone || '',
+                        company: orderData.customer.company || '',
+                        itemsOrdered: orderData.items.map(item => `${item.name} (Qty: ${item.quantity}, $${item.price.toFixed(2)})`).join('; '),
+                        totalAmount: orderData.total.toFixed(2),
+                        paymentStatus: 'Pending',
+                        instructions: orderData.instructions || ''
+                    }
+                };
+
+                console.log('Sending transaction data:', transactionData);
+
+                // Send data to Google Apps Script
+                const response = await fetch(GOOGLE_APPS_SCRIPT_URL, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'text/plain', // Changed from application/json
+                    },
+                    body: JSON.stringify(transactionData)
+                });
+
+                console.log('Response status:', response.status);
+                console.log('Response headers:', Object.fromEntries(response.headers.entries()));
+
+                if (response.ok) {
+                    const responseText = await response.text();
+                    console.log('Raw response:', responseText);
+
+                    try {
+                        const result = JSON.parse(responseText);
+                        console.log('Transaction logged successfully:', result);
+
+                        // Store transaction ID for reference
+                        orderData.transactionId = transactionId;
+                        localStorage.setItem('pendingOrder', JSON.stringify(orderData));
+
+                        return true;
+                    } catch (parseError) {
+                        console.error('Error parsing response JSON:', parseError);
+                        console.log('Response was:', responseText);
+
+                        // If response contains success indicators, consider it successful
+                        if (responseText.includes('success') || responseText.includes('Transaction logged')) {
+                            orderData.transactionId = transactionId;
+                            localStorage.setItem('pendingOrder', JSON.stringify(orderData));
+                            return true;
+                        }
+                        return false;
+                    }
+                } else {
+                    const errorText = await response.text();
+                    console.error('Failed to log transaction:', response.status, response.statusText);
+                    console.error('Error response:', errorText);
+                    return false;
+                }
+
+            } catch (error) {
+                console.error('Error logging transaction to spreadsheet:', error);
+
+                // Fallback: Log to console for manual entry
+                console.log('MANUAL TRANSACTION LOG NEEDED:', {
+                    date: new Date().toISOString(),
+                    transactionId: generateTransactionId(),
+                    customer: `${orderData.customer.firstName} ${orderData.customer.lastName}`,
+                    email: orderData.customer.email,
+                    phone: orderData.customer.phone || '',
+                    company: orderData.customer.company || '',
+                    total: orderData.total,
+                    items: orderData.items.map(item => `${item.name} (${item.quantity}x $${item.price.toFixed(2)})`).join(', '),
+                    instructions: orderData.instructions || ''
+                });
+
+                return false;
+            }
+        }
+
+        // Generate a unique transaction ID
+        function generateTransactionId() {
+            const timestamp = Date.now().toString(36);
+            const randomStr = Math.random().toString(36).substring(2, 7);
+            return `TXN-${timestamp}-${randomStr}`.toUpperCase();
+        }
+
+        // Reset form handler
+        document.querySelector('.reset-btn').addEventListener('click', function (e) {
+            e.preventDefault();
+            if (confirm('Are you sure you want to reset the entire form? All selected items and information will be lost.')) {
+                // Reset form fields
+                document.getElementById('orderForm').reset();
+
+                // Clear cart
+                cartItems = [];
+
+                // Reset all quantity inputs
+                document.querySelectorAll('.quantity-input').forEach(input => {
+                    input.value = 0;
+                });
+
+                // Remove selected styling from item cards
+                document.querySelectorAll('.item-card').forEach(card => {
+                    card.classList.remove('selected');
+                });
+
+                // Update displays
+                updateCartDisplay();
+                calculateTotal();
+            }
+        });
+
+        // Instructions for setting up Google Sheets and Accounting Integration:
+        /*
+        PART 1: PRODUCT CATALOG SETUP
+        ==============================
+        1. Create a Google Sheet with these columns (in this exact order):
+           - Name (product name)
+           - Description (product description)
+           - Price (price as a number, e.g., 15.99)
+           - Image_URL (URL to product image)
+
+        2. Publish your sheet to the web:
+           - Go to File > Share > Publish to the web
+           - Choose the specific sheet tab
+           - Select "Web page" or "CSV"
+           - Click "Publish"
+
+        3. Get your sheet ID from the URL and update GOOGLE_SHEET_URL above
+
+        PART 2: ACCOUNTING/TRANSACTION LOGGING SETUP
+        =============================================
+        1. Create a separate Google Sheet for accounting with these columns:
+           - Order_Date
+           - Transaction_ID
+           - Customer_Name
+           - Customer_Email
+           - Customer_Phone
+           - Company
+           - Items_Ordered
+           - Total_Amount
+           - Payment_Status
+           - Instructions
+           - Last_Updated
+
+        2. Create a Google Apps Script:
+           - Go to script.google.com
+           - Create a new project
+           - Replace the default code with the script below
+           - Save and deploy as a web app
+           - Set permissions to "Anyone" and "Execute as: Me"
+           - Copy the web app URL and update GOOGLE_APPS_SCRIPT_URL above
+
+        3. Google Apps Script Code:
+        ```javascript
+        function doPost(e) {
+          try {
+            const data = JSON.parse(e.postData.contents);
+            const sheet = SpreadsheetApp.openById('YOUR_ACCOUNTING_SHEET_ID').getActiveSheet();
+            
+            if (data.action === 'logTransaction') {
+              const rowData = [
+                data.data.orderDate,
+                data.data.transactionId,
+                data.data.customerName,
+                data.data.customerEmail,
+                data.data.customerPhone,
+                data.data.company,
+                data.data.itemsOrdered,
+                data.data.totalAmount,
+                data.data.paymentStatus,
+                data.data.instructions,
+                new Date().toISOString()
+              ];
+              
+              sheet.appendRow(rowData);
+              return ContentService.createTextOutput(JSON.stringify({success: true, transactionId: data.data.transactionId}))
+                    .setMimeType(ContentService.MimeType.JSON);
+                    
+            } else if (data.action === 'updateStatus') {
+              const dataRange = sheet.getDataRange();
+              const values = dataRange.getValues();
+              
+              for (let i = 1; i < values.length; i++) {
+                if (values[i][1] === data.transactionId) { // Transaction_ID is in column B (index 1)
+                  sheet.getRange(i + 1, 9).setValue(data.status); // Payment_Status is column I (index 8)
+                  sheet.getRange(i + 1, 11).setValue(data.updateDate); // Last_Updated is column K (index 10)
+                  break;
+                }
+              }
+              
+              return ContentService.createTextOutput(JSON.stringify({success: true}))
+                    .setMimeType(ContentService.MimeType.JSON);
+            }
+            
+          } catch (error) {
+            return ContentService.createTextOutput(JSON.stringify({error: error.toString()}))
+                  .setMimeType(ContentService.MimeType.JSON);
+          }
+        }
+        ```
+
+        4. Update the ACCOUNTING_SHEET_ID and GOOGLE_APPS_SCRIPT_URL variables above
+
+        FEATURES:
+        - Automatic transaction logging when customers proceed to payment
+        - Unique transaction IDs for each order
+        - Payment status tracking (Pending, Completed, Cancelled, Failed)
+        - Complete customer and order details for accounting
+        - Fallback logging to browser console if spreadsheet is unavailable
+        */
+
+        // Debug helper function to check system status
+        function debugSystemStatus() {
+            console.log('=== SYSTEM DEBUG STATUS ===');
+            console.log('Products loaded:', availableItems.length > 0 ? `${availableItems.length} products` : 'No products loaded');
+            console.log('Cart items:', cartItems.length > 0 ? cartItems : 'Cart is empty');
+            console.log('Google Sheets URL configured:', GOOGLE_SHEET_URL !== 'YOUR_GOOGLE_SHEET_URL_HERE');
+            console.log('Google Apps Script URL configured:', GOOGLE_APPS_SCRIPT_URL !== 'YOUR_GOOGLE_APPS_SCRIPT_URL_HERE');
+            console.log('Accounting Sheet ID configured:', ACCOUNTING_SHEET_ID !== 'YOUR_ACCOUNTING_SHEET_ID_HERE');
+
+            // Check form fields
+            const formData = {
+                firstName: document.getElementById('firstName').value,
+                lastName: document.getElementById('lastName').value,
+                email: document.getElementById('email').value,
+                phone: document.getElementById('phone').value,
+                company: document.getElementById('company').value
+            };
+            console.log('Form data:', formData);
+
+            // Check localStorage
+            const pendingOrder = localStorage.getItem('pendingOrder');
+            console.log('Pending order in localStorage:', pendingOrder ? JSON.parse(pendingOrder) : 'None');
+
+            console.log('=== END DEBUG STATUS ===');
+        }
+
+        // Make debug function available globally for testing
+        window.debugSystemStatus = debugSystemStatus;
+
+        // Load products on page load
+        window.addEventListener('load', function () {
+            loadItemsFromGoogleSheets();
+
+            // Add debug info to console on load
+            console.log('GCI 3D Order System loaded');
+            console.log('To check system status at any time, type: debugSystemStatus()');
+        });
+    </script>
+</body>
+
+</html>
