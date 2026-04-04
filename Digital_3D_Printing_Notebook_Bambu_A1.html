@@ -7,177 +7,10 @@
     <meta name="description"
         content="Digital 3D Printing Notebook (Bambu A1 Edition) for student progress, observations, and reflection." />
     <title>Digital 3D Printing Notebook | Bambu A1 | GCI</title>
-    <style>
-        :root {
-            --bg: #f5f7fb;
-            --card: #ffffff;
-            --text: #111827;
-            --muted: #4b5563;
-            --accent: #2563eb;
-            --border: #dbe3ef;
-            --shadow: 0 8px 20px rgba(17, 24, 39, 0.08);
-        }
-
-        * {
-            box-sizing: border-box;
-        }
-
-        body {
-            margin: 0;
-            font-family: Inter, Segoe UI, Roboto, Arial, sans-serif;
-            background: linear-gradient(180deg, #ebf2ff 0%, var(--bg) 70%);
-            color: var(--text);
-        }
-
-        .wrap {
-            max-width: 1080px;
-            margin: 0 auto;
-            padding: 24px 16px 44px;
-        }
-
-        h1 {
-            margin: 0 0 8px;
-            font-size: 2rem;
-        }
-
-        .lead {
-            margin: 0 0 16px;
-            color: var(--muted);
-            line-height: 1.45;
-        }
-
-        .meta {
-            margin: 0 0 18px;
-            padding: 12px;
-            border: 1px solid var(--border);
-            border-radius: 10px;
-            background: #f8fbff;
-            color: var(--muted);
-            font-size: 0.95rem;
-        }
-
-        .section {
-            background: var(--card);
-            border: 1px solid var(--border);
-            border-radius: 12px;
-            box-shadow: var(--shadow);
-            padding: 16px;
-            margin-bottom: 14px;
-        }
-
-        .section h2 {
-            margin: 0 0 8px;
-            font-size: 1.2rem;
-        }
-
-        .goal {
-            margin: 0 0 12px;
-            font-size: 0.98rem;
-        }
-
-        h3 {
-            margin: 12px 0 8px;
-            font-size: 1rem;
-        }
-
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            margin: 8px 0 10px;
-        }
-
-        th,
-        td {
-            border: 1px solid var(--border);
-            padding: 8px;
-            vertical-align: top;
-            text-align: left;
-            font-size: 0.95rem;
-        }
-
-        th {
-            background: #f3f7ff;
-        }
-
-        td input[type="text"],
-        td select {
-            width: 100%;
-        }
-
-        .field,
-        textarea,
-        input[type="text"],
-        select {
-            width: 100%;
-            border: 1px solid #cfd9ea;
-            border-radius: 8px;
-            padding: 8px 10px;
-            font: inherit;
-            color: inherit;
-            background: #fff;
-        }
-
-        textarea {
-            min-height: 92px;
-            resize: vertical;
-        }
-
-        .short {
-            min-height: 64px;
-        }
-
-        .checklist {
-            margin: 0;
-            padding: 0;
-            list-style: none;
-        }
-
-        .checklist li {
-            margin: 8px 0;
-            display: flex;
-            align-items: flex-start;
-            gap: 8px;
-        }
-
-        .checklist input {
-            margin-top: 3px;
-        }
-
-        .line-input {
-            margin: 6px 0;
-        }
-
-        .back-link {
-            display: inline-block;
-            margin-top: 8px;
-            font-weight: 700;
-            color: var(--accent);
-            text-decoration: none;
-        }
-
-        .back-link:hover,
-        .back-link:focus-visible {
-            text-decoration: underline;
-        }
-
-        @media print {
-            body {
-                background: #fff;
-            }
-
-            .section {
-                box-shadow: none;
-                break-inside: avoid;
-            }
-
-            .back-link {
-                display: none;
-            }
-        }
-    </style>
+    <link rel="stylesheet" href="training/training.css" />
 </head>
 
-<body>
+<body data-page="notebook">
     <main class="wrap">
         <h1>Digital 3D Printing Notebook</h1>
         <p class="lead">Bambu A1 Edition</p>
@@ -456,7 +289,7 @@
             <textarea class="short" aria-label="Day 5 final reflection question 2"></textarea>
         </section>
 
-        <a class="back-link" href="Intro_to_3D_Printing_Bambu_A1.html">← Back to Intro to 3D Printing Guide</a>
+        <a class="back-link" href="Intro_to_3D_Printing.html">← Back to Intro to 3D Printing Guide</a>
     </main>
 </body>
 

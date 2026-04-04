@@ -3,97 +3,39 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1" />
-<title>Day 1 - 3D Printing</title>
-<style>
-:root{--bg:#08111f;--card:rgba(10,18,33,.96);--text:#f4f8ff;--accent:#7cc0ff;--accent2:#9cf3db;--border:rgba(125,166,230,.35);--muted:#c9dcff}
-body[data-theme="light"]{--bg:#f5f8ff;--card:rgba(255,255,255,.98);--text:#142033;--accent:#2563eb;--accent2:#0f766e;--border:rgba(37,99,235,.22);--muted:#385072}
-body[data-theme="high-contrast"]{--bg:#000;--card:#000;--text:#fff;--accent:#ffd400;--accent2:#00ffff;--border:#fff;--muted:#fff}
-body{margin:0;font-family:Inter,Arial,sans-serif;background:linear-gradient(160deg,var(--bg),#132649);color:var(--text);line-height:1.6}
-body[data-theme="light"]{background:linear-gradient(160deg,#f5f8ff,#dfeafe)}
-body[data-theme="high-contrast"]{background:#000}
-.wrap{max-width:900px;margin:auto;padding:20px}
-.hero,details{background:var(--card);border:1px solid var(--border);border-radius:16px;margin-bottom:12px;padding:16px}
-summary{cursor:pointer;font-weight:bold}
-button{padding:10px 14px;border-radius:10px;background:var(--accent);border:none;font-weight:bold;cursor:pointer;color:#08111f}
-select{padding:10px 14px;border-radius:10px;background:var(--card);color:var(--text);border:1px solid var(--border)}
-body[data-theme="light"] select{
-  background:#ffffff;
-  color:#142033;
-}
-body[data-theme="high-contrast"] select{
-  background:#000;
-  color:#fff;
-  border:2px solid #fff;
-}
-button:focus-visible,select:focus-visible,textarea:focus-visible,input:focus-visible,summary:focus-visible,a:focus-visible{outline:3px solid var(--accent2);outline-offset:3px}
-button:disabled{opacity:.5;cursor:not-allowed}
-body[data-font-size="large"]{font-size:1.1rem}
-body[data-font-size="x-large"]{font-size:1.22rem}
-.part-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
-textarea,input[type="text"]{width:100%;padding:10px;border-radius:10px;background:#08111f;color:white;border:1px solid var(--border);box-sizing:border-box}
-body[data-theme="light"] textarea,
-body[data-theme="light"] input[type="text"]{
-  background:#ffffff;
-  color:#142033;
-}
-body[data-theme="high-contrast"] textarea,
-body[data-theme="high-contrast"] input[type="text"]{
-  background:#000;
-  color:#fff;
-  border:2px solid #fff;
-}
-textarea{min-height:90px}
-.progress{margin-bottom:10px}
-.bar{height:10px;background:#0b1424;border-radius:10px;overflow:hidden}
-.fill{height:100%;background:linear-gradient(90deg,var(--accent),var(--accent2));width:0%}
-.day-nav{display:flex;gap:10px;flex-wrap:wrap;justify-content:center;margin-bottom:12px}
-.day-btn{background:rgba(108,182,255,.2);border:1px solid var(--border)}
-.current{background:linear-gradient(90deg,var(--accent),var(--accent2));color:#08111f}
-iframe{width:100%;aspect-ratio:16/9;border:0;border-radius:12px;margin:8px 0 12px}
-.note{background:rgba(124,192,255,.12);border:1px solid var(--border);padding:12px;border-radius:12px;margin:10px 0}
-.fun{background:rgba(156,243,219,.12);border:1px solid rgba(156,243,219,.25);padding:12px;border-radius:12px;margin:10px 0}
-.quiz-box{border:1px solid var(--border);border-radius:12px;padding:12px;margin:10px 0}
-.quiz-actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}
-label{display:block;margin:6px 0}
-.quiz-progress{color:var(--muted);font-weight:700;margin-bottom:8px}
-.feedback{font-weight:700;margin-top:8px}
-.explanation{margin-top:8px;color:var(--muted)}
-.bottom-nav{display:flex;justify-content:flex-end;margin-top:18px}
-.checklist li{margin:8px 0}
-@media (max-width:700px){.part-grid{grid-template-columns:1fr}}
-</style>
+<meta name="description" content="Intro to 3D Printing with Bambu A1: Day 1 student guide." />
+<title>Intro to 3D Printing – Day 1 | GCI</title>
+<link rel="stylesheet" href="training.css" />
 </head>
 <body>
+<div class="hero">
+    <h1>Intro to 3D Printing with Bambu Printers</h1>
+    <p>Day 1: Foundations of 3D Printing</p>
+</div>
 <div class="wrap">
 
-<div class="hero" style="display:flex;gap:12px;align-items:center;justify-content:space-between;flex-wrap:wrap">
-<div style="display:flex;gap:12px;align-items:center;flex-wrap:wrap">
-<div>
-<label for="themeSelector"><strong>Theme:</strong></label>
-<select id="themeSelector" aria-label="Choose page theme">
-  <option value="default">Default</option>
-  <option value="light">Light</option>
-  <option value="high-contrast">High Contrast</option>
-</select>
-</div>
-<div>
-<label for="fontSizeSelector"><strong>Text Size:</strong></label>
-<select id="fontSizeSelector" aria-label="Choose text size">
-  <option value="default">Default</option>
-  <option value="large">Large</option>
-  <option value="x-large">Extra Large</option>
-</select>
-</div>
-</div>
-<div class="note" style="margin:0">Choose the theme and text size that feel easiest to read.</div>
-</div>
-
-<div class="day-nav">
-<button class="day-btn current" disabled>Day 1</button>
-<button class="day-btn">Day 2</button>
-<button class="day-btn">Day 3</button>
-<button class="day-btn">Day 4</button>
-<button class="day-btn">Day 5</button>
+<div class="sticky-mini-nav" aria-label="Page controls">
+    <div class="sticky-controls" style="display:flex;gap:0.5rem;align-items:center;flex-wrap:wrap;">
+        <label for="theme-selector" class="sr-only">Choose theme</label>
+        <select id="theme-selector" class="theme-select" aria-label="Choose theme">
+            <option value="dark">Dark</option>
+            <option value="light">Light</option>
+            <option value="high-contrast">High Contrast</option>
+        </select>
+        <label for="fontSizeSelector" style="margin:0;font-weight:600;">Text Size:</label>
+        <select id="fontSizeSelector" class="theme-select" aria-label="Choose text size">
+            <option value="default">Default</option>
+            <option value="large">Large</option>
+            <option value="x-large">Extra Large</option>
+        </select>
+    </div>
+    <nav class="day-nav" aria-label="Select lab day">
+        <a class="day-nav-btn is-active" href="Intro_to_3D_Printing_Day1.html">Day 1</a>
+        <a class="day-nav-btn" href="Intro_to_3D_Printing_Day2.html">Day 2</a>
+        <a class="day-nav-btn" href="Intro_to_3D_Printing_Day3.html">Day 3</a>
+        <a class="day-nav-btn" href="Intro_to_3D_Printing_Day4.html">Day 4</a>
+        <a class="day-nav-btn" href="Intro_to_3D_Printing_Day5.html">Day 5</a>
+    </nav>
 </div>
 
 <h1>Day 1: Foundations of 3D Printing</h1>
@@ -359,14 +301,14 @@ Be ready to explain why your model stood out to you.
 </details>
 
 <div class="bottom-nav">
-<button class="day-btn">Next Day →</button>
+<a class="day-nav-btn" href="Intro_to_3D_Printing_Day2.html">Next Day →</a>
 </div>
 
 </div>
 
+<script src="training.js"></script>
 <script>
 const STORAGE_KEY = 'gci-3d-day1-state-v1';
-const THEME_KEY = 'gci-3d-day1-theme';
 const FONT_SIZE_KEY = 'gci-3d-day1-font-size';
 
 const state = {
@@ -706,26 +648,6 @@ function resetFilamentQuiz(){
   saveState();
 }
 
-function applyTheme(theme){
-  if(theme === 'default'){
-    document.body.removeAttribute('data-theme');
-  } else {
-    document.body.setAttribute('data-theme', theme);
-  }
-  localStorage.setItem(THEME_KEY, theme);
-  const selector = document.getElementById('themeSelector');
-  if(selector) selector.value = theme;
-}
-
-function initTheme(){
-  const savedTheme = localStorage.getItem(THEME_KEY) || 'default';
-  applyTheme(savedTheme);
-  const selector = document.getElementById('themeSelector');
-  if(selector){
-    selector.addEventListener('change', (e) => applyTheme(e.target.value));
-  }
-}
-
 function applyFontSize(size){
   if(size === 'default'){
     document.body.removeAttribute('data-font-size');
@@ -747,7 +669,6 @@ function initFontSize(){
 }
 
 function init(){
-  initTheme();
   initFontSize();
   loadState();
   restoreTextInputs();
