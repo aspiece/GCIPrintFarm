@@ -657,6 +657,11 @@ window.checkTrouble = function checkTrouble() {
   troubleState.answers[idx] = answer;
   troubleState.checked[idx] = true;
   troubleState.attempts[idx] = (troubleState.attempts[idx] || 0) + 1;
+
+  // Track which scenarios were answered correctly (avoid duplicates)
+  if (answer === s.correct && !troubleState.correct.includes(idx)) {
+    troubleState.correct.push(idx);
+  }
   saveTroubleState();
 
   const correct = answer === s.correct;
@@ -685,10 +690,11 @@ window.checkTrouble = function checkTrouble() {
   renderTroubleDots();
 
   // Check for mastery and launch confetti if just achieved
-  const wasMastered = document.getElementById('masteryMsg') &&
-                      document.getElementById('masteryMsg').style.display === 'block';
+  const wasMastered = document.getElementById('masteryMsg');
+  const masteryMsgEl = wasMastered; // reuse reference
+  const wasShowing = masteryMsgEl && masteryMsgEl.style.display === 'block';
   const nowMastered = checkTroubleMastery();
-  if (!wasMastered && nowMastered) {
+  if (!wasShowing && nowMastered) {
     window.launchConfetti();
   }
 };

@@ -1006,6 +1006,17 @@ body[data-theme="high-contrast"] .summary-output {
   border-color: #fff !important;
 }
 
+.summary-label {
+  margin-top: 14px;
+}
+
+/* ── Font Size Label ───────────────────────────────────────── */
+.font-size-label {
+  display: inline;
+  margin: 0;
+  font-weight: 600;
+}
+
 /* ── Focus Visible (Accessibility) ────────────────────────── */
 button:focus-visible,
 select:focus-visible,
