@@ -466,3 +466,224 @@ label {
     grid-template-columns: 1fr;
   }
 }
+
+/* ============================================================
+   Day 2 additions — training/lab.css
+   Classes used exclusively by day2.html
+   ============================================================ */
+
+/* ── Page header banner ─────────────────────────────────────── */
+.page-header {
+  background: linear-gradient(135deg, #0d1b2a, #1a3050);
+  color: var(--text);
+  padding: 28px 20px 24px;
+  text-align: center;
+  border-bottom: 1px solid var(--border);
+}
+.page-header h1 { margin: 0 0 6px; font-size: 1.45rem; }
+.page-header p  { margin: 0; opacity: 0.8; font-size: 1rem; }
+body[data-theme="light"] .page-header {
+  background: linear-gradient(135deg, #dbeafe, #eff6ff);
+  color: #142033;
+}
+body[data-theme="high-contrast"] .page-header {
+  background: #000;
+  border-bottom: 2px solid #fff;
+}
+
+/* ── Intro grid (objectives + time table) ───────────────────── */
+.intro-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+  margin-bottom: 14px;
+}
+.intro-card {
+  background: rgba(124, 192, 255, 0.06);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 14px;
+}
+.intro-card h3 { margin: 0 0 10px; font-size: 1rem; }
+.objectives-list { margin: 0; padding-left: 18px; }
+.objectives-list li { margin-bottom: 6px; }
+
+/* ── Time table ─────────────────────────────────────────────── */
+.time-table { width: 100%; border-collapse: collapse; font-size: 0.9rem; }
+.time-table th,
+.time-table td { padding: 6px 10px; border-bottom: 1px solid var(--border); text-align: left; }
+.time-table th  { font-weight: 700; color: var(--muted); }
+
+/* ── Goal / How to Use / Success Criteria ───────────────────── */
+.goal-section {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 14px;
+}
+.goal-card {
+  background: rgba(156, 243, 219, 0.06);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 14px;
+}
+.goal-card h3   { margin: 0 0 10px; font-size: 1rem; }
+.goal-card ul   { margin: 0; padding-left: 18px; }
+.goal-card li   { margin-bottom: 4px; font-size: 0.92rem; }
+.goal-card p    { margin: 0; font-size: 0.92rem; }
+
+/* ── Part content / actions ─────────────────────────────────── */
+.part-content   { padding-top: 10px; }
+.part-actions   { margin-top: 14px; }
+.part-title     { font-size: 1rem; font-weight: 700; }
+
+/* ── Sticky-progress rows ───────────────────────────────────── */
+.sticky-progress {
+  flex-direction: column;
+  align-items: stretch;
+}
+.progress-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+  width: 100%;
+}
+.progress-meta {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  white-space: nowrap;
+}
+.step-text    { font-weight: 800; font-size: 0.92rem; color: var(--accent); }
+.percent-text { font-weight: 700; font-size: 0.92rem; color: var(--muted); }
+.progress-row .bar { flex: 1; min-width: 120px; }
+
+/* ── Feedback states ────────────────────────────────────────── */
+.feedback.correct   { color: var(--success); }
+.feedback.incorrect { color: var(--danger);  }
+
+/* ── Hint box ───────────────────────────────────────────────── */
+.hint-box {
+  background: rgba(255, 220, 0, 0.1);
+  border: 1px solid rgba(255, 220, 0, 0.35);
+  border-radius: 10px;
+  padding: 10px 14px;
+  margin-top: 10px;
+  font-size: 0.92rem;
+}
+body[data-theme="high-contrast"] .hint-box {
+  background: #000;
+  border: 2px solid #ffd400;
+  color: #ffd400;
+}
+
+/* ── Matching activity ──────────────────────────────────────── */
+.match-grid { display: flex; flex-direction: column; gap: 10px; margin: 10px 0; }
+.match-row  {
+  display: grid;
+  grid-template-columns: 1fr 2fr auto;
+  gap: 10px;
+  align-items: center;
+}
+.match-term   { font-weight: 700; }
+.match-result { font-size: 1.2rem; width: 1.4rem; text-align: center; }
+
+/* ── Troubleshooting scenario box ───────────────────────────── */
+.trouble-scenario {
+  background: rgba(124, 192, 255, 0.08);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 14px;
+  margin: 10px 0;
+  font-size: 0.97rem;
+  line-height: 1.7;
+  font-style: italic;
+}
+
+/* ── Progress dots ──────────────────────────────────────────── */
+.progress-dots { display: flex; gap: 8px; margin: 8px 0 14px; }
+.progress-dot  {
+  width: 12px; height: 12px;
+  border-radius: 50%;
+  border: 2px solid var(--border);
+  background: transparent;
+  transition: background 0.2s, border-color 0.2s;
+}
+.progress-dot.done    { background: var(--success); border-color: var(--success); }
+.progress-dot.current { background: var(--accent);  border-color: var(--accent);  }
+
+/* ── Mastery message ────────────────────────────────────────── */
+.mastery-msg {
+  background: rgba(76, 175, 80, 0.15);
+  border: 1px solid rgba(76, 175, 80, 0.5);
+  border-radius: 12px;
+  padding: 14px;
+  text-align: center;
+  font-size: 1.1rem;
+  font-weight: 700;
+  margin-top: 14px;
+}
+body[data-theme="high-contrast"] .mastery-msg {
+  background: #000;
+  border: 2px solid #00ff00;
+  color: #00ff00;
+}
+
+/* ── Weak / strong comparison ───────────────────────────────── */
+.weak-strong { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin: 14px 0; }
+.ws-box      { border-radius: 12px; padding: 14px; border: 1px solid var(--border); }
+.ws-box h4   { margin: 0 0 8px; }
+.ws-weak     { background: rgba(255, 77, 77, 0.1);  border-color: rgba(255, 77, 77,  0.3); }
+.ws-strong   { background: rgba(76, 175, 80, 0.1);  border-color: rgba(76, 175, 80,  0.3); }
+.ws-note     { font-size: 0.85rem; color: var(--muted); margin: 6px 0 0; }
+
+/* ── Summary output ─────────────────────────────────────────── */
+.summary-output { min-height: 200px; font-family: monospace; font-size: 0.9rem; resize: vertical; }
+
+/* ── Quiz & options ─────────────────────────────────────────── */
+.quiz-prompt { font-size: 1.02rem; margin: 6px 0 12px; }
+.quiz-options div    { margin-bottom: 8px; }
+.quiz-options label  { display: flex; align-items: flex-start; gap: 8px; cursor: pointer; margin: 0; }
+.quiz-options input  { margin-top: 3px; flex-shrink: 0; }
+
+/* ── Checklist (Part 6) ─────────────────────────────────────── */
+.checklist          { list-style: none; padding: 0; margin: 10px 0; }
+.checklist li       {
+  padding: 10px 12px;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+  margin-bottom: 8px;
+}
+.checklist label    { display: flex; align-items: center; gap: 10px; margin: 0; cursor: pointer; font-weight: 600; }
+.checklist input[type="checkbox"] { width: 18px; height: 18px; flex-shrink: 0; }
+
+/* ── Video wrap ─────────────────────────────────────────────── */
+.video-wrap { margin: 10px 0; }
+
+/* ── Font-size label ────────────────────────────────────────── */
+.font-size-label { margin: 0; font-weight: 600; }
+
+/* ── Summary label ──────────────────────────────────────────── */
+.summary-label { margin-top: 14px; }
+
+/* ── Confetti particle ──────────────────────────────────────── */
+@keyframes confettiFall {
+  0%   { transform: translateY(0)    rotate(0deg);   opacity: 1; }
+  80%  { opacity: 1; }
+  100% { transform: translateY(105vh) rotate(540deg); opacity: 0; }
+}
+.confetti-particle {
+  position: fixed;
+  pointer-events: none;
+  z-index: 9999;
+  animation: confettiFall linear forwards;
+}
+
+/* ── Responsive tweaks ──────────────────────────────────────── */
+@media (max-width: 700px) {
+  .intro-grid   { grid-template-columns: 1fr; }
+  .goal-section { grid-template-columns: 1fr; }
+  .weak-strong  { grid-template-columns: 1fr; }
+  .match-row    { grid-template-columns: 1fr; }
+  .progress-meta { flex-direction: row; }
+}
