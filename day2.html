@@ -1,0 +1,463 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Day 2: From Model to Print Setup — GCI 3D Printing Lab" />
+  <title>Day 2: From Model to Print Setup | GCI 3D Printing</title>
+  <link rel="stylesheet" href="css/lab.css" />
+  <script src="js/training.js" defer></script>
+</head>
+<body>
+
+  <!-- Page Header (non-sticky) -->
+  <header class="page-header">
+    <h1>Intro to 3D Printing with Bambu Printers</h1>
+    <p>Day 2: From Model to Print Setup</p>
+  </header>
+
+  <main class="wrap" id="mainContent" tabindex="-1">
+
+    <!-- ── Sticky progress bar ─────────────────────────────── -->
+    <div class="sticky-progress" role="banner" aria-label="Page controls and progress">
+
+      <!-- Row 1: Theme / font-size controls -->
+      <div class="control-row">
+        <label for="themeSelector" class="sr-only">Choose theme</label>
+        <select id="themeSelector" aria-label="Choose theme">
+          <option value="auto">Default (Auto Detect)</option>
+          <option value="dark">Dark</option>
+          <option value="light">Light</option>
+          <option value="high-contrast">High Contrast</option>
+        </select>
+
+        <label for="fontSizeSelector" style="margin:0;font-weight:600;">Text:</label>
+        <select id="fontSizeSelector" aria-label="Choose text size">
+          <option value="default">Default</option>
+          <option value="large">Large</option>
+          <option value="x-large">Extra Large</option>
+        </select>
+      </div>
+
+      <!-- Row 2: Day navigation -->
+      <nav class="day-nav" aria-label="Select lab day">
+        <a class="day-btn" href="training/Intro_to_3D_Printing_Day1.html">Day 1</a>
+        <a class="day-btn current" href="day2.html" aria-current="page">Day 2</a>
+        <a class="day-btn" href="training/Intro_to_3D_Printing_Day3.html">Day 3</a>
+        <a class="day-btn" href="training/Intro_to_3D_Printing_Day4.html">Day 4</a>
+        <a class="day-btn" href="training/Intro_to_3D_Printing_Day5.html">Day 5</a>
+      </nav>
+
+      <!-- Row 3: Step progress + jump links -->
+      <div class="progress-row">
+        <div class="progress-meta">
+          <span id="progressStep" class="step-text">Step 1 of 7</span>
+          <span id="progressPercent" class="percent-text">0%</span>
+        </div>
+        <div class="bar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" aria-label="Overall progress">
+          <div class="fill" id="progressFill"></div>
+        </div>
+        <div class="jump-links" aria-label="Jump to part">
+          <a class="jump-link" href="#part1">1</a>
+          <a class="jump-link" href="#part2">2</a>
+          <a class="jump-link" href="#part3">3</a>
+          <a class="jump-link" href="#part4">4</a>
+          <a class="jump-link" href="#part5">5</a>
+          <a class="jump-link" href="#part6">6</a>
+          <a class="jump-link" href="#part7">7</a>
+        </div>
+      </div>
+    </div><!-- /sticky-progress -->
+
+    <!-- ── Page intro / hero ────────────────────────────────── -->
+    <section class="hero intro-section" aria-labelledby="pageTitle">
+      <h2 id="pageTitle">Day 2: From Model to Print Setup</h2>
+
+      <div class="intro-grid">
+        <!-- Learning Objectives -->
+        <div class="intro-card">
+          <h3>🎯 Learning Objectives</h3>
+          <ul class="objectives-list">
+            <li>Share your MakerWorld discovery from Day 1</li>
+            <li>Select and justify a real, printable 3D model</li>
+            <li>Navigate Bambu Studio and understand its key functions</li>
+            <li>Identify potential print problems before they happen</li>
+            <li>Prepare your model selection for teacher review</li>
+          </ul>
+        </div>
+
+        <!-- Time Guide -->
+        <div class="intro-card">
+          <h3>⏱️ Time Guide</h3>
+          <table class="time-table">
+            <thead>
+              <tr><th>Part</th><th>Activity</th><th>Time</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>1</td><td>Share-Out</td><td>10 min</td></tr>
+              <tr><td>2</td><td>Choose a Model</td><td>10 min</td></tr>
+              <tr><td>3</td><td>Bambu Studio Intro</td><td>15 min</td></tr>
+              <tr><td>4</td><td>Studio Controls</td><td>10 min</td></tr>
+              <tr><td>5</td><td>Troubleshooting</td><td>10 min</td></tr>
+              <tr><td>6</td><td>Teacher Checkpoint</td><td>5 min</td></tr>
+              <tr><td>7</td><td>Submit</td><td>5 min</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- Goal / How to Use / Success Criteria -->
+      <div class="goal-section">
+        <div class="goal-card">
+          <h3>🚀 Goal</h3>
+          <p>Move from model exploration to smart model selection and print preparation. By the end of today, you will have a model ready for teacher approval.</p>
+        </div>
+        <div class="goal-card">
+          <h3>📖 How to Use This Page</h3>
+          <ul>
+            <li>Work through one part at a time — top to bottom</li>
+            <li>Complete every activity before clicking <strong>Mark Complete</strong></li>
+            <li>Pause when the teacher asks you to</li>
+            <li>Your progress saves on this device — refresh won't lose your work</li>
+          </ul>
+        </div>
+        <div class="goal-card">
+          <h3>✅ Success Criteria</h3>
+          <ul>
+            <li>I shared my model discovery and heard from my group</li>
+            <li>I chose a realistic, printable model and explained why</li>
+            <li>I understand how to use Bambu Studio's main features</li>
+            <li>I can identify at least one potential print problem</li>
+            <li>My teacher has approved my model selection</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════════
+         PART 1: Day 2 Share-Out
+         ═══════════════════════════════════════════════════════ -->
+    <details id="part1" class="active-card" open>
+      <summary>
+        <div class="summary-row">
+          <div class="summary-left">
+            <span class="step-badge">Step 1 of 7</span>
+            <span class="state-badge active" id="badge1">Active</span>
+            <span class="part-title">Day 2 Share-Out</span>
+          </div>
+        </div>
+      </summary>
+
+      <div class="part-content">
+        <div class="note">
+          <strong>📌 Instructions:</strong> Get into groups of 4–5. Each person shares the model they found on MakerWorld yesterday. You have about 2 minutes each.
+        </div>
+
+        <h3>Discussion Prompts</h3>
+        <ul>
+          <li>What model did you find? What does it do or look like?</li>
+          <li>Why did it stand out to you?</li>
+          <li>Would it be realistic to print in our lab?</li>
+          <li>What surprised you about MakerWorld?</li>
+        </ul>
+
+        <div class="fun">
+          💬 <strong>Heads up:</strong> There are no wrong answers here — sharing your curiosity is the whole point!
+        </div>
+
+        <label for="reflection">After your share-out, what is one model or idea from your group that stood out to you?</label>
+        <textarea id="reflection" rows="4" placeholder="Describe the model or idea that stuck with you and why it caught your attention..."></textarea>
+
+        <div class="part-actions">
+          <button type="button" onclick="window.complete(1)">Mark Complete</button>
+        </div>
+      </div>
+    </details>
+
+    <!-- ═══════════════════════════════════════════════════════
+         PART 2: Choose a Good Print
+         ═══════════════════════════════════════════════════════ -->
+    <details id="part2" class="locked-card">
+      <summary>
+        <div class="summary-row">
+          <div class="summary-left">
+            <span class="step-badge">Step 2 of 7</span>
+            <span class="state-badge locked" id="badge2">Locked</span>
+            <span class="part-title">Choose a Good Print</span>
+          </div>
+        </div>
+      </summary>
+
+      <div class="part-content">
+        <div class="note">
+          <strong>📌 Instructions:</strong> Open <a href="https://makerworld.com" target="_blank" rel="noopener">MakerWorld</a> and browse for a model you would realistically want to print in this class. Think about size, complexity, and purpose.
+        </div>
+
+        <h3>What Makes a Good Choice?</h3>
+        <ul>
+          <li>Fits on our printer (max ~256 × 256 × 256 mm)</li>
+          <li>Designed for FDM (not resin-only)</li>
+          <li>Not too complex for a first or second print</li>
+          <li>Something you actually want to make</li>
+        </ul>
+
+        <div class="part-grid">
+          <div>
+            <label for="modelName">Model name:</label>
+            <input type="text" id="modelName" placeholder="e.g., Phone stand with cable routing" />
+          </div>
+          <div>
+            <label for="modelLink">MakerWorld link:</label>
+            <input type="text" id="modelLink" placeholder="https://makerworld.com/..." />
+          </div>
+        </div>
+
+        <label for="whyModel">Why is this a good model to print? Be specific.</label>
+        <textarea id="whyModel" rows="3" placeholder="Think about size, purpose, complexity, and why it fits our lab..."></textarea>
+
+        <label for="potentialIssue">What could make this model hard or tricky to print?</label>
+        <textarea id="potentialIssue" rows="3" placeholder="Think about overhangs, thin features, size, support needs..."></textarea>
+
+        <div class="weak-strong">
+          <div class="ws-box ws-weak">
+            <h4>❌ Weak Answer</h4>
+            <p>"It looks cool and I want it."</p>
+            <p class="ws-note">This doesn't show understanding of what makes a print realistic or challenging.</p>
+          </div>
+          <div class="ws-box ws-strong">
+            <h4>✅ Strong Answer</h4>
+            <p>"This phone stand is about 120mm wide, so it fits easily. It has a few small overhangs but Bambu Studio can auto-add supports. The purpose is clear and it's something I'd actually use."</p>
+            <p class="ws-note">Specific, realistic, and shows print-prep thinking.</p>
+          </div>
+        </div>
+
+        <div class="part-actions">
+          <button type="button" onclick="window.complete(2)">Mark Complete</button>
+        </div>
+      </div>
+    </details>
+
+    <!-- ═══════════════════════════════════════════════════════
+         PART 3: Intro to Bambu Studio
+         ═══════════════════════════════════════════════════════ -->
+    <details id="part3" class="locked-card">
+      <summary>
+        <div class="summary-row">
+          <div class="summary-left">
+            <span class="step-badge">Step 3 of 7</span>
+            <span class="state-badge locked" id="badge3">Locked</span>
+            <span class="part-title">Intro to Bambu Studio</span>
+          </div>
+        </div>
+      </summary>
+
+      <div class="part-content">
+        <div class="note">
+          <strong>📌 Instructions:</strong> Watch the video below to get an overview of Bambu Studio. Then answer all 5 quiz questions to check your understanding.
+        </div>
+
+        <div class="fun">
+          🎮 Think of Bambu Studio as the mission control for your 3D printer — you tell it everything before the real action starts.
+        </div>
+
+        <div class="video-wrap">
+          <iframe
+            src="https://www.youtube.com/embed/rZhy0J0mXBE"
+            title="Intro to Bambu Studio"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowfullscreen>
+          </iframe>
+        </div>
+
+        <div id="quizBox" class="quiz-box" aria-label="Bambu Studio knowledge check">
+          <div class="quiz-progress" id="quizProgress">Question 1 of 5</div>
+          <p id="qText" class="quiz-prompt"></p>
+          <div id="qOptions" class="quiz-options"></div>
+          <div class="feedback" id="feedback" role="alert" aria-live="polite"></div>
+          <div class="explanation" id="explanation"></div>
+          <div class="quiz-actions">
+            <button type="button" onclick="window.checkAnswer()">Check</button>
+            <button type="button" id="nextBtn" onclick="window.nextQuestion()" disabled>Next</button>
+            <button type="button" onclick="window.prevQuestion()">Back</button>
+            <button type="button" onclick="window.resetQuiz()">Reset</button>
+          </div>
+        </div>
+
+        <div class="part-actions">
+          <button type="button" onclick="window.complete(3)">Mark Complete</button>
+        </div>
+      </div>
+    </details>
+
+    <!-- ═══════════════════════════════════════════════════════
+         PART 4: Bambu Studio Controls
+         ═══════════════════════════════════════════════════════ -->
+    <details id="part4" class="locked-card">
+      <summary>
+        <div class="summary-row">
+          <div class="summary-left">
+            <span class="step-badge">Step 4 of 7</span>
+            <span class="state-badge locked" id="badge4">Locked</span>
+            <span class="part-title">Bambu Studio Controls</span>
+          </div>
+        </div>
+      </summary>
+
+      <div class="part-content">
+        <div class="note">
+          <strong>📌 Instructions:</strong> Match each Bambu Studio feature on the left to the correct description on the right. You need at least 3 out of 4 correct to continue.
+        </div>
+
+        <div id="matchingActivity" aria-label="Bambu Studio controls matching activity">
+          <!-- Rendered by JS -->
+        </div>
+
+        <div id="hintBoxMatching" class="hint-box" style="display:none">
+          💡 <strong>Hint:</strong> Think about the order you use these features in Bambu Studio: you start by getting your model in, then pick your printer, then prepare it, then check your work.
+        </div>
+
+        <div id="matchingFeedback" class="feedback" role="alert" aria-live="polite"></div>
+
+        <div class="quiz-actions">
+          <button type="button" onclick="window.checkMatching()">Check Answers</button>
+          <button type="button" onclick="window.resetMatching()">Reset</button>
+        </div>
+
+        <div class="part-actions">
+          <button type="button" id="completePart4" onclick="window.complete(4)" disabled>Mark Complete</button>
+        </div>
+      </div>
+    </details>
+
+    <!-- ═══════════════════════════════════════════════════════
+         PART 5: Why This Print Might Fail
+         ═══════════════════════════════════════════════════════ -->
+    <details id="part5" class="locked-card">
+      <summary>
+        <div class="summary-row">
+          <div class="summary-left">
+            <span class="step-badge">Step 5 of 7</span>
+            <span class="state-badge locked" id="badge5">Locked</span>
+            <span class="part-title">Why This Print Might Fail</span>
+          </div>
+        </div>
+      </summary>
+
+      <div class="part-content">
+        <div class="note">
+          <strong>📌 Instructions:</strong> Read each scenario below and identify the most likely print problem. You need at least 3 out of 4 correct to continue.
+        </div>
+
+        <div id="troubleBox" aria-label="Print troubleshooting scenarios">
+          <div class="quiz-progress" id="troubleProgress">Scenario 1 of 4</div>
+          <div class="progress-dots" id="troubleDots" aria-hidden="true"></div>
+          <div class="trouble-scenario" id="troubleScenario"></div>
+          <div id="troubleOptions" class="quiz-options"></div>
+          <div class="feedback" id="troubleFeedback" role="alert" aria-live="polite"></div>
+          <div class="explanation" id="troubleExplanation"></div>
+          <div id="hintBoxTrouble" class="hint-box" style="display:none"></div>
+          <div class="quiz-actions">
+            <button type="button" onclick="window.checkTrouble()">Check</button>
+            <button type="button" id="troubleNextBtn" onclick="window.nextTrouble()" disabled>Next</button>
+            <button type="button" onclick="window.prevTrouble()">Back</button>
+            <button type="button" onclick="window.resetTrouble()">Reset</button>
+          </div>
+        </div>
+
+        <div id="masteryMsg" class="mastery-msg" style="display:none">
+          🏆 You mastered print-prep troubleshooting!
+        </div>
+
+        <div class="part-actions">
+          <button type="button" id="completePart5" onclick="window.complete(5)" disabled>Mark Complete</button>
+        </div>
+      </div>
+    </details>
+
+    <!-- ═══════════════════════════════════════════════════════
+         PART 6: Teacher Checkpoint
+         ═══════════════════════════════════════════════════════ -->
+    <details id="part6" class="locked-card">
+      <summary>
+        <div class="summary-row">
+          <div class="summary-left">
+            <span class="step-badge">Step 6 of 7</span>
+            <span class="state-badge locked" id="badge6">Locked</span>
+            <span class="part-title">Teacher Checkpoint</span>
+          </div>
+        </div>
+      </summary>
+
+      <div class="part-content">
+        <div class="note">
+          <strong>📌 Instructions:</strong> Before you can submit, make sure you can honestly check all four boxes. Then raise your hand and show your teacher your chosen model.
+        </div>
+
+        <ul class="checklist" role="group" aria-label="Self-check list">
+          <li>
+            <label>
+              <input type="checkbox" id="check1" onchange="window.updateChecklistBtn()" />
+              I selected a model on MakerWorld
+            </label>
+          </li>
+          <li>
+            <label>
+              <input type="checkbox" id="check2" onchange="window.updateChecklistBtn()" />
+              I can explain why I chose this model
+            </label>
+          </li>
+          <li>
+            <label>
+              <input type="checkbox" id="check3" onchange="window.updateChecklistBtn()" />
+              I can describe at least one possible print problem
+            </label>
+          </li>
+          <li>
+            <label>
+              <input type="checkbox" id="check4" onchange="window.updateChecklistBtn()" />
+              I am ready for teacher approval
+            </label>
+          </li>
+        </ul>
+
+        <div class="part-actions">
+          <button type="button" id="completePart6" onclick="window.complete(6)" disabled>Mark Complete</button>
+        </div>
+      </div>
+    </details>
+
+    <!-- ═══════════════════════════════════════════════════════
+         PART 7: Submit Your Work
+         ═══════════════════════════════════════════════════════ -->
+    <details id="part7" class="locked-card">
+      <summary>
+        <div class="summary-row">
+          <div class="summary-left">
+            <span class="step-badge">Step 7 of 7</span>
+            <span class="state-badge locked" id="badge7">Locked</span>
+            <span class="part-title">Submit Your Work</span>
+          </div>
+        </div>
+      </summary>
+
+      <div class="part-content">
+        <div class="note">
+          <strong>📌 Instructions:</strong> Click <strong>Generate My Responses</strong> to create a summary of everything you did today. Copy the text and paste it into Google Classroom.
+        </div>
+
+        <div class="quiz-actions">
+          <button type="button" onclick="window.generateSummary()">Generate My Responses</button>
+        </div>
+
+        <label for="summaryOutput" style="margin-top:14px;">Your summary (copy and paste into Google Classroom):</label>
+        <textarea id="summaryOutput" class="summary-output" rows="14" readonly placeholder="Click 'Generate My Responses' to populate this..."></textarea>
+
+        <div class="part-actions">
+          <button type="button" onclick="window.complete(7)">Mark Complete</button>
+        </div>
+      </div>
+    </details>
+
+  </main>
+</body>
+</html>
