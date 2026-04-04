@@ -1,0 +1,542 @@
+/* ============================================================
+   GCI 3D Printing Training – Shared Stylesheet
+   Used by: Intro_to_3D_Printing_Day1.html through Day5.html
+   ============================================================ */
+
+/* ── CSS Custom Properties (themes) ─────────────────────── */
+:root {
+    --bambu-blue: #0096d6;
+    --bambu-green: #7ed957;
+    --bambu-dark: #181c1f;
+    --bambu-light: #f7fafd;
+    --bambu-gray: #e5e8ea;
+    --bambu-accent: #ffb800;
+    --bg: var(--bambu-dark);
+    --card: #23282c;
+    --text: #f7fafd;
+    --muted: #b6c2ce;
+    --accent: var(--bambu-blue);
+    --border: #2c3237;
+    --bg-grad-1: #1e2327;
+    --bg-grad-2: #23282c;
+    --surface-subtle: rgba(0, 150, 214, 0.04);
+    --surface-alt: rgba(0, 150, 214, 0.08);
+    --surface-accent: rgba(0, 150, 214, 0.16);
+    --surface-accent-soft: rgba(0, 150, 214, 0.10);
+    --active-border: var(--bambu-accent);
+    --focus-border: #7ed957;
+    --badge-bg: #1e2327;
+    --badge-text: #ffb800;
+    --badge-border: #7ed957;
+    --success-text: #7ed957;
+    --action-bg-start: #0096d6;
+    --action-bg-end: #005b8a;
+    --action-text: #ffffff;
+    --shadow: 0 6px 24px rgba(0, 0, 0, 0.35), 0 2px 6px rgba(0, 0, 0, 0.25);
+}
+
+[data-theme="light"] {
+    --bg: var(--bambu-light);
+    --card: #ffffff;
+    --muted: #4a4a4a;
+    --text: #181c1f;
+    --accent: #0096d6;
+    --border: #b6c2ce;
+    --bg-grad-1: #e5e8ea;
+    --bg-grad-2: #f7fafd;
+    --surface-subtle: rgba(0, 150, 214, 0.04);
+    --surface-alt: rgba(0, 150, 214, 0.08);
+    --surface-accent: rgba(0, 150, 214, 0.12);
+    --surface-accent-soft: rgba(0, 150, 214, 0.08);
+    --active-border: #ffb800;
+    --focus-border: #0096d6;
+    --badge-bg: #e5e8ea;
+    --badge-text: #0096d6;
+    --badge-border: #ffb800;
+    --success-text: #0096d6;
+    --action-bg-start: #0096d6;
+    --action-bg-end: #005b8a;
+    --action-text: #ffffff;
+    --shadow: 0 2px 8px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.08);
+}
+
+[data-theme="high-contrast"] {
+    --bg: #000000;
+    --card: #000000;
+    --muted: #f2f2f2;
+    --text: #ffffff;
+    --accent: #00ffff;
+    --border: #ffffff;
+    --bg-grad-1: #000000;
+    --bg-grad-2: #000000;
+    --surface-subtle: rgba(255, 255, 255, 0.12);
+    --surface-alt: rgba(255, 255, 255, 0.2);
+    --surface-accent: rgba(0, 255, 255, 0.2);
+    --surface-accent-soft: rgba(0, 255, 255, 0.14);
+    --active-border: #00ffff;
+    --focus-border: #00ffff;
+    --badge-bg: #000000;
+    --badge-text: #ffffff;
+    --badge-border: #ffffff;
+    --success-text: #00ff00;
+    --action-bg-start: #ffffff;
+    --action-bg-end: #ffffff;
+    --action-text: #000000;
+    --shadow: 0 2px 4px rgba(255, 255, 255, 0.3);
+}
+
+/* ── Base ─────────────────────────────────────────────────── */
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: 'Inter', 'Segoe UI', 'Roboto', Arial, sans-serif;
+    background: linear-gradient(120deg, var(--bg-grad-1) 0%, var(--bg-grad-2) 100%) var(--bg);
+    color: var(--text);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    min-height: 100vh;
+}
+
+/* Font-size accessibility (used by Day 1) */
+body[data-font-size="large"] { font-size: 1.1rem; }
+body[data-font-size="x-large"] { font-size: 1.22rem; }
+
+/* ── Layout ───────────────────────────────────────────────── */
+.wrap {
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 0 16px 44px;
+}
+
+/* ── Hero Banner ──────────────────────────────────────────── */
+.hero {
+    background: linear-gradient(90deg, var(--bambu-blue) 0%, var(--bambu-accent) 100%);
+    color: #fff;
+    padding: 2.5rem 1.5rem 2rem 1.5rem;
+    border-radius: 0 0 2rem 2rem;
+    box-shadow: var(--shadow);
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.hero h1 {
+    font-size: 2.5rem;
+    margin: 0 0 0.5rem 0;
+    font-weight: 800;
+    letter-spacing: -1px;
+}
+
+.hero p {
+    font-size: 1.25rem;
+    margin: 0;
+    color: #f7fafd;
+}
+
+/* ── Sticky Navigation Bar ────────────────────────────────── */
+.sticky-mini-nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: var(--card);
+    border-radius: 1rem;
+    box-shadow: var(--shadow);
+    padding: 0.5rem 1rem;
+    margin-bottom: 2rem;
+}
+
+/* ── Theme Selector ───────────────────────────────────────── */
+.theme-select {
+    font-size: 1rem;
+    padding: 0.4rem 1.2rem;
+    border-radius: 0.5rem;
+    border: 2px solid var(--border);
+    background: var(--surface-alt);
+    color: var(--text);
+    margin-right: 1rem;
+    transition: border 0.2s;
+}
+
+.theme-select:focus {
+    border: 2px solid var(--focus-border);
+    outline: none;
+}
+
+/* ── Day Navigation ───────────────────────────────────────── */
+.day-nav {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.day-nav-btn {
+    background: var(--surface-accent);
+    color: var(--accent);
+    border: none;
+    border-radius: 0.5rem;
+    padding: 0.5rem 1.2rem;
+    font-weight: 600;
+    text-decoration: none;
+    transition: background 0.2s, color 0.2s, box-shadow 0.2s;
+    cursor: pointer;
+}
+
+.day-nav-btn.is-active,
+.day-nav-btn:hover,
+.day-nav-btn:focus {
+    background: var(--accent);
+    color: #fff;
+    box-shadow: 0 2px 8px rgba(0, 150, 214, 0.15);
+}
+
+/* ── Day Cards / Content Sections ────────────────────────── */
+.day-list {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+.day-card {
+    background: var(--card);
+    border-radius: 1.5rem;
+    box-shadow: var(--shadow);
+    padding: 2rem 1.5rem 1.5rem 1.5rem;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.day-card:hover {
+    transform: translateY(-4px) scale(1.01);
+    box-shadow: 0 8px 32px rgba(0, 150, 214, 0.18);
+}
+
+.day-header {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1rem;
+}
+
+.day-title {
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin: 0;
+}
+
+/* ── Badge / Pill ─────────────────────────────────────────── */
+.pill {
+    background: var(--badge-bg);
+    color: var(--badge-text);
+    border: 1.5px solid var(--badge-border);
+    border-radius: 999px;
+    padding: 0.25em 1em;
+    font-size: 1rem;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+}
+
+/* ── Typography ───────────────────────────────────────────── */
+.goal,
+.guidance,
+.deliverable {
+    font-size: 1.1rem;
+    margin-bottom: 1rem;
+}
+
+.guidance {
+    color: var(--bambu-green);
+    font-style: italic;
+}
+
+h3 {
+    color: var(--accent);
+    margin-top: 1.5rem;
+}
+
+ul,
+ol {
+    margin-left: 1.5rem;
+    margin-bottom: 1rem;
+}
+
+li {
+    margin-bottom: 0.5rem;
+}
+
+label {
+    display: block;
+    margin: 6px 0;
+}
+
+a {
+    color: var(--accent);
+    text-decoration: underline;
+    transition: color 0.2s;
+}
+
+a:hover,
+a:focus {
+    color: var(--bambu-accent);
+}
+
+/* ── Info Boxes ───────────────────────────────────────────── */
+.flow-note {
+    background: var(--surface-subtle);
+    border-left: 4px solid var(--accent);
+    padding: 0.75rem 1rem;
+    border-radius: 0.5rem;
+    margin-bottom: 1rem;
+}
+
+/* Note/info box (used by Day 1) */
+.note {
+    background: var(--surface-alt);
+    border: 1px solid var(--border);
+    padding: 12px;
+    border-radius: 12px;
+    margin: 10px 0;
+}
+
+/* Fun-fact box (used by Day 1) */
+.fun {
+    background: var(--surface-accent-soft);
+    border: 1px solid var(--border);
+    padding: 12px;
+    border-radius: 12px;
+    margin: 10px 0;
+    color: var(--bambu-green);
+}
+
+/* ── Media Embeds ─────────────────────────────────────────── */
+.media-embed {
+    margin: 1rem 0;
+    border-radius: 1rem;
+    overflow: hidden;
+    box-shadow: 0 2px 12px rgba(0, 150, 214, 0.10);
+}
+
+.video-wrap {
+    position: relative;
+    padding-bottom: 56.25%;
+    height: 0;
+}
+
+.video-wrap iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: 0;
+}
+
+/* General iframe (used by Day 1) */
+iframe {
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    border: 0;
+    border-radius: 12px;
+    margin: 8px 0 12px;
+}
+
+/* ── Forms ────────────────────────────────────────────────── */
+textarea,
+input[type="text"] {
+    width: 100%;
+    padding: 10px;
+    border-radius: 10px;
+    background: var(--bg-grad-1);
+    color: var(--text);
+    border: 1px solid var(--border);
+    box-sizing: border-box;
+    font-family: inherit;
+}
+
+[data-theme="light"] textarea,
+[data-theme="light"] input[type="text"] {
+    background: #ffffff;
+    color: #142033;
+}
+
+[data-theme="high-contrast"] textarea,
+[data-theme="high-contrast"] input[type="text"] {
+    background: #000;
+    color: #fff;
+    border: 2px solid #fff;
+}
+
+textarea {
+    min-height: 90px;
+    resize: vertical;
+}
+
+select {
+    padding: 10px 14px;
+    border-radius: 10px;
+    background: var(--card);
+    color: var(--text);
+    border: 1px solid var(--border);
+    font-family: inherit;
+}
+
+[data-theme="light"] select {
+    background: #ffffff;
+    color: #142033;
+}
+
+[data-theme="high-contrast"] select {
+    background: #000;
+    color: #fff;
+    border: 2px solid #fff;
+}
+
+/* ── Buttons ──────────────────────────────────────────────── */
+button {
+    padding: 10px 14px;
+    border-radius: 10px;
+    background: var(--accent);
+    border: none;
+    font-weight: bold;
+    cursor: pointer;
+    color: #fff;
+    font-family: inherit;
+}
+
+button:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+/* Focus rings */
+button:focus-visible,
+select:focus-visible,
+textarea:focus-visible,
+input:focus-visible,
+summary:focus-visible,
+a:focus-visible {
+    outline: 3px solid var(--bambu-green);
+    outline-offset: 3px;
+}
+
+/* ── Details / Accordion (used by Day 1) ─────────────────── */
+details {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    margin-bottom: 12px;
+    padding: 16px;
+}
+
+summary {
+    cursor: pointer;
+    font-weight: bold;
+    color: var(--accent);
+}
+
+/* ── Progress Bar (used by Day 1) ────────────────────────── */
+.progress {
+    margin-bottom: 10px;
+}
+
+.bar {
+    height: 10px;
+    background: var(--bg-grad-1);
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.fill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--accent), var(--bambu-green));
+    width: 0%;
+    transition: width 0.4s ease;
+}
+
+/* ── Grid Layout (used by Day 1) ─────────────────────────── */
+.part-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+}
+
+/* ── Quiz Components (used by Day 1) ─────────────────────── */
+.quiz-box {
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 12px;
+    margin: 10px 0;
+    background: var(--surface-subtle);
+}
+
+.quiz-actions {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    margin-top: 10px;
+}
+
+.quiz-progress {
+    color: var(--muted);
+    font-weight: 700;
+    margin-bottom: 8px;
+}
+
+.feedback {
+    font-weight: 700;
+    margin-top: 8px;
+}
+
+.explanation {
+    margin-top: 8px;
+    color: var(--muted);
+}
+
+/* ── Screen-reader only ───────────────────────────────────── */
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+}
+
+/* ── Bottom Navigation ────────────────────────────────────── */
+.bottom-nav {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 18px;
+}
+
+/* ── Checklist ────────────────────────────────────────────── */
+.checklist li {
+    margin: 8px 0;
+}
+
+/* ── Responsive ───────────────────────────────────────────── */
+@media (max-width: 700px) {
+    .wrap {
+        padding: 0 4vw 44px;
+    }
+
+    .hero {
+        padding: 2rem 0.5rem 1.5rem 0.5rem;
+    }
+
+    .sticky-mini-nav {
+        flex-direction: column;
+        gap: 1rem;
+        align-items: stretch;
+    }
+
+    .day-card {
+        padding: 1.2rem 0.7rem 1rem 0.7rem;
+    }
+
+    .part-grid {
+        grid-template-columns: 1fr;
+    }
+}
