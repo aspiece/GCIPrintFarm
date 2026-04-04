@@ -1,0 +1,589 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Genesee Career Institute - 3D Print Invoice Generator</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 20px;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+            overflow: hidden;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 30px;
+            text-align: center;
+        }
+
+        .header h1 {
+            font-size: 2em;
+            margin-bottom: 10px;
+        }
+
+        .header p {
+            font-size: 1em;
+            opacity: 0.9;
+        }
+
+        .form-section {
+            padding: 30px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #333;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #e0e0e0;
+            border-radius: 6px;
+            font-size: 14px;
+            transition: border-color 0.3s;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+
+        .row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        .actions {
+            padding: 30px;
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            background: #f9f9f9;
+        }
+
+        .btn {
+            padding: 15px 40px;
+            border: none;
+            border-radius: 6px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .btn-primary {
+            background: #667eea;
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: #5568d3;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+        }
+
+        .btn-secondary {
+            background: #f1f1f1;
+            color: #333;
+        }
+
+        .btn-secondary:hover {
+            background: #e0e0e0;
+        }
+
+        .btn-copy {
+            background: #2ed573;
+        }
+
+        .btn-copy:hover {
+            background: #26de81;
+        }
+
+        .invoice-preview {
+            display: none;
+            padding: 30px;
+        }
+
+        .invoice-preview.active {
+            display: block;
+        }
+
+        .invoice-box {
+            background: #f9f9f9;
+            border: 2px solid #667eea;
+            border-radius: 8px;
+            padding: 30px;
+        }
+
+        .invoice-header {
+            text-align: center;
+            margin-bottom: 25px;
+            padding-bottom: 20px;
+            border-bottom: 2px solid #e0e0e0;
+        }
+
+        .invoice-header h2 {
+            color: #667eea;
+            margin-bottom: 5px;
+            font-size: 1.5em;
+        }
+
+        .invoice-header p {
+            color: #666;
+            font-size: 13px;
+            margin: 0;
+        }
+
+        .invoice-details {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin-bottom: 25px;
+            padding-bottom: 20px;
+            border-bottom: 2px solid #e0e0e0;
+        }
+
+        .detail-item {
+            font-size: 13px;
+        }
+
+        .detail-item .label {
+            color: #666;
+            font-weight: 600;
+            margin-bottom: 3px;
+        }
+
+        .detail-item .value {
+            color: #333;
+        }
+
+        .invoice-amounts {
+            margin-bottom: 25px;
+        }
+
+        .amount-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 12px 0;
+            border-bottom: 1px solid #ddd;
+            font-size: 14px;
+        }
+
+        .amount-row.total {
+            border-bottom: none;
+            border-top: 2px solid #667eea;
+            padding-top: 15px;
+            font-size: 18px;
+            font-weight: 700;
+            color: #667eea;
+        }
+
+        .amount-row .label {
+            font-weight: 600;
+        }
+
+        .invoice-footer {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid #ddd;
+            font-size: 12px;
+            color: #666;
+            line-height: 1.6;
+        }
+
+        .copy-section {
+            margin-top: 25px;
+        }
+
+        .copy-btn-container {
+            display: flex;
+            gap: 10px;
+        }
+
+        .copy-btn-container button {
+            flex: 1;
+        }
+
+        #emailText {
+            display: none;
+        }
+
+        @media (max-width: 768px) {
+            .row {
+                grid-template-columns: 1fr;
+            }
+
+            .invoice-details {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>GENESEE CAREER INSTITUTE</h1>
+            <p>3D Print Invoice Generator</p>
+        </div>
+
+        <div class="form-section" id="formSection">
+            <form id="invoiceForm">
+                <h2 style="margin-bottom: 20px; color: #667eea;">Client Information</h2>
+                <div class="row">
+                    <div class="form-group">
+                        <label for="clientName">Client Name *</label>
+                        <input type="text" id="clientName" required placeholder="Enter client name">
+                    </div>
+                    <div class="form-group">
+                        <label for="clientEmail">Email Address *</label>
+                        <input type="email" id="clientEmail" required placeholder="Enter email address">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group">
+                        <label for="ticketNumber">Ticket Number *</label>
+                        <input type="text" id="ticketNumber" required placeholder="Enter ticket number">
+                    </div>
+                </div>
+
+                <h2 style="margin: 30px 0 20px 0; color: #667eea;">3D Print Details</h2>
+                <div class="row">
+                    <div class="form-group">
+                        <label for="printTime">Print Time (hours) *</label>
+                        <input type="number" id="printTime" step="0.01" min="0" value="0" required
+                            oninput="calculateTotal()" placeholder="e.g., 2.5">
+                        <small style="color: #666; font-size: 12px;">Service: $1.50/hour + $2.00 service fee</small>
+                    </div>
+                    <div class="form-group">
+                        <label for="filamentGrams">Filament Used (grams) *</label>
+                        <input type="number" id="filamentGrams" step="1" min="0" value="0" required
+                            oninput="calculateTotal()" placeholder="e.g., 150">
+                        <small style="color: #666; font-size: 12px;">Material: $20.00/kg + 6% tax</small>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label style="display: flex; align-items: center; cursor: pointer;">
+                        <input type="checkbox" id="designFee" onchange="calculateTotal()"
+                            style="margin-right: 10px; width: auto; cursor: pointer;">
+                        <span>Design Fee - $5.00</span>
+                    </label>
+                    <small style="color: #666; font-size: 12px; margin-left: 30px;">Check if print requires
+                        customization</small>
+                </div>
+
+                <div class="form-group">
+                    <label style="display: flex; align-items: center; cursor: pointer;">
+                        <input type="checkbox" id="taxExempt" onchange="calculateTotal()"
+                            style="margin-right: 10px; width: auto; cursor: pointer;">
+                        <span>Tax Exempt</span>
+                    </label>
+                    <small style="color: #666; font-size: 12px; margin-left: 30px;">Check if client is tax exempt. If
+                        you are not sure, see Mr. Spiece for clarification</small>
+                </div>
+
+                <div class="form-group">
+                    <label for="printDescription">Print Description *</label>
+                    <textarea id="printDescription" rows="3" required
+                        placeholder="Describe what was printed (e.g., robot arm, replacement part, prototype)"></textarea>
+                </div>
+
+                <div class="form-group" style="margin-top: 30px;">
+                    <label for="notes">Additional Notes (optional)</label>
+                    <textarea id="notes" rows="3" placeholder="Any special notes..."></textarea>
+                </div>
+            </form>
+        </div>
+
+        <div class="actions" id="actionButtons">
+            <button type="button" class="btn btn-secondary" onclick="resetForm()" id="resetBtn">Reset</button>
+            <button type="button" class="btn btn-primary" onclick="generateInvoice()" id="generateBtn">Generate
+                Invoice</button>
+        </div>
+
+        <div class="form-section" id="emailSection" style="display: none;">
+            <h3 style="margin-bottom: 15px; color: #667eea;">Email Template</h3>
+            <label style="display: block; margin-bottom: 8px; font-weight: 600; color: #333;">Subject:</label>
+            <textarea id="subjectBox" readonly
+                style="width: 100%; padding: 12px; border: 2px solid #e0e0e0; border-radius: 6px; font-size: 14px; min-height: 50px; resize: vertical; margin-bottom: 20px; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;"></textarea>
+
+            <label style="display: block; margin-bottom: 8px; font-weight: 600; color: #333;">Invoice Content:</label>
+            <div id="invoiceBox" readonly
+                style="width: 100%; padding: 12px; border: 2px solid #e0e0e0; border-radius: 6px; font-size: 14px; min-height: 300px; margin-bottom: 20px; font-family: 'Courier New', monospace; line-height: 1.6; background: white; white-space: pre-wrap; overflow-y: auto; max-height: 500px;">
+            </div>
+            <textarea id="invoiceBoxPlain" readonly style="display: none;"></textarea>
+
+            <div class="copy-btn-container">
+                <button type="button" class="btn btn-secondary" onclick="copySubject()">📋 Copy Subject</button>
+                <button type="button" class="btn btn-copy" onclick="copyInvoice()">📋 Copy Email</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Google Apps Script Web App URL - Replace with your deployed web app URL
+        const GOOGLE_SHEETS_URL = 'YOUR_WEB_APP_URL_HERE';
+
+        window.onload = function () { calculateTotal(); };
+
+        function calculateTotal() {
+            const printTime = parseFloat(document.getElementById('printTime').value) || 0;
+            const filamentGrams = parseFloat(document.getElementById('filamentGrams').value) || 0;
+            const designFeeChecked = document.getElementById('designFee')?.checked || false;
+            const taxExemptChecked = document.getElementById('taxExempt')?.checked || false;
+            const service = (printTime * 1.50) + 2.00;
+            const materials = (filamentGrams / 1000) * 20.00;
+            const salesTax = taxExemptChecked ? 0 : materials * 0.06;
+            const designFee = designFeeChecked ? 5.00 : 0;
+        }
+
+        function resetForm() {
+            if (confirm('Reset the form?')) {
+                document.getElementById('invoiceForm').reset();
+                document.getElementById('emailSection').style.display = 'none';
+                calculateTotal();
+            }
+        }
+
+        function generateInvoice() {
+            const form = document.getElementById('invoiceForm');
+            if (!form.checkValidity()) {
+                form.reportValidity();
+                return;
+            }
+
+            const date = new Date();
+            const clientName = document.getElementById('clientName').value;
+            const clientEmail = document.getElementById('clientEmail').value;
+            const ticketNumber = document.getElementById('ticketNumber').value;
+            const printTime = parseFloat(document.getElementById('printTime').value) || 0;
+            const filamentGrams = parseFloat(document.getElementById('filamentGrams').value) || 0;
+            const designFeeChecked = document.getElementById('designFee').checked;
+            const taxExemptChecked = document.getElementById('taxExempt').checked;
+            const printDescription = document.getElementById('printDescription').value.trim();
+            const notes = document.getElementById('notes').value.trim();
+
+            const service = (printTime * 1.50) + 2.00;
+            const materials = (filamentGrams / 1000) * 20.00;
+            const salesTax = taxExemptChecked ? 0 : materials * 0.06;
+            const designFee = designFeeChecked ? 5.00 : 0;
+            const total = service + materials + salesTax + designFee;
+
+            const subjectLine = `GCI 3D Print Invoice #${ticketNumber}`;
+
+            const paymentUrl = 'https://payments.efundsforschools.com/v3/districts/56317/add-to-cart/3B3KtRq8LrG2%7c78zzRKCjcG78%7cgeneral-item';
+            const emailAddress = 'studenthelpdesk@geneseeisd.org';
+
+            const invoiceContentPlain = `========================================
+GENESEE CAREER INSTITUTE
+Student Helpdesk - 3D Print Service
+2413 Maple Ave, Flint, MI 48507
+========================================
+
+Ticket #: ${ticketNumber}
+Date: ${date.toLocaleDateString()}
+
+Client: ${clientName}
+Email: ${clientEmail}
+
+Print Description: ${printDescription}
+
+----------------------------------------
+Print Details:
+  Print Time:             ${printTime.toFixed(2)} hours
+  Filament Used:          ${filamentGrams}g (${(filamentGrams / 1000).toFixed(3)} kg)
+
+Charges:
+Service Charge:           $${service.toFixed(2)}
+Material Cost:            $${materials.toFixed(2)}
+Sales Tax (6%):           $${salesTax.toFixed(2)}${designFeeChecked ? '\nDesign Fee:               $' + designFee.toFixed(2) : ''}
+----------------------------------------
+TOTAL DUE:                $${total.toFixed(2)}
+========================================
+
+${notes ? 'Notes: ' + notes + '\n\n' : ''}** PAY ONLINE **
+
+${paymentUrl}
+
+----------------------------------------
+
+Questions? Email: ${emailAddress}
+
+Thank you for using GCI Student Helpdesk!`;
+
+            const invoiceContentHTML = `========================================
+GENESEE CAREER INSTITUTE
+Student Helpdesk - 3D Print Service
+2413 Maple Ave, Flint, MI 48507
+========================================
+
+Ticket #: ${ticketNumber}
+Date: ${date.toLocaleDateString()}
+
+Client: ${clientName}
+Email: ${clientEmail}
+
+Print Description: ${printDescription}
+
+----------------------------------------
+Print Details:
+  Print Time:             ${printTime.toFixed(2)} hours
+  Filament Used:          ${filamentGrams}g (${(filamentGrams / 1000).toFixed(3)} kg)
+
+Charges:
+Service Charge:           $${service.toFixed(2)}
+Material Cost:            $${materials.toFixed(2)}
+Sales Tax (6%):           $${salesTax.toFixed(2)}${designFeeChecked ? '\nDesign Fee:               $' + designFee.toFixed(2) : ''}
+----------------------------------------
+TOTAL DUE:                $${total.toFixed(2)}
+========================================
+
+${notes ? 'Notes: ' + notes + '\n\n' : ''}<div style="text-align: center; margin: 20px 0;"><a href="${paymentUrl}" target="_blank" style="display: inline-block; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 12px 30px; text-decoration: none; border-radius: 6px; font-weight: 600; font-size: 16px;">💳 PAY ONLINE NOW</a></div>
+
+----------------------------------------
+
+Questions? Email: <a href="mailto:${emailAddress}" style="color: #0066cc; text-decoration: underline;">${emailAddress}</a>
+
+Thank you for using GCI Student Helpdesk!`;
+
+            document.getElementById('subjectBox').value = subjectLine;
+            document.getElementById('invoiceBox').innerHTML = invoiceContentHTML;
+            document.getElementById('invoiceBoxPlain').value = invoiceContentPlain;
+            document.getElementById('emailSection').style.display = 'block';
+        }
+
+        function copyInvoice() {
+            const invoiceBoxPlain = document.getElementById('invoiceBoxPlain');
+            const textToCopy = invoiceBoxPlain.value;
+
+            // Try modern clipboard API first
+            if (navigator.clipboard && navigator.clipboard.writeText) {
+                navigator.clipboard.writeText(textToCopy).then(() => {
+                    alert('✅ Invoice copied to clipboard!');
+                    // Send to Google Sheets
+                    sendToGoogleSheets();
+                }).catch(() => {
+                    // Fallback to older method
+                    fallbackCopy(invoiceBoxPlain);
+                });
+            } else {
+                // Fallback for older browsers
+                fallbackCopy(invoiceBoxPlain);
+            }
+        }
+
+        function fallbackCopy(textarea) {
+            textarea.style.display = 'block';
+            textarea.select();
+            textarea.setSelectionRange(0, 99999);
+            try {
+                document.execCommand('copy');
+                alert('✅ Invoice copied to clipboard!');
+            } catch (err) {
+                alert('❌ Failed to copy. Please manually select and copy the text.');
+            }
+            textarea.style.display = 'none';
+        }
+
+        function copySubject() {
+            const subjectBox = document.getElementById('subjectBox');
+            subjectBox.select();
+            subjectBox.setSelectionRange(0, 99999);
+            try {
+                document.execCommand('copy');
+                alert('✅ Subject copied to clipboard!');
+            } catch (err) {
+                navigator.clipboard.writeText(subjectBox.value).then(() => {
+                    alert('✅ Subject copied to clipboard!');
+                }).catch(() => {
+                    alert('❌ Failed to copy. Please manually select and copy the text.');
+                });
+            }
+        }
+
+        async function sendToGoogleSheets() {
+            if (!GOOGLE_SHEETS_URL || GOOGLE_SHEETS_URL === 'YOUR_WEB_APP_URL_HERE') {
+                console.log('Google Sheets integration not configured. Set GOOGLE_SHEETS_URL to enable.');
+                return;
+            }
+
+            try {
+                const date = new Date();
+                const clientName = document.getElementById('clientName').value;
+                const clientEmail = document.getElementById('clientEmail').value;
+                const ticketNumber = document.getElementById('ticketNumber').value;
+                const printTime = parseFloat(document.getElementById('printTime').value) || 0;
+                const filamentGrams = parseFloat(document.getElementById('filamentGrams').value) || 0;
+                const designFeeChecked = document.getElementById('designFee').checked;
+                const notes = document.getElementById('notes').value.trim();
+
+                const service = (printTime * 1.50) + 2.00;
+                const materials = (filamentGrams / 1000) * 20.00;
+                const salesTax = materials * 0.06;
+                const designFee = designFeeChecked ? 5.00 : 0;
+                const total = service + materials + salesTax + designFee;
+
+                const data = {
+                    timestamp: date.toISOString(),
+                    date: date.toLocaleDateString(),
+                    ticketNumber: ticketNumber,
+                    clientName: clientName,
+                    clientEmail: clientEmail,
+                    printTime: printTime,
+                    filamentGrams: filamentGrams,
+                    serviceCharge: service.toFixed(2),
+                    materialCost: materials.toFixed(2),
+                    salesTax: salesTax.toFixed(2),
+                    designFee: designFee.toFixed(2),
+                    totalDue: total.toFixed(2),
+                    notes: notes
+                };
+
+                const response = await fetch(GOOGLE_SHEETS_URL, {
+                    method: 'POST',
+                    mode: 'no-cors',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(data)
+                });
+
+                console.log('Invoice data sent to Google Sheets successfully');
+            } catch (error) {
+                console.error('Error sending data to Google Sheets:', error);
+            }
+        }
+    </script>
+</body>
+
+</html>

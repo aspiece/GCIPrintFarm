@@ -1,0 +1,556 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="Intro to 3D Printing with Bambu A1: Day 2 student guide." />
+    <title>Intro to 3D Printing – Day 2 | GCI</title>
+    <style>
+        :root {
+            --bambu-blue: #0096d6;
+            --bambu-green: #7ed957;
+            --bambu-dark: #181c1f;
+            --bambu-light: #f7fafd;
+            --bambu-gray: #e5e8ea;
+            --bambu-accent: #ffb800;
+            --bg: var(--bambu-dark);
+            --card: #23282c;
+            --text: #f7fafd;
+            --muted: #b6c2ce;
+            --accent: var(--bambu-blue);
+            --border: #2c3237;
+            --bg-grad-1: #1e2327;
+            --bg-grad-2: #23282c;
+            --surface-subtle: rgba(0, 150, 214, 0.04);
+            --surface-alt: rgba(0, 150, 214, 0.08);
+            --surface-accent: rgba(0, 150, 214, 0.16);
+            --surface-accent-soft: rgba(0, 150, 214, 0.10);
+            --active-border: var(--bambu-accent);
+            --focus-border: #7ed957;
+            --badge-bg: #1e2327;
+            --badge-text: #ffb800;
+            --badge-border: #7ed957;
+            --success-text: #7ed957;
+            --action-bg-start: #0096d6;
+            --action-bg-end: #005b8a;
+            --action-text: #ffffff;
+            --shadow: 0 6px 24px rgba(0, 0, 0, 0.35), 0 2px 6px rgba(0, 0, 0, 0.25);
+        }
+
+        [data-theme="light"] {
+            --bg: var(--bambu-light);
+            --card: #ffffff;
+            --muted: #4a4a4a;
+            --text: #181c1f;
+            --accent: #0096d6;
+            --border: #b6c2ce;
+            --bg-grad-1: #e5e8ea;
+            --bg-grad-2: #f7fafd;
+            --surface-subtle: rgba(0, 150, 214, 0.04);
+            --surface-alt: rgba(0, 150, 214, 0.08);
+            --surface-accent: rgba(0, 150, 214, 0.12);
+            --surface-accent-soft: rgba(0, 150, 214, 0.08);
+            --active-border: #ffb800;
+            --focus-border: #0096d6;
+            --badge-bg: #e5e8ea;
+            --badge-text: #0096d6;
+            --badge-border: #ffb800;
+            --success-text: #0096d6;
+            --action-bg-start: #0096d6;
+            --action-bg-end: #005b8a;
+            --action-text: #ffffff;
+            --shadow: 0 2px 8px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.08);
+        }
+
+        [data-theme="high-contrast"] {
+            --bg: #000000;
+            --card: #000000;
+            --muted: #f2f2f2;
+            --text: #ffffff;
+            --accent: #00ffff;
+            --border: #ffffff;
+            --bg-grad-1: #000000;
+            --bg-grad-2: #000000;
+            --surface-subtle: rgba(255, 255, 255, 0.12);
+            --surface-alt: rgba(255, 255, 255, 0.2);
+            --surface-accent: rgba(0, 255, 255, 0.2);
+            --surface-accent-soft: rgba(0, 255, 255, 0.14);
+            --active-border: #00ffff;
+            --focus-border: #00ffff;
+            --badge-bg: #000000;
+            --badge-text: #ffffff;
+            --badge-border: #ffffff;
+            --success-text: #00ff00;
+            --action-bg-start: #ffffff;
+            --action-bg-end: #ffffff;
+            --action-text: #000000;
+            --shadow: 0 2px 4px rgba(255, 255, 255, 0.3);
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: 'Inter', 'Segoe UI', 'Roboto', Arial, sans-serif;
+            background: linear-gradient(120deg, var(--bg-grad-1) 0%, var(--bg-grad-2) 100%) var(--bg);
+            color: var(--text);
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            min-height: 100vh;
+        }
+
+        .hero {
+            background: linear-gradient(90deg, var(--bambu-blue) 0%, var(--bambu-accent) 100%);
+            color: #fff;
+            padding: 2.5rem 1.5rem 2rem 1.5rem;
+            border-radius: 0 0 2rem 2rem;
+            box-shadow: var(--shadow);
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .hero h1 {
+            font-size: 2.5rem;
+            margin: 0 0 0.5rem 0;
+            font-weight: 800;
+            letter-spacing: -1px;
+        }
+
+        .hero p {
+            font-size: 1.25rem;
+            margin: 0;
+            color: #f7fafd;
+        }
+
+        .wrap {
+            max-width: 960px;
+            margin: 0 auto;
+            padding: 0 16px 44px;
+        }
+
+        .sticky-mini-nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: var(--card);
+            border-radius: 1rem;
+            box-shadow: var(--shadow);
+            padding: 0.5rem 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .theme-select {
+            font-size: 1rem;
+            padding: 0.4rem 1.2rem;
+            border-radius: 0.5rem;
+            border: 2px solid var(--border);
+            background: var(--surface-alt);
+            color: var(--text);
+            margin-right: 1rem;
+            transition: border 0.2s;
+        }
+
+        .theme-select:focus {
+            border: 2px solid var(--focus-border);
+            outline: none;
+        }
+
+        .day-nav {
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .day-nav-btn {
+            background: var(--surface-accent);
+            color: var(--accent);
+            border: none;
+            border-radius: 0.5rem;
+            padding: 0.5rem 1.2rem;
+            font-weight: 600;
+            text-decoration: none;
+            transition: background 0.2s, color 0.2s, box-shadow 0.2s;
+        }
+
+        .day-nav-btn.is-active,
+        .day-nav-btn:hover,
+        .day-nav-btn:focus {
+            background: var(--accent);
+            color: #fff;
+            box-shadow: 0 2px 8px rgba(0, 150, 214, 0.15);
+        }
+
+        .day-list {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+
+        .day-card {
+            background: var(--card);
+            border-radius: 1.5rem;
+            box-shadow: var(--shadow);
+            padding: 2rem 1.5rem 1.5rem 1.5rem;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .day-card:hover {
+            transform: translateY(-4px) scale(1.01);
+            box-shadow: 0 8px 32px rgba(0, 150, 214, 0.18);
+        }
+
+        .day-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .day-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin: 0;
+        }
+
+        .pill {
+            background: var(--badge-bg);
+            color: var(--badge-text);
+            border: 1.5px solid var(--badge-border);
+            border-radius: 999px;
+            padding: 0.25em 1em;
+            font-size: 1rem;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+        }
+
+        .goal,
+        .guidance,
+        .deliverable {
+            font-size: 1.1rem;
+            margin-bottom: 1rem;
+        }
+
+        .guidance {
+            color: var(--bambu-green);
+            font-style: italic;
+        }
+
+        h3 {
+            color: var(--accent);
+            margin-top: 1.5rem;
+        }
+
+        ul,
+        ol {
+            margin-left: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        li {
+            margin-bottom: 0.5rem;
+        }
+
+        .flow-note {
+            background: var(--surface-subtle);
+            border-left: 4px solid var(--accent);
+            padding: 0.75rem 1rem;
+            border-radius: 0.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .media-embed {
+            margin: 1rem 0;
+            border-radius: 1rem;
+            overflow: hidden;
+            box-shadow: 0 2px 12px rgba(0, 150, 214, 0.10);
+        }
+
+        .video-wrap {
+            position: relative;
+            padding-bottom: 56.25%;
+            height: 0;
+        }
+
+        .video-wrap iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: 0;
+        }
+
+        a {
+            color: var(--accent);
+            text-decoration: underline;
+            transition: color 0.2s;
+        }
+
+        a:hover,
+        a:focus {
+            color: var(--bambu-accent);
+        }
+
+        @media (max-width: 700px) {
+            .wrap {
+                padding: 0 4vw 44px;
+            }
+
+            .hero {
+                padding: 2rem 0.5rem 1.5rem 0.5rem;
+            }
+
+            .sticky-mini-nav {
+                flex-direction: column;
+                gap: 1rem;
+                align-items: stretch;
+            }
+
+            .day-card {
+                padding: 1.2rem 0.7rem 1rem 0.7rem;
+            }
+        }
+    </style>
+    </style>
+</head>
+
+<body>
+    <div class="hero">
+        <h1>Intro to 3D Printing with Bambu Printers</h1>
+        <p>Day 2: Dive deeper into 3D printing, practice with Bambu A1, and build your skills!</p>
+    </div>
+    <main class="wrap" id="mainContent" tabindex="-1">
+        <div class="sticky-mini-nav" aria-label="Sticky day navigation">
+            <div class="sticky-controls" aria-label="Accessibility controls">
+                <label for="theme-selector" class="sr-only">Choose theme</label>
+                <select id="theme-selector" class="theme-select" aria-label="Choose theme">
+                    <option value="dark">Dark</option>
+                    <option value="light">Light</option>
+                    <option value="high-contrast">High Contrast</option>
+                </select>
+            </div>
+            <nav class="day-nav" aria-label="Select lab day">
+                <a class="day-nav-btn" href="Intro_to_3D_Printing_Day1.html">Day 1</a>
+                <a class="day-nav-btn is-active" href="Intro_to_3D_Printing_Day2.html">Day 2</a>
+                <a class="day-nav-btn" href="Intro_to_3D_Printing_Day3.html">Day 3</a>
+                <a class="day-nav-btn" href="Intro_to_3D_Printing_Day4.html">Day 4</a>
+                <a class="day-nav-btn" href="Intro_to_3D_Printing_Day5.html">Day 5</a>
+            </nav>
+        </div>
+        <section class="day-list" aria-label="5-day 3D printing lab guide">
+            <!-- Part 1: Video + 5-question interactive quiz -->
+            <article class="day-card" id="part1">
+                <div class="day-header">
+                    <span class="pill">Part 1</span>
+                    <h2 class="day-title">Introduction to 3D Printing</h2>
+                </div>
+                <div class="goal">Watch the introduction video below, then answer the questions to check your
+                    understanding.</div>
+                <div class="media-embed video-wrap">
+                    <!-- Placeholder video, replace src with your actual video link -->
+                    <iframe src="https://www.youtube.com/embed/VIDEO_ID" title="Intro to 3D Printing"
+                        allowfullscreen></iframe>
+                </div>
+                <div id="quiz1" class="quiz-section" aria-label="Check for understanding">
+                    <!-- Questions will be injected here by JS -->
+                </div>
+            </article>
+
+            <!-- Part 2: Printer images, features, and comparison activity -->
+            <article class="day-card" id="part2">
+                <div class="day-header">
+                    <span class="pill">Part 2</span>
+                    <h2 class="day-title">Introduction to the Printers</h2>
+                </div>
+                <div class="goal">Identify the three 3D printers we use in the lab: A1, A1 mini, and P1S. Observe their
+                    features and similarities.</div>
+                <div
+                    style="display: flex; flex-wrap: wrap; gap: 1.5rem; justify-content: center; align-items: flex-start;">
+                    <div style="flex: 1 1 200px; min-width: 220px; max-width: 260px; text-align: center;">
+                        <img src="assets/a1_printer.jpg" alt="Bambu A1 Printer"
+                            style="width: 100%; border-radius: 1rem; box-shadow: var(--shadow);" />
+                        <div class="flow-note"><strong>A1 Features:</strong><br>Large build volume, auto bed leveling,
+                            multi-color support</div>
+                    </div>
+                    <div style="flex: 1 1 200px; min-width: 220px; max-width: 260px; text-align: center;">
+                        <img src="assets/a1mini_printer.jpg" alt="Bambu A1 Mini Printer"
+                            style="width: 100%; border-radius: 1rem; box-shadow: var(--shadow);" />
+                        <div class="flow-note"><strong>A1 Mini Features:</strong><br>Compact size, fast printing, easy
+                            to use</div>
+                    </div>
+                    <div style="flex: 1 1 200px; min-width: 220px; max-width: 260px; text-align: center;">
+                        <img src="assets/p1s_printer.jpg" alt="Bambu P1S Printer"
+                            style="width: 100%; border-radius: 1rem; box-shadow: var(--shadow);" />
+                        <div class="flow-note"><strong>P1S Features:</strong><br>Enclosed chamber, high-temp printing,
+                            advanced cooling</div>
+                    </div>
+                </div>
+                <div class="goal" style="margin-top:1.5rem;">Activity: List components that all three printers have in
+                    common.</div>
+                <ul>
+                    <li>Heated bed</li>
+                    <li>Touchscreen</li>
+                    <li>Filament sensor</li>
+                    <li>Direct drive extruder</li>
+                    <li>Sturdy frame</li>
+                </ul>
+                <label for="common-components" class="guidance">What other components do you notice are similar? (List
+                    at least 2)</label>
+                <textarea id="common-components" rows="2" style="width:100%;max-width:600px;"
+                    placeholder="Type your answer here..."></textarea>
+            </article>
+
+            <!-- Part 3: Observation and wonderings -->
+            <article class="day-card" id="part3">
+                <div class="day-header">
+                    <span class="pill">Part 3</span>
+                    <h2 class="day-title">Observation Activity</h2>
+                </div>
+                <div class="goal">Observe all three printers in action for about 5 minutes. Enter 3 things you noticed
+                    and 3 things you wondered about while watching them print.</div>
+                <div style="display: flex; flex-wrap: wrap; gap: 2rem;">
+                    <div style="flex:1;min-width:220px;">
+                        <h3>Things I Noticed</h3>
+                        <ol>
+                            <li><input type="text" style="width:90%;" placeholder="Noticed #1"></li>
+                            <li><input type="text" style="width:90%;" placeholder="Noticed #2"></li>
+                            <li><input type="text" style="width:90%;" placeholder="Noticed #3"></li>
+                        </ol>
+                    </div>
+                    <div style="flex:1;min-width:220px;">
+                        <h3>Things I Wondered</h3>
+                        <ol>
+                            <li><input type="text" style="width:90%;" placeholder="Wondered #1"></li>
+                            <li><input type="text" style="width:90%;" placeholder="Wondered #2"></li>
+                            <li><input type="text" style="width:90%;" placeholder="Wondered #3"></li>
+                        </ol>
+                    </div>
+                </div>
+            </article>
+
+            <!-- Part 4: Bambu series video + quiz -->
+            <article class="day-card" id="part4">
+                <div class="day-header">
+                    <span class="pill">Part 4</span>
+                    <h2 class="day-title">Bambu Printer Series Overview</h2>
+                </div>
+                <div class="goal">Watch the video about the Bambu printer series. Remember, we use the A1 Mini, A1, and
+                    P1S models.</div>
+                <div class="media-embed video-wrap">
+                    <iframe src="https://www.youtube.com/embed/q3uGDrHxnC4?si=3W_sVpzxaBJ0GpQD"
+                        title="Bambu Series Overview" allowfullscreen></iframe>
+                </div>
+                <div id="quiz2" class="quiz-section" aria-label="Check for understanding">
+                    <!-- Questions will be injected here by JS -->
+                </div>
+            </article>
+
+            <!-- Part 5: Refillable spool video + quiz -->
+            <article class="day-card" id="part5">
+                <div class="day-header">
+                    <span class="pill">Part 5</span>
+                    <h2 class="day-title">How to Refill a Bambu Lab Spool</h2>
+                </div>
+                <div class="goal">Watch the video on how to properly refill a Bambu Lab refillable spool. This is
+                    essential to avoid wasting filament.</div>
+                <div class="media-embed video-wrap">
+                    <iframe src="https://www.youtube.com/embed/dPMk07iFt1Q?si=x6TPXzLZ_GChopsC"
+                        title="Refill Bambu Spool" allowfullscreen></iframe>
+                </div>
+                <div id="quiz3" class="quiz-section" aria-label="Check for understanding">
+                    <!-- Questions will be injected here by JS -->
+                </div>
+            </article>
+        </section>
+    </main>
+    <script>
+        // Theme logic
+        (function () {
+            const themeSelector = document.getElementById('theme-selector');
+            const themeStorageKey = 'gci-3d-printing-theme-v1';
+            function applyTheme(theme) {
+                const normalizedTheme = ['dark', 'light', 'high-contrast'].includes(theme) ? theme : 'dark';
+                if (normalizedTheme === 'dark') {
+                    document.documentElement.removeAttribute('data-theme');
+                } else {
+                    document.documentElement.setAttribute('data-theme', normalizedTheme);
+                }
+                if (themeSelector) {
+                    themeSelector.value = normalizedTheme;
+                }
+                localStorage.setItem(themeStorageKey, normalizedTheme);
+            }
+            function restoreTheme() {
+                const savedTheme = localStorage.getItem(themeStorageKey) || 'dark';
+                applyTheme(savedTheme);
+            }
+            if (themeSelector) {
+                themeSelector.addEventListener('change', function () {
+                    applyTheme(this.value);
+                });
+            }
+            restoreTheme();
+        })();
+
+        // Quiz logic for 1-question-at-a-time quizzes
+        function renderQuiz(containerId, questions) {
+            const container = document.getElementById(containerId);
+            if (!container) return;
+            let current = 0;
+            function showQuestion(idx) {
+                const q = questions[idx];
+                let html = `<div class="quiz-q"><strong>Question ${idx + 1} of ${questions.length}:</strong><br>${q.prompt}</div>`;
+                if (q.type === 'mcq') {
+                    html += q.options.map((opt, i) => `<div><label><input type="radio" name="q${containerId}" value="${i}"> ${opt}</label></div>`).join('');
+                } else if (q.type === 'multi') {
+                    html += q.options.map((opt, i) => `<div><label><input type="checkbox" name="q${containerId}" value="${i}"> ${opt}</label></div>`).join('');
+                } else if (q.type === 'drag') {
+                    html += `<div style='margin:0.5em 0 1em 0;'><em>(Drag and drop not supported in this demo. Please select all that apply.)</em></div>`;
+                    html += q.options.map((opt, i) => `<div><label><input type="checkbox" name="q${containerId}" value="${i}"> ${opt}</label></div>`).join('');
+                }
+                html += `<div style="margin-top:1em;"><button type="button" id="nextBtn${containerId}">${idx < questions.length - 1 ? 'Next' : 'Finish'}</button></div>`;
+                container.innerHTML = html;
+                document.getElementById(`nextBtn${containerId}`).onclick = function () {
+                    if (idx < questions.length - 1) {
+                        showQuestion(idx + 1);
+                    } else {
+                        container.innerHTML = '<div class="guidance" style="margin-top:1em;">Quiz complete! Thank you for participating.</div>';
+                    }
+                };
+            }
+            showQuestion(current);
+        }
+
+        // Example questions for each quiz (replace with your real questions)
+        const quiz1Questions = [
+            { type: 'mcq', prompt: 'What is 3D printing?', options: ['A way to make objects layer by layer', 'A type of 2D drawing', 'A kind of painting', 'A computer game'] },
+            { type: 'multi', prompt: 'Which materials can be used in 3D printing? (Select all that apply)', options: ['Plastic', 'Metal', 'Paper', 'Wood'] },
+            { type: 'mcq', prompt: 'What is the first step in 3D printing?', options: ['Design a model', 'Start the printer', 'Remove the print', 'Paint the object'] },
+            { type: 'drag', prompt: 'Arrange the steps of 3D printing (select all that apply)', options: ['Design', 'Slice', 'Print', 'Remove'] },
+            { type: 'mcq', prompt: 'What does a 3D printer use to create objects?', options: ['Filament', 'Paper', 'Ink', 'Paint'] }
+        ];
+        const quiz2Questions = [
+            { type: 'mcq', prompt: 'Which Bambu printer is the most compact?', options: ['A1 Mini', 'A1', 'P1S', 'None'] },
+            { type: 'multi', prompt: 'Which features are found on all three printers? (Select all that apply)', options: ['Heated bed', 'Touchscreen', 'Filament sensor', 'Paint brush'] },
+            { type: 'mcq', prompt: 'Which printer is best for high-temp materials?', options: ['P1S', 'A1', 'A1 Mini', 'All are equal'] },
+            { type: 'drag', prompt: 'Which printers do we use in the lab? (select all)', options: ['A1', 'A1 Mini', 'P1S', 'X1 Carbon'] },
+            { type: 'mcq', prompt: 'What is a unique feature of the A1 Mini?', options: ['Compact size', 'Enclosed chamber', 'Multi-color support', 'None'] }
+        ];
+        const quiz3Questions = [
+            { type: 'mcq', prompt: 'Why is it important to refill the spool correctly?', options: ['To avoid wasting filament', 'To make it look nice', 'To print faster', 'To change colors'] },
+            { type: 'multi', prompt: 'What do you need to check before refilling? (Select all that apply)', options: ['Spool is empty', 'Correct filament type', 'Printer is off', 'Filament is dry'] },
+            { type: 'mcq', prompt: 'What happens if the spool is not refilled properly?', options: ['Filament jams', 'Nothing', 'It prints faster', 'It changes color'] },
+            { type: 'drag', prompt: 'Steps to refill a spool (select all that apply)', options: ['Remove old filament', 'Insert new filament', 'Secure spool', 'Start print'] },
+            { type: 'mcq', prompt: 'What should you do after refilling?', options: ['Check for tangles', 'Start printing immediately', 'Throw away old spool', 'Paint the filament'] }
+        ];
+        window.addEventListener('DOMContentLoaded', function () {
+            renderQuiz('quiz1', quiz1Questions);
+            renderQuiz('quiz2', quiz2Questions);
+            renderQuiz('quiz3', quiz3Questions);
+        });
+    </script>
+</body>
+
+</html>

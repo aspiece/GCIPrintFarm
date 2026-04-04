@@ -1,0 +1,463 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description"
+        content="Digital 3D Printing Notebook (Bambu A1 Edition) for student progress, observations, and reflection." />
+    <title>Digital 3D Printing Notebook | Bambu A1 | GCI</title>
+    <style>
+        :root {
+            --bg: #f5f7fb;
+            --card: #ffffff;
+            --text: #111827;
+            --muted: #4b5563;
+            --accent: #2563eb;
+            --border: #dbe3ef;
+            --shadow: 0 8px 20px rgba(17, 24, 39, 0.08);
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Inter, Segoe UI, Roboto, Arial, sans-serif;
+            background: linear-gradient(180deg, #ebf2ff 0%, var(--bg) 70%);
+            color: var(--text);
+        }
+
+        .wrap {
+            max-width: 1080px;
+            margin: 0 auto;
+            padding: 24px 16px 44px;
+        }
+
+        h1 {
+            margin: 0 0 8px;
+            font-size: 2rem;
+        }
+
+        .lead {
+            margin: 0 0 16px;
+            color: var(--muted);
+            line-height: 1.45;
+        }
+
+        .meta {
+            margin: 0 0 18px;
+            padding: 12px;
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            background: #f8fbff;
+            color: var(--muted);
+            font-size: 0.95rem;
+        }
+
+        .section {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            box-shadow: var(--shadow);
+            padding: 16px;
+            margin-bottom: 14px;
+        }
+
+        .section h2 {
+            margin: 0 0 8px;
+            font-size: 1.2rem;
+        }
+
+        .goal {
+            margin: 0 0 12px;
+            font-size: 0.98rem;
+        }
+
+        h3 {
+            margin: 12px 0 8px;
+            font-size: 1rem;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 8px 0 10px;
+        }
+
+        th,
+        td {
+            border: 1px solid var(--border);
+            padding: 8px;
+            vertical-align: top;
+            text-align: left;
+            font-size: 0.95rem;
+        }
+
+        th {
+            background: #f3f7ff;
+        }
+
+        td input[type="text"],
+        td select {
+            width: 100%;
+        }
+
+        .field,
+        textarea,
+        input[type="text"],
+        select {
+            width: 100%;
+            border: 1px solid #cfd9ea;
+            border-radius: 8px;
+            padding: 8px 10px;
+            font: inherit;
+            color: inherit;
+            background: #fff;
+        }
+
+        textarea {
+            min-height: 92px;
+            resize: vertical;
+        }
+
+        .short {
+            min-height: 64px;
+        }
+
+        .checklist {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+
+        .checklist li {
+            margin: 8px 0;
+            display: flex;
+            align-items: flex-start;
+            gap: 8px;
+        }
+
+        .checklist input {
+            margin-top: 3px;
+        }
+
+        .line-input {
+            margin: 6px 0;
+        }
+
+        .back-link {
+            display: inline-block;
+            margin-top: 8px;
+            font-weight: 700;
+            color: var(--accent);
+            text-decoration: none;
+        }
+
+        .back-link:hover,
+        .back-link:focus-visible {
+            text-decoration: underline;
+        }
+
+        @media print {
+            body {
+                background: #fff;
+            }
+
+            .section {
+                box-shadow: none;
+                break-inside: avoid;
+            }
+
+            .back-link {
+                display: none;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <main class="wrap">
+        <h1>Digital 3D Printing Notebook</h1>
+        <p class="lead">Bambu A1 Edition</p>
+        <p class="meta">Use this notebook to record your progress, observations, and reflections throughout the 3D
+            printing process. Each day includes guided activities, worksheets, and reflection prompts to support your
+            learning.</p>
+
+        <section class="section" aria-labelledby="day1-title">
+            <h2 id="day1-title">Day 1 – Printer Anatomy &amp; Reflection</h2>
+            <p class="goal"><strong>Goal:</strong> Understand how the Bambu A1 printer works and identify its main
+                components.</p>
+
+            <h3>Printer Anatomy Worksheet</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Printer Part</th>
+                        <th>Function / Notes</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Nozzle</td>
+                        <td><input type="text" aria-label="Nozzle function notes" /></td>
+                    </tr>
+                    <tr>
+                        <td>Print Bed</td>
+                        <td><input type="text" aria-label="Print Bed function notes" /></td>
+                    </tr>
+                    <tr>
+                        <td>AMS (Automatic Material System)</td>
+                        <td><input type="text" aria-label="AMS function notes" /></td>
+                    </tr>
+                    <tr>
+                        <td>Filament</td>
+                        <td><input type="text" aria-label="Filament function notes" /></td>
+                    </tr>
+                    <tr>
+                        <td>Touchscreen</td>
+                        <td><input type="text" aria-label="Touchscreen function notes" /></td>
+                    </tr>
+                    <tr>
+                        <td>Frame / Gantry</td>
+                        <td><input type="text" aria-label="Frame or Gantry function notes" /></td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h3>Safety &amp; Setup Checklist</h3>
+            <ul class="checklist">
+                <li><input type="checkbox" id="safe-load" /><label for="safe-load">I know how to safely load and unload
+                        filament.</label></li>
+                <li><input type="checkbox" id="safe-heat" /><label for="safe-heat">I understand not to touch the nozzle
+                        or
+                        bed while heated.</label></li>
+                <li><input type="checkbox" id="safe-start" /><label for="safe-start">I can start and stop a print from
+                        the
+                        touchscreen.</label></li>
+                <li><input type="checkbox" id="safe-complete" /><label for="safe-complete">I can identify when a print
+                        is
+                        complete and ready to remove.</label></li>
+            </ul>
+
+            <h3>Reflection</h3>
+            <p>1. What surprised you most about how the printer works?</p>
+            <textarea class="short" aria-label="Day 1 reflection question 1"></textarea>
+            <p>2. Which part of the printer do you think is most important and why?</p>
+            <textarea class="short" aria-label="Day 1 reflection question 2"></textarea>
+        </section>
+
+        <section class="section" aria-labelledby="day2-title">
+            <h2 id="day2-title">Day 2 – Design Planning Worksheet</h2>
+            <p class="goal"><strong>Goal:</strong> Create your first 3D design using Tinkercad.</p>
+
+            <label for="project-name"><strong>Project Name:</strong></label>
+            <input id="project-name" type="text" class="field" />
+
+            <h3>Describe your design idea</h3>
+            <textarea aria-label="Design idea description"></textarea>
+
+            <h3>Sketch or outline your idea (you can draw here or attach an image)</h3>
+            <textarea aria-label="Sketch or outline area" style="min-height: 160px;"></textarea>
+
+            <h3>Design Checklist</h3>
+            <ul class="checklist">
+                <li><input type="checkbox" id="design-flat" /><label for="design-flat">The base of my model is flat for
+                        easy
+                        printing.</label></li>
+                <li><input type="checkbox" id="design-thin" /><label for="design-thin">My design is not too thin or
+                        fragile.</label></li>
+                <li><input type="checkbox" id="design-raised" /><label for="design-raised">I included raised text or
+                        details
+                        (at least 1 mm).</label></li>
+                <li><input type="checkbox" id="design-size" /><label for="design-size">My model size fits within 100x100
+                        mm.</label></li>
+                <li><input type="checkbox" id="design-export" /><label for="design-export">I exported my file as .STL
+                        and
+                        saved it properly.</label></li>
+            </ul>
+
+            <h3>Reflection</h3>
+            <p>1. What was the hardest part of designing your model?</p>
+            <textarea class="short" aria-label="Day 2 reflection question 1"></textarea>
+            <p>2. What are you most excited to see when it prints?</p>
+            <textarea class="short" aria-label="Day 2 reflection question 2"></textarea>
+        </section>
+
+        <section class="section" aria-labelledby="day3-title">
+            <h2 id="day3-title">Day 3 – Slicing Settings Log</h2>
+            <p class="goal"><strong>Goal:</strong> Learn how to slice and prepare your model for printing.</p>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>Setting</th>
+                        <th>Your Value</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Layer Height (mm)</td>
+                        <td><input type="text" aria-label="Layer height value" /></td>
+                    </tr>
+                    <tr>
+                        <td>Infill Percentage</td>
+                        <td><input type="text" aria-label="Infill percentage value" /></td>
+                    </tr>
+                    <tr>
+                        <td>Supports (Yes/No)</td>
+                        <td><input type="text" aria-label="Supports value" /></td>
+                    </tr>
+                    <tr>
+                        <td>Filament Color</td>
+                        <td><input type="text" aria-label="Filament color value" /></td>
+                    </tr>
+                    <tr>
+                        <td>Estimated Print Time</td>
+                        <td><input type="text" aria-label="Estimated print time value" /></td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <p><strong>Prediction:</strong> What do you expect your print to look like?</p>
+            <textarea class="short" aria-label="Day 3 prediction"></textarea>
+
+            <h3>Reflection</h3>
+            <p>1. How does slicing translate your design into printer instructions?</p>
+            <textarea class="short" aria-label="Day 3 reflection question 1"></textarea>
+            <p>2. What setting do you think affects print quality the most? Why?</p>
+            <textarea class="short" aria-label="Day 3 reflection question 2"></textarea>
+        </section>
+
+        <section class="section" aria-labelledby="day4-title">
+            <h2 id="day4-title">Day 4 – Print Log &amp; Troubleshooting</h2>
+            <p class="goal"><strong>Goal:</strong> Evaluate your print and identify any issues to improve for next time.
+            </p>
+
+            <h3>Print Log</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Observation</th>
+                        <th>Notes</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Print Quality Rating (1–5)</td>
+                        <td><input type="text" aria-label="Print quality rating notes" /></td>
+                    </tr>
+                    <tr>
+                        <td>Surface Finish</td>
+                        <td><input type="text" aria-label="Surface finish notes" /></td>
+                    </tr>
+                    <tr>
+                        <td>Edge Cleanliness</td>
+                        <td><input type="text" aria-label="Edge cleanliness notes" /></td>
+                    </tr>
+                    <tr>
+                        <td>Text/Detail Clarity</td>
+                        <td><input type="text" aria-label="Text detail clarity notes" /></td>
+                    </tr>
+                    <tr>
+                        <td>Adhesion to Bed</td>
+                        <td><input type="text" aria-label="Adhesion to bed notes" /></td>
+                    </tr>
+                    <tr>
+                        <td>Overall Success</td>
+                        <td><input type="text" aria-label="Overall success notes" /></td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h3>Common Issues and Fixes</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Issue</th>
+                        <th>Possible Cause</th>
+                        <th>How to Fix Next Time</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Poor Bed Adhesion</td>
+                        <td><input type="text" aria-label="Poor bed adhesion cause" /></td>
+                        <td><input type="text" aria-label="Poor bed adhesion fix" /></td>
+                    </tr>
+                    <tr>
+                        <td>Stringing or Blobs</td>
+                        <td><input type="text" aria-label="Stringing or blobs cause" /></td>
+                        <td><input type="text" aria-label="Stringing or blobs fix" /></td>
+                    </tr>
+                    <tr>
+                        <td>Warping</td>
+                        <td><input type="text" aria-label="Warping cause" /></td>
+                        <td><input type="text" aria-label="Warping fix" /></td>
+                    </tr>
+                    <tr>
+                        <td>Under-extrusion</td>
+                        <td><input type="text" aria-label="Under extrusion cause" /></td>
+                        <td><input type="text" aria-label="Under extrusion fix" /></td>
+                    </tr>
+                    <tr>
+                        <td>Misaligned Layers</td>
+                        <td><input type="text" aria-label="Misaligned layers cause" /></td>
+                        <td><input type="text" aria-label="Misaligned layers fix" /></td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h3>Reflection</h3>
+            <p>1. What went well with your print?</p>
+            <textarea class="short" aria-label="Day 4 reflection question 1"></textarea>
+            <p>2. What issue do you want to fix next time?</p>
+            <textarea class="short" aria-label="Day 4 reflection question 2"></textarea>
+        </section>
+
+        <section class="section" aria-labelledby="day5-title">
+            <h2 id="day5-title">Day 5 – Improvement Planning Worksheet</h2>
+            <p class="goal"><strong>Goal:</strong> Apply what you have learned by improving or remixing a design.</p>
+
+            <h3>List three changes or remix ideas</h3>
+            <div class="line-input"><input type="text" aria-label="Remix idea 1" placeholder="1." /></div>
+            <div class="line-input"><input type="text" aria-label="Remix idea 2" placeholder="2." /></div>
+            <div class="line-input"><input type="text" aria-label="Remix idea 3" placeholder="3." /></div>
+
+            <h3>Final Design Summary</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Field</th>
+                        <th>Details</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Design Title</td>
+                        <td><input type="text" aria-label="Final design title" /></td>
+                    </tr>
+                    <tr>
+                        <td>Description</td>
+                        <td><input type="text" aria-label="Final design description" /></td>
+                    </tr>
+                    <tr>
+                        <td>Changes Made from Original</td>
+                        <td><input type="text" aria-label="Changes made from original design" /></td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h3>Final Reflection</h3>
+            <p>1. What did you learn about design and problem-solving through this process?</p>
+            <textarea class="short" aria-label="Day 5 final reflection question 1"></textarea>
+            <p>2. If you had one more week, what would you create next and why?</p>
+            <textarea class="short" aria-label="Day 5 final reflection question 2"></textarea>
+        </section>
+
+        <a class="back-link" href="Intro_to_3D_Printing_Bambu_A1.html">← Back to Intro to 3D Printing Guide</a>
+    </main>
+</body>
+
+</html>
