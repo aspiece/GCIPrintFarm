@@ -23,7 +23,7 @@ This directory contains the five-day student training guide for the GCI 3D print
 ```
 training/
 ├── README.md                          ← You are here
-├── training.css                       ← Shared stylesheet for all pages
+├── lab.css                            ← Shared stylesheet for all pages
 ├── training.js                        ← Shared JavaScript (theme switcher, quiz renderer)
 ├── Intro_to_3D_Printing_Day1.html
 ├── Intro_to_3D_Printing_Day2.html
@@ -36,10 +36,10 @@ training/
 
 ## 🎨 Shared Assets
 
-### `training.css`
+### `lab.css`
 Single stylesheet used by all five day pages. Includes:
 - CSS custom properties for dark, light, and high-contrast themes
-- Layout components: `.hero`, `.wrap`, `.sticky-mini-nav`, `.day-card`
+- Layout components: `.hero`, `.wrap`, `.sticky-progress`, `.day-btn`
 - Typography, form inputs, quiz components, and progress bar
 - Responsive breakpoints for mobile screens
 
