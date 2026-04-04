@@ -11,9 +11,9 @@
     function applyTheme(theme) {
         const normalizedTheme = ['dark', 'light', 'high-contrast'].includes(theme) ? theme : 'dark';
         if (normalizedTheme === 'dark') {
-            document.documentElement.removeAttribute('data-theme');
+            document.body.removeAttribute('data-theme');
         } else {
-            document.documentElement.setAttribute('data-theme', normalizedTheme);
+            document.body.setAttribute('data-theme', normalizedTheme);
         }
         if (themeSelector) {
             themeSelector.value = normalizedTheme;
