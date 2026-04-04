@@ -10,11 +10,11 @@ This directory contains the five-day student training guide for the GCI 3D print
 
 | Day | Focus | Link |
 |-----|-------|------|
-| Day 1 | **Foundations of 3D Printing** – How printers work, key parts, filament types, and MakerWorld exploration | [Open Day 1](Intro_to_3D_Printing_Day1.html) |
-| Day 2 | **Introduction to the Printers** – Bambu A1, A1 Mini, and P1S comparison; observation activity; spool refill | [Open Day 2](Intro_to_3D_Printing_Day2.html) |
-| Day 3 | **Slice and Start Your Print** – Bambu Studio slicing basics, layer preview, and submitting a print-ready file | [Open Day 3](Intro_to_3D_Printing_Day3.html) |
-| Day 4 | **Troubleshoot and Reflect** – Inspect finished prints, diagnose common issues, and document results | [Open Day 4](Intro_to_3D_Printing_Day4.html) |
-| Day 5 | **Capstone – Remix and Improve** – Redesign or remix your model, present your work, and plan next steps | [Open Day 5](Intro_to_3D_Printing_Day5.html) |
+| Day 1 | **Foundations of 3D Printing** – How printers work, key parts, filament types, and MakerWorld exploration | [Open Day 1](day1.html) |
+| Day 2 | **From Model to Print Setup** – Model selection, Bambu Studio intro, troubleshooting, and print prep | [Open Day 2](day2.html) |
+| Day 3 | **Slice and Start Your Print** – Bambu Studio slicing basics, layer preview, and submitting a print-ready file | [Open Day 3](day3.html) |
+| Day 4 | **Troubleshoot and Reflect** – Inspect finished prints, diagnose common issues, and document results | [Open Day 4](day4.html) |
+| Day 5 | **Capstone – Remix and Improve** – Redesign or remix your model, present your work, and plan next steps | [Open Day 5](day5.html) |
 
 ---
 
@@ -25,11 +25,12 @@ training/
 ├── README.md                          ← You are here
 ├── lab.css                            ← Shared stylesheet for all pages
 ├── training.js                        ← Shared JavaScript (theme switcher, quiz renderer)
-├── Intro_to_3D_Printing_Day1.html
-├── Intro_to_3D_Printing_Day2.html
-├── Intro_to_3D_Printing_Day3.html
-├── Intro_to_3D_Printing_Day4.html
-└── Intro_to_3D_Printing_Day5.html
+├── day1.html
+├── day2.html
+├── day2-legacy.html
+├── day3.html
+├── day4.html
+└── day5.html
 ```
 
 ---

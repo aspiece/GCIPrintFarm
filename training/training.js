@@ -1,6 +1,6 @@
 /* ============================================================
    GCI 3D Printing Training – Shared JavaScript
-   Used by: Intro_to_3D_Printing_Day1.html through Day5.html
+   Used by: day1.html through day5.html
    ============================================================ */
 
 /* ── Theme Switcher ────────────────────────────────────────── */
