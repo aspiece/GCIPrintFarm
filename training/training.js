@@ -857,9 +857,10 @@ document.addEventListener('DOMContentLoaded', function () {
    ============================================================ */
 
 /* ── Day 3 Storage Keys ────────────────────────────────────── */
-var D3_STORAGE_PROGRESS = 'gci-day3-completed';
-var D3_STORAGE_QUIZ     = 'gci-day3-quiz';
-var D3_STORAGE_WORKFLOW = 'gci-day3-workflow';
+var D3_STORAGE_PROGRESS  = 'gci-day3-completed';
+var D3_STORAGE_QUIZ      = 'gci-day3-quiz';
+var D3_STORAGE_WORKFLOW  = 'gci-day3-workflow';
+var D3_STORAGE_VID_QUIZ  = 'gci-day3-vid-quiz';
 
 var D3_TOTAL_PARTS   = 7;
 var d3CompletedParts = [];
@@ -1168,6 +1169,127 @@ window.d3ResetMatching = function d3ResetMatching() {
     d3RenderMatching();
 };
 
+/* ── Part 3: Video Check for Understanding Quiz ────────────── */
+var d3VidQuizQuestions = [
+    {
+        prompt: "Which file format stores ONLY the shape of a 3D object as a mesh of triangles?",
+        type: "mcq",
+        options: ["3MF", "G-code", "STL", "PNG"],
+        correct: 2,
+        explanation: "STL (Standard Tessellation Language) stores only the geometry (shape) of a 3D model using triangles. It does not include color, materials, or settings."
+    },
+    {
+        prompt: "In Tinkercad, what is the flat surface called where you build your 3D design?",
+        type: "mcq",
+        options: ["Canvas", "Workplane", "Layer", "Grid"],
+        correct: 1,
+        explanation: "The workplane is the flat surface in Tinkercad where you drag and position your shapes to build a 3D design."
+    },
+    {
+        prompt: "What software converts your 3D design file into G-code so the printer can use it?",
+        type: "mcq",
+        options: ["Tinkercad", "Google Classroom", "A slicer (like Bambu Studio)", "MakerWorld"],
+        correct: 2,
+        explanation: "A slicer, such as Bambu Studio, converts your STL or 3MF design file into G-code — the layer-by-layer instructions that run the 3D printer."
+    }
+];
+
+var d3VidQuizState = { current: 0, answers: {}, checked: {}, allCorrect: false };
+
+function d3SaveVidQuizState() {
+    localStorage.setItem(D3_STORAGE_VID_QUIZ, JSON.stringify(d3VidQuizState));
+}
+
+function d3RenderVidQuiz() {
+    var idx      = d3VidQuizState.current;
+    var q        = d3VidQuizQuestions[idx];
+    if (!q) return;
+
+    var prog     = document.getElementById('d3VidQuizProgress');
+    var qText    = document.getElementById('d3VidQText');
+    var qOptions = document.getElementById('d3VidQOptions');
+    var fb       = document.getElementById('d3VidFeedback');
+    var expl     = document.getElementById('d3VidExplanation');
+    var next     = document.getElementById('d3VidNextBtn');
+
+    if (prog)  prog.textContent  = 'Question ' + (idx + 1) + ' of ' + d3VidQuizQuestions.length;
+    if (qText) qText.textContent = q.prompt;
+    if (!qOptions) return;
+
+    qOptions.innerHTML = '';
+    var savedAnswer = d3VidQuizState.answers[idx];
+    var isChecked   = !!d3VidQuizState.checked[idx];
+
+    q.options.forEach(function (opt, i) {
+        var wrapper = document.createElement('div');
+        var radio   = document.createElement('input');
+        radio.type  = 'radio';
+        radio.name  = 'd3VidQuizQ';
+        radio.value = i;
+        if (savedAnswer === i) radio.checked = true;
+        if (isChecked) radio.disabled = true;
+        var label = document.createElement('label');
+        label.appendChild(radio);
+        label.appendChild(document.createTextNode(' ' + opt));
+        wrapper.appendChild(label);
+        qOptions.appendChild(wrapper);
+    });
+
+    if (fb)   fb.textContent   = '';
+    if (expl) expl.textContent = '';
+    if (next) next.disabled    = !isChecked;
+
+    if (isChecked) {
+        var correct = d3VidQuizState.answers[idx] === q.correct;
+        if (fb)   { fb.textContent = correct ? '✅ Correct!' : '❌ Not quite. Try again next time.'; fb.className = 'feedback ' + (correct ? 'correct' : 'incorrect'); }
+        if (expl) { expl.textContent = q.explanation; }
+        document.querySelectorAll('input[name="d3VidQuizQ"]').forEach(function (el) { el.disabled = true; });
+    }
+}
+
+window.d3VidCheckAnswer = function d3VidCheckAnswer() {
+    var idx = d3VidQuizState.current;
+    var q   = d3VidQuizQuestions[idx];
+    var sel = document.querySelector('input[name="d3VidQuizQ"]:checked');
+    var fb  = document.getElementById('d3VidFeedback');
+
+    if (!sel) {
+        if (fb) { fb.textContent = 'Please select an answer first.'; fb.className = 'feedback'; }
+        return;
+    }
+
+    var answer = parseInt(sel.value, 10);
+    d3VidQuizState.answers[idx] = answer;
+    d3VidQuizState.checked[idx] = true;
+
+    var allAnswered = d3VidQuizQuestions.every(function (_, i) { return !!d3VidQuizState.checked[i]; });
+    if (allAnswered) d3VidQuizState.allCorrect = true;
+    d3SaveVidQuizState();
+    d3RenderVidQuiz();
+};
+
+window.d3VidNextQuestion = function d3VidNextQuestion() {
+    if (d3VidQuizState.current < d3VidQuizQuestions.length - 1) {
+        d3VidQuizState.current++;
+        d3SaveVidQuizState();
+        d3RenderVidQuiz();
+    }
+};
+
+window.d3VidPrevQuestion = function d3VidPrevQuestion() {
+    if (d3VidQuizState.current > 0) {
+        d3VidQuizState.current--;
+        d3SaveVidQuizState();
+        d3RenderVidQuiz();
+    }
+};
+
+window.d3VidResetQuiz = function d3VidResetQuiz() {
+    d3VidQuizState = { current: 0, answers: {}, checked: {}, allCorrect: false };
+    d3SaveVidQuizState();
+    d3RenderVidQuiz();
+};
+
 /* ── Part 3: Tinkercad Checklist ───────────────────────────── */
 window.d3UpdateTinkercadBtn = function d3UpdateTinkercadBtn() {
     var ids = ['d3TinkCheck1', 'd3TinkCheck2', 'd3TinkCheck3'];
@@ -1179,9 +1301,9 @@ window.d3UpdateTinkercadBtn = function d3UpdateTinkercadBtn() {
     if (btn) btn.disabled = !allChecked;
 };
 
-/* ── Part 4: Design Checklist ──────────────────────────────── */
+/* ── Part 4: Advanced Project Checklist ────────────────────── */
 window.d3UpdateDesignBtn = function d3UpdateDesignBtn() {
-    var ids = ['d3DesignCheck1', 'd3DesignCheck2', 'd3DesignCheck3', 'd3DesignCheck4', 'd3DesignCheck5', 'd3DesignCheck6'];
+    var ids = ['d3DesignCheck1', 'd3DesignCheck2', 'd3DesignCheck3', 'd3DesignCheck4', 'd3DesignCheck5'];
     var allChecked = ids.every(function (id) {
         var el = document.getElementById(id);
         return el && el.checked;
@@ -1210,24 +1332,24 @@ window.d3GenerateSummary = function d3GenerateSummary() {
     var lines = [
         '=== Day 3: Designing for 3D Printing \u2014 File Types and Tinkercad ===',
         '',
-        '\uD83C\uDFF7\uFE0F My Design Name:',
-        val('d3DesignName'),
+        '\uD83C\uDFF7\uFE0F Advanced Project I Chose:',
+        val('d3ProjectChoice'),
         '',
-        '\uD83D\uDCDD Design Notes:',
-        val('d3DesignNotes'),
+        '\uD83D\uDCDD Why I Chose This Project:',
+        val('d3ProjectReason'),
         '',
         '\u2714\uFE0F Exit Ticket',
         '',
         '1. What is the difference between STL and G-code?',
         val('d3Exit1'),
         '',
-        '2. What did you create in Tinkercad today?',
+        '2. Which advanced project did you choose in Tinkercad, and why?',
         val('d3Exit2'),
         '',
         '3. What part of the process still feels confusing?',
         val('d3Exit3'),
         '',
-        '--- Copy and paste this into Google Classroom ---'
+        '--- Copy and paste this into your Digital Notebook in Google Classroom ---'
     ];
     var out = document.getElementById('d3SummaryOutput');
     if (out) out.value = lines.join('\n');
@@ -1288,6 +1410,13 @@ document.addEventListener('DOMContentLoaded', function () {
         var btn2 = document.getElementById('completePart2');
         if (btn2) btn2.disabled = numCorrect < 3;
     }
+
+    /* Restore and render the Part 3 video quiz */
+    try {
+        var storedVidQuiz = localStorage.getItem(D3_STORAGE_VID_QUIZ);
+        if (storedVidQuiz) d3VidQuizState = JSON.parse(storedVidQuiz);
+    } catch (e) { console.warn('Day 3: failed to restore video quiz state:', e); d3VidQuizState = { current: 0, answers: {}, checked: {}, allCorrect: false }; }
+    d3RenderVidQuiz();
 
     /* Restore checklist button states */
     window.d3UpdateTinkercadBtn();
