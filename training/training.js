@@ -1755,7 +1755,7 @@ window.d1ResetMatching = function d1ResetMatching() {
     var hint        = document.getElementById('matchingHint');
     var completeBtn = document.getElementById('part3CompleteBtn');
     if (feedback)    feedback.textContent   = '';
-    if (hint)        { hint.style.display = 'none'; hint.innerText = ''; }
+    if (hint)        { hint.style.display = 'none'; hint.textContent = ''; }
     if (completeBtn) completeBtn.disabled = true;
     d1State.matchingAttempts = 0;
     d1State.matchingScore    = 0;
