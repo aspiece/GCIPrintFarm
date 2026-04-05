@@ -451,7 +451,7 @@ function d2RenderMatching() {
             var safe = d.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
             return '<option value="' + safe + '"' + sel + '>' + safe + '</option>';
         }).join('');
-        var safeTerm = pair.term.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+        var safeTerm = pair.term.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
         html += '<div class="match-row" id="matchRow' + i + '">' +
             '<span class="match-term">' + safeTerm + '</span>' +
             '<select id="matchSel' + i + '" aria-label="Definition for ' + safeTerm + '">' +
@@ -847,4 +847,450 @@ document.addEventListener('DOMContentLoaded', function () {
 
     /* Restore Part 6 checklist button state */
     window.updateChecklistBtn();
+});
+
+/* ============================================================
+   DAY 3 — Designing for 3D Printing: File Types and Tinkercad
+   All functions below are only activated on day3.html.
+   Every handler is attached to window.* so inline onclick
+   attributes work correctly with the defer attribute.
+   ============================================================ */
+
+/* ── Day 3 Storage Keys ────────────────────────────────────── */
+var D3_STORAGE_PROGRESS = 'gci-day3-completed';
+var D3_STORAGE_QUIZ     = 'gci-day3-quiz';
+var D3_STORAGE_WORKFLOW = 'gci-day3-workflow';
+
+var D3_TOTAL_PARTS   = 7;
+var d3CompletedParts = [];
+
+/* ── Progress ──────────────────────────────────────────────── */
+function d3UpdateProgress() {
+    var pct    = Math.round((d3CompletedParts.length / D3_TOTAL_PARTS) * 100);
+    var fill   = document.getElementById('progressFill');
+    var pctEl  = document.getElementById('progressPercent');
+    var stepEl = document.getElementById('progressStep');
+    var bar    = fill && fill.closest('[role="progressbar"]');
+
+    if (fill)  fill.style.width = pct + '%';
+    if (pctEl) pctEl.textContent = pct + '%';
+    if (bar)   bar.setAttribute('aria-valuenow', pct);
+
+    var currentStep = D3_TOTAL_PARTS;
+    for (var i = 1; i <= D3_TOTAL_PARTS; i++) {
+        if (!d3CompletedParts.includes(i)) { currentStep = i; break; }
+    }
+    if (stepEl) stepEl.textContent = 'Step ' + currentStep + ' of ' + D3_TOTAL_PARTS;
+}
+
+function d3UpdateCardStates() {
+    for (var n = 1; n <= D3_TOTAL_PARTS; n++) {
+        var card  = document.getElementById('part' + n);
+        var badge = document.getElementById('badge' + n);
+        if (!card) continue;
+
+        var isDone   = d3CompletedParts.includes(n);
+        var isLocked = n > 1 && !d3CompletedParts.includes(n - 1);
+
+        card.classList.remove('active-card', 'completed-card', 'locked-card');
+        if (isDone)        card.classList.add('completed-card');
+        else if (isLocked) card.classList.add('locked-card');
+        else               card.classList.add('active-card');
+
+        if (badge) {
+            badge.textContent = isDone ? 'Complete' : isLocked ? 'Locked' : 'Active';
+            badge.className   = 'state-badge ' + (isDone ? 'completed' : isLocked ? 'locked' : 'active');
+        }
+
+        card.querySelectorAll('button[onclick*="window.complete"]').forEach(function (btn) {
+            if (!btn.id) btn.disabled = isLocked;
+        });
+
+        if (isLocked) card.removeAttribute('open');
+    }
+}
+
+if (document.body.getAttribute('data-page') === 'day3') {
+
+/* ── Mark Complete ─────────────────────────────────────────── */
+window.complete = function complete(partNum) {
+    if (!d3CompletedParts.includes(partNum)) {
+        d3CompletedParts.push(partNum);
+        localStorage.setItem(D3_STORAGE_PROGRESS, JSON.stringify(d3CompletedParts));
+    }
+    var current = document.getElementById('part' + partNum);
+    if (current) current.removeAttribute('open');
+
+    var next = document.getElementById('part' + (partNum + 1));
+    if (next) {
+        next.setAttribute('open', '');
+        setTimeout(function () { next.scrollIntoView({ behavior: 'smooth', block: 'start' }); }, 80);
+    }
+    d3UpdateProgress();
+    d3UpdateCardStates();
+};
+
+/* ── Part 1: File Types Quiz ───────────────────────────────── */
+var d3QuizQuestions = [
+    {
+        prompt: "What does an STL file store?",
+        type: "mcq",
+        options: [
+            "The shape of a 3D object as a mesh of triangles",
+            "The printer's speed and temperature settings",
+            "Color, materials, and print settings",
+            "Layer-by-layer movement instructions for the printer"
+        ],
+        correct: 0,
+        explanation: "STL files store only the geometry (shape) of a 3D model using triangles. They do not include color, materials, or print settings — just the shape."
+    },
+    {
+        prompt: "Which file format can store shape, color, materials, and print settings all in one file?",
+        type: "mcq",
+        options: [
+            "STL",
+            "G-code",
+            "3MF",
+            "PNG"
+        ],
+        correct: 2,
+        explanation: "3MF is a newer, smarter format. It stores shape plus color, materials, orientation, and print settings — making it ideal for saving complete Bambu Studio projects."
+    },
+    {
+        prompt: "What is G-code and who creates it?",
+        type: "mcq",
+        options: [
+            "A design file created by Tinkercad",
+            "A machine instruction file created by the slicer (Bambu Studio)",
+            "A color profile created by the printer",
+            "A backup file created by MakerWorld"
+        ],
+        correct: 1,
+        explanation: "G-code is the machine language that drives the printer. The slicer (Bambu Studio) creates it when you slice your model. It tells the printer exactly where to move, when to heat up, and how fast to go."
+    }
+];
+
+var d3QuizState = { current: 0, answers: {}, checked: {} };
+
+function d3SaveQuizState() {
+    localStorage.setItem(D3_STORAGE_QUIZ, JSON.stringify(d3QuizState));
+}
+
+function d3RenderQuiz() {
+    var idx      = d3QuizState.current;
+    var q        = d3QuizQuestions[idx];
+    if (!q) return;
+
+    var prog     = document.getElementById('d3QuizProgress');
+    var qText    = document.getElementById('d3QText');
+    var qOptions = document.getElementById('d3QOptions');
+    var fb       = document.getElementById('d3Feedback');
+    var expl     = document.getElementById('d3Explanation');
+    var next     = document.getElementById('d3NextBtn');
+
+    if (prog)  prog.textContent  = 'Question ' + (idx + 1) + ' of ' + d3QuizQuestions.length;
+    if (qText) qText.textContent = q.prompt;
+    if (!qOptions) return;
+
+    qOptions.innerHTML = '';
+    var savedAnswer = d3QuizState.answers[idx];
+    var isChecked   = !!d3QuizState.checked[idx];
+
+    q.options.forEach(function (opt, i) {
+        var wrapper = document.createElement('div');
+        var label   = document.createElement('label');
+        var radio   = document.createElement('input');
+        radio.type  = 'radio';
+        radio.name  = 'd3QuizQ';
+        radio.value = i;
+        if (savedAnswer === i) radio.checked = true;
+        if (isChecked) radio.disabled = true;
+        label.appendChild(radio);
+        label.appendChild(document.createTextNode(' ' + opt));
+        wrapper.appendChild(label);
+        qOptions.appendChild(wrapper);
+    });
+
+    if (fb)   { fb.textContent = ''; fb.classList.remove('correct', 'incorrect'); }
+    if (expl) expl.textContent = '';
+
+    if (isChecked) {
+        var correct = d3QuizState.answers[idx] === q.correct;
+        if (fb) {
+            fb.textContent = correct ? '\u2705 Correct!' : '\u274C Not quite \u2014 read the explanation below.';
+            fb.classList.add(correct ? 'correct' : 'incorrect');
+        }
+        if (expl) expl.textContent = q.explanation;
+        if (next) next.disabled = false;
+    } else {
+        if (next) next.disabled = true;
+    }
+}
+
+window.d3CheckAnswer = function d3CheckAnswer() {
+    var idx = d3QuizState.current;
+    var q   = d3QuizQuestions[idx];
+    var sel = document.querySelector('input[name="d3QuizQ"]:checked');
+    var fb  = document.getElementById('d3Feedback');
+
+    if (!sel) {
+        if (fb) { fb.textContent = 'Please select an answer.'; fb.classList.remove('correct', 'incorrect'); }
+        return;
+    }
+
+    var answer = parseInt(sel.value, 10);
+    d3QuizState.answers[idx] = answer;
+    d3QuizState.checked[idx] = true;
+    d3SaveQuizState();
+
+    var correct = answer === q.correct;
+    var expl = document.getElementById('d3Explanation');
+    var next = document.getElementById('d3NextBtn');
+
+    if (fb) {
+        fb.textContent = correct ? '\u2705 Correct!' : '\u274C Not quite \u2014 read the explanation below.';
+        fb.classList.remove('correct', 'incorrect');
+        fb.classList.add(correct ? 'correct' : 'incorrect');
+    }
+    if (expl) expl.textContent = q.explanation;
+    document.querySelectorAll('input[name="d3QuizQ"]').forEach(function (el) { el.disabled = true; });
+    if (next) next.disabled = false;
+};
+
+window.d3NextQuestion = function d3NextQuestion() {
+    if (d3QuizState.current < d3QuizQuestions.length - 1) {
+        d3QuizState.current++;
+        d3SaveQuizState();
+        d3RenderQuiz();
+    }
+};
+
+window.d3PrevQuestion = function d3PrevQuestion() {
+    if (d3QuizState.current > 0) {
+        d3QuizState.current--;
+        d3SaveQuizState();
+        d3RenderQuiz();
+    }
+};
+
+window.d3ResetQuiz = function d3ResetQuiz() {
+    d3QuizState = { current: 0, answers: {}, checked: {} };
+    d3SaveQuizState();
+    d3RenderQuiz();
+};
+
+/* ── Part 2: Workflow Matching ─────────────────────────────── */
+var d3WorkflowPairs = [
+    { term: "Design",  correct: "Create your 3D model in Tinkercad" },
+    { term: "Export",  correct: "Save your file as STL or 3MF from Tinkercad" },
+    { term: "Slice",   correct: "Import your file into Bambu Studio and generate print instructions" },
+    { term: "Print",   correct: "Send the G-code to the 3D printer and start the print" }
+];
+
+var d3WorkflowState = { attempts: 0, answers: {} };
+
+function d3Shuffle(arr) {
+    var a = arr.slice();
+    for (var i = a.length - 1; i > 0; i--) {
+        var j   = Math.floor(Math.random() * (i + 1));
+        var tmp = a[i]; a[i] = a[j]; a[j] = tmp;
+    }
+    return a;
+}
+
+function d3RenderMatching() {
+    var container = document.getElementById('d3MatchingActivity');
+    if (!container) return;
+
+    var defs = d3Shuffle(d3WorkflowPairs.map(function (p) { return p.correct; }));
+    var html = '<div class="match-grid">';
+
+    d3WorkflowPairs.forEach(function (pair, i) {
+        var saved = d3WorkflowState.answers[i] || '';
+        var opts  = defs.map(function (d) {
+            var sel  = d === saved ? ' selected' : '';
+            var safe = d.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+            return '<option value="' + safe + '"' + sel + '>' + safe + '</option>';
+        }).join('');
+        var safeTerm = pair.term.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+        html += '<div class="match-row" id="d3MatchRow' + i + '">' +
+            '<span class="match-term">' + safeTerm + '</span>' +
+            '<select id="d3MatchSel' + i + '" aria-label="Description for ' + safeTerm + '">' +
+            '<option value="">-- Select a description --</option>' + opts +
+            '</select>' +
+            '<span class="match-result" id="d3MatchResult' + i + '" aria-hidden="true"></span>' +
+            '</div>';
+    });
+    html += '</div>';
+    container.innerHTML = html;
+
+    var fb = document.getElementById('d3MatchingFeedback');
+    if (fb) { fb.textContent = ''; fb.classList.remove('correct', 'incorrect'); }
+    var hint = document.getElementById('d3HintBoxMatching');
+    if (hint) hint.style.display = 'none';
+}
+
+window.d3CheckMatching = function d3CheckMatching() {
+    d3WorkflowPairs.forEach(function (_, i) {
+        var sel = document.getElementById('d3MatchSel' + i);
+        if (sel) d3WorkflowState.answers[i] = sel.value;
+    });
+    d3WorkflowState.attempts++;
+    localStorage.setItem(D3_STORAGE_WORKFLOW, JSON.stringify(d3WorkflowState));
+
+    var numCorrect = 0;
+    d3WorkflowPairs.forEach(function (pair, i) {
+        var resultEl  = document.getElementById('d3MatchResult' + i);
+        var isCorrect = d3WorkflowState.answers[i] === pair.correct;
+        if (isCorrect) numCorrect++;
+        if (resultEl) resultEl.textContent = isCorrect ? '\u2713' : '\u2717';
+    });
+
+    var fb = document.getElementById('d3MatchingFeedback');
+    if (fb) {
+        fb.textContent = numCorrect + ' of 4 correct.';
+        fb.classList.remove('correct', 'incorrect');
+        fb.classList.add(numCorrect >= 3 ? 'correct' : 'incorrect');
+    }
+
+    var completeBtn = document.getElementById('completePart2');
+    if (completeBtn) completeBtn.disabled = numCorrect < 3;
+
+    var hint = document.getElementById('d3HintBoxMatching');
+    if (hint && d3WorkflowState.attempts >= 2 && numCorrect < 4) hint.style.display = 'block';
+};
+
+window.d3ResetMatching = function d3ResetMatching() {
+    d3WorkflowState = { attempts: 0, answers: {} };
+    localStorage.removeItem(D3_STORAGE_WORKFLOW);
+    var completeBtn = document.getElementById('completePart2');
+    if (completeBtn) completeBtn.disabled = true;
+    d3RenderMatching();
+};
+
+/* ── Part 3: Tinkercad Checklist ───────────────────────────── */
+window.d3UpdateTinkercadBtn = function d3UpdateTinkercadBtn() {
+    var ids = ['d3TinkCheck1', 'd3TinkCheck2', 'd3TinkCheck3'];
+    var allChecked = ids.every(function (id) {
+        var el = document.getElementById(id);
+        return el && el.checked;
+    });
+    var btn = document.getElementById('completePart3');
+    if (btn) btn.disabled = !allChecked;
+};
+
+/* ── Part 4: Design Checklist ──────────────────────────────── */
+window.d3UpdateDesignBtn = function d3UpdateDesignBtn() {
+    var ids = ['d3DesignCheck1', 'd3DesignCheck2', 'd3DesignCheck3', 'd3DesignCheck4', 'd3DesignCheck5', 'd3DesignCheck6'];
+    var allChecked = ids.every(function (id) {
+        var el = document.getElementById(id);
+        return el && el.checked;
+    });
+    var btn = document.getElementById('completePart4');
+    if (btn) btn.disabled = !allChecked;
+};
+
+/* ── Part 5: Export Checklist ──────────────────────────────── */
+window.d3UpdateExportBtn = function d3UpdateExportBtn() {
+    var ids = ['d3ExportCheck1', 'd3ExportCheck2', 'd3ExportCheck3', 'd3ExportCheck4'];
+    var allChecked = ids.every(function (id) {
+        var el = document.getElementById(id);
+        return el && el.checked;
+    });
+    var btn = document.getElementById('completePart5');
+    if (btn) btn.disabled = !allChecked;
+};
+
+/* ── Part 7: Summary Generation ────────────────────────────── */
+window.d3GenerateSummary = function d3GenerateSummary() {
+    function val(id) {
+        var el = document.getElementById(id);
+        return (el && el.value.trim()) || '(not entered)';
+    }
+    var lines = [
+        '=== Day 3: Designing for 3D Printing \u2014 File Types and Tinkercad ===',
+        '',
+        '\uD83C\uDFF7\uFE0F My Design Name:',
+        val('d3DesignName'),
+        '',
+        '\uD83D\uDCDD Design Notes:',
+        val('d3DesignNotes'),
+        '',
+        '\u2714\uFE0F Exit Ticket',
+        '',
+        '1. What is the difference between STL and G-code?',
+        val('d3Exit1'),
+        '',
+        '2. What did you create in Tinkercad today?',
+        val('d3Exit2'),
+        '',
+        '3. What part of the process still feels confusing?',
+        val('d3Exit3'),
+        '',
+        '--- Copy and paste this into Google Classroom ---'
+    ];
+    var out = document.getElementById('d3SummaryOutput');
+    if (out) out.value = lines.join('\n');
+};
+
+} // end day3 guard
+
+/* ── Day 3 Initialisation (DOMContentLoaded) ───────────────── */
+document.addEventListener('DOMContentLoaded', function () {
+    if (document.body.getAttribute('data-page') !== 'day3') return;
+
+    /* Restore progress from localStorage */
+    try {
+        var stored = localStorage.getItem(D3_STORAGE_PROGRESS);
+        if (stored) d3CompletedParts = JSON.parse(stored);
+    } catch (e) { console.warn('Day 3: failed to restore progress:', e); d3CompletedParts = []; }
+
+    d3UpdateProgress();
+    d3UpdateCardStates();
+
+    /* Open the first incomplete, unlocked part */
+    var opened = false;
+    for (var n = 1; n <= D3_TOTAL_PARTS; n++) {
+        if (!d3CompletedParts.includes(n)) {
+            var card = document.getElementById('part' + n);
+            if (card && !card.classList.contains('locked-card')) {
+                card.setAttribute('open', '');
+            }
+            opened = true;
+            break;
+        }
+    }
+    if (!opened) {
+        var last = document.getElementById('part' + D3_TOTAL_PARTS);
+        if (last) last.setAttribute('open', '');
+    }
+
+    /* Restore and render the Part 1 quiz */
+    try {
+        var storedQuiz = localStorage.getItem(D3_STORAGE_QUIZ);
+        if (storedQuiz) d3QuizState = JSON.parse(storedQuiz);
+    } catch (e) { console.warn('Day 3: failed to restore quiz state:', e); d3QuizState = { current: 0, answers: {}, checked: {} }; }
+    d3RenderQuiz();
+
+    /* Restore and render the Part 2 matching activity */
+    try {
+        var storedWorkflow = localStorage.getItem(D3_STORAGE_WORKFLOW);
+        if (storedWorkflow) d3WorkflowState = JSON.parse(storedWorkflow);
+    } catch (e) { console.warn('Day 3: failed to restore workflow state:', e); d3WorkflowState = { attempts: 0, answers: {} }; }
+    d3RenderMatching();
+
+    /* Restore Part 2 complete-button state after previous attempts */
+    if (d3WorkflowState.attempts > 0) {
+        var numCorrect = 0;
+        d3WorkflowPairs.forEach(function (pair, i) {
+            if (d3WorkflowState.answers[i] === pair.correct) numCorrect++;
+        });
+        var btn2 = document.getElementById('completePart2');
+        if (btn2) btn2.disabled = numCorrect < 3;
+    }
+
+    /* Restore checklist button states */
+    window.d3UpdateTinkercadBtn();
+    window.d3UpdateDesignBtn();
+    window.d3UpdateExportBtn();
 });
