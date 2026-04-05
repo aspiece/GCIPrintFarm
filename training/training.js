@@ -451,7 +451,7 @@ function d2RenderMatching() {
             var safe = d.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
             return '<option value="' + safe + '"' + sel + '>' + safe + '</option>';
         }).join('');
-        var safeTerm = pair.term.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+        var safeTerm = pair.term.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
         html += '<div class="match-row" id="matchRow' + i + '">' +
             '<span class="match-term">' + safeTerm + '</span>' +
             '<select id="matchSel' + i + '" aria-label="Definition for ' + safeTerm + '">' +
@@ -1017,7 +1017,7 @@ function d3RenderQuiz() {
     if (isChecked) {
         var correct = d3QuizState.answers[idx] === q.correct;
         if (fb) {
-            fb.textContent = correct ? '\u2705 Correct!' : '\u274C Not quite.';
+            fb.textContent = correct ? '\u2705 Correct!' : '\u274C Not quite \u2014 read the explanation below.';
             fb.classList.add(correct ? 'correct' : 'incorrect');
         }
         if (expl) expl.textContent = q.explanation;
@@ -1112,7 +1112,7 @@ function d3RenderMatching() {
             var safe = d.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
             return '<option value="' + safe + '"' + sel + '>' + safe + '</option>';
         }).join('');
-        var safeTerm = pair.term.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+        var safeTerm = pair.term.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
         html += '<div class="match-row" id="d3MatchRow' + i + '">' +
             '<span class="match-term">' + safeTerm + '</span>' +
             '<select id="d3MatchSel' + i + '" aria-label="Description for ' + safeTerm + '">' +
