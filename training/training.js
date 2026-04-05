@@ -1294,3 +1294,695 @@ document.addEventListener('DOMContentLoaded', function () {
     window.d3UpdateDesignBtn();
     window.d3UpdateExportBtn();
 });
+
+/* ============================================================
+   DAY 1 — Foundations of 3D Printing
+   All functions below are only activated on day1.html.
+   Every handler is attached to window.* so inline onclick
+   attributes work correctly with the defer attribute.
+   ============================================================ */
+
+/* ── Day 1 Storage Key ─────────────────────────────────────── */
+var D1_STORAGE_KEY = 'gci-3d-day1-state-v1';
+
+var D1_TOTAL_PARTS = 6;
+
+/* ── Day 1 State ───────────────────────────────────────────── */
+var d1State = {
+    completedParts: [],
+    texts: {},
+    checks: {},
+    quiz1: { current: 0, passed: [] },
+    quiz4: { current: 0, passed: [] },
+    matchingAttempts: 0,
+    matchingScore: 0,
+    troubleshootingScore: 0,
+    troubleshooting: { attempts: 0 }
+};
+
+function d1SaveState() {
+    localStorage.setItem(D1_STORAGE_KEY, JSON.stringify(d1State));
+}
+
+function d1LoadState() {
+    var raw = localStorage.getItem(D1_STORAGE_KEY);
+    if (!raw) return;
+    try {
+        var parsed = JSON.parse(raw);
+        Object.assign(d1State, parsed);
+    } catch (e) {
+        console.warn('Day 1: could not load saved progress.', e);
+    }
+}
+
+/* ── Progress ──────────────────────────────────────────────── */
+function d1UpdateProgress() {
+    var total  = D1_TOTAL_PARTS;
+    var score  = d1State.completedParts.length;
+
+    var matchingBonus      = (d1State.matchingScore || 0) / 4;
+    var troubleshootingBonus = Math.min(d1State.troubleshootingScore || 0, 4) / 4;
+    var weighted = score + (matchingBonus * 0.5) + (troubleshootingBonus * 0.5);
+
+    var percent = Math.round((weighted / total) * 100);
+    var fill    = document.getElementById('progressFill');
+    var pctEl   = document.getElementById('progressPercent');
+    var stepEl  = document.getElementById('progressStep');
+    var bar     = fill && fill.closest('[role="progressbar"]');
+
+    if (fill)  fill.style.width = percent + '%';
+    if (pctEl) pctEl.textContent = percent + '%';
+    if (bar)   bar.setAttribute('aria-valuenow', percent);
+
+    var currentStep = total;
+    for (var i = 1; i <= total; i++) {
+        if (!d1State.completedParts.includes(i)) { currentStep = i; break; }
+    }
+    if (stepEl) stepEl.textContent = 'Step ' + currentStep + ' of ' + total;
+}
+
+function d1UpdateCardStates() {
+    for (var n = 1; n <= D1_TOTAL_PARTS; n++) {
+        var card  = document.getElementById('part' + n);
+        var badge = document.getElementById('badge' + n);
+        if (!card) continue;
+
+        var isDone   = d1State.completedParts.includes(n);
+        var isLocked = n > 1 && !d1State.completedParts.includes(n - 1);
+
+        card.classList.remove('active-card', 'completed-card', 'locked-card');
+        if (isDone)        card.classList.add('completed-card');
+        else if (isLocked) card.classList.add('locked-card');
+        else               card.classList.add('active-card');
+
+        if (badge) {
+            badge.textContent = isDone ? 'Complete' : isLocked ? 'Locked' : 'Active';
+            badge.className   = 'state-badge ' + (isDone ? 'completed' : isLocked ? 'locked' : 'active');
+        }
+
+        if (isLocked) card.removeAttribute('open');
+    }
+}
+
+if (document.body.getAttribute('data-page') === 'day1') {
+
+/* ── Mark Complete ─────────────────────────────────────────── */
+window.complete = function complete(partNum) {
+    if (!d1State.completedParts.includes(partNum)) {
+        d1State.completedParts.push(partNum);
+    }
+    d1UpdateProgress();
+    d1UpdateCardStates();
+    d1SaveState();
+
+    var current = document.getElementById('part' + partNum);
+    var next    = document.getElementById('part' + (partNum + 1));
+    if (current) current.removeAttribute('open');
+    if (next) {
+        next.setAttribute('open', '');
+        setTimeout(function () { next.scrollIntoView({ behavior: 'smooth', block: 'start' }); }, 80);
+    }
+};
+
+/* ── Part 1: Intro Quiz ────────────────────────────────────── */
+var d1Questions = [
+    {
+        q: 'What does a 3D printer do?',
+        options: ['Cuts material away from a solid block', 'Builds an object layer by layer', 'Only prints on paper', 'Paints the outside of an object'],
+        answer: 1,
+        multi: false,
+        explanation: 'The video explains that 3D printers make objects by adding material layer by layer.'
+    },
+    {
+        q: 'Which items are needed for a basic 3D print? (Select all)',
+        options: ['Filament', 'A digital 3D model', 'Slicer software', 'Gasoline'],
+        answer: [0, 1, 2],
+        multi: true,
+        explanation: 'You need material, a model, and software to prepare the model for printing.'
+    },
+    {
+        q: 'What happens to a model before printing starts?',
+        options: ['It gets sliced into layers', 'It gets folded into shape', 'It gets painted by the printer', 'It turns into a photo'],
+        answer: 0,
+        multi: false,
+        explanation: 'The model is sliced into layers so the printer knows how to build it.'
+    },
+    {
+        q: 'What part melts and places the filament?',
+        options: ['The screen', 'The frame', 'The nozzle', 'The spool holder'],
+        answer: 2,
+        multi: false,
+        explanation: 'The nozzle heats the filament and places it during printing.'
+    },
+    {
+        q: 'Why is it helpful to preview a print?',
+        options: ['To catch mistakes before printing', 'To make the printer louder', 'To skip slicing', 'To change the model color automatically'],
+        answer: 0,
+        multi: false,
+        explanation: 'Previewing helps you catch errors before wasting time and filament.'
+    }
+];
+
+var d1Current    = 0;
+var d1Selections = [];
+var d1Locked     = false;
+
+function d1RenderQuestion() {
+    var q = d1Questions[d1Current];
+    d1State.quiz1.current = d1Current;
+
+    var prog    = document.getElementById('quizProgress');
+    var qText   = document.getElementById('qText');
+    var qOpts   = document.getElementById('qOptions');
+    var fb      = document.getElementById('feedback');
+    var expl    = document.getElementById('explanation');
+    var nextBtn = document.getElementById('nextBtn');
+
+    if (prog)  prog.textContent  = 'Question ' + (d1Current + 1) + ' of ' + d1Questions.length;
+    if (qText) qText.textContent = q.q;
+    if (!qOpts) return;
+
+    var html = '';
+    q.options.forEach(function (opt, i) {
+        var checked = d1Selections.includes(i) ? 'checked' : '';
+        if (q.multi) {
+            html += '<label><input type="checkbox" ' + checked + ' onchange="window.d1SelectMulti(' + i + ')"> ' + opt + '</label>';
+        } else {
+            html += '<label><input type="radio" name="d1q" ' + checked + ' onchange="window.d1SelectSingle(' + i + ')"> ' + opt + '</label>';
+        }
+    });
+    qOpts.innerHTML = html;
+
+    if (fb)   fb.textContent = '';
+    if (expl) expl.textContent = '';
+    if (nextBtn) nextBtn.disabled = !d1State.quiz1.passed.includes(d1Current);
+    d1Locked = d1State.quiz1.passed.includes(d1Current);
+    d1SaveState();
+}
+
+window.d1SelectSingle = function d1SelectSingle(i) { if (!d1Locked) d1Selections = [i]; };
+window.d1SelectMulti  = function d1SelectMulti(i) {
+    if (d1Locked) return;
+    if (d1Selections.includes(i)) d1Selections = d1Selections.filter(function (x) { return x !== i; });
+    else d1Selections.push(i);
+};
+
+window.d1CheckAnswer = function d1CheckAnswer() {
+    var q = d1Questions[d1Current];
+    var correct = false;
+    if (q.multi) {
+        correct = JSON.stringify([].concat(d1Selections).sort(function (a, b) { return a - b; })) ===
+                  JSON.stringify([].concat(q.answer).sort(function (a, b) { return a - b; }));
+    } else {
+        correct = d1Selections[0] === q.answer;
+    }
+    var fb   = document.getElementById('feedback');
+    var expl = document.getElementById('explanation');
+    var next = document.getElementById('nextBtn');
+    if (correct) {
+        if (fb)   { fb.textContent = '\u2705 Correct'; fb.classList.add('correct'); fb.classList.remove('incorrect'); }
+        if (expl) expl.textContent = q.explanation;
+        if (!d1State.quiz1.passed.includes(d1Current)) d1State.quiz1.passed.push(d1Current);
+        if (next) next.disabled = false;
+        d1Locked = true;
+    } else {
+        if (fb)   { fb.textContent = '\u274C Try again'; fb.classList.add('incorrect'); fb.classList.remove('correct'); }
+        if (expl) expl.textContent = 'Take another look at the video notes and think about the 3D printing process.';
+    }
+    d1SaveState();
+};
+
+window.d1NextQuestion = function d1NextQuestion() {
+    if (d1Current < d1Questions.length - 1) {
+        d1Current++;
+        d1Selections = [];
+        d1RenderQuestion();
+    } else {
+        var prog    = document.getElementById('quizProgress');
+        var qText   = document.getElementById('qText');
+        var qOpts   = document.getElementById('qOptions');
+        var fb      = document.getElementById('feedback');
+        var expl    = document.getElementById('explanation');
+        var nextBtn = document.getElementById('nextBtn');
+        if (prog)    prog.textContent  = 'Done';
+        if (qText)   qText.textContent = '\uD83C\uDF89 Quiz Complete';
+        if (qOpts)   qOpts.innerHTML   = '<p>Nice work. You finished the intro quiz.</p>';
+        if (fb)      fb.textContent    = 'You are ready to move on.';
+        if (expl)    expl.textContent  = 'Reset the quiz if you want to try it again.';
+        if (nextBtn) nextBtn.disabled  = true;
+    }
+    d1SaveState();
+};
+
+window.d1PrevQuestion = function d1PrevQuestion() {
+    if (d1Current > 0) {
+        d1Current--;
+        d1Selections = [];
+        d1RenderQuestion();
+    }
+};
+
+window.d1ResetQuiz = function d1ResetQuiz() {
+    d1Current    = 0;
+    d1Selections = [];
+    d1Locked     = false;
+    d1State.quiz1 = { current: 0, passed: [] };
+    d1RenderQuestion();
+    var fb = document.getElementById('feedback');
+    if (fb) fb.textContent = 'Quiz reset.';
+    d1SaveState();
+};
+
+/* ── Part 4: Filament Quiz ─────────────────────────────────── */
+var d1FilamentQuestions = [
+    {
+        q: 'Which filament is usually the easiest starting point for beginners?',
+        options: ['PLA', 'PETG', 'Metal powder', 'Glue stick'],
+        answer: 0,
+        multi: false,
+        explanation: 'The video explains that PLA is usually easier for beginners to print with.'
+    },
+    {
+        q: 'Which statements about filament are true? (Select all)',
+        options: ['Filament can absorb moisture', 'Different materials need different settings', 'All filament prints exactly the same way', 'Storage affects print quality'],
+        answer: [0, 1, 3],
+        multi: true,
+        explanation: 'Moisture, settings, and storage all matter when printing with filament.'
+    },
+    {
+        q: 'Which filament is often chosen when more durability is needed?',
+        options: ['PETG', 'PLA', 'Paper', 'Cardboard'],
+        answer: 0,
+        multi: false,
+        explanation: 'PETG is often chosen when you need more durability and impact resistance.'
+    },
+    {
+        q: 'What can happen when filament absorbs too much moisture?',
+        options: ['Poor print quality', 'Popping or bubbling sounds', 'Weaker prints', 'All of the above'],
+        answer: 3,
+        multi: false,
+        explanation: 'The video explains that moist filament can bubble, pop, and create weaker prints.'
+    },
+    {
+        q: 'Why should you choose the correct filament profile in the slicer?',
+        options: ['It applies the right material settings', 'It changes the weather', 'It makes every print rainbow colored', 'It removes the need for slicing'],
+        answer: 0,
+        multi: false,
+        explanation: 'Different materials need different temperature and print settings, so the right profile matters.'
+    }
+];
+
+var d1FCurrent    = 0;
+var d1FSelections = [];
+var d1FLocked     = false;
+
+function d1RenderFilamentQuestion() {
+    var q = d1FilamentQuestions[d1FCurrent];
+    d1State.quiz4.current = d1FCurrent;
+
+    var prog    = document.getElementById('filamentQuizProgress');
+    var qText   = document.getElementById('filamentQText');
+    var qOpts   = document.getElementById('filamentQOptions');
+    var fb      = document.getElementById('filamentFeedback');
+    var expl    = document.getElementById('filamentExplanation');
+    var nextBtn = document.getElementById('filamentNextBtn');
+
+    if (prog)  prog.textContent  = 'Question ' + (d1FCurrent + 1) + ' of ' + d1FilamentQuestions.length;
+    if (qText) qText.textContent = q.q;
+    if (!qOpts) return;
+
+    var html = '';
+    q.options.forEach(function (opt, i) {
+        var checked = d1FSelections.includes(i) ? 'checked' : '';
+        if (q.multi) {
+            html += '<label><input type="checkbox" ' + checked + ' onchange="window.d1SelectFMulti(' + i + ')"> ' + opt + '</label>';
+        } else {
+            html += '<label><input type="radio" name="d1fq" ' + checked + ' onchange="window.d1SelectFSingle(' + i + ')"> ' + opt + '</label>';
+        }
+    });
+    qOpts.innerHTML = html;
+
+    if (fb)   fb.textContent = '';
+    if (expl) expl.textContent = '';
+    if (nextBtn) nextBtn.disabled = !d1State.quiz4.passed.includes(d1FCurrent);
+    d1FLocked = d1State.quiz4.passed.includes(d1FCurrent);
+    d1SaveState();
+}
+
+window.d1SelectFSingle = function d1SelectFSingle(i) { if (!d1FLocked) d1FSelections = [i]; };
+window.d1SelectFMulti  = function d1SelectFMulti(i) {
+    if (d1FLocked) return;
+    if (d1FSelections.includes(i)) d1FSelections = d1FSelections.filter(function (x) { return x !== i; });
+    else d1FSelections.push(i);
+};
+
+window.d1CheckFilamentAnswer = function d1CheckFilamentAnswer() {
+    var q = d1FilamentQuestions[d1FCurrent];
+    var correct = false;
+    if (q.multi) {
+        correct = JSON.stringify([].concat(d1FSelections).sort(function (a, b) { return a - b; })) ===
+                  JSON.stringify([].concat(q.answer).sort(function (a, b) { return a - b; }));
+    } else {
+        correct = d1FSelections[0] === q.answer;
+    }
+    var fb   = document.getElementById('filamentFeedback');
+    var expl = document.getElementById('filamentExplanation');
+    var next = document.getElementById('filamentNextBtn');
+    if (correct) {
+        if (fb)   { fb.textContent = '\u2705 Correct'; fb.classList.add('correct'); fb.classList.remove('incorrect'); }
+        if (expl) expl.textContent = q.explanation;
+        if (!d1State.quiz4.passed.includes(d1FCurrent)) d1State.quiz4.passed.push(d1FCurrent);
+        if (next) next.disabled = false;
+        d1FLocked = true;
+    } else {
+        if (fb)   { fb.textContent = '\u274C Try again'; fb.classList.add('incorrect'); fb.classList.remove('correct'); }
+        if (expl) expl.textContent = 'Think about moisture, durability, and material settings from the video.';
+    }
+    d1SaveState();
+};
+
+window.d1NextFilamentQuestion = function d1NextFilamentQuestion() {
+    if (d1FCurrent < d1FilamentQuestions.length - 1) {
+        d1FCurrent++;
+        d1FSelections = [];
+        d1RenderFilamentQuestion();
+    } else {
+        var prog  = document.getElementById('filamentQuizProgress');
+        var qText = document.getElementById('filamentQText');
+        var qOpts = document.getElementById('filamentQOptions');
+        var fb    = document.getElementById('filamentFeedback');
+        var expl  = document.getElementById('filamentExplanation');
+        var next  = document.getElementById('filamentNextBtn');
+        if (prog)  prog.textContent  = 'Done';
+        if (qText) qText.textContent = '\uD83C\uDF89 Filament Quiz Complete';
+        if (qOpts) qOpts.innerHTML   = '<p>Nice work. You finished the filament quiz.</p>';
+        if (fb)    fb.textContent    = 'You are ready to move on.';
+        if (expl)  expl.textContent  = 'Reset the quiz if you want to try it again.';
+        if (next)  next.disabled     = true;
+    }
+    d1SaveState();
+};
+
+window.d1PrevFilamentQuestion = function d1PrevFilamentQuestion() {
+    if (d1FCurrent > 0) {
+        d1FCurrent--;
+        d1FSelections = [];
+        d1RenderFilamentQuestion();
+    }
+};
+
+window.d1ResetFilamentQuiz = function d1ResetFilamentQuiz() {
+    d1FCurrent    = 0;
+    d1FSelections = [];
+    d1FLocked     = false;
+    d1State.quiz4 = { current: 0, passed: [] };
+    d1RenderFilamentQuestion();
+    var fb = document.getElementById('filamentFeedback');
+    if (fb) fb.textContent = 'Filament quiz reset.';
+    d1SaveState();
+};
+
+/* ── Part 3: Matching Activity ─────────────────────────────── */
+window.d1CheckMatching = function d1CheckMatching() {
+    var answers = { match1: 'nozzle', match2: 'bed', match3: 'extruder', match4: 'frame' };
+    var correct = 0;
+    Object.keys(answers).forEach(function (id) {
+        var el = document.getElementById(id);
+        if (!el) return;
+        if (el.value === answers[id]) {
+            el.style.border = '2px solid #4caf50';
+            correct++;
+        } else {
+            el.style.border = '2px solid #ff4d4d';
+        }
+    });
+
+    var feedback    = document.getElementById('matchingFeedback');
+    var hint        = document.getElementById('matchingHint');
+    var completeBtn = document.getElementById('part3CompleteBtn');
+
+    d1State.matchingAttempts = (d1State.matchingAttempts || 0) + 1;
+
+    if (feedback) {
+        feedback.textContent = correct === 4 ? '\u2705 All correct \u2014 nice work!' :
+            'You got ' + correct + '/4 correct. You need at least 3 correct to move on.';
+    }
+
+    if (correct < 3 && d1State.matchingAttempts >= 2) {
+        if (hint) {
+            hint.style.display = 'block';
+            hint.innerHTML = '<strong>Hint:</strong> Think about the flow of filament. What melts it? What pushes it? What surface does it sit on?';
+        }
+    } else {
+        if (hint) { hint.style.display = 'none'; hint.innerHTML = ''; }
+    }
+
+    d1State.matchingScore = correct;
+    if (completeBtn) completeBtn.disabled = correct < 3;
+
+    d1UpdateProgress();
+    d1SaveState();
+};
+
+window.d1ResetMatching = function d1ResetMatching() {
+    ['match1', 'match2', 'match3', 'match4'].forEach(function (id) {
+        var el = document.getElementById(id);
+        if (!el) return;
+        el.value = '';
+        el.style.border = '';
+    });
+    var feedback    = document.getElementById('matchingFeedback');
+    var hint        = document.getElementById('matchingHint');
+    var completeBtn = document.getElementById('part3CompleteBtn');
+    if (feedback)    feedback.textContent   = '';
+    if (hint)        { hint.style.display = 'none'; hint.innerText = ''; }
+    if (completeBtn) completeBtn.disabled = true;
+    d1State.matchingAttempts = 0;
+    d1State.matchingScore    = 0;
+    d1UpdateProgress();
+    d1SaveState();
+};
+
+/* ── Part 3: Troubleshooting Activity ─────────────────────── */
+var d1TroubleQuestions = [
+    {
+        q: 'The printer is moving, but no filament is coming out.',
+        options: ['Nozzle', 'Bed', 'Frame'],
+        answer: 0,
+        explanation: 'Likely a clogged or cold nozzle.'
+    },
+    {
+        q: 'The print keeps sliding around and will not stick.',
+        options: ['Bed', 'Extruder', 'Frame'],
+        answer: 0,
+        explanation: 'This is a bed adhesion issue.'
+    },
+    {
+        q: 'The printer shakes and layers look uneven.',
+        options: ['Frame', 'Nozzle', 'Bed'],
+        answer: 0,
+        explanation: 'The frame provides stability.'
+    },
+    {
+        q: 'Filament is not feeding into the nozzle.',
+        options: ['Extruder', 'Bed', 'Frame'],
+        answer: 0,
+        explanation: 'The extruder pushes filament.'
+    }
+];
+
+var d1TCurrent   = 0;
+var d1TLocked    = false;
+var d1TSelection = null;
+
+function d1RenderDots() {
+    var container = document.getElementById('troubleDots');
+    if (!container) return;
+    var html = '';
+    for (var i = 0; i < d1TroubleQuestions.length; i++) {
+        var color = '#ccc';
+        if (i < (d1State.troubleshootingScore || 0)) color = '#4caf50';
+        else if (i === d1TCurrent) color = '#7cc0ff';
+        html += '<span style="display:inline-block;width:10px;height:10px;border-radius:50%;margin-right:6px;background:' + color + '"></span>';
+    }
+    container.innerHTML = html;
+}
+
+function d1RenderTrouble() {
+    d1RenderDots();
+    var q = d1TroubleQuestions[d1TCurrent];
+
+    var prog    = document.getElementById('troubleProgress');
+    var tText   = document.getElementById('troubleText');
+    var tOpts   = document.getElementById('troubleOptions');
+    var fb      = document.getElementById('troubleshootingFeedback');
+    var expl    = document.getElementById('troubleshootingExplanation');
+    var nextBtn = document.getElementById('troubleNextBtn');
+
+    if (prog)  prog.textContent  = 'Scenario ' + (d1TCurrent + 1) + ' of ' + d1TroubleQuestions.length;
+    if (tText) tText.textContent = q.q;
+    if (!tOpts) return;
+
+    var html = '';
+    q.options.forEach(function (opt, i) {
+        html += '<label><input type="radio" name="d1trouble" onchange="window.d1SelectTrouble(' + i + ')"> ' + opt + '</label>';
+    });
+    tOpts.innerHTML = html;
+
+    if (fb)      fb.textContent   = '';
+    if (expl)    expl.textContent = '';
+    if (nextBtn) nextBtn.disabled = true;
+    d1TLocked    = false;
+    d1TSelection = null;
+}
+
+window.d1SelectTrouble = function d1SelectTrouble(i) { if (!d1TLocked) d1TSelection = i; };
+
+window.d1CheckTrouble = function d1CheckTrouble() {
+    var q           = d1TroubleQuestions[d1TCurrent];
+    var fb          = document.getElementById('troubleshootingFeedback');
+    var expl        = document.getElementById('troubleshootingExplanation');
+    var hint        = document.getElementById('troubleshootingHint');
+    var completeBtn = document.getElementById('part3CompleteBtn');
+    var nextBtn     = document.getElementById('troubleNextBtn');
+
+    if (d1TSelection === q.answer) {
+        if (fb)      { fb.textContent = '\u2705 Correct'; fb.classList.add('correct'); fb.classList.remove('incorrect'); }
+        if (expl)    expl.textContent = q.explanation;
+        if (nextBtn) nextBtn.disabled = false;
+        d1TLocked = true;
+        d1State.troubleshootingScore = (d1State.troubleshootingScore || 0) + 1;
+        if (d1State.troubleshootingScore >= 3 && completeBtn) completeBtn.disabled = false;
+    } else {
+        if (fb)   { fb.textContent = '\u274C Try again'; fb.classList.add('incorrect'); fb.classList.remove('correct'); }
+        d1State.troubleshooting.attempts++;
+        if (d1State.troubleshooting.attempts >= 2 && hint) {
+            hint.style.display = 'block';
+            hint.textContent   = 'Think about what each part is responsible for.';
+        }
+    }
+    d1UpdateProgress();
+    d1SaveState();
+};
+
+window.d1NextTrouble = function d1NextTrouble() {
+    if (d1TCurrent < d1TroubleQuestions.length - 1) {
+        d1TCurrent++;
+        d1RenderTrouble();
+    } else {
+        var fb = document.getElementById('troubleshootingFeedback');
+        if ((d1State.troubleshootingScore || 0) >= 3) {
+            if (fb) fb.textContent = '\uD83C\uDFC6 You mastered troubleshooting!';
+            window.launchConfetti();
+        } else {
+            if (fb) fb.textContent = 'Keep practicing to reach mastery (3/4).';
+        }
+        var nextBtn = document.getElementById('troubleNextBtn');
+        if (nextBtn) nextBtn.disabled = true;
+    }
+};
+
+window.d1PrevTrouble = function d1PrevTrouble() {
+    if (d1TCurrent > 0) {
+        d1TCurrent--;
+        d1RenderTrouble();
+    }
+};
+
+window.d1ResetTrouble = function d1ResetTrouble() {
+    var completeBtn = document.getElementById('part3CompleteBtn');
+    if (completeBtn) completeBtn.disabled = true;
+    d1TCurrent   = 0;
+    d1TLocked    = false;
+    d1TSelection = null;
+    d1State.troubleshootingScore      = 0;
+    d1State.troubleshooting.attempts  = 0;
+    var hint = document.getElementById('troubleshootingHint');
+    if (hint) { hint.style.display = 'none'; hint.textContent = ''; }
+    var fb   = document.getElementById('troubleshootingFeedback');
+    if (fb)   fb.textContent = '';
+    var expl = document.getElementById('troubleshootingExplanation');
+    if (expl) expl.textContent = '';
+    d1RenderTrouble();
+    d1UpdateProgress();
+    d1SaveState();
+};
+
+} // end day1 guard
+
+/* ── Day 1 Initialisation (DOMContentLoaded) ───────────────── */
+document.addEventListener('DOMContentLoaded', function () {
+    if (document.body.getAttribute('data-page') !== 'day1') return;
+
+    /* Restore saved state */
+    d1LoadState();
+
+    /* Restore text inputs */
+    ['printerChoice', 'partNozzle', 'partBed', 'partExtruder', 'partFrame', 'favoriteModel'].forEach(function (id) {
+        var el = document.getElementById(id);
+        if (!el) return;
+        el.value = d1State.texts[id] || '';
+        el.addEventListener('input', function () {
+            d1State.texts[id] = el.value;
+            d1SaveState();
+        });
+    });
+
+    /* Restore spool checklist */
+    document.querySelectorAll('.spool-check').forEach(function (el) {
+        el.checked = !!d1State.checks[el.id];
+        el.addEventListener('change', function () {
+            d1State.checks[el.id] = el.checked;
+            d1UpdateSpoolButton();
+            d1SaveState();
+        });
+    });
+    d1UpdateSpoolButton();
+
+    /* Restore completed parts */
+    d1State.completedParts.forEach(function (part) {
+        var card = document.getElementById('part' + part);
+        if (card) card.open = false;
+    });
+    d1UpdateProgress();
+    d1UpdateCardStates();
+
+    /* Open the first incomplete, unlocked part */
+    var opened = false;
+    for (var n = 1; n <= D1_TOTAL_PARTS; n++) {
+        if (!d1State.completedParts.includes(n)) {
+            var card = document.getElementById('part' + n);
+            if (card && !card.classList.contains('locked-card')) {
+                card.setAttribute('open', '');
+            }
+            opened = true;
+            break;
+        }
+    }
+    if (!opened) {
+        var last = document.getElementById('part' + D1_TOTAL_PARTS);
+        if (last) last.setAttribute('open', '');
+    }
+
+    /* Restore quiz states and render */
+    d1Current    = d1State.quiz1.current || 0;
+    d1FCurrent   = d1State.quiz4.current || 0;
+    d1RenderQuestion();
+    d1RenderFilamentQuestion();
+    d1RenderTrouble();
+
+    /* Auto-open MakerWorld when Part 6 is opened */
+    var part6 = document.getElementById('part6');
+    if (part6) {
+        part6.addEventListener('toggle', function () {
+            if (part6.open) window.open('https://makerworld.com', '_blank');
+        });
+    }
+});
+
+/* ── Spool Button Helper (shared between guard and init) ────── */
+function d1UpdateSpoolButton() {
+    var checks = Array.from(document.querySelectorAll('.spool-check'));
+    var btn    = document.getElementById('spoolCompleteBtn');
+    if (btn) btn.disabled = !checks.every(function (c) { return c.checked; });
+}
