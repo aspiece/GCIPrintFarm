@@ -1,91 +1,567 @@
 <!doctype html>
 <html lang="en">
-
 <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="description" content="Intro to 3D Printing with Bambu A1: Day 3 student guide." />
-    <title>Intro to 3D Printing – Day 3 | GCI</title>
-    <link rel="stylesheet" href="lab.css" />
-    <script src="training.js" defer></script>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Day 3: Designing for 3D Printing — File Types and Tinkercad | GCI 3D Printing Lab" />
+  <title>Day 3: Designing for 3D Printing | GCI 3D Printing</title>
+  <link rel="stylesheet" href="lab.css" />
+  <script src="training.js" defer></script>
 </head>
-
 <body data-page="day3">
-    <header class="page-header">
-        <h1>Intro to 3D Printing with Bambu Printers</h1>
-        <p>Day 3: Learn slicing basics, prepare your design, and start your print journey!</p>
-    </header>
-    <main class="wrap" id="mainContent" tabindex="-1">
 
-      <div class="sticky-progress" role="banner" aria-label="Page controls and progress">
-        <div class="control-row">
-          <label for="theme-selector" class="sr-only">Choose theme</label>
-          <select id="theme-selector" aria-label="Choose theme">
-            <option value="auto">Default (Auto Detect)</option>
-            <option value="dark">Dark</option>
-            <option value="light">Light</option>
-            <option value="high-contrast">High Contrast</option>
-          </select>
-          <label for="fontSizeSelector" class="font-size-label">Text:</label>
-          <select id="fontSizeSelector" aria-label="Choose text size">
-            <option value="default">Default</option>
-            <option value="large">Large</option>
-            <option value="x-large">Extra Large</option>
-          </select>
+  <!-- Page Header (non-sticky) -->
+  <header class="page-header">
+    <h1>Intro to 3D Printing with Bambu Printers</h1>
+    <p>Day 3: Designing for 3D Printing — File Types and Tinkercad</p>
+  </header>
+
+  <main class="wrap" id="mainContent" tabindex="-1">
+
+    <!-- ── Sticky progress bar ─────────────────────────────────── -->
+    <div class="sticky-progress" role="banner" aria-label="Page controls and progress">
+
+      <!-- Row 1: Theme / font-size controls -->
+      <div class="control-row">
+        <label for="theme-selector" class="sr-only">Choose theme</label>
+        <select id="theme-selector" aria-label="Choose theme">
+          <option value="auto">Default (Auto Detect)</option>
+          <option value="dark">Dark</option>
+          <option value="light">Light</option>
+          <option value="high-contrast">High Contrast</option>
+        </select>
+
+        <label for="fontSizeSelector" class="font-size-label">Text:</label>
+        <select id="fontSizeSelector" aria-label="Choose text size">
+          <option value="default">Default</option>
+          <option value="large">Large</option>
+          <option value="x-large">Extra Large</option>
+        </select>
+      </div>
+
+      <!-- Row 2: Step progress + jump links -->
+      <div class="progress-row">
+        <div class="progress-meta">
+          <span id="progressStep" class="step-text">Step 1 of 7</span>
+          <span id="progressPercent" class="percent-text">0%</span>
+        </div>
+        <div class="bar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" aria-label="Overall progress">
+          <div class="fill" id="progressFill"></div>
+        </div>
+        <div class="jump-links" aria-label="Jump to part">
+          <a class="jump-link" href="#part1">1</a>
+          <a class="jump-link" href="#part2">2</a>
+          <a class="jump-link" href="#part3">3</a>
+          <a class="jump-link" href="#part4">4</a>
+          <a class="jump-link" href="#part5">5</a>
+          <a class="jump-link" href="#part6">6</a>
+          <a class="jump-link" href="#part7">7</a>
         </div>
       </div>
-        <section class="day-list" aria-label="5-day 3D printing lab guide">
-            <!-- Begin Day 3 Content -->
-            <article class="day-card" data-day="3">
-                <div class="day-header">
-                    <h2 class="day-title">Day 3 – Slice and Start Your Print</h2>
-                    <span class="pill">Slicing</span>
-                </div>
-                <p class="goal"><strong>Goal:</strong> Learn slicing basics and prepare your design for printing in Bambu Studio.</p>
-                <p class="guidance"><strong>Quick laugh:</strong> Slicing is the part where your model stops being a dream and becomes robot instructions.</p>
-                <h3>Objectives</h3>
-                <ul>
-                    <li>Apply core slicing settings for a basic classroom print (
-                        <strong>Evidence:</strong> Slicing Settings Log).</li>
-                    <li>Read the layer preview before final export (
-                        <strong>Evidence:</strong> Prediction + reflection responses).</li>
-                    <li>Prepare and submit a print-ready 3MF file, then begin printing with teacher approval (
-                        <strong>Evidence:</strong> Submission checklist).</li>
-                </ul>
-                <h3>Success Criteria</h3>
-                <ul>
-                    <li>I can set and record key slicer values accurately.</li>
-                    <li>I can support one print-quality prediction using the layer preview.</li>
-                    <li>I can submit an approved 3MF and begin printing safely.</li>
-                </ul>
-                <h3>Steps</h3>
-                <p class="flow-note"><strong>Instructional Flow:</strong> Learn (slicer walkthrough) → Practice (Day 3 activity log) → Submit (Before You Submit Checklist + Copy Day Notes).</p>
-                <ol>
-                    <li><strong>Step 1: Review Slicer Workflow (8 min)</strong><br />Assignment: Watch the <a href="https://www.youtube.com/watch?v=rZhy0J0mXBE" target="_blank" rel="noopener noreferrer">Slicer Software Walkthrough Video</a>, then open Bambu
-                        Studio.
-                    </li>
-                    <li><strong>Step 2: Import Model File (5 min)</strong><br />Assignment: Import your STL file.</li>
-                    <li><strong>Step 3: Configure Slicing Settings (10 min)</strong><br />Assignment: Adjust settings: Layer Height 0.2 mm, Infill 15%, No Supports, and record them in
-                        <strong>Slicing Settings Log</strong>.
-                    </li>
-                    <li><strong>Step 4: Preview Layers and Predict Results (7 min)</strong><br />Assignment: Preview the print layers, save your 3MF file, then complete
-                        <strong>Prediction</strong>.
-                    </li>
-                    <li><strong>Step 5: Submit for Teacher Review (5 min)</strong><br />Assignment: Insert your 3MF filename/link in your Digital Notebook Day 3 entry for teacher review before printing.
-                        <em>3MF note: upload file to Google Classroom, log
-                                filename/link in Notebook.</em>
-                    </li>
-                    <li><strong>Step 6: Start Print and Finalize Notes (5 min)</strong><br />Assignment: After teacher approval, start your print, then complete
-                        <strong>Reflection</strong> and <strong>Before You Submit Checklist</strong>.
-                    </li>
-                </ol>
-                <p class="deliverable"><strong>Deliverable:</strong> 3MF filename/link documented in your Digital Notebook, approved, and print started (<strong>3MF file</strong> uploaded to Google Classroom).
-                </p>
-                <!-- Worksheet and activity log omitted for brevity, but would be included in full copy -->
-            </article>
-            <!-- End Day 3 Content -->
-        </section>
-    </main>
-</body>
+    </div><!-- /sticky-progress -->
 
+    <!-- ── Page intro / hero ───────────────────────────────────── -->
+    <section class="hero intro-section" aria-labelledby="pageTitle">
+      <h2 id="pageTitle">Day 3: Designing for 3D Printing — File Types and Tinkercad</h2>
+
+      <div class="intro-grid">
+        <!-- Learning Objectives -->
+        <div class="intro-card">
+          <h3>🎯 Learning Objectives</h3>
+          <ul class="objectives-list">
+            <li>I can explain the difference between common 3D printing file types</li>
+            <li>I can create a basic 3D design using Tinkercad</li>
+            <li>I can export my design and prepare it for slicing in Bambu Studio</li>
+            <li>I can explain how a digital design becomes a physical print</li>
+          </ul>
+        </div>
+
+        <!-- Time Guide -->
+        <div class="intro-card">
+          <h3>⏱️ Time Guide</h3>
+          <table class="time-table">
+            <thead>
+              <tr><th>Part</th><th>Activity</th><th>Time</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>1</td><td>File Types</td><td>10 min</td></tr>
+              <tr><td>2</td><td>Workflow</td><td>5 min</td></tr>
+              <tr><td>3</td><td>Intro to Tinkercad</td><td>15 min</td></tr>
+              <tr><td>4</td><td>Design Activity</td><td>40 min</td></tr>
+              <tr><td>5</td><td>Export &amp; Bambu Studio</td><td>10 min</td></tr>
+              <tr><td>6</td><td>Exit Ticket</td><td>5 min</td></tr>
+              <tr><td>7</td><td>Submit</td><td>5 min</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="goal-section">
+        <div class="goal-card">
+          <h3>🚀 Goal</h3>
+          <p>Transition from using existing files to creating your own. Today you will learn about the files used in 3D printing, design your own simple model in Tinkercad, and prepare it for printing.</p>
+        </div>
+        <div class="goal-card">
+          <h3>📖 How to Use This Page</h3>
+          <ul>
+            <li>Work through one part at a time — top to bottom</li>
+            <li>Complete every activity before clicking <strong>Mark Complete</strong></li>
+            <li>Pause when the teacher asks you to</li>
+            <li>Your progress saves on this device — refresh won't lose your work</li>
+          </ul>
+        </div>
+        <div class="goal-card">
+          <h3>✅ Success Criteria</h3>
+          <ul>
+            <li>I can explain STL, 3MF, and G-code in my own words</li>
+            <li>I designed a name tag or keychain in Tinkercad</li>
+            <li>I exported my design and imported it into Bambu Studio</li>
+            <li>I completed the exit ticket thoughtfully</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="note">Your progress on this page saves on this device, so you can refresh and come back without losing your work.</div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════════
+         PART 1: File Types — STL, 3MF, and G-code
+         ═══════════════════════════════════════════════════════ -->
+    <details id="part1" class="active-card" open>
+      <summary>
+        <div class="summary-row">
+          <div class="summary-left">
+            <span class="step-badge">Step 1 of 7</span>
+            <span class="state-badge active" id="badge1">Active</span>
+            <span class="part-title">File Types: STL, 3MF, and G-code</span>
+          </div>
+        </div>
+      </summary>
+
+      <div class="part-content">
+        <div class="note">
+          <strong>📌 Instructions:</strong> Read the file type cards and vocabulary section below, then complete the knowledge check quiz before clicking Mark Complete.
+        </div>
+
+        <h3>🗂️ Common 3D Printing File Types</h3>
+        <p>Before you design, you need to know what kinds of files are used in the 3D printing process. Here are the three you will encounter most often.</p>
+
+        <div class="filetype-grid">
+          <div class="filetype-card">
+            <div class="filetype-icon">📐</div>
+            <h4>STL</h4>
+            <span class="ft-tag">The Shape</span>
+            <p>STL (Standard Tessellation Language) is one of the most common 3D printing file types. It stores the shape of an object as a mesh of triangles. STL files do not include color, materials, or print settings — just the geometry.</p>
+          </div>
+          <div class="filetype-card">
+            <div class="filetype-icon">✨</div>
+            <h4>3MF</h4>
+            <span class="ft-tag">Smarter Design File</span>
+            <p>3MF (3D Manufacturing Format) is a newer, smarter format. In addition to shape, it can store color, materials, scale, orientation, and print settings. Bambu Studio uses 3MF files to save your full project.</p>
+          </div>
+          <div class="filetype-card">
+            <div class="filetype-icon">🤖</div>
+            <h4>G-code</h4>
+            <span class="ft-tag">Printer Instructions</span>
+            <p>G-code is the machine language created by your slicer (Bambu Studio). It tells the printer exactly where to move, how fast to go, and when to heat up. G-code is what actually runs the printer.</p>
+          </div>
+        </div>
+
+        <div class="fun">
+          💡 <strong>Big Idea:</strong>&nbsp;
+          <strong>STL</strong> = the shape &nbsp;|&nbsp;
+          <strong>3MF</strong> = a smarter design file &nbsp;|&nbsp;
+          <strong>G-code</strong> = the printer instructions
+        </div>
+
+        <h3>📚 Vocabulary</h3>
+        <div class="vocab-grid">
+          <div class="vocab-card"><strong>STL</strong> — Stores only the shape of a 3D model as a mesh of triangles.</div>
+          <div class="vocab-card"><strong>3MF</strong> — A newer file format that stores shape plus color, materials, and settings.</div>
+          <div class="vocab-card"><strong>G-code</strong> — Machine instructions created by the slicer that tell the printer exactly what to do.</div>
+          <div class="vocab-card"><strong>Slicer</strong> — Software (like Bambu Studio) that converts a 3D model into G-code layers.</div>
+          <div class="vocab-card"><strong>Workplane</strong> — The flat surface in Tinkercad where you build your 3D designs.</div>
+        </div>
+
+        <h3>🧠 Knowledge Check</h3>
+        <div class="quiz-box" aria-label="File types knowledge check">
+          <div class="quiz-progress" id="d3QuizProgress">Question 1 of 3</div>
+          <p id="d3QText" class="quiz-prompt"></p>
+          <div id="d3QOptions" class="quiz-options"></div>
+          <div class="feedback" id="d3Feedback" role="alert" aria-live="polite"></div>
+          <div class="explanation" id="d3Explanation"></div>
+          <div class="quiz-actions">
+            <button type="button" onclick="window.d3CheckAnswer()">Check</button>
+            <button type="button" id="d3NextBtn" onclick="window.d3NextQuestion()" disabled>Next</button>
+            <button type="button" onclick="window.d3PrevQuestion()">Back</button>
+            <button type="button" onclick="window.d3ResetQuiz()">Reset</button>
+          </div>
+        </div>
+
+        <div class="part-actions">
+          <button type="button" onclick="window.complete(1)">Mark Complete</button>
+        </div>
+      </div>
+    </details>
+
+    <!-- ═══════════════════════════════════════════════════════
+         PART 2: The 3D Printing Workflow
+         ═══════════════════════════════════════════════════════ -->
+    <details id="part2" class="locked-card">
+      <summary>
+        <div class="summary-row">
+          <div class="summary-left">
+            <span class="step-badge">Step 2 of 7</span>
+            <span class="state-badge locked" id="badge2">Locked</span>
+            <span class="part-title">The 3D Printing Workflow</span>
+          </div>
+        </div>
+      </summary>
+
+      <div class="part-content">
+        <div class="note">
+          <strong>📌 Instructions:</strong> Study the four steps below, then complete the matching activity. You need at least 3 out of 4 correct to continue.
+        </div>
+
+        <h3>🔄 Design → Export → Slice → Print</h3>
+        <p>Every 3D print follows the same basic workflow. Understanding each step helps you know where things can go wrong — and how to fix them.</p>
+
+        <div class="workflow-row">
+          <div class="workflow-step">
+            <div class="ws-num">1</div>
+            <h4>Design</h4>
+            <p>Create your 3D model using a design tool like Tinkercad. This is where your idea becomes a digital shape.</p>
+          </div>
+          <div class="workflow-arrow" aria-hidden="true">→</div>
+          <div class="workflow-step">
+            <div class="ws-num">2</div>
+            <h4>Export</h4>
+            <p>Save your design as an STL or 3MF file from Tinkercad. This gives you a file you can bring into your slicer.</p>
+          </div>
+          <div class="workflow-arrow" aria-hidden="true">→</div>
+          <div class="workflow-step">
+            <div class="ws-num">3</div>
+            <h4>Slice</h4>
+            <p>Import your file into Bambu Studio. The slicer converts it into G-code — layer-by-layer printer instructions.</p>
+          </div>
+          <div class="workflow-arrow" aria-hidden="true">→</div>
+          <div class="workflow-step">
+            <div class="ws-num">4</div>
+            <h4>Print</h4>
+            <p>Send the G-code to the 3D printer and watch your design become a real object — one layer at a time.</p>
+          </div>
+        </div>
+
+        <h3>🔗 Matching Activity</h3>
+        <p>Match each workflow step to the correct description.</p>
+
+        <div id="d3MatchingActivity" aria-label="Workflow matching activity"></div>
+
+        <div id="d3HintBoxMatching" class="hint-box" style="display:none">
+          💡 <strong>Hint:</strong> Think about the order: first you make the design in Tinkercad, then you save it as a file, then you prepare it in Bambu Studio, then you actually print it.
+        </div>
+
+        <div id="d3MatchingFeedback" class="feedback" role="alert" aria-live="polite"></div>
+
+        <div class="quiz-actions">
+          <button type="button" onclick="window.d3CheckMatching()">Check Answers</button>
+          <button type="button" onclick="window.d3ResetMatching()">Reset</button>
+        </div>
+
+        <div class="part-actions">
+          <button type="button" id="completePart2" onclick="window.complete(2)" disabled>Mark Complete</button>
+        </div>
+      </div>
+    </details>
+
+    <!-- ═══════════════════════════════════════════════════════
+         PART 3: Intro to Tinkercad
+         ═══════════════════════════════════════════════════════ -->
+    <details id="part3" class="locked-card">
+      <summary>
+        <div class="summary-row">
+          <div class="summary-left">
+            <span class="step-badge">Step 3 of 7</span>
+            <span class="state-badge locked" id="badge3">Locked</span>
+            <span class="part-title">Intro to Tinkercad</span>
+          </div>
+        </div>
+      </summary>
+
+      <div class="part-content">
+        <div class="note">
+          <strong>📌 Instructions:</strong> Read the intro, watch the video, then check all three boxes to continue.
+        </div>
+
+        <div class="fun">
+          🎨 <strong>What is Tinkercad?</strong> Tinkercad is a free, browser-based 3D design tool made by Autodesk. No downloads needed — just log in and start designing. It is one of the most beginner-friendly tools available, used by students and makers all over the world.
+        </div>
+
+        <h3>🛠️ Basic Skills You Will Practice Today</h3>
+        <div class="part-grid">
+          <div>
+            <ul>
+              <li>🟦 <strong>Dragging shapes</strong> onto the workplane</li>
+              <li>📏 <strong>Resizing</strong> shapes to specific dimensions</li>
+              <li>🎯 <strong>Aligning</strong> objects to center them</li>
+            </ul>
+          </div>
+          <div>
+            <ul>
+              <li>🔗 <strong>Grouping</strong> objects together into one shape</li>
+              <li>⚫ <strong>Using holes</strong> to cut shapes from other shapes</li>
+              <li>🔤 <strong>Adding text</strong> to create raised lettering</li>
+            </ul>
+          </div>
+        </div>
+
+        <h3>🎥 Watch: Tinkercad Basics (~10 min)</h3>
+        <div class="video-wrap">
+          <iframe
+            src="https://www.youtube.com/embed/gOs6_i8h9RQ"
+            title="Tinkercad for Beginners"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowfullscreen>
+          </iframe>
+        </div>
+
+        <h3>✅ Before you continue, check all three boxes:</h3>
+        <ul class="checklist" role="group" aria-label="Tinkercad readiness checklist">
+          <li>
+            <label>
+              <input type="checkbox" id="d3TinkCheck1" onchange="window.d3UpdateTinkercadBtn()" />
+              I watched the Tinkercad intro video
+            </label>
+          </li>
+          <li>
+            <label>
+              <input type="checkbox" id="d3TinkCheck2" onchange="window.d3UpdateTinkercadBtn()" />
+              I know what a <strong>workplane</strong> is
+            </label>
+          </li>
+          <li>
+            <label>
+              <input type="checkbox" id="d3TinkCheck3" onchange="window.d3UpdateTinkercadBtn()" />
+              I am ready to log in to Tinkercad and start designing
+            </label>
+          </li>
+        </ul>
+
+        <div class="part-actions">
+          <button type="button" id="completePart3" onclick="window.complete(3)" disabled>Mark Complete</button>
+        </div>
+      </div>
+    </details>
+
+    <!-- ═══════════════════════════════════════════════════════
+         PART 4: Design Your Name Tag
+         ═══════════════════════════════════════════════════════ -->
+    <details id="part4" class="locked-card">
+      <summary>
+        <div class="summary-row">
+          <div class="summary-left">
+            <span class="step-badge">Step 4 of 7</span>
+            <span class="state-badge locked" id="badge4">Locked</span>
+            <span class="part-title">Design Your Name Tag</span>
+          </div>
+        </div>
+      </summary>
+
+      <div class="part-content">
+        <div class="note">
+          <strong>📌 Instructions:</strong> Follow the steps below to create a name tag or keychain design in Tinkercad. Work through each step in order. Raise your hand if you get stuck.
+        </div>
+
+        <div class="fun">
+          🧠 <strong>Why this design?</strong> A simple flat shape with text is perfect for learning Tinkercad basics. The same skills you practice today are what you will need for your school logo keychain later in the unit.
+        </div>
+
+        <h3>📋 Design Requirements</h3>
+        <ul>
+          <li>Create a base shape (box or rounded box)</li>
+          <li>Add text or a simple design feature</li>
+          <li>Include a small cylinder hole for a keyring</li>
+          <li>Keep the overall size roughly 60 × 30 × 5 mm or smaller</li>
+          <li>Keep the design clean and printable</li>
+        </ul>
+
+        <h3>🔢 Step-by-Step Guide</h3>
+        <ol>
+          <li>
+            <strong>Open Tinkercad</strong> — go to <a href="https://www.tinkercad.com" target="_blank" rel="noopener noreferrer">tinkercad.com</a> and sign in with your school account. Click <em>Create new design</em>.
+          </li>
+          <li>
+            <strong>Add your base shape</strong> — from the Basic Shapes panel on the right, drag a <em>Box</em> or <em>Rounded Box</em> onto the workplane. This is the main body of your name tag.
+          </li>
+          <li>
+            <strong>Resize the base</strong> — click the shape to select it. Use the dimension boxes at the bottom to set the size to approximately <strong>60 mm wide × 30 mm deep × 5 mm tall</strong>.
+          </li>
+          <li>
+            <strong>Add a Text shape</strong> — from the Basic Shapes panel, drag a <em>Text</em> shape onto the workplane. Click it and type your name or a short word. Resize the text to fit on your base, then move it so it sits on top of the base shape.
+          </li>
+          <li>
+            <strong>Add a cylinder for the keyring hole</strong> — drag a <em>Cylinder</em> shape onto the workplane. In the shape inspector (right panel), set it as a <strong>Hole</strong>. Resize it to about 5 mm wide and slightly taller than your base. Position it near one short end of the base.
+          </li>
+          <li>
+            <strong>Align your shapes</strong> — select all shapes using <kbd>Ctrl + A</kbd>. Click <em>Align</em> in the toolbar and center everything as needed so it looks clean.
+          </li>
+          <li>
+            <strong>Group everything</strong> — select all shapes using <kbd>Ctrl + A</kbd>, then click <em>Group</em> (or press <kbd>Ctrl + G</kbd>). This merges your base, text, and hole into one solid object.
+          </li>
+          <li>
+            <strong>Name your design</strong> — click the design title at the top and give it a clear name like <em>Day3_NameTag_YourName</em>. Tinkercad saves automatically.
+          </li>
+        </ol>
+
+        <div class="note">
+          👨‍🏫 <strong>Teacher check-in point:</strong> Before moving on, show your teacher your design on screen. They may have a quick suggestion before you export.
+        </div>
+
+        <div class="part-grid">
+          <div>
+            <label for="d3DesignName">What did you name your design?</label>
+            <input type="text" id="d3DesignName" placeholder="e.g., Day3_NameTag_Jordan" />
+          </div>
+          <div>
+            <label for="d3DesignNotes">Any notes about your design choices?</label>
+            <textarea id="d3DesignNotes" rows="3" placeholder="What shape did you use? Why did you choose that layout?"></textarea>
+          </div>
+        </div>
+
+        <h3>✅ Design Checklist — check all six before continuing:</h3>
+        <ul class="checklist" role="group" aria-label="Design self-check checklist">
+          <li><label><input type="checkbox" id="d3DesignCheck1" onchange="window.d3UpdateDesignBtn()" /> I created a base shape on the workplane</label></li>
+          <li><label><input type="checkbox" id="d3DesignCheck2" onchange="window.d3UpdateDesignBtn()" /> I added text or a design feature on top of the base</label></li>
+          <li><label><input type="checkbox" id="d3DesignCheck3" onchange="window.d3UpdateDesignBtn()" /> I added a cylinder hole for a keyring</label></li>
+          <li><label><input type="checkbox" id="d3DesignCheck4" onchange="window.d3UpdateDesignBtn()" /> My design is approximately 60 × 30 × 5 mm or smaller</label></li>
+          <li><label><input type="checkbox" id="d3DesignCheck5" onchange="window.d3UpdateDesignBtn()" /> I grouped all my shapes into one object</label></li>
+          <li><label><input type="checkbox" id="d3DesignCheck6" onchange="window.d3UpdateDesignBtn()" /> I named my design and it is saved in Tinkercad</label></li>
+        </ul>
+
+        <div class="part-actions">
+          <button type="button" id="completePart4" onclick="window.complete(4)" disabled>Mark Complete</button>
+        </div>
+      </div>
+    </details>
+
+    <!-- ═══════════════════════════════════════════════════════
+         PART 5: Export & Bambu Studio Preview
+         ═══════════════════════════════════════════════════════ -->
+    <details id="part5" class="locked-card">
+      <summary>
+        <div class="summary-row">
+          <div class="summary-left">
+            <span class="step-badge">Step 5 of 7</span>
+            <span class="state-badge locked" id="badge5">Locked</span>
+            <span class="part-title">Export &amp; Bambu Studio Preview</span>
+          </div>
+        </div>
+      </summary>
+
+      <div class="part-content">
+        <div class="note">
+          <strong>📌 Instructions:</strong> Export your Tinkercad design as an STL file and import it into Bambu Studio to see how your design would be prepared for printing.
+        </div>
+
+        <div class="fun">
+          🔁 <strong>This is the handoff moment.</strong> Your design moves from the design tool to the slicer — like handing a blueprint to the factory. You are not printing today, just previewing.
+        </div>
+
+        <h3>📤 Export from Tinkercad</h3>
+        <ol>
+          <li>In Tinkercad, click the <strong>Export</strong> button in the top-right corner.</li>
+          <li>Choose <strong>STL</strong> format. Tinkercad will download the file to your computer.</li>
+          <li>Rename the file clearly: <em>Day3_NameTag_YourName.stl</em></li>
+        </ol>
+
+        <h3>🖥️ Import into Bambu Studio</h3>
+        <ol>
+          <li>Open <strong>Bambu Studio</strong> on your computer.</li>
+          <li>Drag your STL file onto the print bed, or use <em>File → Import</em>.</li>
+          <li>Check that your model appears correctly on the print bed — it should look like your design in Tinkercad.</li>
+          <li>Look at the size indicator to confirm your design is small and would print reasonably quickly. No need to slice today — just preview!</li>
+        </ol>
+
+        <h3>✅ Export Checklist — check all four before continuing:</h3>
+        <ul class="checklist" role="group" aria-label="Export and preview checklist">
+          <li><label><input type="checkbox" id="d3ExportCheck1" onchange="window.d3UpdateExportBtn()" /> I exported my design as an STL file from Tinkercad</label></li>
+          <li><label><input type="checkbox" id="d3ExportCheck2" onchange="window.d3UpdateExportBtn()" /> I opened Bambu Studio and imported my STL file</label></li>
+          <li><label><input type="checkbox" id="d3ExportCheck3" onchange="window.d3UpdateExportBtn()" /> My model appears correctly on the Bambu Studio print bed</label></li>
+          <li><label><input type="checkbox" id="d3ExportCheck4" onchange="window.d3UpdateExportBtn()" /> I can see how this design would become a real printed object</label></li>
+        </ul>
+
+        <div class="part-actions">
+          <button type="button" id="completePart5" onclick="window.complete(5)" disabled>Mark Complete</button>
+        </div>
+      </div>
+    </details>
+
+    <!-- ═══════════════════════════════════════════════════════
+         PART 6: Exit Ticket
+         ═══════════════════════════════════════════════════════ -->
+    <details id="part6" class="locked-card">
+      <summary>
+        <div class="summary-row">
+          <div class="summary-left">
+            <span class="step-badge">Step 6 of 7</span>
+            <span class="state-badge locked" id="badge6">Locked</span>
+            <span class="part-title">Exit Ticket</span>
+          </div>
+        </div>
+      </summary>
+
+      <div class="part-content">
+        <div class="note">
+          <strong>📌 Instructions:</strong> Answer all three questions in your own words. These are reflection questions — there are no wrong answers, but be specific and honest.
+        </div>
+
+        <label for="d3Exit1">1. What is the difference between STL and G-code? Use your own words.</label>
+        <textarea id="d3Exit1" rows="4" placeholder="Think about what each file type stores and who or what uses it..."></textarea>
+
+        <label for="d3Exit2">2. What did you create in Tinkercad today? Describe your design briefly.</label>
+        <textarea id="d3Exit2" rows="4" placeholder="Describe your name tag or keychain — shape, features, size, anything that stood out..."></textarea>
+
+        <label for="d3Exit3">3. What part of the process still feels confusing or unclear?</label>
+        <textarea id="d3Exit3" rows="4" placeholder="Be honest — this helps your teacher plan the next lesson. It is OK to be unsure about things."></textarea>
+
+        <div class="part-actions">
+          <button type="button" onclick="window.complete(6)">Mark Complete</button>
+        </div>
+      </div>
+    </details>
+
+    <!-- ═══════════════════════════════════════════════════════
+         PART 7: Submit Your Work
+         ═══════════════════════════════════════════════════════ -->
+    <details id="part7" class="locked-card">
+      <summary>
+        <div class="summary-row">
+          <div class="summary-left">
+            <span class="step-badge">Step 7 of 7</span>
+            <span class="state-badge locked" id="badge7">Locked</span>
+            <span class="part-title">Submit Your Work</span>
+          </div>
+        </div>
+      </summary>
+
+      <div class="part-content">
+        <div class="note">
+          <strong>📌 Instructions:</strong> Click <strong>Generate My Responses</strong> to create a summary of everything you did today. Copy the text and paste it into Google Classroom.
+        </div>
+
+        <div class="quiz-actions">
+          <button type="button" onclick="window.d3GenerateSummary()">Generate My Responses</button>
+        </div>
+
+        <label for="d3SummaryOutput" class="summary-label">Your summary (copy and paste into Google Classroom):</label>
+        <textarea id="d3SummaryOutput" class="summary-output" rows="16" readonly placeholder="Click 'Generate My Responses' to populate this..."></textarea>
+
+        <div class="part-actions">
+          <button type="button" onclick="window.complete(7)">Mark Complete</button>
+        </div>
+      </div>
+    </details>
+
+  </main>
+</body>
 </html>

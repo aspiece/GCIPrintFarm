@@ -687,3 +687,104 @@ body[data-theme="high-contrast"] .mastery-msg {
   .match-row    { grid-template-columns: 1fr; }
   .progress-meta { flex-direction: row; }
 }
+
+/* ============================================================
+   Day 3 additions — training/lab.css
+   Classes used exclusively by day3.html
+   ============================================================ */
+
+/* ── File type cards (3-column grid) ────────────────────────── */
+.filetype-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 14px;
+  margin: 14px 0;
+}
+.filetype-card {
+  background: rgba(124, 192, 255, 0.06);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 16px;
+  text-align: center;
+}
+.filetype-icon { font-size: 2rem; margin-bottom: 6px; }
+.filetype-card h4 {
+  font-size: 1.25rem;
+  margin: 4px 0 2px;
+  color: var(--accent);
+}
+.ft-tag {
+  display: block;
+  font-size: 0.82rem;
+  font-weight: 800;
+  opacity: 0.7;
+  margin-bottom: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+.filetype-card p { font-size: 0.91rem; margin: 0; text-align: left; }
+
+/* ── Vocabulary grid ────────────────────────────────────────── */
+.vocab-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+  margin: 10px 0 14px;
+}
+.vocab-card {
+  background: rgba(156, 243, 219, 0.07);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 10px 14px;
+  font-size: 0.91rem;
+  line-height: 1.5;
+}
+
+/* ── Workflow steps ─────────────────────────────────────────── */
+.workflow-row {
+  display: flex;
+  align-items: stretch;
+  gap: 6px;
+  margin: 14px 0;
+  flex-wrap: wrap;
+}
+.workflow-step {
+  flex: 1;
+  min-width: 120px;
+  background: rgba(156, 243, 219, 0.06);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 14px 10px;
+  text-align: center;
+}
+.ws-num {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: var(--accent);
+  color: #08111f;
+  font-weight: 800;
+  font-size: 0.9rem;
+  margin-bottom: 8px;
+}
+.workflow-step h4 { margin: 0 0 6px; font-size: 0.97rem; color: var(--accent2); }
+.workflow-step p  { margin: 0; font-size: 0.84rem; }
+.workflow-arrow {
+  display: flex;
+  align-items: center;
+  font-size: 1.4rem;
+  color: var(--muted);
+  padding: 0 2px;
+  flex-shrink: 0;
+}
+
+/* ── Responsive tweaks for Day 3 additions ──────────────────── */
+@media (max-width: 700px) {
+  .filetype-grid { grid-template-columns: 1fr; }
+  .vocab-grid    { grid-template-columns: 1fr; }
+  .workflow-arrow { display: none; }
+  .workflow-row   { flex-direction: column; }
+}
