@@ -192,6 +192,7 @@ function d2UpdateCardStates() {
 }
 
 /* ── Mark Complete ─────────────────────────────────────────── */
+if (document.body.getAttribute('data-page') === 'day2') {
 window.complete = function complete(partNum) {
     if (!d2CompletedParts.includes(partNum)) {
         d2CompletedParts.push(partNum);
@@ -780,6 +781,7 @@ window.generateSummary = function generateSummary() {
     var out = document.getElementById('summaryOutput');
     if (out) out.value = lines.join('\n');
 };
+} // end day2 guard
 
 /* ── Day 2 Initialisation (DOMContentLoaded) ───────────────── */
 document.addEventListener('DOMContentLoaded', function () {
