@@ -7,14 +7,33 @@
     <meta name="description" content="Intro to 3D Printing with Bambu A1: Day 3 student guide." />
     <title>Intro to 3D Printing – Day 3 | GCI</title>
     <link rel="stylesheet" href="lab.css" />
+    <script src="training.js" defer></script>
 </head>
 
-<body>
-    <div class="hero">
+<body data-page="day3">
+    <header class="page-header">
         <h1>Intro to 3D Printing with Bambu Printers</h1>
         <p>Day 3: Learn slicing basics, prepare your design, and start your print journey!</p>
-    </div>
+    </header>
     <main class="wrap" id="mainContent" tabindex="-1">
+
+      <div class="sticky-progress" role="banner" aria-label="Page controls and progress">
+        <div class="control-row">
+          <label for="theme-selector" class="sr-only">Choose theme</label>
+          <select id="theme-selector" aria-label="Choose theme">
+            <option value="auto">Default (Auto Detect)</option>
+            <option value="dark">Dark</option>
+            <option value="light">Light</option>
+            <option value="high-contrast">High Contrast</option>
+          </select>
+          <label for="fontSizeSelector" class="font-size-label">Text:</label>
+          <select id="fontSizeSelector" aria-label="Choose text size">
+            <option value="default">Default</option>
+            <option value="large">Large</option>
+            <option value="x-large">Extra Large</option>
+          </select>
+        </div>
+      </div>
         <section class="day-list" aria-label="5-day 3D printing lab guide">
             <!-- Begin Day 3 Content -->
             <article class="day-card" data-day="3">
@@ -67,7 +86,6 @@
             <!-- End Day 3 Content -->
         </section>
     </main>
-    <script src="training.js"></script>
 </body>
 
 </html>

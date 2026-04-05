@@ -6,297 +6,375 @@
 <meta name="description" content="Intro to 3D Printing with Bambu A1: Day 1 student guide." />
 <title>Intro to 3D Printing – Day 1 | GCI</title>
 <link rel="stylesheet" href="lab.css" />
+  <script src="training.js" defer></script>
 </head>
-<body>
-<div class="hero">
+<body data-page="day1">
+  <header class="page-header">
     <h1>Intro to 3D Printing with Bambu Printers</h1>
     <p>Day 1: Foundations of 3D Printing</p>
-</div>
-<div class="wrap">
+  </header>
+  <main class="wrap" id="mainContent" tabindex="-1">
 
-<div class="sticky-progress" aria-label="Page controls">
-    <div class="control-row">
+    <div class="sticky-progress" role="banner" aria-label="Page controls and progress">
+      <div class="control-row">
         <label for="theme-selector" class="sr-only">Choose theme</label>
         <select id="theme-selector" aria-label="Choose theme">
-            <option value="dark">Dark</option>
-            <option value="light">Light</option>
-            <option value="high-contrast">High Contrast</option>
+          <option value="auto">Default (Auto Detect)</option>
+          <option value="dark">Dark</option>
+          <option value="light">Light</option>
+          <option value="high-contrast">High Contrast</option>
         </select>
-        <label for="fontSizeSelector" style="margin:0;font-weight:600;">Text Size:</label>
+        <label for="fontSizeSelector" class="font-size-label">Text:</label>
         <select id="fontSizeSelector" aria-label="Choose text size">
-            <option value="default">Default</option>
-            <option value="large">Large</option>
-            <option value="x-large">Extra Large</option>
+          <option value="default">Default</option>
+          <option value="large">Large</option>
+          <option value="x-large">Extra Large</option>
         </select>
+      </div>
+      <div class="progress-row">
+        <div class="progress-meta">
+          <span id="progressStep" class="step-text">Step 1 of 6</span>
+          <span id="progressPercent" class="percent-text">0%</span>
+        </div>
+        <div class="bar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" aria-label="Overall progress">
+          <div class="fill" id="progressFill"></div>
+        </div>
+        <div class="jump-links" aria-label="Jump to part">
+          <a class="jump-link" href="#part1">1</a>
+          <a class="jump-link" href="#part2">2</a>
+          <a class="jump-link" href="#part3">3</a>
+          <a class="jump-link" href="#part4">4</a>
+          <a class="jump-link" href="#part5">5</a>
+          <a class="jump-link" href="#part6">6</a>
+        </div>
+      </div>
     </div>
-</div>
 
-<h1>Day 1: Foundations of 3D Printing</h1>
+    <section class="hero intro-section">
+      <h2>Goal</h2>
+      <p>Understand how 3D printing works, identify printer parts, and explore filament and design possibilities.</p>
 
-<div class="hero">
-<h2>Goal</h2>
-<p>Understand how 3D printing works, identify printer parts, and explore filament and design possibilities.</p>
+      <h3>How to Use This Page</h3>
+      <ul>
+        <li>Work through one part at a time</li>
+        <li>Complete each activity before clicking <strong>Mark Complete</strong></li>
+        <li>Follow teacher instructions when a section tells you to pause</li>
+      </ul>
 
-<h3>How to Use This Page</h3>
-<ul>
-<li>Work through one part at a time</li>
-<li>Complete each activity before clicking <strong>Mark Complete</strong></li>
-<li>Follow teacher instructions when a section tells you to pause</li>
-</ul>
+      <h3>Success Criteria</h3>
+      <ul>
+        <li>I can explain how a 3D printer works</li>
+        <li>I can identify key parts</li>
+        <li>I understand PLA vs PETG</li>
+        <li>I explored MakerWorld ideas</li>
+      </ul>
 
-<h3>Success Criteria</h3>
-<ul>
-<li>I can explain how a 3D printer works</li>
-<li>I can identify key parts</li>
-<li>I understand PLA vs PETG</li>
-<li>I explored MakerWorld ideas</li>
-</ul>
-
-<div class="note">Your progress on this page saves on this device, so you can refresh and come back without losing your work.</div>
-</div>
-</div>
-
-<div class="hero progress">
-<p><strong>Tip:</strong> When you click Mark Complete, the next section will open automatically.</p>
-<div class="bar"><div class="fill" id="progressFill"></div></div>
-<p id="progressText">0% complete</p>
-</div>
+      <div class="note">Your progress on this page saves on this device, so you can refresh and come back without losing your work.</div>
+    </section>
 
 <!-- PART 1 -->
-<details open id="part1">
-<summary>Part 1: Intro to 3D Printing</summary>
-<div class="note">Watch the full video first, then complete the quiz. You can reset the quiz if you want more practice.</div>
-<iframe src="https://www.youtube.com/embed/HlvK6DLwCz4" title="Introduction to 3D printing video"></iframe>
-<div id="quiz" class="quiz-box">
-<div class="quiz-progress" id="quizProgress"></div>
-<p id="qText"></p>
-<div id="qOptions"></div>
-<div class="feedback" id="feedback"></div>
-<div class="explanation" id="explanation"></div>
-<div class="quiz-actions">
-<button type="button" onclick="checkAnswer()">Check</button>
-<button type="button" id="nextBtn" onclick="nextQuestion()" disabled>Next</button>
-<button type="button" onclick="prevQuestion()">Back</button>
-<button type="button" onclick="resetQuiz()">Reset</button>
-</div>
-</div>
-<button type="button" onclick="complete(1)">Mark Complete</button>
+<details open id="part1" class="active-card">
+  <summary>
+    <div class="summary-row">
+      <div class="summary-left">
+        <span class="step-badge">Step 1 of 6</span>
+        <span class="state-badge active" id="badge1">Active</span>
+        <span class="part-title">Intro to 3D Printing</span>
+      </div>
+    </div>
+  </summary>
+  <div class="part-content">
+    <div class="note">Watch the full video first, then complete the quiz. You can reset the quiz if you want more practice.</div>
+    <iframe src="https://www.youtube.com/embed/HlvK6DLwCz4" title="Introduction to 3D printing video"></iframe>
+    <div id="quiz" class="quiz-box">
+      <div class="quiz-progress" id="quizProgress"></div>
+      <p id="qText"></p>
+      <div id="qOptions"></div>
+      <div class="feedback" id="feedback"></div>
+      <div class="explanation" id="explanation"></div>
+      <div class="quiz-actions">
+        <button type="button" onclick="window.checkAnswer()">Check</button>
+        <button type="button" id="nextBtn" onclick="window.nextQuestion()" disabled>Next</button>
+        <button type="button" onclick="window.prevQuestion()">Back</button>
+        <button type="button" onclick="window.resetQuiz()">Reset</button>
+      </div>
+    </div>
+    <div class="part-actions">
+      <button type="button" onclick="window.complete(1)">Mark Complete</button>
+    </div>
+  </div>
 </details>
 
 <!-- PART 2 -->
-<details id="part2">
-<summary>Part 2: Printers</summary>
-<div class="note">
-<strong>While you watch:</strong>
-<ul>
-<li>Which printer seems best for beginners?</li>
-<li>Which printer seems best for more advanced prints?</li>
-<li>What makes each printer different?</li>
-</ul>
-</div>
-<iframe src="https://www.youtube.com/embed/bWM45yJOI7g" title="Printer overview video"></iframe>
-<textarea id="printerChoice" placeholder="Which printer would you choose and why?"></textarea>
-<button type="button" onclick="complete(2)">Mark Complete</button>
+<details id="part2" class="locked-card">
+  <summary>
+    <div class="summary-row">
+      <div class="summary-left">
+        <span class="step-badge">Step 2 of 6</span>
+        <span class="state-badge locked" id="badge2">Locked</span>
+        <span class="part-title">Printers</span>
+      </div>
+    </div>
+  </summary>
+  <div class="part-content">
+    <div class="note">
+      <strong>While you watch:</strong>
+      <ul>
+        <li>Which printer seems best for beginners?</li>
+        <li>Which printer seems best for more advanced prints?</li>
+        <li>What makes each printer different?</li>
+      </ul>
+    </div>
+    <iframe src="https://www.youtube.com/embed/bWM45yJOI7g" title="Printer overview video"></iframe>
+    <textarea id="printerChoice" placeholder="Which printer would you choose and why?"></textarea>
+    <div class="part-actions">
+      <button type="button" onclick="window.complete(2)">Mark Complete</button>
+    </div>
+  </div>
 </details>
 
 <!-- PART 3 -->
-<details id="part3">
-<summary>Part 3: Parts</summary>
+<details id="part3" class="locked-card">
+  <summary>
+    <div class="summary-row">
+      <div class="summary-left">
+        <span class="step-badge">Step 3 of 6</span>
+        <span class="state-badge locked" id="badge3">Locked</span>
+        <span class="part-title">Parts</span>
+      </div>
+    </div>
+  </summary>
+  <div class="part-content">
 
-<div class="hero">
-<h3>👨‍🏫 Teacher Demo</h3>
-<p>Pause here and follow your teacher to a printer. Watch as they point out each part and explain what it does.</p>
-<ul>
-<li>Identify the nozzle, bed, extruder, and frame</li>
-<li>Listen for what each part does during a print</li>
-<li>Ask questions if something is unclear</li>
-</ul>
-</div>
+    <div class="hero">
+      <h3>👨‍🏫 Teacher Demo</h3>
+      <p>Pause here and follow your teacher to a printer. Watch as they point out each part and explain what it does.</p>
+      <ul>
+        <li>Identify the nozzle, bed, extruder, and frame</li>
+        <li>Listen for what each part does during a print</li>
+        <li>Ask questions if something is unclear</li>
+      </ul>
+    </div>
 
-<div class="hero">
-<h3>🧠 Matching Activity</h3>
-<p>Now that you have seen the parts on a real printer, return to your computer and complete the activity below.</p>
-<p>Match each part to what it does.</p>
+    <div class="hero">
+      <h3>🧠 Matching Activity</h3>
+      <p>Now that you have seen the parts on a real printer, return to your computer and complete the activity below.</p>
+      <p>Match each part to what it does.</p>
 
-<div class="quiz-box">
-<p><strong>Nozzle</strong></p>
-<select id="match1">
-<option value="">Select an answer</option>
-<option value="bed">Surface where the print is built</option>
-<option value="nozzle">Melts and places filament</option>
-<option value="extruder">Pushes filament into the nozzle</option>
-<option value="frame">Supports and holds everything</option>
-</select>
+      <div class="quiz-box">
+        <p><strong>Nozzle</strong></p>
+        <select id="match1">
+          <option value="">Select an answer</option>
+          <option value="bed">Surface where the print is built</option>
+          <option value="nozzle">Melts and places filament</option>
+          <option value="extruder">Pushes filament into the nozzle</option>
+          <option value="frame">Supports and holds everything</option>
+        </select>
 
-<p><strong>Bed</strong></p>
-<select id="match2">
-<option value="">Select an answer</option>
-<option value="bed">Surface where the print is built</option>
-<option value="nozzle">Melts and places filament</option>
-<option value="extruder">Pushes filament into the nozzle</option>
-<option value="frame">Supports and holds everything</option>
-</select>
+        <p><strong>Bed</strong></p>
+        <select id="match2">
+          <option value="">Select an answer</option>
+          <option value="bed">Surface where the print is built</option>
+          <option value="nozzle">Melts and places filament</option>
+          <option value="extruder">Pushes filament into the nozzle</option>
+          <option value="frame">Supports and holds everything</option>
+        </select>
 
-<p><strong>Extruder</strong></p>
-<select id="match3">
-<option value="">Select an answer</option>
-<option value="bed">Surface where the print is built</option>
-<option value="nozzle">Melts and places filament</option>
-<option value="extruder">Pushes filament into the nozzle</option>
-<option value="frame">Supports and holds everything</option>
-</select>
+        <p><strong>Extruder</strong></p>
+        <select id="match3">
+          <option value="">Select an answer</option>
+          <option value="bed">Surface where the print is built</option>
+          <option value="nozzle">Melts and places filament</option>
+          <option value="extruder">Pushes filament into the nozzle</option>
+          <option value="frame">Supports and holds everything</option>
+        </select>
 
-<p><strong>Frame</strong></p>
-<select id="match4">
-<option value="">Select an answer</option>
-<option value="bed">Surface where the print is built</option>
-<option value="nozzle">Melts and places filament</option>
-<option value="extruder">Pushes filament into the nozzle</option>
-<option value="frame">Supports and holds everything</option>
-</select>
+        <p><strong>Frame</strong></p>
+        <select id="match4">
+          <option value="">Select an answer</option>
+          <option value="bed">Surface where the print is built</option>
+          <option value="nozzle">Melts and places filament</option>
+          <option value="extruder">Pushes filament into the nozzle</option>
+          <option value="frame">Supports and holds everything</option>
+        </select>
 
-<div class="quiz-actions">
-<button onclick="checkMatching()">Check Answers</button>
-<button onclick="resetMatching()">Reset</button>
-</div>
+        <div class="quiz-actions">
+          <button onclick="window.checkMatching()">Check Answers</button>
+          <button onclick="window.resetMatching()">Reset</button>
+        </div>
 
-<div id="matchingFeedback" class="feedback"></div>
-<div id="matchingHint" class="note" style="display:none"></div>
-</div>
+        <div id="matchingFeedback" class="feedback"></div>
+        <div id="matchingHint" class="note" style="display:none"></div>
+      </div>
 
-<div class="fun">Try to match these before scrolling down 👀</div>
-</div>
-</div>
+      <div class="fun">Try to match these before scrolling down 👀</div>
+    </div>
 
-<div class="part-grid">
-<div>
-🔥 <strong>Nozzle</strong>
-<div class="note">Melts filament and places it during printing</div>
-<textarea id="partNozzle" placeholder="What happens if this fails?"></textarea>
-</div>
+    <div class="part-grid">
+      <div>
+        🔥 <strong>Nozzle</strong>
+        <div class="note">Melts filament and places it during printing</div>
+        <textarea id="partNozzle" placeholder="What happens if this fails?"></textarea>
+      </div>
 
-<div>
-🛏️ <strong>Bed</strong>
-<div class="note">Surface where the object is printed</div>
-<textarea id="partBed" placeholder="What happens if this fails?"></textarea>
-</div>
+      <div>
+        🛏️ <strong>Bed</strong>
+        <div class="note">Surface where the object is printed</div>
+        <textarea id="partBed" placeholder="What happens if this fails?"></textarea>
+      </div>
 
-<div>
-🎯 <strong>Extruder</strong>
-<div class="note">Pushes filament into the nozzle</div>
-<textarea id="partExtruder" placeholder="What happens if this fails?"></textarea>
-</div>
+      <div>
+        🎯 <strong>Extruder</strong>
+        <div class="note">Pushes filament into the nozzle</div>
+        <textarea id="partExtruder" placeholder="What happens if this fails?"></textarea>
+      </div>
 
-<div>
-📦 <strong>Frame</strong>
-<div class="note">Provides structure and stability</div>
-<textarea id="partFrame" placeholder="What happens if this fails?"></textarea>
-</div>
-</div>
+      <div>
+        📦 <strong>Frame</strong>
+        <div class="note">Provides structure and stability</div>
+        <textarea id="partFrame" placeholder="What happens if this fails?"></textarea>
+      </div>
+    </div>
 
-<div class="hero">
-<h3>🛠️ Troubleshooting Challenge</h3>
-<p>Try this on your own first. Use the hint only if you need it.</p>
-<p>Work through one scenario at a time.</p>
+    <div class="hero">
+      <h3>🛠️ Troubleshooting Challenge</h3>
+      <p>Try this on your own first. Use the hint only if you need it.</p>
+      <p>Work through one scenario at a time.</p>
 
-<div class="quiz-box">
-<div class="quiz-progress" id="troubleProgress"></div>
-<div id="troubleDots" style="margin-bottom:8px"></div>
-<p id="troubleText"></p>
-<div id="troubleOptions"></div>
+      <div class="quiz-box">
+        <div class="quiz-progress" id="troubleProgress"></div>
+        <div id="troubleDots" style="margin-bottom:8px"></div>
+        <p id="troubleText"></p>
+        <div id="troubleOptions"></div>
 
-<div class="quiz-actions">
-<button type="button" onclick="checkTrouble()">Check</button>
-<button type="button" id="troubleNextBtn" onclick="nextTrouble()" disabled>Next</button>
-<button type="button" onclick="prevTrouble()">Back</button>
-<button type="button" onclick="resetTrouble()">Reset</button>
-</div>
+        <div class="quiz-actions">
+          <button type="button" onclick="window.checkTrouble()">Check</button>
+          <button type="button" id="troubleNextBtn" onclick="window.nextTrouble()" disabled>Next</button>
+          <button type="button" onclick="window.prevTrouble()">Back</button>
+          <button type="button" onclick="window.resetTrouble()">Reset</button>
+        </div>
 
-<div id="troubleshootingFeedback" class="feedback"></div>
-<div id="troubleshootingHint" class="note" style="display:none"></div>
-<div id="troubleshootingExplanation" class="explanation"></div>
-</div>
+        <div id="troubleshootingFeedback" class="feedback"></div>
+        <div id="troubleshootingHint" class="note" style="display:none"></div>
+        <div id="troubleshootingExplanation" class="explanation"></div>
+      </div>
 
-<div class="fun">This is what real troubleshooting looks like 👀</div>
-</div>
+      <div class="fun">This is what real troubleshooting looks like 👀</div>
+    </div>
 
-<button type="button" id="part3CompleteBtn" onclick="complete(3)" disabled>Mark Complete</button>
+    <div class="part-actions">
+      <button type="button" id="part3CompleteBtn" onclick="window.complete(3)" disabled>Mark Complete</button>
+    </div>
+  </div>
 </details>
 
 <!-- PART 4 -->
-<details id="part4">
-<summary>Part 4: Filament</summary>
-<div class="note">
-<strong>Watch for these ideas:</strong>
-<ul>
-<li>Which filament is easiest for beginners?</li>
-<li>Which filament is more durable?</li>
-<li>Why does moisture matter?</li>
-</ul>
-</div>
-<iframe src="https://www.youtube.com/embed/EX_975z-yk4" title="Filament basics video"></iframe>
-<div id="filamentQuiz" class="quiz-box">
-<div class="quiz-progress" id="filamentQuizProgress"></div>
-<p id="filamentQText"></p>
-<div id="filamentQOptions"></div>
-<div class="feedback" id="filamentFeedback"></div>
-<div class="explanation" id="filamentExplanation"></div>
-<div class="quiz-actions">
-<button type="button" onclick="checkFilamentAnswer()">Check</button>
-<button type="button" id="filamentNextBtn" onclick="nextFilamentQuestion()" disabled>Next</button>
-<button type="button" onclick="prevFilamentQuestion()">Back</button>
-<button type="button" onclick="resetFilamentQuiz()">Reset</button>
-</div>
-</div>
-<button type="button" onclick="complete(4)">Mark Complete</button>
+<details id="part4" class="locked-card">
+  <summary>
+    <div class="summary-row">
+      <div class="summary-left">
+        <span class="step-badge">Step 4 of 6</span>
+        <span class="state-badge locked" id="badge4">Locked</span>
+        <span class="part-title">Filament</span>
+      </div>
+    </div>
+  </summary>
+  <div class="part-content">
+    <div class="note">
+      <strong>Watch for these ideas:</strong>
+      <ul>
+        <li>Which filament is easiest for beginners?</li>
+        <li>Which filament is more durable?</li>
+        <li>Why does moisture matter?</li>
+      </ul>
+    </div>
+    <iframe src="https://www.youtube.com/embed/EX_975z-yk4" title="Filament basics video"></iframe>
+    <div id="filamentQuiz" class="quiz-box">
+      <div class="quiz-progress" id="filamentQuizProgress"></div>
+      <p id="filamentQText"></p>
+      <div id="filamentQOptions"></div>
+      <div class="feedback" id="filamentFeedback"></div>
+      <div class="explanation" id="filamentExplanation"></div>
+      <div class="quiz-actions">
+        <button type="button" onclick="window.checkFilamentAnswer()">Check</button>
+        <button type="button" id="filamentNextBtn" onclick="window.nextFilamentQuestion()" disabled>Next</button>
+        <button type="button" onclick="window.prevFilamentQuestion()">Back</button>
+        <button type="button" onclick="window.resetFilamentQuiz()">Reset</button>
+      </div>
+    </div>
+    <div class="part-actions">
+      <button type="button" onclick="window.complete(4)">Mark Complete</button>
+    </div>
+  </div>
 </details>
 
 <!-- PART 5 -->
-<details id="part5">
-<summary>Part 5: Spool</summary>
-<div class="note">Do not touch or unwrap filament until your teacher tells you to do so.</div>
-<iframe src="https://www.youtube.com/embed/9AiMNgjhlw8" title="Reusable spool video"></iframe>
-<div class="note"><strong>Important:</strong> Do not remove the plastic wrapper on the filament refill until the teacher checks your spool setup. If it opens too early, the filament can unwind and waste an entire roll.</div>
-<p><strong>Check each box only after you understand the process:</strong></p>
-<ul class="checklist">
-<li><label><input type="checkbox" class="spool-check" id="spoolCheck1"> I watched the video</label></li>
-<li><label><input type="checkbox" class="spool-check" id="spoolCheck2"> I understand how the refill sits in the spool</label></li>
-<li><label><input type="checkbox" class="spool-check" id="spoolCheck3"> I will NOT unwrap the filament before teacher approval</label></li>
-<li><label><input type="checkbox" class="spool-check" id="spoolCheck4"> I am ready for a teacher check</label></li>
-</ul>
-<button type="button" id="spoolCompleteBtn" onclick="complete(5)" disabled>Mark Complete</button>
+<details id="part5" class="locked-card">
+  <summary>
+    <div class="summary-row">
+      <div class="summary-left">
+        <span class="step-badge">Step 5 of 6</span>
+        <span class="state-badge locked" id="badge5">Locked</span>
+        <span class="part-title">Spool</span>
+      </div>
+    </div>
+  </summary>
+  <div class="part-content">
+    <div class="note">Do not touch or unwrap filament until your teacher tells you to do so.</div>
+    <iframe src="https://www.youtube.com/embed/9AiMNgjhlw8" title="Reusable spool video"></iframe>
+    <div class="note"><strong>Important:</strong> Do not remove the plastic wrapper on the filament refill until the teacher checks your spool setup. If it opens too early, the filament can unwind and waste an entire roll.</div>
+    <p><strong>Check each box only after you understand the process:</strong></p>
+    <ul class="checklist">
+      <li><label><input type="checkbox" class="spool-check" id="spoolCheck1"> I watched the video</label></li>
+      <li><label><input type="checkbox" class="spool-check" id="spoolCheck2"> I understand how the refill sits in the spool</label></li>
+      <li><label><input type="checkbox" class="spool-check" id="spoolCheck3"> I will NOT unwrap the filament before teacher approval</label></li>
+      <li><label><input type="checkbox" class="spool-check" id="spoolCheck4"> I am ready for a teacher check</label></li>
+    </ul>
+    <div class="part-actions">
+      <button type="button" id="spoolCompleteBtn" onclick="window.complete(5)" disabled>Mark Complete</button>
+    </div>
+  </div>
 </details>
 
 <!-- PART 6 -->
-<details id="part6">
-<summary>Part 6: Explore MakerWorld</summary>
-<div class="note">
-Explore at least 5 models. Look for a mix of useful, creative, and fun designs.
-Be ready to explain why your model stood out to you.
-</div>
+<details id="part6" class="locked-card">
+  <summary>
+    <div class="summary-row">
+      <div class="summary-left">
+        <span class="step-badge">Step 6 of 6</span>
+        <span class="state-badge locked" id="badge6">Locked</span>
+        <span class="part-title">Explore MakerWorld</span>
+      </div>
+    </div>
+  </summary>
+  <div class="part-content">
+    <div class="note">
+      Explore at least 5 models. Look for a mix of useful, creative, and fun designs.
+      Be ready to explain why your model stood out to you.
+    </div>
 
-<p>Explore models and find inspiration.</p>
-<p><a href="https://makerworld.com" target="_blank" style="color:#7cc0ff;font-weight:bold;">🔗 Open MakerWorld</a></p>
+    <p>Explore models and find inspiration.</p>
+    <p><a href="https://makerworld.com" target="_blank" style="color:#7cc0ff;font-weight:bold;">🔗 Open MakerWorld</a></p>
 
-<div class="hero">
-<h3>🔍 Top Categories to Explore</h3>
-<ul>
-<li>🛠️ Tools (phone stands, organizers)</li>
-<li>🎮 Fun prints (toys, gadgets)</li>
-<li>🏫 School items (keychains, name tags)</li>
-<li>🏠 Practical items (hooks, holders)</li>
-<li>🎨 Creative designs (art, decorative prints)</li>
-</ul>
-</div>
+    <div class="hero">
+      <h3>🔍 Top Categories to Explore</h3>
+      <ul>
+        <li>🛠️ Tools (phone stands, organizers)</li>
+        <li>🎮 Fun prints (toys, gadgets)</li>
+        <li>🏫 School items (keychains, name tags)</li>
+        <li>🏠 Practical items (hooks, holders)</li>
+        <li>🎨 Creative designs (art, decorative prints)</li>
+      </ul>
+    </div>
 
-<textarea id="favoriteModel" placeholder="Favorite model and why"></textarea>
-<button type="button" onclick="complete(6)">Mark Complete</button>
+    <textarea id="favoriteModel" placeholder="Favorite model and why"></textarea>
+    <div class="part-actions">
+      <button type="button" onclick="window.complete(6)">Mark Complete</button>
+    </div>
+  </div>
 </details>
 
-
-</div>
-
-<script src="training.js"></script>
+  </main>
 <script>
 const STORAGE_KEY = 'gci-3d-day1-state-v1';
 const FONT_SIZE_KEY = 'gci-3d-day1-font-size';
@@ -367,8 +445,37 @@ function updateProgress(){
   let weighted = score + (matchingBonus * 0.5) + (troubleshootingBonus * 0.5);
 
   const percent = Math.round((weighted / total) * 100);
-  document.getElementById('progressFill').style.width = percent + '%';
-  document.getElementById('progressText').innerText = percent + '% complete';
+  const fill = document.getElementById('progressFill');
+  const pctEl = document.getElementById('progressPercent');
+  const stepEl = document.getElementById('progressStep');
+  const bar = fill && fill.closest('[role="progressbar"]');
+  if (fill) fill.style.width = percent + '%';
+  if (pctEl) pctEl.textContent = percent + '%';
+  if (bar) bar.setAttribute('aria-valuenow', percent);
+  let currentStep = total;
+  for (let i = 1; i <= total; i++) {
+    if (!state.completedParts.includes(i)) { currentStep = i; break; }
+  }
+  if (stepEl) stepEl.textContent = 'Step ' + currentStep + ' of ' + total;
+}
+
+function updateCardStates(){
+  for (let n = 1; n <= 6; n++) {
+    const card = document.getElementById('part' + n);
+    const badge = document.getElementById('badge' + n);
+    if (!card) continue;
+    const isDone = state.completedParts.includes(n);
+    const isLocked = n > 1 && !state.completedParts.includes(n - 1);
+    card.classList.remove('active-card', 'completed-card', 'locked-card');
+    if (isDone)        card.classList.add('completed-card');
+    else if (isLocked) card.classList.add('locked-card');
+    else               card.classList.add('active-card');
+    if (badge) {
+      badge.textContent = isDone ? 'Complete' : isLocked ? 'Locked' : 'Active';
+      badge.className = 'state-badge ' + (isDone ? 'completed' : isLocked ? 'locked' : 'active');
+    }
+    if (isLocked) card.removeAttribute('open');
+  }
 }
 
 function restoreCompletedParts(){
@@ -377,6 +484,7 @@ function restoreCompletedParts(){
     if (current) current.open = false;
   });
   updateProgress();
+  updateCardStates();
 }
 
 function complete(part){
@@ -384,12 +492,16 @@ function complete(part){
     state.completedParts.push(part);
   }
   updateProgress();
+  updateCardStates();
   saveState();
 
   const currentSection = document.getElementById('part' + part);
   const nextSection = document.getElementById('part' + (part + 1));
-  if (currentSection) currentSection.open = false;
-  if (nextSection) nextSection.open = true;
+  if (currentSection) currentSection.removeAttribute('open');
+  if (nextSection) {
+    nextSection.setAttribute('open', '');
+    setTimeout(function(){ nextSection.scrollIntoView({ behavior: 'smooth', block: 'start' }); }, 80);
+  }
 }
 
 // ===== Part 1 Quiz =====
