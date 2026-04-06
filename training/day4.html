@@ -1,190 +1,494 @@
 <!doctype html>
 <html lang="en">
-
 <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="description" content="Intro to 3D Printing with Bambu A1: Day 4 student guide." />
-    <title>Intro to 3D Printing – Day 4 | GCI</title>
-    <link rel="stylesheet" href="lab.css" />
-    <script src="training.js" defer></script>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Day 4: Create Your School Logo Keychain — GCI 3D Printing Lab" />
+  <title>Day 4: School Logo Keychain | GCI 3D Printing</title>
+  <link rel="stylesheet" href="lab.css" />
+  <script src="training.js" defer></script>
 </head>
-
 <body data-page="day4">
-    <header class="page-header">
-        <h1>Intro to 3D Printing with Bambu Printers</h1>
-        <p>Day 4: Troubleshoot, reflect, and level up your 3D printing skills!</p>
-    </header>
-    <main class="wrap" id="mainContent" tabindex="-1">
 
-      <div class="sticky-progress" role="banner" aria-label="Page controls and progress">
-        <div class="control-row">
-          <label for="theme-selector" class="sr-only">Choose theme</label>
-          <select id="theme-selector" aria-label="Choose theme">
-            <option value="auto">Default (Auto Detect)</option>
-            <option value="dark">Dark</option>
-            <option value="light">Light</option>
-            <option value="high-contrast">High Contrast</option>
-          </select>
-          <label for="fontSizeSelector" class="font-size-label">Text:</label>
-          <select id="fontSizeSelector" aria-label="Choose text size">
-            <option value="default">Default</option>
-            <option value="large">Large</option>
-            <option value="x-large">Extra Large</option>
-          </select>
+  <!-- Page Header -->
+  <header class="page-header">
+    <h1>Intro to 3D Printing with Bambu Printers</h1>
+    <p>Day 4: Create Your School Logo Keychain</p>
+  </header>
+
+  <main class="wrap" id="mainContent" tabindex="-1">
+
+    <!-- ── Sticky progress bar ─────────────────────────────── -->
+    <div class="sticky-progress" role="banner" aria-label="Page controls and progress">
+      <div class="control-row">
+        <label for="theme-selector" class="sr-only">Choose theme</label>
+        <select id="theme-selector" aria-label="Choose theme">
+          <option value="auto">Default (Auto Detect)</option>
+          <option value="dark">Dark</option>
+          <option value="light">Light</option>
+          <option value="high-contrast">High Contrast</option>
+        </select>
+        <label for="fontSizeSelector" class="font-size-label">Text:</label>
+        <select id="fontSizeSelector" aria-label="Choose text size">
+          <option value="default">Default</option>
+          <option value="large">Large</option>
+          <option value="x-large">Extra Large</option>
+        </select>
+      </div>
+
+      <div class="progress-row">
+        <div class="progress-meta">
+          <span id="progressStep" class="step-text">Step 1 of 7</span>
+          <span id="progressPercent" class="percent-text">0%</span>
+        </div>
+        <div class="bar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" aria-label="Overall progress">
+          <div class="fill" id="progressFill"></div>
+        </div>
+        <div class="jump-links" aria-label="Jump to step">
+          <a class="jump-link" href="#part1">1</a>
+          <a class="jump-link" href="#part2">2</a>
+          <a class="jump-link" href="#part3">3</a>
+          <a class="jump-link" href="#part4">4</a>
+          <a class="jump-link" href="#part5">5</a>
+          <a class="jump-link" href="#part6">6</a>
+          <a class="jump-link" href="#part7">7</a>
         </div>
       </div>
-        <section class="day-list" aria-label="5-day 3D printing lab guide">
-            <!-- Begin Day 4 Content -->
-            <article class="day-card" data-day="4">
-                <div class="day-header">
-                    <h2 class="day-title">Day 4 – Troubleshooting and Reflection</h2>
-                    <span class="pill">Quality Check</span>
-                </div>
-                <p class="goal"><strong>Goal:</strong> Analyze your print results and document any issues or improvements.</p>
-                <p class="guidance"><strong>Quick laugh:</strong> A failed print is just useful data wearing a messy disguise.</p>
-                <h3>Objectives</h3>
-                <ul>
-                    <li>Evaluate print quality using specific evidence (<strong>Evidence:</strong> Print Log + photo).</li>
-                    <li>Find likely causes for common print issues (<strong>Evidence:</strong> Common Issues and Fixes table).</li>
-                    <li>Plan one clear improvement for the next print attempt (<strong>Evidence:</strong> Reflection + submission checklist).</li>
-                </ul>
-                <h3>Success Criteria</h3>
-                <ul>
-                    <li>I can describe print quality with specific evidence (not just general comments).</li>
-                    <li>I can match at least one issue to a likely cause and realistic fix.</li>
-                    <li>I can identify one high-impact change for my next print.</li>
-                </ul>
-                <h3>Steps</h3>
-                <p class="flow-note"><strong>Instructional Flow:</strong> Learn (inspect output) → Design (name tag in Tinkercad) → Practice (Day 4 activity log) → Submit (Before You Submit Checklist + Digital Notebook).</p>
-                <ol>
-                    <li><strong>Step 1: Remove Print Safely (5 min)</strong><br />Assignment: Carefully remove your print from the bed.</li>
-                    <li><strong>Step 2: Inspect Print Quality (10 min)</strong><br />Assignment: Inspect surface quality, edges, lettering, and first-layer behavior, then complete <strong>Print Log</strong>.</li>
-                    <li><strong>Step 3: Capture Photo Evidence (5 min)</strong><br />Assignment: Take a clear photo of your print and insert it in your Digital Notebook Day 4 entry.</li>
-                    <li><strong>Step 4: Design Your Name Tag in Tinkercad (20 min)</strong><br />Assignment: Follow the step-by-step guide below to create a name tag in Tinkercad.</li>
-                    <li><strong>Step 5: Troubleshoot and Submit Day 4 Work (10 min)</strong><br />Assignment: Complete <strong>Common Issues and Fixes</strong>, <strong>Reflection</strong>, and <strong>Before You Submit Checklist</strong>.</li>
-                </ol>
-                <p class="deliverable"><strong>Deliverable:</strong> Photo of your finished print, completed name tag design in Tinkercad, and completed reflection form — all submitted in your Digital Notebook in Google Classroom.</p>
-                <div class="worksheet" aria-label="Day 4 activity log">
-                    <h3 class="worksheet-title">Day 4 Activity Log</h3>
-                    <p class="guidance">Guidance: Use evidence from your print (photo, edges, text, first layer). Be specific about what worked and what needs improvement.</p>
-                    <h3>Print Log</h3>
-                    <table>
-                        <thead>
-                            <tr>
-                                <th>Observation</th>
-                                <th>Notes</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>Print Quality Rating (1–5)</td>
-                                <td><input type="text" aria-label="Day 4 print quality rating notes" /></td>
-                            </tr>
-                            <tr>
-                                <td>Surface Finish</td>
-                                <td><input type="text" aria-label="Day 4 surface finish notes" /></td>
-                            </tr>
-                            <tr>
-                                <td>Edge Cleanliness</td>
-                                <td><input type="text" aria-label="Day 4 edge cleanliness notes" /></td>
-                            </tr>
-                            <tr>
-                                <td>Text/Detail Clarity</td>
-                                <td><input type="text" aria-label="Day 4 text detail clarity notes" /></td>
-                            </tr>
-                            <tr>
-                                <td>Adhesion to Bed</td>
-                                <td><input type="text" aria-label="Day 4 adhesion to bed notes" /></td>
-                            </tr>
-                            <tr>
-                                <td>Overall Success</td>
-                                <td><input type="text" aria-label="Day 4 overall success notes" /></td>
-                            </tr>
-                        </tbody>
-                    </table>
+    </div><!-- /sticky-progress -->
 
-                    <h3>Design Your Name Tag</h3>
-                    <p>Follow the steps below to create a name tag in Tinkercad. This is the same Tinkercad you joined yesterday — sign in and create a new design.</p>
+    <!-- ── Page intro / hero ───────────────────────────────── -->
+    <section class="hero intro-section" aria-labelledby="pageTitle">
+      <h2 id="pageTitle">Day 4: Create Your School Logo Keychain</h2>
 
-                    <h4>📋 Design Requirements</h4>
-                    <ul>
-                        <li>Create a base shape (box or rounded box)</li>
-                        <li>Add your name or initials as a Text shape on top</li>
-                        <li>Include a small cylinder hole for a keyring</li>
-                        <li>Keep the overall size roughly 60 × 30 × 5 mm or smaller</li>
-                        <li>Keep the design clean and printable</li>
-                    </ul>
+      <div class="intro-grid">
+        <div class="intro-card">
+          <h3>🎯 Goal</h3>
+          <p>Create a keychain from your school logo and prepare it for printing.</p>
+          <ul class="objectives-list">
+            <li>Find and convert your school logo to an SVG</li>
+            <li>Import it into Tinkercad and build a keychain</li>
+            <li>Slice the model and save a print-ready file</li>
+          </ul>
+        </div>
 
-                    <h4>🔢 Step-by-Step Guide</h4>
-                    <ol>
-                        <li><strong>Open Tinkercad</strong> — go to <a href="https://www.tinkercad.com" target="_blank" rel="noopener noreferrer">tinkercad.com</a> and sign in with your school account. Click <em>Create new design</em>.</li>
-                        <li><strong>Add your base shape</strong> — drag a <em>Box</em> or <em>Rounded Box</em> onto the workplane. This is the main body of your name tag.</li>
-                        <li><strong>Resize the base</strong> — set the size to approximately <strong>60 mm wide × 30 mm deep × 5 mm tall</strong>.</li>
-                        <li><strong>Add a Text shape</strong> — drag a <em>Text</em> shape onto the workplane, type your name, resize it to fit, and move it on top of the base.</li>
-                        <li><strong>Add a cylinder for the keyring hole</strong> — drag a <em>Cylinder</em> onto the workplane, set it as a <strong>Hole</strong>, resize to ~5 mm wide, and position it near one short end.</li>
-                        <li><strong>Align your shapes</strong> — select all with <kbd>Ctrl + A</kbd>, then use <em>Align</em> to center everything.</li>
-                        <li><strong>Group everything</strong> — select all with <kbd>Ctrl + A</kbd>, then press <kbd>Ctrl + G</kbd> to merge into one object.</li>
-                        <li><strong>Name your design</strong> — give it a clear name like <em>Day4_NameTag_YourName</em>. Tinkercad saves automatically.</li>
-                    </ol>
+        <div class="intro-card">
+          <h3>⏱️ Time Guide</h3>
+          <table class="time-table">
+            <thead>
+              <tr><th>Step</th><th>Activity</th><th>Time</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>1</td><td>Get Your Logo</td><td>5 min</td></tr>
+              <tr><td>2</td><td>Convert to SVG</td><td>10 min</td></tr>
+              <tr><td>3</td><td>Import into Tinkercad</td><td>10 min</td></tr>
+              <tr><td>4</td><td>Make It a Keychain</td><td>20 min</td></tr>
+              <tr><td>5</td><td>Export + Slice</td><td>15 min</td></tr>
+              <tr><td>6</td><td>Save Your File</td><td>5 min</td></tr>
+              <tr><td>7</td><td>Print + Reflect</td><td>25 min</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
 
-                    <p><label for="day4-nametag-name"><strong>What did you name your design?</strong></label></p>
-                    <input type="text" id="day4-nametag-name" aria-label="Day 4 name tag design name" placeholder="e.g., Day4_NameTag_Jordan" style="width:100%;max-width:420px" />
+      <!-- Quick Idea callout -->
+      <div class="note" style="margin-top:14px;" aria-label="Key file types quick reference">
+        <strong>💡 Quick Idea — File Types</strong>
+        <div class="filetype-grid" style="margin-top:10px;">
+          <div class="filetype-card">
+            <div class="filetype-icon">🖼️</div>
+            <h4><abbr title="Scalable Vector Graphics">SVG</abbr></h4>
+            <span class="ft-tag">Vector image</span>
+            <p>Clean shapes used in Tinkercad</p>
+          </div>
+          <div class="filetype-card">
+            <div class="filetype-icon">📐</div>
+            <h4><abbr title="Standard Triangle Language">STL</abbr></h4>
+            <span class="ft-tag">3D model</span>
+            <p>Your exported 3D design</p>
+          </div>
+          <div class="filetype-card">
+            <div class="filetype-icon">🖨️</div>
+            <h4><abbr title="3D Manufacturing Format">3MF</abbr></h4>
+            <span class="ft-tag">Print-ready file</span>
+            <p>Saved from Bambu Studio</p>
+          </div>
+        </div>
+      </div>
 
-                    <h3>Common Issues and Fixes</h3>
-                    <table>
-                        <thead>
-                            <tr>
-                                <th>Issue</th>
-                                <th>Possible Cause</th>
-                                <th>How to Fix Next Time</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>Poor Bed Adhesion</td>
-                                <td><input type="text" aria-label="Day 4 poor bed adhesion cause" /></td>
-                                <td><input type="text" aria-label="Day 4 poor bed adhesion fix" /></td>
-                            </tr>
-                            <tr>
-                                <td>Stringing or Blobs</td>
-                                <td><input type="text" aria-label="Day 4 stringing or blobs cause" /></td>
-                                <td><input type="text" aria-label="Day 4 stringing or blobs fix" /></td>
-                            </tr>
-                            <tr>
-                                <td>Warping</td>
-                                <td><input type="text" aria-label="Day 4 warping cause" /></td>
-                                <td><input type="text" aria-label="Day 4 warping fix" /></td>
-                            </tr>
-                            <tr>
-                                <td>Under-extrusion</td>
-                                <td><input type="text" aria-label="Day 4 under extrusion cause" /></td>
-                                <td><input type="text" aria-label="Day 4 under extrusion fix" /></td>
-                            </tr>
-                            <tr>
-                                <td>Misaligned Layers</td>
-                                <td><input type="text" aria-label="Day 4 misaligned layers cause" /></td>
-                                <td><input type="text" aria-label="Day 4 misaligned layers fix" /></td>
-                            </tr>
-                        </tbody>
-                    </table>
-                    <h3>Reflection</h3>
-                    <p>1. What went well with your print?</p>
-                    <textarea class="short" aria-label="Day 4 reflection question 1" placeholder="List 2 strengths and what settings/design choices helped."></textarea>
-                    <p>2. What issue do you want to fix next time?</p>
-                    <textarea class="short" aria-label="Day 4 reflection question 2" placeholder="Name one issue, likely cause, and your next adjustment."></textarea>
-                    <h3>Before You Submit Checklist</h3>
-                    <ul class="checklist">
-                        <li><input type="checkbox" id="day4-evidence-photo" /><label for="day4-evidence-photo">I inserted a photo of my finished print into my Digital Notebook Day 4 entry.</label></li>
-                        <li><input type="checkbox" id="day4-evidence-nametag" /><label for="day4-evidence-nametag">I completed my name tag design in Tinkercad and named it correctly.</label></li>
-                        <li><input type="checkbox" id="day4-evidence-reflection" /><label for="day4-evidence-reflection">I completed my troubleshooting reflection with at least one fix for next time.</label></li>
-                        <li><input type="checkbox" id="day4-evidence-copy" /><label for="day4-evidence-copy">I submitted Day 4 work in my <strong>Digital Notebook in Google Classroom</strong>.</label></li>
-                    </ul>
-                </div>
-            </article>
-            <!-- End Day 4 Content -->
-        </section>
-    </main>
+      <!-- Workflow pipeline -->
+      <div class="workflow-row" aria-label="Day 4 workflow" style="margin-top:14px;">
+        <div class="workflow-step">
+          <div class="ws-num">1</div>
+          <h4>Design</h4>
+          <p>Find your logo</p>
+        </div>
+        <div class="workflow-arrow" aria-hidden="true">→</div>
+        <div class="workflow-step">
+          <div class="ws-num">2</div>
+          <h4>Convert</h4>
+          <p>PNG → SVG</p>
+        </div>
+        <div class="workflow-arrow" aria-hidden="true">→</div>
+        <div class="workflow-step">
+          <div class="ws-num">3</div>
+          <h4>Build</h4>
+          <p>Tinkercad</p>
+        </div>
+        <div class="workflow-arrow" aria-hidden="true">→</div>
+        <div class="workflow-step">
+          <div class="ws-num">4</div>
+          <h4>Slice</h4>
+          <p>Bambu Studio</p>
+        </div>
+        <div class="workflow-arrow" aria-hidden="true">→</div>
+        <div class="workflow-step">
+          <div class="ws-num">5</div>
+          <h4>Print</h4>
+          <p>Send to printer</p>
+        </div>
+      </div>
+
+      <div class="goal-section" style="margin-top:14px;">
+        <div class="goal-card">
+          <h3>📖 How to Use This Page</h3>
+          <ul>
+            <li>Work through one step at a time — top to bottom</li>
+            <li>Complete every activity before clicking <strong>Mark Complete</strong></li>
+            <li>Pause when the teacher asks you to</li>
+            <li>Your progress saves on this device</li>
+          </ul>
+        </div>
+        <div class="goal-card">
+          <h3>✅ Success Criteria</h3>
+          <ul>
+            <li>I found a simple version of my school logo</li>
+            <li>I converted it to SVG and imported it into Tinkercad</li>
+            <li>I built a keychain with the correct size and a keyring hole</li>
+            <li>I sliced the model and saved a 3MF file</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════════
+         STEP 1: Get Your Logo
+         ═══════════════════════════════════════════════════════ -->
+    <details id="part1" class="active-card" open>
+      <summary>
+        <div class="summary-row">
+          <div class="summary-left">
+            <span class="step-badge">Step 1 of 7</span>
+            <span class="state-badge active" id="badge1">Active</span>
+            <span class="part-title">🔍 Get Your Logo</span>
+          </div>
+        </div>
+      </summary>
+
+      <div class="part-content">
+        <div class="note">
+          <strong>📌 Goal:</strong> Find a clean version of your school logo to use as the base of your keychain.
+        </div>
+
+        <ul>
+          <li>Search <strong>Google Images</strong> for your school logo</li>
+          <li>Choose a <strong>simple, clean version</strong> — fewer details = better print</li>
+          <li>Download as <strong>PNG</strong> or <strong>JPG</strong></li>
+        </ul>
+
+        <div class="fun">
+          💡 <strong>Tip:</strong> Simpler logos print better. Avoid tiny text or thin lines.
+        </div>
+
+        <div class="part-actions">
+          <button type="button" onclick="window.complete(1)">Mark Complete</button>
+        </div>
+      </div>
+    </details>
+
+    <!-- ═══════════════════════════════════════════════════════
+         STEP 2: Convert to SVG
+         ═══════════════════════════════════════════════════════ -->
+    <details id="part2" class="locked-card">
+      <summary>
+        <div class="summary-row">
+          <div class="summary-left">
+            <span class="step-badge">Step 2 of 7</span>
+            <span class="state-badge locked" id="badge2">Locked</span>
+            <span class="part-title">🔄 Convert to SVG</span>
+          </div>
+        </div>
+      </summary>
+
+      <div class="part-content">
+        <div class="note">
+          <strong>📌 Goal:</strong> Convert your logo image into an <strong>SVG</strong> file so Tinkercad can import it as a 3D shape.
+        </div>
+
+        <h3>First — Sign In to Adobe Express</h3>
+        <ul>
+          <li>Go to <a href="https://www.adobe.com/express/" target="_blank" rel="noopener">Adobe Express</a></li>
+          <li>Click <strong>Log In → Continue with Google</strong></li>
+          <li>Use your school Google account</li>
+        </ul>
+
+        <h3>🎥 Watch and Follow</h3>
+        <div class="video-wrap">
+          <iframe
+            src="https://www.youtube.com/embed/Bfi_qPJu7pc"
+            title="Convert image to SVG using Adobe Express"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowfullscreen>
+          </iframe>
+        </div>
+
+        <ul>
+          <li>Upload your logo image</li>
+          <li>Remove the background if needed</li>
+          <li>Download the result as <strong>SVG</strong></li>
+        </ul>
+
+        <div class="fun">
+          ✅ <strong>Checkpoint:</strong> Your file should end in <code>.svg</code>
+        </div>
+
+        <div class="part-actions">
+          <button type="button" onclick="window.complete(2)">Mark Complete</button>
+        </div>
+      </div>
+    </details>
+
+    <!-- ═══════════════════════════════════════════════════════
+         STEP 3: Import into Tinkercad
+         ═══════════════════════════════════════════════════════ -->
+    <details id="part3" class="locked-card">
+      <summary>
+        <div class="summary-row">
+          <div class="summary-left">
+            <span class="step-badge">Step 3 of 7</span>
+            <span class="state-badge locked" id="badge3">Locked</span>
+            <span class="part-title">📦 Import into Tinkercad</span>
+          </div>
+        </div>
+      </summary>
+
+      <div class="part-content">
+        <div class="note">
+          <strong>📌 Goal:</strong> Bring your SVG logo into Tinkercad and resize it correctly.
+        </div>
+
+        <h3>🎥 Watch and Follow</h3>
+        <div class="video-wrap">
+          <iframe
+            src="https://www.youtube.com/embed/788-l-9qFOU"
+            title="Import SVG into Tinkercad"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowfullscreen>
+          </iframe>
+        </div>
+
+        <ul>
+          <li>Open <a href="https://www.tinkercad.com" target="_blank" rel="noopener">Tinkercad</a> → sign in → <strong>New Design</strong></li>
+          <li>Click <strong>Import → Upload SVG</strong></li>
+          <li>Resize to about <strong>40–60 mm</strong></li>
+        </ul>
+
+        <div class="part-actions">
+          <button type="button" onclick="window.complete(3)">Mark Complete</button>
+        </div>
+      </div>
+    </details>
+
+    <!-- ═══════════════════════════════════════════════════════
+         STEP 4: Make It a Keychain
+         ═══════════════════════════════════════════════════════ -->
+    <details id="part4" class="locked-card">
+      <summary>
+        <div class="summary-row">
+          <div class="summary-left">
+            <span class="step-badge">Step 4 of 7</span>
+            <span class="state-badge locked" id="badge4">Locked</span>
+            <span class="part-title">🔑 Make It a Keychain</span>
+          </div>
+        </div>
+      </summary>
+
+      <div class="part-content">
+        <div class="note">
+          <strong>📌 Goal:</strong> Turn your logo shape into a printable keychain.
+        </div>
+
+        <ul>
+          <li>Set thickness to <strong>3–5 mm</strong></li>
+          <li>Add a <strong>cylinder hole</strong> for a keyring near one edge</li>
+          <li>Make sure all parts are <strong>connected and grouped</strong></li>
+        </ul>
+
+        <div class="fun">
+          💡 <strong>Quick Tips:</strong>
+          <ul style="margin:6px 0 0;">
+            <li>Avoid tiny details — they won't print clearly</li>
+            <li>Use bold shapes for best results</li>
+          </ul>
+        </div>
+
+        <div class="part-actions">
+          <button type="button" onclick="window.complete(4)">Mark Complete</button>
+        </div>
+      </div>
+    </details>
+
+    <!-- ═══════════════════════════════════════════════════════
+         STEP 5: Export + Slice
+         ═══════════════════════════════════════════════════════ -->
+    <details id="part5" class="locked-card">
+      <summary>
+        <div class="summary-row">
+          <div class="summary-left">
+            <span class="step-badge">Step 5 of 7</span>
+            <span class="state-badge locked" id="badge5">Locked</span>
+            <span class="part-title">⚙️ Export + Slice</span>
+          </div>
+        </div>
+      </summary>
+
+      <div class="part-content">
+        <div class="note">
+          <strong>📌 Goal:</strong> Export your design from Tinkercad and prepare it for printing in Bambu Studio.
+        </div>
+
+        <h3>Export from Tinkercad</h3>
+        <ul>
+          <li>Click <strong>Export → STL</strong></li>
+        </ul>
+
+        <h3>In Bambu Studio</h3>
+        <ul>
+          <li>Import your <strong>STL</strong> file</li>
+          <li>Place flat on the build plate</li>
+          <li>Click <strong>Slice</strong></li>
+          <li>Preview the print layer by layer</li>
+        </ul>
+
+        <div class="part-actions">
+          <button type="button" onclick="window.complete(5)">Mark Complete</button>
+        </div>
+      </div>
+    </details>
+
+    <!-- ═══════════════════════════════════════════════════════
+         STEP 6: Save Your File
+         ═══════════════════════════════════════════════════════ -->
+    <details id="part6" class="locked-card">
+      <summary>
+        <div class="summary-row">
+          <div class="summary-left">
+            <span class="step-badge">Step 6 of 7</span>
+            <span class="state-badge locked" id="badge6">Locked</span>
+            <span class="part-title">💾 Save Your File</span>
+          </div>
+        </div>
+      </summary>
+
+      <div class="part-content">
+        <div class="note">
+          <strong>📌 Goal:</strong> Save your print-ready file with the correct name.
+        </div>
+
+        <ul>
+          <li>In Bambu Studio, save as <strong>3MF</strong></li>
+          <li>File name: <strong>LastName_Keychain</strong></li>
+        </ul>
+
+        <div class="fun">
+          ✅ <strong>Checkpoint:</strong> File ends in <code>.3mf</code> and is named correctly.
+        </div>
+
+        <label for="d4FileName" class="summary-label"><strong>What did you name your file?</strong></label>
+        <input type="text" id="d4FileName" placeholder="e.g., Smith_Keychain" aria-label="Day 4 file name" style="width:100%;max-width:360px;margin-top:6px;" />
+
+        <div class="part-actions">
+          <button type="button" onclick="window.complete(6)">Mark Complete</button>
+        </div>
+      </div>
+    </details>
+
+    <!-- ═══════════════════════════════════════════════════════
+         STEP 7: Print + Reflect
+         ═══════════════════════════════════════════════════════ -->
+    <details id="part7" class="locked-card">
+      <summary>
+        <div class="summary-row">
+          <div class="summary-left">
+            <span class="step-badge">Step 7 of 7</span>
+            <span class="state-badge locked" id="badge7">Locked</span>
+            <span class="part-title">🖨️ Print + Reflect</span>
+          </div>
+        </div>
+      </summary>
+
+      <div class="part-content">
+
+        <!-- Printing callout -->
+        <div class="note" style="border-left: 4px solid var(--accent);">
+          <strong>🖨️ Printing — What to Expect</strong>
+          <ul style="margin:8px 0 0;">
+            <li>We have <strong>11 printers</strong> available — you will likely need to wait</li>
+            <li>Be patient</li>
+            <li>Work with <strong>Helpdesk</strong> to submit your print</li>
+            <li>Do <strong>NOT</strong> touch other students' prints</li>
+          </ul>
+        </div>
+
+        <!-- Final checklist -->
+        <h3>✅ Final Checklist</h3>
+        <p>Before submitting, confirm all boxes below:</p>
+        <ul class="checklist">
+          <li>
+            <label>
+              <input type="checkbox" id="d4-size" />
+              Size is correct (40–60 mm)
+            </label>
+          </li>
+          <li>
+            <label>
+              <input type="checkbox" id="d4-thick" />
+              Thick enough (3–5 mm)
+            </label>
+          </li>
+          <li>
+            <label>
+              <input type="checkbox" id="d4-hole" />
+              Keyring hole works
+            </label>
+          </li>
+          <li>
+            <label>
+              <input type="checkbox" id="d4-sliced" />
+              File sliced correctly in Bambu Studio
+            </label>
+          </li>
+          <li>
+            <label>
+              <input type="checkbox" id="d4-saved" />
+              Saved as <strong>3MF</strong> with correct name
+            </label>
+          </li>
+        </ul>
+
+        <!-- Reflection -->
+        <h3>💭 Reflection</h3>
+        <label for="d4-reflect1">1. What did you simplify in your design?</label>
+        <textarea id="d4-reflect1" rows="3" placeholder="Describe what you removed or simplified to make the logo print-friendly..." aria-label="Day 4 reflection: what did you simplify"></textarea>
+
+        <label for="d4-reflect2" style="margin-top:10px;display:block;">2. What was hardest to recreate?</label>
+        <textarea id="d4-reflect2" rows="3" placeholder="Describe the trickiest part of recreating the logo in 3D..." aria-label="Day 4 reflection: what was hardest to recreate"></textarea>
+
+        <div class="part-actions">
+          <button type="button" onclick="window.complete(7)">Mark Complete</button>
+        </div>
+      </div>
+    </details>
+
+  </main>
 </body>
-
 </html>

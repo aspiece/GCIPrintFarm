@@ -1172,25 +1172,25 @@ window.d3ResetMatching = function d3ResetMatching() {
 /* ── Part 3: Video Check for Understanding Quiz ────────────── */
 var d3VidQuizQuestions = [
     {
-        prompt: "Which file format stores ONLY the shape of a 3D object as a mesh of triangles?",
+        prompt: "For students under 12 years old, which button should they click to create a Tinkercad account?",
         type: "mcq",
-        options: ["3MF", "G-code", "STL", "PNG"],
+        options: ["Join Now", "Sign In", "Join a class", "Create Account"],
         correct: 2,
-        explanation: "STL (Standard Tessellation Language) stores only the geometry (shape) of a 3D model using triangles. It does not include color, materials, or settings."
+        explanation: "Students under 12 need a moderator such as a teacher or parent, so they must click the green 'Join a class' button and enter the class code provided in the Robofund email."
     },
     {
-        prompt: "In Tinkercad, what is the flat surface called where you build your 3D design?",
+        prompt: "Where are shapes located in Tinkercad that you can drag onto the work plane?",
         type: "mcq",
-        options: ["Canvas", "Workplane", "Layer", "Grid"],
+        options: ["The top toolbar", "The left sidebar", "The bottom panel", "The right side panel"],
+        correct: 3,
+        explanation: "In Tinkercad, shapes are found on the right side panel. You can scroll down to see more shapes and drag them onto the work plane to build your design."
+    },
+    {
+        prompt: "Which of the following is a way to delete a shape in Tinkercad?",
+        type: "mcq",
+        options: ["Right-click and select 'Delete'", "Click the trash can icon or press the Delete key", "Drag the shape off the work plane", "Press the Escape key"],
         correct: 1,
-        explanation: "The workplane is the flat surface in Tinkercad where you drag and position your shapes to build a 3D design."
-    },
-    {
-        prompt: "What software converts your 3D design file into G-code so the printer can use it?",
-        type: "mcq",
-        options: ["Tinkercad", "Google Classroom", "A slicer (like Bambu Studio)", "MakerWorld"],
-        correct: 2,
-        explanation: "A slicer, such as Bambu Studio, converts your STL or 3MF design file into G-code — the layer-by-layer instructions that run the 3D printer."
+        explanation: "You can delete a shape in Tinkercad by clicking the trash can icon on the screen, or by pressing the Delete key on your keyboard."
     }
 ];
 
@@ -2114,4 +2114,104 @@ function d1UpdateSpoolButton() {
     var checks = Array.from(document.querySelectorAll('.spool-check'));
     var btn    = document.getElementById('spoolCompleteBtn');
     if (btn) btn.disabled = !checks.every(function (c) { return c.checked; });
+}
+
+/* ══════════════════════════════════════════════════════════════
+   DAY 4 – School Logo Keychain
+   ══════════════════════════════════════════════════════════════ */
+var D4_STORAGE_PROGRESS = 'gci-day4-completed';
+var D4_TOTAL_PARTS      = 7;
+var d4CompletedParts    = [];
+
+function d4UpdateProgress() {
+    var pct    = Math.round((d4CompletedParts.length / D4_TOTAL_PARTS) * 100);
+    var fill   = document.getElementById('progressFill');
+    var pctEl  = document.getElementById('progressPercent');
+    var stepEl = document.getElementById('progressStep');
+    var bar    = fill && fill.closest('[role="progressbar"]');
+
+    if (fill)  fill.style.width = pct + '%';
+    if (pctEl) pctEl.textContent = pct + '%';
+    if (bar)   bar.setAttribute('aria-valuenow', pct);
+
+    var currentStep = D4_TOTAL_PARTS;
+    for (var i = 1; i <= D4_TOTAL_PARTS; i++) {
+        if (!d4CompletedParts.includes(i)) { currentStep = i; break; }
+    }
+    if (stepEl) stepEl.textContent = 'Step ' + currentStep + ' of ' + D4_TOTAL_PARTS;
+}
+
+function d4UpdateCardStates() {
+    for (var n = 1; n <= D4_TOTAL_PARTS; n++) {
+        var card  = document.getElementById('part' + n);
+        var badge = document.getElementById('badge' + n);
+        if (!card) continue;
+
+        var isDone   = d4CompletedParts.includes(n);
+        var isLocked = n > 1 && !d4CompletedParts.includes(n - 1);
+
+        card.classList.remove('active-card', 'completed-card', 'locked-card');
+        if (isDone)        card.classList.add('completed-card');
+        else if (isLocked) card.classList.add('locked-card');
+        else               card.classList.add('active-card');
+
+        if (badge) {
+            badge.textContent = isDone ? 'Complete' : isLocked ? 'Locked' : 'Active';
+            badge.className   = 'state-badge ' + (isDone ? 'completed' : isLocked ? 'locked' : 'active');
+        }
+
+        card.querySelectorAll('button[onclick*="window.complete"]').forEach(function (btn) {
+            if (!btn.id) btn.disabled = isLocked;
+        });
+
+        if (isLocked) card.removeAttribute('open');
+    }
+}
+
+if (document.body.getAttribute('data-page') === 'day4') {
+    window.complete = function complete(partNum) {
+        if (!d4CompletedParts.includes(partNum)) {
+            d4CompletedParts.push(partNum);
+            localStorage.setItem(D4_STORAGE_PROGRESS, JSON.stringify(d4CompletedParts));
+        }
+        var current = document.getElementById('part' + partNum);
+        if (current) current.removeAttribute('open');
+
+        var next = document.getElementById('part' + (partNum + 1));
+        if (next) {
+            next.setAttribute('open', '');
+            setTimeout(function () { next.scrollIntoView({ behavior: 'smooth', block: 'start' }); }, 80);
+        }
+        d4UpdateProgress();
+        d4UpdateCardStates();
+    };
+
+    document.addEventListener('DOMContentLoaded', function () {
+        if (document.body.getAttribute('data-page') !== 'day4') return;
+
+        var saved = localStorage.getItem(D4_STORAGE_PROGRESS);
+        if (saved) {
+            try { d4CompletedParts = JSON.parse(saved); } catch (e) { d4CompletedParts = []; }
+        }
+
+        d4UpdateProgress();
+        d4UpdateCardStates();
+
+        /* Open the first incomplete, unlocked part */
+        var opened = false;
+        for (var n = 1; n <= D4_TOTAL_PARTS; n++) {
+            if (!d4CompletedParts.includes(n)) {
+                var card = document.getElementById('part' + n);
+                if (card && !card.classList.contains('locked-card')) {
+                    card.setAttribute('open', '');
+                }
+                opened = true;
+                break;
+            }
+        }
+        if (!opened) {
+            var last = document.getElementById('part' + D4_TOTAL_PARTS);
+            if (last) last.setAttribute('open', '');
+        }
+    });
 }
