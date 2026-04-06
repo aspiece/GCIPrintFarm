@@ -21,6 +21,7 @@
   --work-bdr:  rgba(156,243,219,0.35);
   --slide-w:   900px;
   --slide-h:   540px;
+  --toolbar-h: 48px;
 }
 
 /* ── Reset & base ────────────────────────────────────────────── */
@@ -28,6 +29,7 @@
 
 html, body {
   height: 100%;
+  overflow: hidden;
   font-family: Inter, Arial, sans-serif;
   background: var(--bg);
   color: var(--text);
@@ -97,27 +99,31 @@ html, body {
 
 /* ── Slide viewport ──────────────────────────────────────────── */
 #slideViewport {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  min-height: 100vh;
-  padding: 64px 16px 32px;
+  position: fixed;
+  top: var(--toolbar-h);
+  left: 0;
+  right: 0;
+  bottom: 0;
+  overflow: hidden;
 }
 
 /* ── Individual slide ────────────────────────────────────────── */
 .slide {
   display: none;
   width: 100%;
-  max-width: var(--slide-w);
-  min-height: var(--slide-h);
+  height: 100%;
+  max-width: none;
+  min-height: unset;
   background: var(--card);
-  border: 1px solid var(--border);
-  border-radius: 20px;
-  padding: 36px 42px 30px;
+  border: none;
+  border-top: 1px solid var(--border);
+  border-radius: 0;
+  padding: 32px 48px 28px;
   position: relative;
   flex-direction: column;
   gap: 14px;
-  box-shadow: 0 24px 60px rgba(0,0,0,0.35);
+  box-shadow: none;
+  overflow-y: auto;
   animation: slideIn 0.18s ease;
 }
 .slide.active { display: flex; }
@@ -276,6 +282,22 @@ html, body {
   word-break: break-all;
 }
 
+/* ── Embedded video (YouTube nocookie iframe) ────────────────── */
+.slide-video {
+  flex: 1;
+  min-height: 0;
+  border-radius: 10px;
+  overflow: hidden;
+  border: 1px solid var(--border);
+  background: #000;
+}
+.slide-video iframe {
+  width: 100%;
+  height: 100%;
+  border: none;
+  display: block;
+}
+
 /* ── Workflow steps (horizontal) ─────────────────────────────── */
 .workflow-row {
   display: flex;
@@ -419,8 +441,15 @@ html, body {
   display: flex;
   justify-content: center;
   gap: 5px;
-  padding: 10px 0 4px;
+  padding: 6px 0 4px;
+  position: fixed;
+  bottom: 28px;
+  left: 0;
+  right: 0;
+  z-index: 50;
+  pointer-events: none;
 }
+.dot { pointer-events: auto; }
 .dot {
   width: 8px; height: 8px;
   border-radius: 50%;
@@ -437,31 +466,41 @@ html, body {
   text-align: center;
   font-size: 0.76rem;
   color: rgba(201,220,255,0.35);
-  padding-bottom: 8px;
+  padding: 4px 0 5px;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 50;
+  background: rgba(8,17,31,0.7);
+  backdrop-filter: blur(6px);
 }
 
 /* ── Print styles ────────────────────────────────────────────── */
 @media print {
   #toolbar, #notesPanel, #progressDots, #navHint { display: none !important; }
   #slideViewport {
+    position: static;
     display: block;
-    padding: 0;
-    min-height: unset;
+    overflow: visible;
   }
   .slide {
     display: flex !important;
     page-break-after: always;
     break-after: page;
-    max-width: 100%;
-    min-height: auto;
+    width: 100%;
+    height: auto;
+    min-height: 540px;
     border-radius: 0;
     box-shadow: none;
     border: none;
+    overflow: visible;
     padding: 24px 30px;
     animation: none;
     margin-bottom: 0;
   }
   .slide:last-child { page-break-after: avoid; break-after: avoid; }
+  .slide-video { min-height: 240px; }
   body { background: #fff; color: #000; }
   :root {
     --text: #111;
@@ -552,6 +591,6 @@ html, body {
   .slide-cols.thirds { grid-template-columns: 1fr; }
   .slide h1  { font-size: 1.5rem; }
   .slide h2  { font-size: 1.3rem; }
-  .slide { padding: 20px 18px 24px; }
+  .slide { padding: 16px 14px 48px; }
   #toolbar { flex-direction: column; align-items: flex-start; }
 }

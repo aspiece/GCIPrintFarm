@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Speaker Notes — GCI 3D Printing</title>
+  <style>
+    :root {
+      --bg:     #04090a;
+      --text:   #ddeeff;
+      --warn:   #ffd400;
+      --accent: #7cc0ff;
+      --muted:  #c9dcff;
+      --border: rgba(125,166,230,0.28);
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html, body { height: 100%; font-family: Inter, Arial, sans-serif; background: var(--bg); color: var(--text); }
+
+    #header {
+      position: sticky;
+      top: 0;
+      background: rgba(4,9,18,0.97);
+      border-bottom: 2px solid var(--warn);
+      padding: 10px 16px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      backdrop-filter: blur(8px);
+      z-index: 10;
+    }
+    #header h1 {
+      font-size: 0.85rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--warn);
+    }
+    #slideInfo {
+      font-size: 0.8rem;
+      color: var(--accent);
+      margin-left: auto;
+      white-space: nowrap;
+    }
+
+    #content {
+      padding: 16px 20px 24px;
+      overflow-y: auto;
+    }
+
+    .notes-content {
+      font-size: 0.92rem;
+      line-height: 1.7;
+      color: var(--text);
+    }
+    .notes-content ul { padding-left: 20px; display: flex; flex-direction: column; gap: 4px; }
+    .notes-content li { margin-bottom: 4px; }
+    .notes-content strong { color: var(--warn); }
+    .notes-content em { color: var(--muted); font-style: italic; }
+    .notes-content code { background: rgba(124,192,255,0.12); border-radius: 4px; padding: 1px 5px; font-size: 0.88em; color: var(--accent); }
+
+    #empty {
+      color: rgba(201,220,255,0.3);
+      text-align: center;
+      padding: 48px 20px;
+      font-size: 0.9rem;
+      line-height: 1.7;
+    }
+  </style>
+</head>
+<body>
+  <div id="header">
+    <h1>📋 Speaker Notes</h1>
+    <span id="slideInfo">Waiting for slide deck…</span>
+  </div>
+  <div id="content">
+    <div id="notesBody" class="notes-content">
+      <div id="empty">Notes will appear here when the slide deck is open.<br>Navigate to a slide to see its speaker notes.</div>
+    </div>
+  </div>
+
+  <script>
+  (function () {
+    var KEY_NOTES = 'gci-slide-notes';
+    var KEY_INFO  = 'gci-slide-info';
+
+    function render() {
+      var notes = localStorage.getItem(KEY_NOTES) || '';
+      var info  = localStorage.getItem(KEY_INFO)  || '';
+      var body  = document.getElementById('notesBody');
+      var infoEl = document.getElementById('slideInfo');
+      body.innerHTML  = notes || '<div id="empty">No notes for this slide.</div>';
+      infoEl.textContent = info || 'Waiting for slide deck…';
+    }
+
+    render();
+
+    window.addEventListener('storage', function (e) {
+      if (e.key === KEY_NOTES || e.key === KEY_INFO) render();
+    });
+  }());
+  </script>
+</body>
+</html>

@@ -167,7 +167,12 @@
     <div class="compare-grid" style="flex:1;">
       <div class="compare-card compare-good">
         <div class="compare-label">✅ Simple Logo — Great for Printing</div>
-        <ul class="compare-items" style="gap:6px;">
+        <div style="text-align:center;margin:6px 0;">
+          <img src="https://github.com/user-attachments/assets/d3aea518-b662-440c-907e-185149941303"
+               alt="Example simple school logo: paw with letter F — bold shapes, clear silhouette"
+               style="max-height:100px;max-width:100%;object-fit:contain;border-radius:6px;background:#fff;padding:4px;" />
+        </div>
+        <ul class="compare-items" style="gap:4px;">
           <li>🟢 Bold, thick shapes with clear outlines</li>
           <li>🟢 Minimal fine lines or detail</li>
           <li>🟢 Strong, recognizable silhouette</li>
@@ -175,11 +180,15 @@
           <li>🟢 Converts cleanly to SVG</li>
           <li>🟢 Easy to edit in TinkerCAD</li>
         </ul>
-        <p style="font-size:0.83rem;margin-top:8px;color:var(--muted);">Examples: a bold star, a mascot head silhouette, a letter or simple initial</p>
       </div>
       <div class="compare-card compare-bad">
         <div class="compare-label">❌ Complex Logo — Printing Challenges</div>
-        <ul class="compare-items" style="gap:6px;">
+        <div style="text-align:center;margin:6px 0;">
+          <img src="https://github.com/user-attachments/assets/5e957ee3-17b3-44be-857a-1fee00f59d30"
+               alt="Example complex school logo: detailed tiger mascot with many fine lines and colors"
+               style="max-height:100px;max-width:100%;object-fit:contain;border-radius:6px;background:#fff;padding:4px;" />
+        </div>
+        <ul class="compare-items" style="gap:4px;">
           <li>🔴 Many thin lines and micro-details</li>
           <li>🔴 Small text within the logo</li>
           <li>🔴 Overlapping shapes and gradients</li>
@@ -187,7 +196,6 @@
           <li>🔴 SVG conversion creates messy paths</li>
           <li>🔴 Hard to scale without losing detail</li>
         </ul>
-        <p style="font-size:0.83rem;margin-top:8px;color:var(--muted);">Examples: a detailed crest with text, a complex multi-element badge</p>
       </div>
     </div>
     <div class="slide-num">6 / 21</div>
@@ -640,7 +648,7 @@
 <script>
 (function () {
   var slides = Array.from(document.querySelectorAll('.slide'));
-  var total = slides.length, current = 0, showNotes = false, breakTimer = null;
+  var total = slides.length, current = 0, breakTimer = null, notesWin = null;
   var dotsEl = document.getElementById('progressDots');
   slides.forEach(function (_, i) { var d = document.createElement('span'); d.className = 'dot'; d.addEventListener('click', function () { goTo(i); }); dotsEl.appendChild(d); });
   function startBreakCountdown(slide) {
@@ -649,6 +657,11 @@
     function tick() { var m = Math.floor(seconds/60), s = seconds%60; display.textContent = m+':'+(s<10?'0':'')+s; if (seconds===0){clearInterval(breakTimer);breakTimer=null;display.textContent="Time's up!";display.style.color='var(--danger)';} seconds--; }
     tick(); breakTimer = setInterval(tick, 1000);
     slide.querySelectorAll('.break-restart').forEach(function(btn){ btn.onclick = function(){ seconds=600; if(breakTimer)clearInterval(breakTimer); display.style.color=''; tick(); breakTimer=setInterval(tick,1000); }; });
+  }
+  function syncNotesToPopup() {
+    var notesEl = slides[current].querySelector('.notes-content');
+    localStorage.setItem('gci-slide-notes', notesEl ? notesEl.innerHTML : '');
+    localStorage.setItem('gci-slide-info', 'Slide '+(current+1)+' / '+total+' — Day 4');
   }
   function goTo(idx) {
     if (breakTimer) { clearInterval(breakTimer); breakTimer = null; }
@@ -663,15 +676,20 @@
     var cum=0; for(var i=0;i<=current;i++) cum+=parseInt(slides[i].getAttribute('data-time')||'0',10);
     document.getElementById('cumTime').textContent = '≈ '+cum+' min elapsed';
     Array.from(document.querySelectorAll('.dot')).forEach(function(d,i){ d.classList.toggle('current',i===current); d.classList.toggle('done',i<current); });
-    var notesEl=slides[current].querySelector('.notes-content'), panel=document.getElementById('notesPanel'), body=document.getElementById('notesBody');
-    if(showNotes&&notesEl){body.innerHTML=notesEl.innerHTML;panel.classList.add('visible');}else panel.classList.remove('visible');
+    syncNotesToPopup();
+  }
+  function openNotesPopup() {
+    syncNotesToPopup();
+    if (!notesWin || notesWin.closed) {
+      notesWin = window.open('slides-notes-popup.html', 'gci-speaker-notes', 'width=640,height=520,toolbar=0,menubar=0,location=0,status=0,resizable=1,scrollbars=1');
+    } else { notesWin.focus(); }
+    document.getElementById('notesToggle').textContent = '📋 Notes ✓';
   }
   document.getElementById('prevBtn').addEventListener('click', function(){if(current>0)goTo(current-1);});
   document.getElementById('nextBtn').addEventListener('click', function(){if(current<total-1)goTo(current+1);});
-  function toggleNotes(){ showNotes=!showNotes; document.getElementById('notesToggle').textContent=showNotes?'📋 Hide Notes':'📋 Notes'; updateUI(); }
-  document.getElementById('notesToggle').addEventListener('click', toggleNotes);
+  document.getElementById('notesToggle').addEventListener('click', openNotesPopup);
   document.getElementById('fullscreenBtn').addEventListener('click', function(){ if(!document.fullscreenElement)document.documentElement.requestFullscreen().catch(function(){}); else document.exitFullscreen(); });
-  document.addEventListener('keydown', function(e){ if(e.target.tagName==='INPUT'||e.target.tagName==='TEXTAREA')return; if(e.key==='ArrowRight'||e.key==='ArrowDown'||e.key===' '){e.preventDefault();if(current<total-1)goTo(current+1);} else if(e.key==='ArrowLeft'||e.key==='ArrowUp'){e.preventDefault();if(current>0)goTo(current-1);} else if(e.key==='n'||e.key==='N')toggleNotes(); else if(e.key==='f'||e.key==='F')document.getElementById('fullscreenBtn').click(); });
+  document.addEventListener('keydown', function(e){ if(e.target.tagName==='INPUT'||e.target.tagName==='TEXTAREA')return; if(e.key==='ArrowRight'||e.key==='ArrowDown'||e.key===' '){e.preventDefault();if(current<total-1)goTo(current+1);} else if(e.key==='ArrowLeft'||e.key==='ArrowUp'){e.preventDefault();if(current>0)goTo(current-1);} else if(e.key==='n'||e.key==='N')openNotesPopup(); else if(e.key==='f'||e.key==='F')document.getElementById('fullscreenBtn').click(); });
   updateUI();
 }());
 </script>

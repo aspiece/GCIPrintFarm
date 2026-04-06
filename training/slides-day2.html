@@ -226,13 +226,14 @@
     <div class="slide-time">⏱ 10 min</div>
     <span class="slide-type video">▶ Play Video</span>
     <h2>Bambu Studio — Intro Tutorial</h2>
-    <div class="video-placeholder" style="flex:1;">
-      <div class="play-icon">▶️</div>
-      <p style="font-size:1.1rem;font-weight:700;">Bambu Studio Intro &amp; Walkthrough</p>
-      <a href="https://www.youtube.com/watch?v=8TQCRVS72Us" target="_blank" rel="noopener">
-        https://www.youtube.com/watch?v=8TQCRVS72Us
-      </a>
-      <p style="font-size:0.85rem;color:var(--muted);margin-top:6px;">Watch for: import, slice button, settings panel, preview mode</p>
+    <div class="slide-video" style="flex:1;">
+      <iframe
+        src="https://www.youtube-nocookie.com/embed/8TQCRVS72Us?rel=0&modestbranding=1"
+        title="Bambu Studio Intro &amp; Walkthrough"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+        allowfullscreen
+        loading="lazy">
+      </iframe>
     </div>
     <div class="slide-num">8 / 22</div>
     <div class="notes-content" style="display:none">
@@ -679,7 +680,7 @@
 <script>
 (function () {
   var slides = Array.from(document.querySelectorAll('.slide'));
-  var total = slides.length, current = 0, showNotes = false, breakTimer = null;
+  var total = slides.length, current = 0, breakTimer = null, notesWin = null;
   var dotsEl = document.getElementById('progressDots');
   slides.forEach(function (_, i) { var d = document.createElement('span'); d.className = 'dot'; d.addEventListener('click', function () { goTo(i); }); dotsEl.appendChild(d); });
   function startBreakCountdown(slide) {
@@ -688,6 +689,11 @@
     function tick() { var m = Math.floor(seconds/60), s = seconds%60; display.textContent = m+':'+(s<10?'0':'')+s; if (seconds===0){clearInterval(breakTimer);breakTimer=null;display.textContent="Time's up!";display.style.color='var(--danger)';} seconds--; }
     tick(); breakTimer = setInterval(tick, 1000);
     slide.querySelectorAll('.break-restart').forEach(function(btn){ btn.onclick = function(){ seconds=600; if(breakTimer)clearInterval(breakTimer); display.style.color=''; tick(); breakTimer=setInterval(tick,1000); }; });
+  }
+  function syncNotesToPopup() {
+    var notesEl = slides[current].querySelector('.notes-content');
+    localStorage.setItem('gci-slide-notes', notesEl ? notesEl.innerHTML : '');
+    localStorage.setItem('gci-slide-info', 'Slide '+(current+1)+' / '+total+' — Day 2');
   }
   function goTo(idx) {
     if (breakTimer) { clearInterval(breakTimer); breakTimer = null; }
@@ -702,15 +708,20 @@
     var cum=0; for(var i=0;i<=current;i++) cum+=parseInt(slides[i].getAttribute('data-time')||'0',10);
     document.getElementById('cumTime').textContent = '≈ '+cum+' min elapsed';
     Array.from(document.querySelectorAll('.dot')).forEach(function(d,i){ d.classList.toggle('current',i===current); d.classList.toggle('done',i<current); });
-    var notesEl=slides[current].querySelector('.notes-content'), panel=document.getElementById('notesPanel'), body=document.getElementById('notesBody');
-    if(showNotes&&notesEl){body.innerHTML=notesEl.innerHTML;panel.classList.add('visible');}else panel.classList.remove('visible');
+    syncNotesToPopup();
+  }
+  function openNotesPopup() {
+    syncNotesToPopup();
+    if (!notesWin || notesWin.closed) {
+      notesWin = window.open('slides-notes-popup.html', 'gci-speaker-notes', 'width=640,height=520,toolbar=0,menubar=0,location=0,status=0,resizable=1,scrollbars=1');
+    } else { notesWin.focus(); }
+    document.getElementById('notesToggle').textContent = '📋 Notes ✓';
   }
   document.getElementById('prevBtn').addEventListener('click', function(){if(current>0)goTo(current-1);});
   document.getElementById('nextBtn').addEventListener('click', function(){if(current<total-1)goTo(current+1);});
-  function toggleNotes(){ showNotes=!showNotes; document.getElementById('notesToggle').textContent=showNotes?'📋 Hide Notes':'📋 Notes'; updateUI(); }
-  document.getElementById('notesToggle').addEventListener('click', toggleNotes);
+  document.getElementById('notesToggle').addEventListener('click', openNotesPopup);
   document.getElementById('fullscreenBtn').addEventListener('click', function(){ if(!document.fullscreenElement)document.documentElement.requestFullscreen().catch(function(){}); else document.exitFullscreen(); });
-  document.addEventListener('keydown', function(e){ if(e.target.tagName==='INPUT'||e.target.tagName==='TEXTAREA')return; if(e.key==='ArrowRight'||e.key==='ArrowDown'||e.key===' '){e.preventDefault();if(current<total-1)goTo(current+1);} else if(e.key==='ArrowLeft'||e.key==='ArrowUp'){e.preventDefault();if(current>0)goTo(current-1);} else if(e.key==='n'||e.key==='N')toggleNotes(); else if(e.key==='f'||e.key==='F')document.getElementById('fullscreenBtn').click(); });
+  document.addEventListener('keydown', function(e){ if(e.target.tagName==='INPUT'||e.target.tagName==='TEXTAREA')return; if(e.key==='ArrowRight'||e.key==='ArrowDown'||e.key===' '){e.preventDefault();if(current<total-1)goTo(current+1);} else if(e.key==='ArrowLeft'||e.key==='ArrowUp'){e.preventDefault();if(current>0)goTo(current-1);} else if(e.key==='n'||e.key==='N')openNotesPopup(); else if(e.key==='f'||e.key==='F')document.getElementById('fullscreenBtn').click(); });
   updateUI();
 }());
 </script>
