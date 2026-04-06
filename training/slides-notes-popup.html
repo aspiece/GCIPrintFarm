@@ -80,6 +80,9 @@
 
   <script>
   (function () {
+    /* Prevent the popup from accessing the opener window */
+    try { window.opener = null; } catch (e) {}
+
     var KEY_NOTES = 'gci-slide-notes';
     var KEY_INFO  = 'gci-slide-info';
 
