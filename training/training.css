@@ -87,6 +87,8 @@
     --action-bg-end: #ffffff;
     --action-text: #000000;
     --shadow: 0 2px 4px rgba(255, 255, 255, 0.3);
+    --link-color: #00ffff;
+    --link-hover-color: #ffffff;
 }
 
 /* ── Base ─────────────────────────────────────────────────── */
@@ -1017,11 +1019,6 @@ body[data-page="intro"][data-theme="high-contrast"] {
     background: var(--surface-accent-soft);
     font-size: 0.88rem;
     color: var(--muted);
-}
-
-[data-page="intro"][data-theme="high-contrast"] a {
-    color: #00ffff;
-    text-decoration: underline;
 }
 
 .hint-list {
