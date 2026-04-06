@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1" />
-<meta name="description" content="Intro to 3D Printing with Bambu A1: Day 1 student guide." />
-<title>Intro to 3D Printing – Day 1 | GCI</title>
+<meta name="description" content="Day 1: Foundations of 3D Printing — GCI 3D Printing Lab" />
+<title>Day 1: Foundations of 3D Printing | GCI 3D Printing</title>
 <link rel="stylesheet" href="lab.css" />
   <script src="training.js" defer></script>
 </head>
@@ -39,13 +39,14 @@
         <div class="bar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" aria-label="Overall progress">
           <div class="fill" id="progressFill"></div>
         </div>
-        <div class="jump-links" aria-label="Jump to part">
+        <div class="jump-links" aria-label="Jump to step">
           <a class="jump-link" href="#part1">1</a>
           <a class="jump-link" href="#part2">2</a>
           <a class="jump-link" href="#part3">3</a>
           <a class="jump-link" href="#part4">4</a>
           <a class="jump-link" href="#part5">5</a>
           <a class="jump-link" href="#part6">6</a>
+          <a class="jump-link" href="#part7">7</a>
         </div>
       </div>
     </div>
@@ -127,7 +128,9 @@
   </summary>
   <div class="part-content">
     <div class="note">Watch the full video first, then complete the quiz. You can reset the quiz if you want more practice.</div>
-    <iframe src="https://www.youtube.com/embed/HlvK6DLwCz4" title="Introduction to 3D printing video"></iframe>
+    <div class="video-wrap">
+      <iframe src="https://www.youtube.com/embed/HlvK6DLwCz4" title="Introduction to 3D printing video" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    </div>
     <div id="quiz" class="quiz-box">
       <div class="quiz-progress" id="quizProgress"></div>
       <p id="qText"></p>
@@ -167,7 +170,9 @@
         <li>What makes each printer different?</li>
       </ul>
     </div>
-    <iframe src="https://www.youtube.com/embed/bWM45yJOI7g" title="Printer overview video"></iframe>
+    <div class="video-wrap">
+      <iframe src="https://www.youtube.com/embed/bWM45yJOI7g" title="Printer overview video" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    </div>
     <textarea id="printerChoice" placeholder="Which printer would you choose and why?"></textarea>
     <div class="part-actions">
       <button type="button" onclick="window.complete(2)">Mark Complete</button>
@@ -315,7 +320,7 @@
   <summary>
     <div class="summary-row">
       <div class="summary-left">
-        <span class="step-badge">Step 4 of 6</span>
+        <span class="step-badge">Step 4 of 7</span>
         <span class="state-badge locked" id="badge4">Locked</span>
         <span class="part-title">Filament</span>
       </div>
@@ -330,7 +335,9 @@
         <li>Why does moisture matter?</li>
       </ul>
     </div>
-    <iframe src="https://www.youtube.com/embed/EX_975z-yk4" title="Filament basics video"></iframe>
+    <div class="video-wrap">
+      <iframe src="https://www.youtube.com/embed/EX_975z-yk4" title="Filament basics video" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    </div>
     <div id="filamentQuiz" class="quiz-box">
       <div class="quiz-progress" id="filamentQuizProgress"></div>
       <p id="filamentQText"></p>
@@ -355,7 +362,7 @@
   <summary>
     <div class="summary-row">
       <div class="summary-left">
-        <span class="step-badge">Step 5 of 6</span>
+        <span class="step-badge">Step 5 of 7</span>
         <span class="state-badge locked" id="badge5">Locked</span>
         <span class="part-title">Spool</span>
       </div>
@@ -363,7 +370,9 @@
   </summary>
   <div class="part-content">
     <div class="note">Do not touch or unwrap filament until your teacher tells you to do so.</div>
-    <iframe src="https://www.youtube.com/embed/9AiMNgjhlw8" title="Reusable spool video"></iframe>
+    <div class="video-wrap">
+      <iframe src="https://www.youtube.com/embed/9AiMNgjhlw8" title="Reusable spool video" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    </div>
     <div class="note"><strong>Important:</strong> Do not remove the plastic wrapper on the filament refill until the teacher checks your spool setup. If it opens too early, the filament can unwind and waste an entire roll.</div>
     <p><strong>Check each box only after you understand the process:</strong></p>
     <ul class="checklist">
@@ -383,7 +392,7 @@
   <summary>
     <div class="summary-row">
       <div class="summary-left">
-        <span class="step-badge">Step 6 of 6</span>
+        <span class="step-badge">Step 6 of 7</span>
         <span class="state-badge locked" id="badge6">Locked</span>
         <span class="part-title">Explore MakerWorld</span>
       </div>
@@ -409,9 +418,35 @@
       </ul>
     </div>
 
-    <textarea id="favoriteModel" placeholder="Favorite model and why"></textarea>
+    <textarea id="favoriteModel" placeholder="Describe the model and why it stood out to you..." aria-label="Favorite model and why"></textarea>
     <div class="part-actions">
       <button type="button" onclick="window.complete(6)">Mark Complete</button>
+    </div>
+  </div>
+</details>
+
+<!-- PART 7 -->
+<details id="part7" class="locked-card">
+  <summary>
+    <div class="summary-row">
+      <div class="summary-left">
+        <span class="step-badge">Step 7 of 7</span>
+        <span class="state-badge locked" id="badge7">Locked</span>
+        <span class="part-title">📤 Submit Your Work</span>
+      </div>
+    </div>
+  </summary>
+  <div class="part-content">
+    <div class="note">
+      <strong>📌 Instructions:</strong> Click <strong>Generate My Responses</strong> to create a summary of everything you did today. Copy the text and paste it into your <strong>Digital Notebook in Google Classroom</strong>.
+    </div>
+    <div class="quiz-actions">
+      <button type="button" onclick="window.d1GenerateSummary()">Generate My Responses</button>
+    </div>
+    <label for="d1SummaryOutput" class="summary-label">Your summary (copy and paste into your Digital Notebook in Google Classroom):</label>
+    <textarea id="d1SummaryOutput" class="summary-output" rows="16" readonly placeholder="Click 'Generate My Responses' to populate this..."></textarea>
+    <div class="part-actions">
+      <button type="button" onclick="window.complete(7)">Mark Complete</button>
     </div>
   </div>
 </details>

@@ -52,6 +52,7 @@
           <a class="jump-link" href="#part5">5</a>
           <a class="jump-link" href="#part6">6</a>
           <a class="jump-link" href="#part7">7</a>
+          <a class="jump-link" href="#part8">8</a>
         </div>
       </div>
     </div><!-- /sticky-progress -->
@@ -420,7 +421,7 @@
       <summary>
         <div class="summary-row">
           <div class="summary-left">
-            <span class="step-badge">Step 7 of 7</span>
+            <span class="step-badge">Step 7 of 8</span>
             <span class="state-badge locked" id="badge7">Locked</span>
             <span class="part-title">🖨️ Print + Reflect</span>
           </div>
@@ -486,6 +487,38 @@
 
         <div class="part-actions">
           <button type="button" onclick="window.complete(7)">Mark Complete</button>
+        </div>
+      </div>
+    </details>
+
+    <!-- ═══════════════════════════════════════════════════════
+         STEP 8: Submit Your Work
+         ═══════════════════════════════════════════════════════ -->
+    <details id="part8" class="locked-card">
+      <summary>
+        <div class="summary-row">
+          <div class="summary-left">
+            <span class="step-badge">Step 8 of 8</span>
+            <span class="state-badge locked" id="badge8">Locked</span>
+            <span class="part-title">📤 Submit Your Work</span>
+          </div>
+        </div>
+      </summary>
+
+      <div class="part-content">
+        <div class="note">
+          <strong>📌 Instructions:</strong> Click <strong>Generate My Responses</strong> to create a summary of everything you did today. Copy the text and paste it into your <strong>Digital Notebook in Google Classroom</strong>.
+        </div>
+
+        <div class="quiz-actions">
+          <button type="button" onclick="window.d4GenerateSummary()">Generate My Responses</button>
+        </div>
+
+        <label for="d4SummaryOutput" class="summary-label">Your summary (copy and paste into your Digital Notebook in Google Classroom):</label>
+        <textarea id="d4SummaryOutput" class="summary-output" rows="16" readonly placeholder="Click 'Generate My Responses' to populate this..."></textarea>
+
+        <div class="part-actions">
+          <button type="button" onclick="window.complete(8)">Mark Complete</button>
         </div>
       </div>
     </details>

@@ -1434,7 +1434,7 @@ document.addEventListener('DOMContentLoaded', function () {
 /* ── Day 1 Storage Key ─────────────────────────────────────── */
 var D1_STORAGE_KEY = 'gci-3d-day1-state-v1';
 
-var D1_TOTAL_PARTS = 6;
+var D1_TOTAL_PARTS = 7;
 
 /* ── Day 1 State ───────────────────────────────────────────── */
 var d1State = {
@@ -2116,11 +2116,40 @@ function d1UpdateSpoolButton() {
     if (btn) btn.disabled = !checks.every(function (c) { return c.checked; });
 }
 
+/* ── Day 1 Generate Summary ─────────────────────────────────── */
+if (document.body.getAttribute('data-page') === 'day1') {
+    window.d1GenerateSummary = function d1GenerateSummary() {
+        function val(id) {
+            var el = document.getElementById(id);
+            return (el && el.value && el.value.trim()) || '(not entered)';
+        }
+        var lines = [
+            '=== Day 1: Foundations of 3D Printing ===',
+            '',
+            '🖨️ Printer I would choose and why:',
+            val('printerChoice'),
+            '',
+            '🔩 What would happen if these parts failed?',
+            '  Nozzle: ' + val('partNozzle'),
+            '  Bed: '    + val('partBed'),
+            '  Extruder: ' + val('partExtruder'),
+            '  Frame: '  + val('partFrame'),
+            '',
+            '🌐 Favorite model on MakerWorld and why:',
+            val('favoriteModel'),
+            '',
+            '--- Copy and paste this into your Digital Notebook in Google Classroom ---'
+        ];
+        var out = document.getElementById('d1SummaryOutput');
+        if (out) out.value = lines.join('\n');
+    };
+}
+
 /* ══════════════════════════════════════════════════════════════
    DAY 4 – School Logo Keychain
    ══════════════════════════════════════════════════════════════ */
 var D4_STORAGE_PROGRESS = 'gci-day4-completed';
-var D4_TOTAL_PARTS      = 7;
+var D4_TOTAL_PARTS      = 8;
 var d4CompletedParts    = [];
 
 function d4UpdateProgress() {
@@ -2216,11 +2245,35 @@ if (document.body.getAttribute('data-page') === 'day4') {
     });
 }
 
-/* ══════════════════════════════════════════════════════════════
-   DAY 5 – Print, Maintain, and Understand the System
-   ══════════════════════════════════════════════════════════════ */
+/* ── Day 4 Generate Summary ─────────────────────────────────── */
+if (document.body.getAttribute('data-page') === 'day4') {
+    window.d4GenerateSummary = function d4GenerateSummary() {
+        function val(id) {
+            var el = document.getElementById(id);
+            return (el && el.value && el.value.trim()) || '(not entered)';
+        }
+        var lines = [
+            '=== Day 4: Create Your School Logo Keychain ===',
+            '',
+            '💾 File name:',
+            val('d4FileName'),
+            '',
+            '💭 Reflection',
+            '',
+            '1. What did you simplify in your design?',
+            val('d4-reflect1'),
+            '',
+            '2. What was hardest to recreate?',
+            val('d4-reflect2'),
+            '',
+            '--- Copy and paste this into your Digital Notebook in Google Classroom ---'
+        ];
+        var out = document.getElementById('d4SummaryOutput');
+        if (out) out.value = lines.join('\n');
+    };
+}
 var D5_STORAGE_PROGRESS = 'gci-day5-completed';
-var D5_TOTAL_PARTS      = 7;
+var D5_TOTAL_PARTS      = 8;
 var d5CompletedParts    = [];
 
 function d5UpdateProgress() {
@@ -2314,4 +2367,32 @@ if (document.body.getAttribute('data-page') === 'day5') {
             if (last) last.setAttribute('open', '');
         }
     });
+}
+
+/* ── Day 5 Generate Summary ─────────────────────────────────── */
+if (document.body.getAttribute('data-page') === 'day5') {
+    window.d5GenerateSummary = function d5GenerateSummary() {
+        function val(id) {
+            var el = document.getElementById(id);
+            return (el && el.value && el.value.trim()) || '(not entered)';
+        }
+        var lines = [
+            '=== Day 5: Print, Maintain, and Understand the System ===',
+            '',
+            '💭 Reflection',
+            '',
+            '1. What problem did you run into and how did you fix it?',
+            val('d5-reflect1'),
+            '',
+            '2. What did you learn about how 3D printers work?',
+            val('d5-reflect2'),
+            '',
+            '3. What would you improve next time?',
+            val('d5-reflect3'),
+            '',
+            '--- Copy and paste this into your Digital Notebook in Google Classroom ---'
+        ];
+        var out = document.getElementById('d5SummaryOutput');
+        if (out) out.value = lines.join('\n');
+    };
 }
