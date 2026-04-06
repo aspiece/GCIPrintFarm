@@ -1,139 +1,453 @@
 <!doctype html>
 <html lang="en">
-
 <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="description" content="Intro to 3D Printing with Bambu A1: Day 5 student guide." />
-    <title>Intro to 3D Printing – Day 5 | GCI</title>
-    <link rel="stylesheet" href="lab.css" />
-    <script src="training.js" defer></script>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Day 5: Print, Maintain, and Understand the System — GCI 3D Printing Lab" />
+  <title>Day 5: Print Lab | GCI 3D Printing</title>
+  <link rel="stylesheet" href="lab.css" />
+  <script src="training.js" defer></script>
 </head>
-
 <body data-page="day5">
-    <header class="page-header">
-        <h1>Intro to 3D Printing with Bambu Printers</h1>
-        <p>Day 5: Remix, improve, and show off your final 3D print project!</p>
-    </header>
-    <main class="wrap" id="mainContent" tabindex="-1">
 
-      <div class="sticky-progress" role="banner" aria-label="Page controls and progress">
-        <div class="control-row">
-          <label for="theme-selector" class="sr-only">Choose theme</label>
-          <select id="theme-selector" aria-label="Choose theme">
-            <option value="auto">Default (Auto Detect)</option>
-            <option value="dark">Dark</option>
-            <option value="light">Light</option>
-            <option value="high-contrast">High Contrast</option>
-          </select>
-          <label for="fontSizeSelector" class="font-size-label">Text:</label>
-          <select id="fontSizeSelector" aria-label="Choose text size">
-            <option value="default">Default</option>
-            <option value="large">Large</option>
-            <option value="x-large">Extra Large</option>
-          </select>
+  <!-- Page Header -->
+  <header class="page-header">
+    <h1>Intro to 3D Printing with Bambu Printers</h1>
+    <p>Day 5: Print, Maintain, and Understand the System</p>
+  </header>
+
+  <main class="wrap" id="mainContent" tabindex="-1">
+
+    <!-- Sticky progress bar -->
+    <div class="sticky-progress" role="banner" aria-label="Page controls and progress">
+      <div class="control-row">
+        <label for="theme-selector" class="sr-only">Choose theme</label>
+        <select id="theme-selector" aria-label="Choose theme">
+          <option value="auto">Default (Auto Detect)</option>
+          <option value="dark">Dark</option>
+          <option value="light">Light</option>
+          <option value="high-contrast">High Contrast</option>
+        </select>
+        <label for="fontSizeSelector" class="font-size-label">Text:</label>
+        <select id="fontSizeSelector" aria-label="Choose text size">
+          <option value="default">Default</option>
+          <option value="large">Large</option>
+          <option value="x-large">Extra Large</option>
+        </select>
+      </div>
+
+      <div class="progress-row">
+        <div class="progress-meta">
+          <span id="progressStep" class="step-text">Step 1 of 7</span>
+          <span id="progressPercent" class="percent-text">0%</span>
+        </div>
+        <div class="bar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" aria-label="Overall progress">
+          <div class="fill" id="progressFill"></div>
+        </div>
+        <div class="jump-links" aria-label="Jump to step">
+          <a class="jump-link" href="#part1">1</a>
+          <a class="jump-link" href="#part2">2</a>
+          <a class="jump-link" href="#part3">3</a>
+          <a class="jump-link" href="#part4">4</a>
+          <a class="jump-link" href="#part5">5</a>
+          <a class="jump-link" href="#part6">6</a>
+          <a class="jump-link" href="#part7">7</a>
         </div>
       </div>
-        <section class="day-list" aria-label="5-day 3D printing lab guide">
-            <!-- Begin Day 5 Content -->
-            <article class="day-card" data-day="5">
-                <div class="day-header">
-                    <h2 class="day-title">Day 5 – Remix and Improve</h2>
-                    <span class="pill">Capstone</span>
-                </div>
-                <p class="goal"><strong>Goal:</strong> Apply your learning by remixing or improving your model.</p>
-                <p class="guidance"><strong>Quick laugh:</strong> Today is your “director’s cut” — same idea, better version.
-                </p>
-                <h3>Objectives</h3>
-                <ul>
-                    <li>Create and apply meaningful design improvements (
-                        <strong>Evidence:</strong> Remix ideas + final summary).</li>
-                    <li>Document how your final version changed from the original (
-                        <strong>Evidence:</strong> Changes Made from Original field).</li>
-                    <li>Reflect on your design process and your next version plan (
-                        <strong>Evidence:</strong> Final reflection responses).</li>
-                </ul>
-                <h3>Success Criteria</h3>
-                <ul>
-                    <li>I can explain at least three intentional design improvements.</li>
-                    <li>I can show clear differences between my original and final version.</li>
-                    <li>I can propose next-step improvements based on what I learned this week.</li>
-                </ul>
-                <h3>Steps</h3>
-                <p class="flow-note"><strong>Instructional Flow:</strong> Learn (review + remix plan) → Practice (Day 5 activity log) → Submit (Before You Submit Checklist + Copy Day Notes).</p>
-                <ol>
-                    <li><strong>Step 1: Choose Remix Direction (7 min)</strong><br />Assignment: Choose one: remix a model from <a href="https://www.printables.com" target="_blank" rel="noopener noreferrer">Printables.com</a> or improve your previous design.</li>
-                    <li><strong>Step 2: Redesign in Tinkercad (15 min)</strong><br />Assignment: Modify or redesign in Tinkercad, then record ideas in
-                        <strong>List three changes or remix ideas</strong>.
-                    </li>
-                    <li><strong>Step 3: Export and Capture Evidence (8 min)</strong><br />Assignment: Export the final STL file, then take a screenshot of your new model.
-                    </li>
-                    <li><strong>Step 4: Complete and Submit Final Work (10 min)</strong><br />Assignment: Complete
-                        <strong>Final Design Summary</strong>,
-                        <strong>Final Reflection</strong>, and <strong>Before You Submit Checklist</strong>, then insert your final STL filename/link plus screenshot into your Digital Notebook Day 5 entry.
-                        <em>STL note: upload file to Google
-                                Classroom, log filename/link in Notebook.</em>
-                    </li>
-                </ol>
-                <p class="deliverable"><strong>Deliverable:</strong> Final STL filename/link, screenshot, and reflection paragraph in your Digital Notebook (<strong>STL file</strong> uploaded to Google Classroom).
-                </p>
-                <div class="worksheet" aria-label="Day 5 activity log">
-                    <h3 class="worksheet-title">Day 5 Activity Log</h3>
-                    <p class="guidance">Guidance: Show growth from your first design. Explain what changed and why those changes improve function or quality.</p>
-                    <h3>List three changes or remix ideas</h3>
-                    <div class="line-input"><input type="text" aria-label="Day 5 remix idea 1" placeholder="1." /></div>
-                    <div class="line-input"><input type="text" aria-label="Day 5 remix idea 2" placeholder="2." /></div>
-                    <div class="line-input"><input type="text" aria-label="Day 5 remix idea 3" placeholder="3." /></div>
-                    <h3>Final Design Summary</h3>
-                    <table>
-                        <thead>
-                            <tr>
-                                <th>Field</th>
-                                <th>Details</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>Design Title</td>
-                                <td><input type="text" aria-label="Day 5 final design title" /></td>
-                            </tr>
-                            <tr>
-                                <td>Description</td>
-                                <td><input type="text" aria-label="Day 5 final design description" /></td>
-                            </tr>
-                            <tr>
-                                <td>Changes Made from Original</td>
-                                <td><input type="text" aria-label="Day 5 changes made from original design" /></td>
-                            </tr>
-                        </tbody>
-                    </table>
-                    <h3>Final Reflection</h3>
-                    <p>1. What is one design decision you changed during this project, and how did that improve your final print?</p>
-                    <textarea class="short" aria-label="Day 5 final reflection question 1" placeholder="Explain the original choice, what you changed, and the result."></textarea>
-                    <p>2. What would your next version include, and what steps would you take to make it print successfully?
-                    </p>
-                    <textarea class="short" aria-label="Day 5 final reflection question 2" placeholder="List at least two improvements and one slicing or setup setting you would adjust."></textarea>
-                    <h3>Before You Submit Checklist</h3>
-                    <ul class="checklist">
-                        <li><input type="checkbox" id="day5-evidence-stl" /><label for="day5-evidence-stl">I inserted
-                                    my final STL filename/link into my Digital Notebook Day 5 entry and uploaded the STL
-                                    file to Google Classroom.</label></li>
-                        <li><input type="checkbox" id="day5-evidence-screen" /><label for="day5-evidence-screen">I
-                                    inserted a screenshot of my final model into my Digital Notebook Day 5 entry.</label>
-                        </li>
-                        <li><input type="checkbox" id="day5-evidence-reflection" /><label for="day5-evidence-reflection">I completed my final reflection.</label></li>
-                        <li><input type="checkbox" id="day5-evidence-copy" /><label for="day5-evidence-copy">I used
-                                    <strong>Copy Day Notes</strong> and pasted Day 5 responses into my Digital
-                                    Notebook.</label></li>
-                    </ul>
-                </div>
-            </article>
-            <!-- End Day 5 Content -->
-        </section>
-        <!-- Day 5 Content Start -->
-        <!-- ...Day 5 article content from original file goes here... -->
-        <!-- Day 5 Content End -->
-    </main>
+    </div><!-- /sticky-progress -->
+
+    <!-- Page intro / hero -->
+    <section class="hero intro-section" aria-labelledby="pageTitle">
+      <h2 id="pageTitle">Day 5: Print, Maintain, and Understand the System</h2>
+
+      <div class="intro-grid">
+        <div class="intro-card">
+          <h3>&#127919; Goal</h3>
+          <p>Operate the print lab, complete your keychain print, and learn how 3D printers work.</p>
+          <ul class="objectives-list">
+            <li>Run the print lab safely and efficiently</li>
+            <li>Print your keychain</li>
+            <li>Identify the parts of a 3D printer</li>
+          </ul>
+        </div>
+
+        <div class="intro-card">
+          <h3>&#9201;&#65039; Time Guide</h3>
+          <table class="time-table">
+            <thead>
+              <tr><th>Step</th><th>Activity</th><th>Time</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>1</td><td>Print Lab Roles</td><td>5 min</td></tr>
+              <tr><td>2</td><td>Run the Print Lab</td><td>10 min</td></tr>
+              <tr><td>3</td><td>Know Your Printer</td><td>10 min</td></tr>
+              <tr><td>4</td><td>Quick Troubleshooting</td><td>5 min</td></tr>
+              <tr><td>5</td><td>Work Time</td><td>45 min</td></tr>
+              <tr><td>6</td><td>Before You Print</td><td>5 min</td></tr>
+              <tr><td>7</td><td>Reflection</td><td>10 min</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- Quick Review callout -->
+      <div class="note" style="margin-top:14px;" aria-label="Quick review callout">
+        <strong>&#128203; Quick Review &mdash; Workflow &amp; File Types</strong>
+        <div class="workflow-row" aria-label="Design workflow" style="margin:10px 0 8px;">
+          <div class="workflow-step">
+            <div class="ws-num">1</div>
+            <h4>Design</h4>
+          </div>
+          <div class="workflow-arrow" aria-hidden="true">&rarr;</div>
+          <div class="workflow-step">
+            <div class="ws-num">2</div>
+            <h4>Convert</h4>
+          </div>
+          <div class="workflow-arrow" aria-hidden="true">&rarr;</div>
+          <div class="workflow-step">
+            <div class="ws-num">3</div>
+            <h4>Build</h4>
+          </div>
+          <div class="workflow-arrow" aria-hidden="true">&rarr;</div>
+          <div class="workflow-step">
+            <div class="ws-num">4</div>
+            <h4>Slice</h4>
+          </div>
+          <div class="workflow-arrow" aria-hidden="true">&rarr;</div>
+          <div class="workflow-step">
+            <div class="ws-num">5</div>
+            <h4>Print</h4>
+          </div>
+        </div>
+        <div class="filetype-grid" style="margin-top:8px;">
+          <div class="filetype-card">
+            <div class="filetype-icon">&#128444;&#65039;</div>
+            <h4><abbr title="Scalable Vector Graphics">SVG</abbr></h4>
+            <span class="ft-tag">Design shapes</span>
+          </div>
+          <div class="filetype-card">
+            <div class="filetype-icon">&#128208;</div>
+            <h4><abbr title="Standard Triangle Language">STL</abbr></h4>
+            <span class="ft-tag">3D model</span>
+          </div>
+          <div class="filetype-card">
+            <div class="filetype-icon">&#128424;&#65039;</div>
+            <h4><abbr title="3D Manufacturing Format">3MF</abbr></h4>
+            <span class="ft-tag">Print-ready file</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="goal-section" style="margin-top:14px;">
+        <div class="goal-card">
+          <h3>&#128214; How to Use This Page</h3>
+          <ul>
+            <li>Work through one step at a time &mdash; top to bottom</li>
+            <li>Complete every activity before clicking <strong>Mark Complete</strong></li>
+            <li>Pause when the teacher asks you to</li>
+            <li>Your progress saves on this device</li>
+          </ul>
+        </div>
+        <div class="goal-card">
+          <h3>&#9989; Success Criteria</h3>
+          <ul>
+            <li>I know my lab role and responsibilities</li>
+            <li>I can identify parts of a 3D printer</li>
+            <li>I started or completed my keychain print</li>
+            <li>I can describe one troubleshooting fix</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- STEP 1: Print Lab Roles -->
+    <details id="part1" class="active-card" open>
+      <summary>
+        <div class="summary-row">
+          <div class="summary-left">
+            <span class="step-badge">Step 1 of 7</span>
+            <span class="state-badge active" id="badge1">Active</span>
+            <span class="part-title">&#129489;&#8205;&#128295; Print Lab Roles</span>
+          </div>
+        </div>
+      </summary>
+
+      <div class="part-content">
+        <div class="note">
+          <strong>&#128204; Goal:</strong> Know your role before the lab starts.
+        </div>
+
+        <div class="part-grid">
+          <div class="fun">
+            <strong>&#128424;&#65039; Print Technician</strong>
+            <ul style="margin:6px 0 0;">
+              <li>Start prints</li>
+              <li>Check the first layer</li>
+            </ul>
+          </div>
+          <div class="fun">
+            <strong>&#128230; Materials Manager</strong>
+            <ul style="margin:6px 0 0;">
+              <li>Check filament levels</li>
+              <li>Help load filament</li>
+            </ul>
+          </div>
+          <div class="fun">
+            <strong>&#128269; Quality Control</strong>
+            <ul style="margin:6px 0 0;">
+              <li>Inspect finished prints</li>
+              <li>Look for problems</li>
+            </ul>
+          </div>
+          <div class="fun">
+            <strong>&#128682; Helpdesk / Support</strong>
+            <ul style="margin:6px 0 0;">
+              <li>Help classmates</li>
+              <li>Troubleshoot issues</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="note" style="margin-top:10px;">
+          &#128161; You may rotate roles during class.
+        </div>
+
+        <div class="part-actions">
+          <button type="button" onclick="window.complete(1)">Mark Complete</button>
+        </div>
+      </div>
+    </details>
+
+    <!-- STEP 2: Run the Print Lab -->
+    <details id="part2" class="locked-card">
+      <summary>
+        <div class="summary-row">
+          <div class="summary-left">
+            <span class="step-badge">Step 2 of 7</span>
+            <span class="state-badge locked" id="badge2">Locked</span>
+            <span class="part-title">&#128424;&#65039; Run the Print Lab</span>
+          </div>
+        </div>
+      </summary>
+
+      <div class="part-content">
+        <div class="note">
+          <strong>&#128204; Goal:</strong> Start the lab safely and get your print queued.
+        </div>
+
+        <ol>
+          <li>Clean the <strong>build plate</strong></li>
+          <li>Check the <strong>filament</strong></li>
+          <li>Load your <strong>3MF file</strong></li>
+          <li>Start the <strong>print</strong></li>
+          <li>Watch the <strong>first layer</strong></li>
+          <li>Ask for help if something looks wrong</li>
+        </ol>
+
+        <div class="part-actions">
+          <button type="button" onclick="window.complete(2)">Mark Complete</button>
+        </div>
+      </div>
+    </details>
+
+    <!-- STEP 3: Know Your Printer -->
+    <details id="part3" class="locked-card">
+      <summary>
+        <div class="summary-row">
+          <div class="summary-left">
+            <span class="step-badge">Step 3 of 7</span>
+            <span class="state-badge locked" id="badge3">Locked</span>
+            <span class="part-title">&#128297; Know Your Printer</span>
+          </div>
+        </div>
+      </summary>
+
+      <div class="part-content">
+        <div class="note">
+          <strong>&#128204; Goal:</strong> Identify the key parts of the printer.
+        </div>
+
+        <ul>
+          <li><strong>Nozzle</strong> &mdash; melts and deposits the filament</li>
+          <li><strong>Extruder</strong> &mdash; pushes filament to the nozzle</li>
+          <li><strong>Build plate</strong> &mdash; where the print sticks</li>
+          <li><strong>Filament spool</strong> &mdash; holds the material</li>
+          <li><strong>X, Y, Z axes</strong> &mdash; control movement in three directions</li>
+        </ul>
+
+        <div class="fun">
+          &#128270; <strong>Activity:</strong> Find each part on a real printer and point to it.
+        </div>
+
+        <div class="part-actions">
+          <button type="button" onclick="window.complete(3)">Mark Complete</button>
+        </div>
+      </div>
+    </details>
+
+    <!-- STEP 4: Quick Troubleshooting -->
+    <details id="part4" class="locked-card">
+      <summary>
+        <div class="summary-row">
+          <div class="summary-left">
+            <span class="step-badge">Step 4 of 7</span>
+            <span class="state-badge locked" id="badge4">Locked</span>
+            <span class="part-title">&#128295; Quick Troubleshooting</span>
+          </div>
+        </div>
+      </summary>
+
+      <div class="part-content">
+        <div class="note">
+          <strong>&#128204; Goal:</strong> Know what to do when something goes wrong.
+        </div>
+
+        <ul>
+          <li><strong>Not sticking</strong> &rarr; clean the bed</li>
+          <li><strong>Stringy print</strong> &rarr; check settings</li>
+          <li><strong>Weak print</strong> &rarr; increase thickness or infill</li>
+        </ul>
+
+        <div class="fun">
+          &#128161; <strong>Tip:</strong> Always ask Helpdesk before stopping a print.
+        </div>
+
+        <div class="part-actions">
+          <button type="button" onclick="window.complete(4)">Mark Complete</button>
+        </div>
+      </div>
+    </details>
+
+    <!-- STEP 5: Work Time -->
+    <details id="part5" class="locked-card">
+      <summary>
+        <div class="summary-row">
+          <div class="summary-left">
+            <span class="step-badge">Step 5 of 7</span>
+            <span class="state-badge locked" id="badge5">Locked</span>
+            <span class="part-title">&#9201;&#65039; Work Time</span>
+          </div>
+        </div>
+      </summary>
+
+      <div class="part-content">
+        <div class="note">
+          <strong>&#128204; Goal:</strong> Use class time to print, help, and improve.
+        </div>
+
+        <ul>
+          <li>Print your <strong>keychain</strong></li>
+          <li>Rotate <strong>roles</strong> with your group</li>
+          <li>Help <strong>other students</strong></li>
+          <li>Improve your design <strong>if waiting</strong> for a printer</li>
+        </ul>
+
+        <div class="part-actions">
+          <button type="button" onclick="window.complete(5)">Mark Complete</button>
+        </div>
+      </div>
+    </details>
+
+    <!-- STEP 6: Before You Print -->
+    <details id="part6" class="locked-card">
+      <summary>
+        <div class="summary-row">
+          <div class="summary-left">
+            <span class="step-badge">Step 6 of 7</span>
+            <span class="state-badge locked" id="badge6">Locked</span>
+            <span class="part-title">&#9989; Before You Print</span>
+          </div>
+        </div>
+      </summary>
+
+      <div class="part-content">
+
+        <!-- Print expectations callout -->
+        <div class="note" style="border-left: 4px solid var(--accent);">
+          <strong>&#128424;&#65039; Print Expectations</strong>
+          <ul style="margin:8px 0 0;">
+            <li>We have <strong>11 printers</strong> &mdash; you may need to wait</li>
+            <li>Be <strong>patient</strong></li>
+            <li>Do <strong>not</strong> touch other students' prints</li>
+            <li>Work with <strong>Helpdesk</strong> to submit your print</li>
+            <li>Follow all <strong>procedures</strong></li>
+          </ul>
+        </div>
+
+        <!-- Pre-print checklist -->
+        <h3>Checklist &mdash; Before You Print</h3>
+        <ul class="checklist">
+          <li>
+            <label>
+              <input type="checkbox" id="d5-file" />
+              File is ready (<strong>3MF</strong>)
+            </label>
+          </li>
+          <li>
+            <label>
+              <input type="checkbox" id="d5-bed" />
+              Bed is clean
+            </label>
+          </li>
+          <li>
+            <label>
+              <input type="checkbox" id="d5-filament" />
+              Filament checked
+            </label>
+          </li>
+          <li>
+            <label>
+              <input type="checkbox" id="d5-approved" />
+              File approved (if required)
+            </label>
+          </li>
+          <li>
+            <label>
+              <input type="checkbox" id="d5-procedures" />
+              Ready to follow all procedures
+            </label>
+          </li>
+        </ul>
+
+        <div class="part-actions">
+          <button type="button" onclick="window.complete(6)">Mark Complete</button>
+        </div>
+      </div>
+    </details>
+
+    <!-- STEP 7: Reflection -->
+    <details id="part7" class="locked-card">
+      <summary>
+        <div class="summary-row">
+          <div class="summary-left">
+            <span class="step-badge">Step 7 of 7</span>
+            <span class="state-badge locked" id="badge7">Locked</span>
+            <span class="part-title">&#128161; Reflection</span>
+          </div>
+        </div>
+      </summary>
+
+      <div class="part-content">
+        <div class="note">
+          <strong>&#128204; Goal:</strong> Think about what you learned today.
+        </div>
+
+        <label for="d5-reflect1">1. What problem did you run into and how did you fix it?</label>
+        <textarea id="d5-reflect1" rows="3" placeholder="Describe the problem and your solution..." aria-label="Day 5 reflection: problem and fix"></textarea>
+
+        <label for="d5-reflect2" style="margin-top:10px;display:block;">2. What did you learn about how 3D printers work?</label>
+        <textarea id="d5-reflect2" rows="3" placeholder="Describe one thing you learned about the printer..." aria-label="Day 5 reflection: how printers work"></textarea>
+
+        <label for="d5-reflect3" style="margin-top:10px;display:block;">3. What would you improve next time?</label>
+        <textarea id="d5-reflect3" rows="3" placeholder="Describe one improvement you would make..." aria-label="Day 5 reflection: improvement"></textarea>
+
+        <div class="part-actions">
+          <button type="button" onclick="window.complete(7)">Mark Complete</button>
+        </div>
+      </div>
+    </details>
+
+  </main>
 </body>
 
 </html>
