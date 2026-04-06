@@ -60,11 +60,11 @@
         <div class="intro-card">
           <h3>🎯 Learning Objectives</h3>
           <ul class="objectives-list">
-            <li>Explain how a 3D printer works layer by layer</li>
-            <li>Identify and describe the key parts of a 3D printer</li>
-            <li>Compare PLA and PETG filaments and explain when to use each</li>
-            <li>Demonstrate how to correctly set up a reusable filament spool</li>
-            <li>Explore MakerWorld and identify a model of interest</li>
+            <li>Understand how FDM 3D printing builds objects layer by layer</li>
+            <li>Identify the key parts of a Bambu printer and what each one does</li>
+            <li>Compare PLA and PETG, and know which to reach for and when</li>
+            <li>Set up a reusable filament spool the right way — before anything gets wasted</li>
+            <li>Explore MakerWorld and find at least one model you'd actually want to print</li>
           </ul>
         </div>
 
@@ -91,7 +91,7 @@
       <div class="goal-section">
         <div class="goal-card">
           <h3>🚀 Goal</h3>
-          <p>Understand how 3D printing works, identify printer parts, and explore filament and design possibilities.</p>
+          <p>Today you're building the foundation. By the end of class, you'll know how 3D printing actually works, what the machine parts do, and what you'd like to make with one.</p>
         </div>
         <div class="goal-card">
           <h3>📖 How to Use This Page</h3>
@@ -105,11 +105,11 @@
         <div class="goal-card">
           <h3>✅ Success Criteria</h3>
           <ul>
-            <li>I can explain how a 3D printer works</li>
-            <li>I can identify key parts of a 3D printer</li>
-            <li>I understand the difference between PLA and PETG</li>
-            <li>I know how to set up a reusable spool correctly</li>
-            <li>I explored MakerWorld and found a model I liked</li>
+            <li>I can explain how FDM printing builds an object one layer at a time</li>
+            <li>I can point to and name the key parts of a Bambu printer</li>
+            <li>I know the difference between PLA and PETG and when to use each</li>
+            <li>I know how to load a filament refill into a reusable spool without wasting it</li>
+            <li>I've explored MakerWorld and found at least one model I'd actually want to print</li>
           </ul>
         </div>
       </div>
@@ -163,17 +163,13 @@
   </summary>
   <div class="part-content">
     <div class="note">
-      <strong>While you watch:</strong>
-      <ul>
-        <li>Which printer seems best for beginners?</li>
-        <li>Which printer seems best for more advanced prints?</li>
-        <li>What makes each printer different?</li>
-      </ul>
+      <strong>While you watch:</strong> Pay attention to what makes each printer different. Think about which one you'd want to use and why.
     </div>
     <div class="video-wrap">
       <iframe src="https://www.youtube.com/embed/bWM45yJOI7g" title="Printer overview video" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
     </div>
-    <textarea id="printerChoice" placeholder="Which printer would you choose and why?"></textarea>
+    <label for="printerChoice">Which printer would you choose for this class, and why?</label>
+    <textarea id="printerChoice" placeholder="Think about ease of use, speed, print quality, or anything that stood out to you..."></textarea>
     <div class="part-actions">
       <button type="button" onclick="window.complete(2)">Mark Complete</button>
     </div>
@@ -195,7 +191,7 @@
 
     <div class="hero">
       <h3>👨‍🏫 Teacher Demo</h3>
-      <p>Pause here and follow your teacher to a printer. Watch as they point out each part and explain what it does.</p>
+      <p>Pause here — your teacher is about to walk you through a real Bambu printer. Watch where they point and listen for what each part does during a print. This is way easier to understand in person than on a screen.</p>
       <ul>
         <li>Identify the nozzle, bed, extruder, and frame</li>
         <li>Listen for what each part does during a print</li>
@@ -205,8 +201,7 @@
 
     <div class="hero">
       <h3>🧠 Matching Activity</h3>
-      <p>Now that you have seen the parts on a real printer, return to your computer and complete the activity below.</p>
-      <p>Match each part to what it does.</p>
+      <p>You just saw it in person — now let's see if it stuck. Match each part to what it does.</p>
 
       <div class="quiz-box">
         <p><strong>Nozzle</strong></p>
@@ -254,38 +249,38 @@
         <div id="matchingHint" class="note" style="display:none"></div>
       </div>
 
-      <div class="fun">Try to match these before scrolling down 👀</div>
+      <div class="fun">Give it a shot before scrolling down to the descriptions 👀</div>
     </div>
 
     <div class="part-grid">
       <div>
         🔥 <strong>Nozzle</strong>
         <div class="note">Melts filament and places it during printing</div>
-        <textarea id="partNozzle" placeholder="What happens if this fails?"></textarea>
+        <textarea id="partNozzle" placeholder="What goes wrong if the nozzle clogs or breaks?"></textarea>
       </div>
 
       <div>
         🛏️ <strong>Bed</strong>
         <div class="note">Surface where the object is printed</div>
-        <textarea id="partBed" placeholder="What happens if this fails?"></textarea>
+        <textarea id="partBed" placeholder="What happens if the bed isn't level or doesn't stick?"></textarea>
       </div>
 
       <div>
         🎯 <strong>Extruder</strong>
         <div class="note">Pushes filament into the nozzle</div>
-        <textarea id="partExtruder" placeholder="What happens if this fails?"></textarea>
+        <textarea id="partExtruder" placeholder="What could cause the filament to stop feeding?"></textarea>
       </div>
 
       <div>
         📦 <strong>Frame</strong>
         <div class="note">Provides structure and stability</div>
-        <textarea id="partFrame" placeholder="What happens if this fails?"></textarea>
+        <textarea id="partFrame" placeholder="How would a loose or bent frame affect your print?"></textarea>
       </div>
     </div>
 
     <div class="hero">
       <h3>🛠️ Troubleshooting Challenge</h3>
-      <p>Try this on your own first. Use the hint only if you need it.</p>
+      <p>Work through each scenario on your own first. It's okay if you're not sure — that's the point. Use the hint if you need a nudge.</p>
       <p>Work through one scenario at a time.</p>
 
       <div class="quiz-box">
@@ -306,7 +301,7 @@
         <div id="troubleshootingExplanation" class="explanation"></div>
       </div>
 
-      <div class="fun">This is what real troubleshooting looks like 👀</div>
+      <div class="fun">Real technicians do this every day — now you are too 🔧</div>
     </div>
 
     <div class="part-actions">
@@ -330,9 +325,9 @@
     <div class="note">
       <strong>Watch for these ideas:</strong>
       <ul>
-        <li>Which filament is easiest for beginners?</li>
-        <li>Which filament is more durable?</li>
-        <li>Why does moisture matter?</li>
+        <li>Which filament is the go-to for beginners — and why?</li>
+        <li>When would you choose PETG over PLA?</li>
+        <li>Why does moisture ruin filament, and how do you prevent it?</li>
       </ul>
     </div>
     <div class="video-wrap">
@@ -369,17 +364,17 @@
     </div>
   </summary>
   <div class="part-content">
-    <div class="note">Do not touch or unwrap filament until your teacher tells you to do so.</div>
+    <div class="note">Wait before you unwrap anything — your teacher will tell you when it's time.</div>
     <div class="video-wrap">
       <iframe src="https://www.youtube.com/embed/9AiMNgjhlw8" title="Reusable spool video" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
     </div>
-    <div class="note"><strong>Important:</strong> Do not remove the plastic wrapper on the filament refill until the teacher checks your spool setup. If it opens too early, the filament can unwind and waste an entire roll.</div>
+    <div class="note"><strong>Important:</strong> Don't remove the plastic wrapper on the filament refill until your teacher checks your spool setup. If it unwinds too early, the whole roll can tangle — and that's an expensive mistake to fix.</div>
     <p><strong>Check each box only after you understand the process:</strong></p>
     <ul class="checklist">
-      <li><label><input type="checkbox" class="spool-check" id="spoolCheck1"> I watched the video</label></li>
-      <li><label><input type="checkbox" class="spool-check" id="spoolCheck2"> I understand how the refill sits in the spool</label></li>
-      <li><label><input type="checkbox" class="spool-check" id="spoolCheck3"> I will NOT unwrap the filament before teacher approval</label></li>
-      <li><label><input type="checkbox" class="spool-check" id="spoolCheck4"> I am ready for a teacher check</label></li>
+      <li><label><input type="checkbox" class="spool-check" id="spoolCheck1"> I watched the video and understand the process</label></li>
+      <li><label><input type="checkbox" class="spool-check" id="spoolCheck2"> I know how the refill sits inside the reusable spool</label></li>
+      <li><label><input type="checkbox" class="spool-check" id="spoolCheck3"> I will not remove the wrapper until my teacher checks my setup</label></li>
+      <li><label><input type="checkbox" class="spool-check" id="spoolCheck4"> I'm ready for a quick check from my teacher</label></li>
     </ul>
     <div class="part-actions">
       <button type="button" id="spoolCompleteBtn" onclick="window.complete(5)" disabled>Mark Complete</button>
@@ -400,8 +395,7 @@
   </summary>
   <div class="part-content">
     <div class="note">
-      Explore at least 5 models. Look for a mix of useful, creative, and fun designs.
-      Be ready to explain why your model stood out to you.
+      Browse at least 5 models before you decide on one. Look across categories — something useful, something fun, something you'd actually want to own. Be ready to share what caught your eye.
     </div>
 
     <p>Explore models and find inspiration.</p>
@@ -418,6 +412,7 @@
       </ul>
     </div>
 
+    <label for="favoriteModel">What model stood out most to you, and why?</label>
     <textarea id="favoriteModel" placeholder="Describe the model and why it stood out to you..." aria-label="Favorite model and why"></textarea>
     <div class="part-actions">
       <button type="button" onclick="window.complete(6)">Mark Complete</button>
@@ -438,7 +433,7 @@
   </summary>
   <div class="part-content">
     <div class="note">
-      <strong>📌 Instructions:</strong> Click <strong>Generate My Responses</strong> to create a summary of everything you did today. Copy the text and paste it into your <strong>Digital Notebook in Google Classroom</strong>.
+      <strong>📌 Instructions:</strong> You did a lot today. Click <strong>Generate My Responses</strong> below to pull together everything you wrote and paste it into your <strong>Digital Notebook in Google Classroom</strong>.
     </div>
     <div class="quiz-actions">
       <button type="button" onclick="window.d1GenerateSummary()">Generate My Responses</button>
