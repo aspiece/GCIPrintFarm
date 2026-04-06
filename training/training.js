@@ -1172,25 +1172,25 @@ window.d3ResetMatching = function d3ResetMatching() {
 /* ── Part 3: Video Check for Understanding Quiz ────────────── */
 var d3VidQuizQuestions = [
     {
-        prompt: "Which file format stores ONLY the shape of a 3D object as a mesh of triangles?",
+        prompt: "For students under 12 years old, which button should they click to create a Tinkercad account?",
         type: "mcq",
-        options: ["3MF", "G-code", "STL", "PNG"],
+        options: ["Join Now", "Sign In", "Join a class", "Create Account"],
         correct: 2,
-        explanation: "STL (Standard Tessellation Language) stores only the geometry (shape) of a 3D model using triangles. It does not include color, materials, or settings."
+        explanation: "Students under 12 need a moderator such as a teacher or parent, so they must click the green 'Join a class' button and enter the class code provided in the Robofund email."
     },
     {
-        prompt: "In Tinkercad, what is the flat surface called where you build your 3D design?",
+        prompt: "Where are shapes located in Tinkercad that you can drag onto the work plane?",
         type: "mcq",
-        options: ["Canvas", "Workplane", "Layer", "Grid"],
+        options: ["The top toolbar", "The left sidebar", "The bottom panel", "The right side panel"],
+        correct: 3,
+        explanation: "In Tinkercad, shapes are found on the right side panel. You can scroll down to see more shapes and drag them onto the work plane to build your design."
+    },
+    {
+        prompt: "Which of the following is a way to delete a shape in Tinkercad?",
+        type: "mcq",
+        options: ["Right-click and select 'Delete'", "Click the trash can icon or press the Delete key", "Drag the shape off the work plane", "Press the Escape key"],
         correct: 1,
-        explanation: "The workplane is the flat surface in Tinkercad where you drag and position your shapes to build a 3D design."
-    },
-    {
-        prompt: "What software converts your 3D design file into G-code so the printer can use it?",
-        type: "mcq",
-        options: ["Tinkercad", "Google Classroom", "A slicer (like Bambu Studio)", "MakerWorld"],
-        correct: 2,
-        explanation: "A slicer, such as Bambu Studio, converts your STL or 3MF design file into G-code — the layer-by-layer instructions that run the 3D printer."
+        explanation: "You can delete a shape in Tinkercad by clicking the trash can icon on the screen, or by pressing the Delete key on your keyboard."
     }
 ];
 
