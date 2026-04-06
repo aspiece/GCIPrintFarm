@@ -213,24 +213,24 @@ window.complete = function complete(partNum) {
 /* ── Quiz (Part 3) ─────────────────────────────────────────── */
 var d2QuizQuestions = [
     {
-        prompt: "What is Bambu Studio primarily used for?",
+        prompt: "What is the first step when setting up a print in Bambu Studio?",
         type: "mcq",
         options: [
-            "Designing 3D models from scratch",
-            "Slicing and preparing 3D models for printing",
-            "Connecting to the internet",
-            "Painting 3D printed objects"
+            "Click the Slice button immediately",
+            "Import your 3D model file into the workspace",
+            "Select the filament color",
+            "Turn on the printer"
         ],
         correct: 1,
-        explanation: "Bambu Studio is a slicing app. It converts your 3D model into layer-by-layer print instructions (G-code) that your Bambu printer understands."
+        explanation: "The first step in Bambu Studio is to import your 3D model file (STL or 3MF) into the workspace before adjusting any settings or slicing."
     },
     {
         prompt: "What does 'slicing' a 3D model mean?",
         type: "mcq",
         options: [
             "Cutting the physical model with a tool",
-            "Designing a new model",
-            "Converting a 3D model into layer-by-layer printer instructions",
+            "Designing a new model from scratch",
+            "Converting a 3D model into layer-by-layer printer instructions (G-code)",
             "Uploading a file to MakerWorld"
         ],
         correct: 2,
@@ -244,16 +244,16 @@ var d2QuizQuestions = [
         explanation: "All four are adjustable! Layer height affects detail, infill controls internal density, supports hold up overhangs, and speed balances quality vs. time."
     },
     {
-        prompt: "What does the Preview feature in Bambu Studio show you?",
+        prompt: "Why is it important to select the correct printer profile in Bambu Studio?",
         type: "mcq",
         options: [
-            "A photo of the finished print",
-            "A layer-by-layer simulation of how the print will be built",
-            "A list of your saved models",
-            "The cost of the filament"
+            "It changes the color of your model",
+            "It ensures the right settings are applied for your specific Bambu printer model",
+            "It uploads your file to the cloud automatically",
+            "It is not important — any profile will work"
         ],
         correct: 1,
-        explanation: "Preview lets you scrub through every layer before printing -- great for spotting missing supports or unexpected gaps before wasting filament."
+        explanation: "Each Bambu printer model has different dimensions and capabilities. Selecting the right printer profile ensures Bambu Studio generates correct instructions for your specific machine."
     },
     {
         prompt: "Why should you always check the sliced preview before printing?",
@@ -261,7 +261,7 @@ var d2QuizQuestions = [
         options: [
             "It makes the print faster",
             "It changes the filament color",
-            "It helps you catch errors, verify supports, and estimate print time",
+            "It helps you catch errors, verify supports, and estimate print time before wasting filament",
             "It is required by Bambu to activate the printer"
         ],
         correct: 2,
@@ -760,6 +760,10 @@ window.generateSummary = function generateSummary() {
         var el = document.getElementById(id);
         return (el && el.value.trim()) || '(not entered)';
     }
+    var quizScore = 0;
+    for (var i = 0; i < d2QuizQuestions.length; i++) {
+        if (d2IsAnswerCorrect(i)) quizScore++;
+    }
     var lines = [
         '=== Day 2: From Model to Print Setup ===',
         '',
@@ -775,6 +779,16 @@ window.generateSummary = function generateSummary() {
         '',
         '\u26A0\uFE0F Potential Print Issue:',
         val('potentialIssue'),
+        '',
+        '\uD83D\uDCCA Bambu Studio Quiz Score: ' + quizScore + ' of ' + d2QuizQuestions.length,
+        '',
+        '\uD83D\uDCDD Guided Notes:',
+        '  1. Printer instructions type: ' + val('gn1'),
+        '  2. Common file formats: ' + val('gn2'),
+        '  3. Slicing creates: ' + val('gn3'),
+        '  4. Settings to adjust: ' + val('gn4'),
+        '  5. Preview checks: ' + val('gn5'),
+        '  6. Printer profile identifies: ' + val('gn6'),
         '',
         '--- Copy and paste this into Google Classroom ---'
     ];
@@ -1176,7 +1190,7 @@ var d3VidQuizQuestions = [
         type: "mcq",
         options: ["Join Now", "Sign In", "Join a class", "Create Account"],
         correct: 2,
-        explanation: "Students under 12 need a moderator such as a teacher or parent, so they must click the green 'Join a class' button and enter the class code provided in the Robofund email."
+        explanation: "Students under 12 need a moderator such as a teacher or parent, so they must click the green 'Join a class' button and enter the class code provided."
     },
     {
         prompt: "Where are shapes located in Tinkercad that you can drag onto the work plane?",
@@ -1191,6 +1205,30 @@ var d3VidQuizQuestions = [
         options: ["Right-click and select 'Delete'", "Click the trash can icon or press the Delete key", "Drag the shape off the work plane", "Press the Escape key"],
         correct: 1,
         explanation: "You can delete a shape in Tinkercad by clicking the trash can icon on the screen, or by pressing the Delete key on your keyboard."
+    },
+    {
+        prompt: "In Tinkercad, what does setting a shape to 'Hole' allow you to do?",
+        type: "mcq",
+        options: [
+            "Color the shape a different color",
+            "Make the shape invisible permanently",
+            "Cut that shape out of another shape when grouped",
+            "Move the shape to a different workplane"
+        ],
+        correct: 2,
+        explanation: "Setting a shape to 'Hole' turns it into a cutter. When you group a hole shape with a solid shape, Tinkercad removes the hole's volume from the solid — perfect for adding keyring holes or hollowing out objects."
+    },
+    {
+        prompt: "What is the correct order to follow when finishing your Tinkercad design?",
+        type: "mcq",
+        options: [
+            "Export → Group → Design",
+            "Design → Group → Export",
+            "Export → Design → Group",
+            "Group → Export → Design"
+        ],
+        correct: 1,
+        explanation: "You Design your model first, then Group your shapes together (including any holes), and finally Export the finished design as an STL or 3MF file."
     }
 ];
 
@@ -2047,7 +2085,7 @@ document.addEventListener('DOMContentLoaded', function () {
     d1LoadState();
 
     /* Restore text inputs */
-    ['printerChoice', 'partNozzle', 'partBed', 'partExtruder', 'partFrame', 'favoriteModel'].forEach(function (id) {
+    ['printerChoice', 'partNozzle', 'partBed', 'partExtruder', 'partFrame', 'favoriteModel', 'modelUrl'].forEach(function (id) {
         var el = document.getElementById(id);
         if (!el) return;
         el.value = d1State.texts[id] || '';
@@ -2123,8 +2161,18 @@ if (document.body.getAttribute('data-page') === 'day1') {
             var el = document.getElementById(id);
             return (el && el.value && el.value.trim()) || '(not entered)';
         }
+        var quiz1Passed  = (d1State.quiz1 && d1State.quiz1.passed)  ? d1State.quiz1.passed.length  : 0;
+        var quiz4Passed  = (d1State.quiz4 && d1State.quiz4.passed)  ? d1State.quiz4.passed.length  : 0;
+        var matchScore   = d1State.matchingScore      || 0;
+        var troubleScore = d1State.troubleshootingScore || 0;
         var lines = [
             '=== Day 1: Foundations of 3D Printing ===',
+            '',
+            '📊 Quiz Results:',
+            '  Intro Quiz: ' + quiz1Passed + ' of ' + d1Questions.length + ' questions answered correctly',
+            '  Filament Quiz: ' + quiz4Passed + ' of ' + d1FilamentQuestions.length + ' questions answered correctly',
+            '  Parts Matching: ' + matchScore + ' of 4 correct',
+            '  Troubleshooting: ' + troubleScore + ' of 4 correct',
             '',
             '🖨️ Printer I would choose and why:',
             val('printerChoice'),
@@ -2134,6 +2182,9 @@ if (document.body.getAttribute('data-page') === 'day1') {
             '  Bed: '    + val('partBed'),
             '  Extruder: ' + val('partExtruder'),
             '  Frame: '  + val('partFrame'),
+            '',
+            '🔗 Model URL I found:',
+            val('modelUrl'),
             '',
             '🌐 Favorite model on MakerWorld and why:',
             val('favoriteModel'),

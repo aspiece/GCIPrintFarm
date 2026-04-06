@@ -1,0 +1,557 @@
+/* ============================================================
+   GCI 3D Printing — Slide Deck Shared Styles
+   Used by: slides-day1.html through slides-day5.html
+   ============================================================ */
+
+/* ── Variables ──────────────────────────────────────────────── */
+:root {
+  --bg:        #08111f;
+  --card:      rgba(10,18,33,0.97);
+  --text:      #f4f8ff;
+  --accent:    #7cc0ff;
+  --accent2:   #9cf3db;
+  --muted:     #c9dcff;
+  --border:    rgba(125,166,230,0.32);
+  --success:   #4caf50;
+  --danger:    #ff4d4d;
+  --warn:      #ffd400;
+  --demo-bg:   rgba(255,212,0,0.08);
+  --demo-bdr:  rgba(255,212,0,0.5);
+  --work-bg:   rgba(156,243,219,0.07);
+  --work-bdr:  rgba(156,243,219,0.35);
+  --slide-w:   900px;
+  --slide-h:   540px;
+}
+
+/* ── Reset & base ────────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html, body {
+  height: 100%;
+  font-family: Inter, Arial, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.5;
+}
+
+/* ── Toolbar ─────────────────────────────────────────────────── */
+#toolbar {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 8px 16px;
+  background: rgba(8,17,31,0.94);
+  border-bottom: 1px solid var(--border);
+  backdrop-filter: blur(10px);
+  flex-wrap: wrap;
+}
+
+.toolbar-title {
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: var(--accent);
+  white-space: nowrap;
+}
+
+.toolbar-controls {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+#slideCounter {
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--muted);
+  min-width: 70px;
+  text-align: center;
+}
+
+/* ── Toolbar buttons ─────────────────────────────────────────── */
+.tb-btn {
+  padding: 6px 12px;
+  border-radius: 8px;
+  background: rgba(124,192,255,0.12);
+  border: 1px solid var(--border);
+  color: var(--text);
+  font-size: 0.82rem;
+  font-weight: 700;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: background 0.15s;
+}
+.tb-btn:hover { background: rgba(124,192,255,0.22); }
+.tb-btn:disabled { opacity: 0.38; cursor: default; }
+
+.tb-btn.primary {
+  background: var(--accent);
+  color: #08111f;
+  border-color: transparent;
+}
+.tb-btn.primary:hover { background: #5badff; }
+
+/* ── Slide viewport ──────────────────────────────────────────── */
+#slideViewport {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  padding: 64px 16px 32px;
+}
+
+/* ── Individual slide ────────────────────────────────────────── */
+.slide {
+  display: none;
+  width: 100%;
+  max-width: var(--slide-w);
+  min-height: var(--slide-h);
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  padding: 36px 42px 30px;
+  position: relative;
+  flex-direction: column;
+  gap: 14px;
+  box-shadow: 0 24px 60px rgba(0,0,0,0.35);
+  animation: slideIn 0.18s ease;
+}
+.slide.active { display: flex; }
+
+@keyframes slideIn {
+  from { opacity: 0; transform: translateY(6px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ── Slide type badges ───────────────────────────────────────── */
+.slide-type {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 10px;
+  border-radius: 999px;
+  font-size: 0.74rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  align-self: flex-start;
+  border: 1px solid var(--border);
+  background: rgba(124,192,255,0.1);
+}
+.slide-type.demo   { background: var(--demo-bg);  border-color: var(--demo-bdr);  color: var(--warn); }
+.slide-type.work   { background: var(--work-bg);  border-color: var(--work-bdr);  color: var(--accent2); }
+.slide-type.vocab  { background: rgba(156,243,219,0.08); border-color: var(--accent2); color: var(--accent2); }
+.slide-type.check  { background: rgba(76,175,80,0.1);    border-color: rgba(76,175,80,0.4); color: var(--success); }
+.slide-type.video  { background: rgba(255,77,77,0.1);    border-color: rgba(255,77,77,0.35); color: #ff8a80; }
+.slide-type.pause  { background: rgba(255,152,0,0.1);    border-color: rgba(255,152,0,0.4);  color: #ffab40; }
+
+/* ── Slide number (bottom-right) ─────────────────────────────── */
+.slide-num {
+  position: absolute;
+  bottom: 12px;
+  right: 16px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: rgba(201,220,255,0.35);
+}
+
+/* ── Headings ────────────────────────────────────────────────── */
+.slide h1 {
+  font-size: 2.1rem;
+  font-weight: 800;
+  color: var(--accent);
+  line-height: 1.2;
+}
+.slide h2 {
+  font-size: 1.65rem;
+  font-weight: 800;
+  color: var(--accent);
+  line-height: 1.25;
+}
+.slide h3 {
+  font-size: 1.25rem;
+  font-weight: 800;
+  color: var(--accent2);
+  margin-bottom: 4px;
+}
+.slide .subtitle {
+  font-size: 1.05rem;
+  color: var(--muted);
+  margin-top: 6px;
+}
+
+/* ── Bullet lists ────────────────────────────────────────────── */
+.slide ul, .slide ol {
+  padding-left: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.slide li { font-size: 0.97rem; line-height: 1.55; }
+.slide li strong { color: var(--accent); }
+
+/* ── Two-column grid ─────────────────────────────────────────── */
+.slide-cols {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  flex: 1;
+}
+.slide-cols.thirds {
+  grid-template-columns: 1fr 1fr 1fr;
+}
+
+.col-card {
+  background: rgba(124,192,255,0.06);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 14px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.col-card h3 { margin: 0; }
+.col-card ul { padding-left: 16px; }
+.col-card li { font-size: 0.88rem; }
+
+/* ── Demo card ───────────────────────────────────────────────── */
+.demo-card {
+  background: var(--demo-bg);
+  border: 2px dashed var(--demo-bdr);
+  border-radius: 14px;
+  padding: 16px 18px;
+  flex: 1;
+}
+.demo-card h3 { color: var(--warn); }
+.demo-card li { font-size: 0.92rem; }
+
+/* ── Check-for-understanding card ────────────────────────────── */
+.cfu-card {
+  background: rgba(76,175,80,0.07);
+  border: 1px solid rgba(76,175,80,0.35);
+  border-radius: 12px;
+  padding: 14px 16px;
+  flex: 1;
+}
+
+/* ── Vocab cards grid ────────────────────────────────────────── */
+.vocab-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+  flex: 1;
+}
+.vocab-card {
+  background: rgba(156,243,219,0.07);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 10px 14px;
+  font-size: 0.88rem;
+  line-height: 1.5;
+}
+.vocab-card strong { color: var(--accent2); display: block; margin-bottom: 2px; }
+
+/* ── Video placeholder ───────────────────────────────────────── */
+.video-placeholder {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  background: rgba(255,77,77,0.07);
+  border: 2px dashed rgba(255,77,77,0.4);
+  border-radius: 14px;
+  padding: 24px;
+  text-align: center;
+}
+.video-placeholder .play-icon { font-size: 3rem; }
+.video-placeholder a {
+  color: var(--accent);
+  font-size: 0.9rem;
+  word-break: break-all;
+}
+
+/* ── Workflow steps (horizontal) ─────────────────────────────── */
+.workflow-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+  flex: 1;
+}
+.wf-step {
+  flex: 1;
+  min-width: 80px;
+  background: rgba(156,243,219,0.07);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 12px 8px;
+  text-align: center;
+}
+.wf-num {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 26px; height: 26px;
+  border-radius: 50%;
+  background: var(--accent);
+  color: #08111f;
+  font-weight: 800;
+  font-size: 0.85rem;
+  margin-bottom: 6px;
+}
+.wf-step h4 { font-size: 0.88rem; color: var(--accent2); margin: 0 0 2px; }
+.wf-step p  { font-size: 0.76rem; color: var(--muted); margin: 0; }
+.wf-arrow { color: var(--muted); font-size: 1.2rem; flex-shrink: 0; }
+
+/* ── Callout boxes ───────────────────────────────────────────── */
+.callout {
+  background: rgba(124,192,255,0.08);
+  border: 1px solid rgba(124,192,255,0.28);
+  border-radius: 12px;
+  padding: 12px 16px;
+  font-size: 0.92rem;
+}
+.callout.warn  { background: rgba(255,212,0,0.07); border-color: rgba(255,212,0,0.35); }
+.callout.success { background: rgba(76,175,80,0.08); border-color: rgba(76,175,80,0.35); }
+
+/* ── Checklist ───────────────────────────────────────────────── */
+.slide-checklist {
+  list-style: none;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.slide-checklist li {
+  padding: 8px 12px;
+  background: rgba(124,192,255,0.06);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  font-size: 0.92rem;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.slide-checklist li::before {
+  content: "☐";
+  font-size: 1.1rem;
+  flex-shrink: 0;
+  color: var(--accent);
+}
+
+/* ── Comparison (logo simple vs complex) ─────────────────────── */
+.compare-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+  flex: 1;
+}
+.compare-card {
+  border-radius: 12px;
+  padding: 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.compare-good { background: rgba(76,175,80,0.08);  border: 1px solid rgba(76,175,80,0.35); }
+.compare-bad  { background: rgba(255,77,77,0.08);   border: 1px solid rgba(255,77,77,0.35); }
+.compare-label { font-size: 0.95rem; font-weight: 800; }
+.compare-good .compare-label { color: var(--success); }
+.compare-bad  .compare-label { color: var(--danger); }
+.compare-items { list-style: none; padding: 0; display: flex; flex-direction: column; gap: 4px; }
+.compare-items li { font-size: 0.86rem; }
+
+/* ── Speaker notes ───────────────────────────────────────────── */
+#notesPanel {
+  display: none;
+  position: fixed;
+  bottom: 0; left: 0; right: 0;
+  background: rgba(4,9,18,0.97);
+  border-top: 2px solid var(--warn);
+  padding: 12px 20px 14px;
+  max-height: 38vh;
+  overflow-y: auto;
+  z-index: 200;
+  backdrop-filter: blur(10px);
+}
+#notesPanel.visible { display: block; }
+#notesPanel h4 {
+  font-size: 0.8rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--warn);
+  margin-bottom: 8px;
+}
+.notes-content {
+  font-size: 0.88rem;
+  line-height: 1.65;
+  color: #ddeeff;
+}
+.notes-content li { margin-bottom: 4px; }
+.notes-content strong { color: var(--warn); }
+
+/* ── Title slide specifics ───────────────────────────────────── */
+.slide.title-slide {
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  background: linear-gradient(150deg, #08111f, #0e2340);
+}
+.slide.title-slide h1 { font-size: 2.4rem; }
+.slide.title-slide .day-tag {
+  font-size: 0.85rem;
+  font-weight: 800;
+  color: var(--accent2);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin-bottom: 8px;
+}
+
+/* ── Progress dots (bottom of slide) ────────────────────────── */
+#progressDots {
+  display: flex;
+  justify-content: center;
+  gap: 5px;
+  padding: 10px 0 4px;
+}
+.dot {
+  width: 8px; height: 8px;
+  border-radius: 50%;
+  background: rgba(124,192,255,0.2);
+  border: 1px solid var(--border);
+  transition: background 0.2s;
+  cursor: pointer;
+}
+.dot.current { background: var(--accent); }
+.dot.done    { background: rgba(76,175,80,0.55); }
+
+/* ── Navigation hint ─────────────────────────────────────────── */
+#navHint {
+  text-align: center;
+  font-size: 0.76rem;
+  color: rgba(201,220,255,0.35);
+  padding-bottom: 8px;
+}
+
+/* ── Print styles ────────────────────────────────────────────── */
+@media print {
+  #toolbar, #notesPanel, #progressDots, #navHint { display: none !important; }
+  #slideViewport {
+    display: block;
+    padding: 0;
+    min-height: unset;
+  }
+  .slide {
+    display: flex !important;
+    page-break-after: always;
+    break-after: page;
+    max-width: 100%;
+    min-height: auto;
+    border-radius: 0;
+    box-shadow: none;
+    border: none;
+    padding: 24px 30px;
+    animation: none;
+    margin-bottom: 0;
+  }
+  .slide:last-child { page-break-after: avoid; break-after: avoid; }
+  body { background: #fff; color: #000; }
+  :root {
+    --text: #111;
+    --accent: #1a5fdb;
+    --accent2: #0d766b;
+    --muted: #444;
+    --border: #ccc;
+    --card: #fff;
+    --demo-bg: #fffde7;
+    --demo-bdr: #f9a825;
+  }
+}
+
+/* ── Slide time badge (top-right) ────────────────────────────── */
+.slide-time {
+  position: absolute;
+  top: 14px;
+  right: 16px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--muted);
+  background: rgba(124,192,255,0.08);
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  padding: 3px 9px;
+  white-space: nowrap;
+}
+
+/* ── Brain-break slide ───────────────────────────────────────── */
+.slide.brain-break {
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  background: linear-gradient(150deg, #071a0e, #0d2b1a);
+  border-color: rgba(76,175,80,0.55);
+  box-shadow: 0 24px 60px rgba(76,175,80,0.15);
+  gap: 18px;
+}
+.break-emoji  { font-size: 3.2rem; }
+.break-title  { font-size: 2.2rem; font-weight: 800; color: var(--success); }
+.break-sub    { font-size: 1.05rem; color: var(--accent2); }
+.break-timer  {
+  font-size: 3.5rem;
+  font-weight: 800;
+  color: var(--success);
+  font-variant-numeric: tabular-nums;
+  letter-spacing: 0.06em;
+  line-height: 1;
+  margin: 4px 0;
+}
+.break-activities {
+  display: flex;
+  gap: 14px;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-top: 4px;
+}
+.break-activity {
+  background: rgba(76,175,80,0.1);
+  border: 1px solid rgba(76,175,80,0.35);
+  border-radius: 10px;
+  padding: 8px 14px;
+  font-size: 0.88rem;
+  font-weight: 700;
+  color: var(--accent2);
+}
+.break-restart {
+  font-size: 0.8rem;
+  color: rgba(156,243,219,0.45);
+  margin-top: 4px;
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+/* ── Cumulative time in toolbar ──────────────────────────────── */
+#cumTime {
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: var(--accent2);
+  white-space: nowrap;
+}
+
+/* ── Responsive ──────────────────────────────────────────────── */
+@media (max-width: 700px) {
+  .slide-cols        { grid-template-columns: 1fr; }
+  .vocab-grid        { grid-template-columns: 1fr; }
+  .compare-grid      { grid-template-columns: 1fr; }
+  .slide-cols.thirds { grid-template-columns: 1fr; }
+  .slide h1  { font-size: 1.5rem; }
+  .slide h2  { font-size: 1.3rem; }
+  .slide { padding: 20px 18px 24px; }
+  #toolbar { flex-direction: column; align-items: flex-start; }
+}
