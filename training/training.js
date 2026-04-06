@@ -2115,3 +2115,103 @@ function d1UpdateSpoolButton() {
     var btn    = document.getElementById('spoolCompleteBtn');
     if (btn) btn.disabled = !checks.every(function (c) { return c.checked; });
 }
+
+/* ══════════════════════════════════════════════════════════════
+   DAY 4 – School Logo Keychain
+   ══════════════════════════════════════════════════════════════ */
+var D4_STORAGE_PROGRESS = 'gci-day4-completed';
+var D4_TOTAL_PARTS      = 7;
+var d4CompletedParts    = [];
+
+function d4UpdateProgress() {
+    var pct    = Math.round((d4CompletedParts.length / D4_TOTAL_PARTS) * 100);
+    var fill   = document.getElementById('progressFill');
+    var pctEl  = document.getElementById('progressPercent');
+    var stepEl = document.getElementById('progressStep');
+    var bar    = fill && fill.closest('[role="progressbar"]');
+
+    if (fill)  fill.style.width = pct + '%';
+    if (pctEl) pctEl.textContent = pct + '%';
+    if (bar)   bar.setAttribute('aria-valuenow', pct);
+
+    var currentStep = D4_TOTAL_PARTS;
+    for (var i = 1; i <= D4_TOTAL_PARTS; i++) {
+        if (!d4CompletedParts.includes(i)) { currentStep = i; break; }
+    }
+    if (stepEl) stepEl.textContent = 'Step ' + currentStep + ' of ' + D4_TOTAL_PARTS;
+}
+
+function d4UpdateCardStates() {
+    for (var n = 1; n <= D4_TOTAL_PARTS; n++) {
+        var card  = document.getElementById('part' + n);
+        var badge = document.getElementById('badge' + n);
+        if (!card) continue;
+
+        var isDone   = d4CompletedParts.includes(n);
+        var isLocked = n > 1 && !d4CompletedParts.includes(n - 1);
+
+        card.classList.remove('active-card', 'completed-card', 'locked-card');
+        if (isDone)        card.classList.add('completed-card');
+        else if (isLocked) card.classList.add('locked-card');
+        else               card.classList.add('active-card');
+
+        if (badge) {
+            badge.textContent = isDone ? 'Complete' : isLocked ? 'Locked' : 'Active';
+            badge.className   = 'state-badge ' + (isDone ? 'completed' : isLocked ? 'locked' : 'active');
+        }
+
+        card.querySelectorAll('button[onclick*="window.complete"]').forEach(function (btn) {
+            if (!btn.id) btn.disabled = isLocked;
+        });
+
+        if (isLocked) card.removeAttribute('open');
+    }
+}
+
+if (document.body.getAttribute('data-page') === 'day4') {
+    window.complete = function complete(partNum) {
+        if (!d4CompletedParts.includes(partNum)) {
+            d4CompletedParts.push(partNum);
+            localStorage.setItem(D4_STORAGE_PROGRESS, JSON.stringify(d4CompletedParts));
+        }
+        var current = document.getElementById('part' + partNum);
+        if (current) current.removeAttribute('open');
+
+        var next = document.getElementById('part' + (partNum + 1));
+        if (next) {
+            next.setAttribute('open', '');
+            setTimeout(function () { next.scrollIntoView({ behavior: 'smooth', block: 'start' }); }, 80);
+        }
+        d4UpdateProgress();
+        d4UpdateCardStates();
+    };
+
+    document.addEventListener('DOMContentLoaded', function () {
+        if (document.body.getAttribute('data-page') !== 'day4') return;
+
+        var saved = localStorage.getItem(D4_STORAGE_PROGRESS);
+        if (saved) {
+            try { d4CompletedParts = JSON.parse(saved); } catch (e) { d4CompletedParts = []; }
+        }
+
+        d4UpdateProgress();
+        d4UpdateCardStates();
+
+        /* Open the first incomplete, unlocked part */
+        var opened = false;
+        for (var n = 1; n <= D4_TOTAL_PARTS; n++) {
+            if (!d4CompletedParts.includes(n)) {
+                var card = document.getElementById('part' + n);
+                if (card && !card.classList.contains('locked-card')) {
+                    card.setAttribute('open', '');
+                }
+                opened = true;
+                break;
+            }
+        }
+        if (!opened) {
+            var last = document.getElementById('part' + D4_TOTAL_PARTS);
+            if (last) last.setAttribute('open', '');
+        }
+    });
+}
