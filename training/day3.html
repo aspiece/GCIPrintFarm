@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="description" content="Day 3: Designing for 3D Printing — File Types and Tinkercad | GCI 3D Printing Lab" />
+  <meta name="description" content="Day 3: Designing for 3D Printing — File Types and Tinkercad — GCI 3D Printing Lab" />
   <title>Day 3: Designing for 3D Printing | GCI 3D Printing</title>
   <link rel="stylesheet" href="lab.css" />
   <script src="training.js" defer></script>
@@ -48,7 +48,7 @@
         <div class="bar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" aria-label="Overall progress">
           <div class="fill" id="progressFill"></div>
         </div>
-        <div class="jump-links" aria-label="Jump to part">
+        <div class="jump-links" aria-label="Jump to step">
           <a class="jump-link" href="#part1">1</a>
           <a class="jump-link" href="#part2">2</a>
           <a class="jump-link" href="#part3">3</a>
@@ -69,10 +69,10 @@
         <div class="intro-card">
           <h3>🎯 Learning Objectives</h3>
           <ul class="objectives-list">
-            <li>I can explain the difference between common 3D printing file types</li>
-            <li>I can create a basic 3D design using Tinkercad</li>
-            <li>I can export my design and prepare it for slicing in Bambu Studio</li>
-            <li>I can explain how a digital design becomes a physical print</li>
+            <li>Explain the difference between STL, 3MF, and G-code in plain language</li>
+            <li>Create an original 3D design in Tinkercad</li>
+            <li>Export your design from Tinkercad and bring it into Bambu Studio</li>
+            <li>Trace the full path from idea to printed object</li>
           </ul>
         </div>
 
@@ -99,7 +99,7 @@
       <div class="goal-section">
         <div class="goal-card">
           <h3>🚀 Goal</h3>
-          <p>Transition from using existing files to creating your own. Today you will learn about the files used in 3D printing, design your own simple model in Tinkercad, and prepare it for printing.</p>
+          <p>Today you go from using someone else's designs to building your own. You'll learn the file types behind 3D printing, create an original model in Tinkercad, and see it move one step closer to becoming real.</p>
         </div>
         <div class="goal-card">
           <h3>📖 How to Use This Page</h3>
@@ -114,14 +114,13 @@
           <h3>✅ Success Criteria</h3>
           <ul>
             <li>I can explain STL, 3MF, and G-code in my own words</li>
-            <li>I designed a project of my choice in Tinkercad</li>
-            <li>I exported my design and imported it into Bambu Studio</li>
-            <li>I completed the exit ticket thoughtfully</li>
+            <li>I created a Tinkercad design I'm proud of</li>
+            <li>I exported my design and can see it in Bambu Studio</li>
+            <li>I answered the exit ticket honestly and completely</li>
           </ul>
         </div>
       </div>
 
-      <div class="note">Your progress on this page saves on this device, so you can refresh and come back without losing your work.</div>
     </section>
 
     <!-- ═══════════════════════════════════════════════════════
@@ -140,7 +139,7 @@
 
       <div class="part-content">
         <div class="note">
-          <strong>📌 Instructions:</strong> Read the cards and vocabulary section below, then complete the knowledge check quiz before clicking Mark Complete.
+          <strong>📌 Instructions:</strong> Read through the file type cards and vocabulary, then take the quick quiz before moving on.
         </div>
 
         <h3>🗂️ Common 3D Printing File Types</h3>
@@ -168,10 +167,10 @@
         </div>
 
         <div class="fun">
-          💡 <strong>Big Idea:</strong>&nbsp;
+          💡 <strong>Keep it simple:</strong>&nbsp;
           <strong>STL</strong> = the shape &nbsp;|&nbsp;
-          <strong>3MF</strong> = a smarter design file &nbsp;|&nbsp;
-          <strong>G-code</strong> = the printer instructions
+          <strong>3MF</strong> = smarter design file &nbsp;|&nbsp;
+          <strong>G-code</strong> = printer instructions
         </div>
 
         <h3>📚 Vocabulary</h3>
@@ -220,11 +219,11 @@
 
       <div class="part-content">
         <div class="note">
-          <strong>📌 Instructions:</strong> Study the four steps below, then complete the matching activity. You need at least 3 out of 4 correct to continue.
+          <strong>📌 Instructions:</strong> Study the workflow, then match each step to what it means. You need at least 3 out of 4 correct to continue.
         </div>
 
         <h3>🔄 Design → Export → Slice → Print</h3>
-        <p>Every 3D print follows the same basic workflow. Understanding each step helps you know where things can go wrong — and how to fix them.</p>
+        <p>Every 3D print you'll ever make follows this same path. Knowing what each step does makes it easier to catch problems before they waste your time — or a whole roll of filament.</p>
 
         <div class="workflow-row">
           <div class="workflow-step">
@@ -258,7 +257,7 @@
         <div id="d3MatchingActivity" aria-label="Workflow matching activity"></div>
 
         <div id="d3HintBoxMatching" class="hint-box" style="display:none">
-          💡 <strong>Hint:</strong> Think about the order: first you make the design in Tinkercad, then you save it as a file, then you prepare it in Bambu Studio, then you actually print it.
+          💡 <strong>Hint:</strong> Follow the order — design it, save it as a file, prepare it in Bambu Studio, print it.
         </div>
 
         <div id="d3MatchingFeedback" class="feedback" role="alert" aria-live="polite"></div>
@@ -290,7 +289,7 @@
 
       <div class="part-content">
         <div class="note">
-          <strong>📌 Instructions:</strong> Watch the video below, complete the short quiz, join your class in Tinkercad, then check all three boxes to continue.
+          <strong>📌 Instructions:</strong> Watch the video, answer the quiz, then join your class in Tinkercad using the link for your session.
         </div>
 
         <h3>🎥 Watch: TinkerCad Introductory Video</h3>
@@ -330,13 +329,13 @@
           <li>
             <label>
               <input type="checkbox" id="d3TinkCheck1" onchange="window.d3UpdateTinkercadBtn()" />
-              I watched the "Designing for 3D Printing — File Types and Tinkercad" video
+              I watched the Tinkercad intro video
             </label>
           </li>
           <li>
             <label>
               <input type="checkbox" id="d3TinkCheck2" onchange="window.d3UpdateTinkercadBtn()" />
-              I completed the check for understanding quiz
+              I completed the quiz
             </label>
           </li>
           <li>
@@ -369,11 +368,11 @@
 
       <div class="part-content">
         <div class="note">
-          <strong>📌 Instructions:</strong> Browse the advanced project collection below, choose a design that interests you, and complete it in Tinkercad. You get to decide what you make — pick something you are excited about!
+          <strong>📌 Instructions:</strong> Browse the collection below, choose something that genuinely interests you, and work through it in Tinkercad. You're in charge of what you make — pick something that excites you.
         </div>
 
         <div class="fun">
-          🎨 <strong>Your choice, your creation.</strong> Tinkercad has a library of advanced projects ranging from animals and jewelry to architecture and gadgets. Pick one that sparks your curiosity and give it your best effort.
+          🎨 <strong>This is your first original 3D design.</strong> The collection covers everything from animals and jewelry to architecture and gadgets — find something that sparks your curiosity and go for it.
         </div>
 
         <h3>🔗 Browse the Advanced Project Collection</h3>
@@ -401,11 +400,11 @@
 
         <h3>✅ Project Checklist — check all five before continuing:</h3>
         <ul class="checklist" role="group" aria-label="Advanced project self-check checklist">
-          <li><label><input type="checkbox" id="d3DesignCheck1" onchange="window.d3UpdateDesignBtn()" /> I browsed the advanced project collection</label></li>
-          <li><label><input type="checkbox" id="d3DesignCheck2" onchange="window.d3UpdateDesignBtn()" /> I chose a project that interests me</label></li>
-          <li><label><input type="checkbox" id="d3DesignCheck3" onchange="window.d3UpdateDesignBtn()" /> I completed or made significant progress on my chosen project in Tinkercad</label></li>
-          <li><label><input type="checkbox" id="d3DesignCheck4" onchange="window.d3UpdateDesignBtn()" /> I named my design <em>Day3_AdvancedProject_YourName</em> and it is saved</label></li>
-          <li><label><input type="checkbox" id="d3DesignCheck5" onchange="window.d3UpdateDesignBtn()" /> I am ready to share what I made with the class</label></li>
+          <li><label><input type="checkbox" id="d3DesignCheck1" onchange="window.d3UpdateDesignBtn()" /> I browsed the collection and found something interesting</label></li>
+          <li><label><input type="checkbox" id="d3DesignCheck2" onchange="window.d3UpdateDesignBtn()" /> I chose a project I'm genuinely excited about</label></li>
+          <li><label><input type="checkbox" id="d3DesignCheck3" onchange="window.d3UpdateDesignBtn()" /> I completed or made real progress on my project in Tinkercad</label></li>
+          <li><label><input type="checkbox" id="d3DesignCheck4" onchange="window.d3UpdateDesignBtn()" /> My design is named <em>Day3_AdvancedProject_YourName</em> and saved in Tinkercad</label></li>
+          <li><label><input type="checkbox" id="d3DesignCheck5" onchange="window.d3UpdateDesignBtn()" /> I'm ready to share what I made</label></li>
         </ul>
 
         <div class="part-actions">
@@ -430,11 +429,11 @@
 
       <div class="part-content">
         <div class="note">
-          <strong>📌 Instructions:</strong> Export your Tinkercad design as an STL file and import it into Bambu Studio to see how your design would be prepared for printing.
+          <strong>📌 Instructions:</strong> Export your design from Tinkercad and bring it into Bambu Studio. You're not printing today — just previewing what your print would look like.
         </div>
 
         <div class="fun">
-          🔁 <strong>This is the handoff moment.</strong> Your design moves from the design tool to the slicer — like handing a blueprint to the factory. You are not printing today, just previewing.
+          🔁 <strong>This is the handoff.</strong> Your design moves from Tinkercad to Bambu Studio — like handing a blueprint to the factory. You're just previewing today, but this is exactly what printing day will look like.
         </div>
 
         <h3>📤 Export from Tinkercad</h3>
@@ -454,10 +453,10 @@
 
         <h3>✅ Export Checklist — check all four before continuing:</h3>
         <ul class="checklist" role="group" aria-label="Export and preview checklist">
-          <li><label><input type="checkbox" id="d3ExportCheck1" onchange="window.d3UpdateExportBtn()" /> I exported my design as an STL file from Tinkercad</label></li>
-          <li><label><input type="checkbox" id="d3ExportCheck2" onchange="window.d3UpdateExportBtn()" /> I opened Bambu Studio and imported my STL file</label></li>
-          <li><label><input type="checkbox" id="d3ExportCheck3" onchange="window.d3UpdateExportBtn()" /> My model appears correctly on the Bambu Studio print bed</label></li>
-          <li><label><input type="checkbox" id="d3ExportCheck4" onchange="window.d3UpdateExportBtn()" /> I can see how this design would become a real printed object</label></li>
+          <li><label><input type="checkbox" id="d3ExportCheck1" onchange="window.d3UpdateExportBtn()" /> I exported my design as an STL from Tinkercad</label></li>
+          <li><label><input type="checkbox" id="d3ExportCheck2" onchange="window.d3UpdateExportBtn()" /> I imported my STL into Bambu Studio</label></li>
+          <li><label><input type="checkbox" id="d3ExportCheck3" onchange="window.d3UpdateExportBtn()" /> My model looks right on the Bambu Studio print bed</label></li>
+          <li><label><input type="checkbox" id="d3ExportCheck4" onchange="window.d3UpdateExportBtn()" /> I can picture how this design would actually print</label></li>
         </ul>
 
         <div class="part-actions">
@@ -482,7 +481,7 @@
 
       <div class="part-content">
         <div class="note">
-          <strong>📌 Instructions:</strong> Answer all three questions in your own words. These are reflection questions — there are no wrong answers, but be specific and honest.
+          <strong>📌 Instructions:</strong> Answer all three in your own words. There are no wrong answers — just be honest and specific. This helps your teacher plan what comes next.
         </div>
 
         <label for="d3Exit1">1. What is the difference between STL and G-code? Use your own words.</label>
@@ -516,7 +515,7 @@
 
       <div class="part-content">
         <div class="note">
-          <strong>📌 Instructions:</strong> Click <strong>Generate My Responses</strong> to create a summary of everything you did today. Copy the text and paste it into your <strong>Digital Notebook in Google Classroom</strong>.
+          <strong>📌 Instructions:</strong> You designed something original today. Click <strong>Generate My Responses</strong> to collect everything you wrote and paste it into your <strong>Digital Notebook in Google Classroom</strong>.
         </div>
 
         <div class="quiz-actions">
