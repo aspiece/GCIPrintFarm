@@ -125,6 +125,22 @@
       </div>
     </section>
 
+    <!-- ── Day 2 Vocabulary ───────────────────────────────────── -->
+    <section class="hero vocab-section" aria-labelledby="d2VocabTitle">
+      <h3 id="d2VocabTitle">📚 Day 2 Vocabulary — Bambu Studio</h3>
+      <p>These terms come up throughout today's lesson. Review them before you start, then refer back as you need them. <a href="glossary.html" class="glossary-link">📖 Open Full Glossary</a></p>
+      <div class="vocab-grid">
+        <div class="vocab-card"><strong>Slicer</strong> — Software (like Bambu Studio) that takes a 3D model and breaks it into the layer-by-layer instructions a printer can follow.</div>
+        <div class="vocab-card"><strong>Slicing</strong> — The process of converting a 3D model file into G-code by dividing it into horizontal layers.</div>
+        <div class="vocab-card"><strong>G-code</strong> — The machine language output of a slicer. It tells the printer exactly where to move, how fast, and when to heat the nozzle.</div>
+        <div class="vocab-card"><strong>Infill</strong> — The internal structure that fills the inside of a print. Higher infill percentages make stronger but heavier prints that use more filament.</div>
+        <div class="vocab-card"><strong>Layer Height</strong> — How thick each printed layer is. Thinner layers (e.g., 0.1 mm) give more detail; thicker layers (e.g., 0.3 mm) print faster.</div>
+        <div class="vocab-card"><strong>Supports</strong> — Temporary structures the slicer adds beneath overhanging parts to keep them from drooping during printing. They are removed after the print finishes.</div>
+        <div class="vocab-card"><strong>Printer Profile</strong> — The set of settings in Bambu Studio that matches the specific Bambu printer model you're using (A1, P1S, X1, etc.).</div>
+        <div class="vocab-card"><strong>Preview</strong> — A feature in Bambu Studio that shows you the print layer by layer before you send it to the printer, so you can catch problems early.</div>
+      </div>
+    </section>
+
     <!-- ═══════════════════════════════════════════════════════
          PART 1: Day 2 Share-Out
          ═══════════════════════════════════════════════════════ -->
@@ -253,11 +269,24 @@
 
         <div class="video-wrap">
           <iframe
-            src="https://www.youtube.com/embed/rZhy0J0mXBE"
+            src="https://www.youtube.com/embed/8TQCRVS72Us"
             title="Intro to Bambu Studio"
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
             allowfullscreen>
           </iframe>
+        </div>
+
+        <div class="guided-notes" aria-label="Guided notes for Bambu Studio intro video">
+          <div class="guided-notes-header">📝 Guided Notes — Fill in the Blanks While You Watch</div>
+          <p class="guided-notes-intro">Complete these blanks as you watch the video. This helps you stay focused and gives you notes to look back on.</p>
+          <ol class="guided-notes-list">
+            <li>Bambu Studio is a <strong>slicer</strong> — its main job is to convert a 3D model into <input type="text" id="gn1" class="guided-fill" placeholder="______ instructions" aria-label="Guided note 1" /> that the printer can understand.</li>
+            <li>To start a print, you first <strong>import</strong> your model file. The two most common formats are <input type="text" id="gn2" class="guided-fill" placeholder="______ and ______" aria-label="Guided note 2" />.</li>
+            <li><strong>Slicing</strong> breaks your model into horizontal <input type="text" id="gn3" class="guided-fill" placeholder="______" aria-label="Guided note 3" />, creating the movement path the printer will follow.</li>
+            <li>In the print settings you can adjust <input type="text" id="gn4" class="guided-fill" placeholder="layer height, infill, supports…" aria-label="Guided note 4" /> to control quality, strength, and speed.</li>
+            <li>Before sending your file to the printer, you should use the <strong>Preview</strong> feature to check the <input type="text" id="gn5" class="guided-fill" placeholder="______" aria-label="Guided note 5" /> layer-by-layer and catch any errors.</li>
+            <li>You must select the correct <strong>printer profile</strong> so Bambu Studio knows the <input type="text" id="gn6" class="guided-fill" placeholder="______" aria-label="Guided note 6" /> and capabilities of the printer you're using.</li>
+          </ol>
         </div>
 
         <div id="quizBox" class="quiz-box" aria-label="Bambu Studio knowledge check">
@@ -272,6 +301,21 @@
             <button type="button" onclick="window.prevQuestion()">Back</button>
             <button type="button" onclick="window.resetQuiz()">Reset</button>
           </div>
+        </div>
+
+        <div class="alt-videos" aria-label="Alternative explanation videos">
+          <div class="alt-videos-header">🎥 Need Another Explanation?</div>
+          <p>If the main video didn't quite click, try one of these. Different explanations work for different people.</p>
+          <ul>
+            <li><a href="https://www.youtube.com/watch?v=rZhy0J0mXBE" target="_blank" rel="noopener noreferrer">▶ Bambu Studio Tutorial (Alternative View)</a></li>
+            <li><a href="https://youtu.be/Tc6xLuijLBg?si=CoPjfHcssSuhVGcF" target="_blank" rel="noopener noreferrer">▶ Bambu Studio Walkthrough (Another Perspective)</a></li>
+          </ul>
+        </div>
+
+        <div class="dive-deeper" aria-label="Advanced Bambu Studio resources">
+          <div class="dive-deeper-header">🚀 Dive Deeper into Bambu Studio Settings</div>
+          <p>Finished early or want to go further? This playlist covers Bambu Studio settings in much more depth — layer height, supports, infill, and more.</p>
+          <p><a href="https://youtube.com/playlist?list=PLFUVS59deIm2mawl3Zjk1XI9yp7H7955J&si=MTJBUMOklFNwSzSC" target="_blank" rel="noopener noreferrer">📺 Bambu Studio Deep Dive Playlist</a></p>
         </div>
 
         <div class="part-actions">

@@ -116,6 +116,20 @@
       </div>
     </section>
 
+    <!-- ── Day 1 Vocabulary ───────────────────────────────────── -->
+    <section class="hero vocab-section" aria-labelledby="d1VocabTitle">
+      <h3 id="d1VocabTitle">📚 Day 1 Vocabulary</h3>
+      <p>These are the key terms you'll need for today. Review them before you start, and refer back as you go. <a href="glossary.html" class="glossary-link">📖 Open Full Glossary</a></p>
+      <div class="vocab-grid">
+        <div class="vocab-card"><strong>Extruder</strong> — The mechanism that grips and pushes filament into the hot nozzle. If the extruder slips or jams, the filament won't feed and printing stops.</div>
+        <div class="vocab-card"><strong>Nozzle</strong> — The small metal tip that heats filament to a liquid state and deposits it layer by layer on the build plate.</div>
+        <div class="vocab-card"><strong>Build Plate / Print Bed</strong> — The flat surface where your print is built, one layer at a time. A clean, level plate is essential for a successful first layer.</div>
+        <div class="vocab-card"><strong>Bed Leveling</strong> — The process of ensuring the build plate is the correct distance from the nozzle across its entire surface. Bambu printers use automatic bed leveling to do this before each print.</div>
+        <div class="vocab-card"><strong>Filament</strong> — The plastic material (usually a spool of thin wire) that the printer melts and builds with. Common types are PLA and PETG.</div>
+        <div class="vocab-card"><strong>Print Bed Alignment</strong> — Making sure the removable build plate is correctly seated and flat before printing. A misaligned plate can cause prints to fail or fall off mid-print.</div>
+      </div>
+    </section>
+
 <!-- PART 1 -->
 <details open id="part1" class="active-card">
   <summary>
@@ -167,7 +181,7 @@
       <strong>While you watch:</strong> Pay attention to what makes each printer different. Think about which one you'd want to use and why.
     </div>
     <div class="video-wrap">
-      <iframe src="https://www.youtube.com/embed/bWM45yJOI7g" title="Printer overview video" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+      <iframe src="https://www.youtube.com/embed/4CKbIzpFvDc" title="Bambu printer overview video" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
     </div>
     <label for="printerChoice">Which printer would you choose for this class, and why?</label>
     <textarea id="printerChoice" placeholder="Think about ease of use, speed, print quality, or anything that stood out to you..."></textarea>
@@ -196,7 +210,23 @@
       <ul>
         <li>Identify the nozzle, bed, extruder, and frame</li>
         <li>Listen for what each part does during a print</li>
+        <li>Watch how bed leveling works and why it matters</li>
+        <li>Pay attention to how the bed plates align properly</li>
         <li>Ask questions if something is unclear</li>
+      </ul>
+    </div>
+
+    <div class="teacher-punchlist" aria-label="Instructor-facing demo checklist">
+      <div class="punchlist-header">📋 Instructor Punch List — Live Demo</div>
+      <p class="punchlist-note">This section is for the teacher. Use it as a checklist during the live demonstration.</p>
+      <ul class="punchlist-items">
+        <li><span class="punchlist-icon">🖨️</span> Introduce the printer and point out all major parts (nozzle, bed, extruder, frame, spool holder)</li>
+        <li><span class="punchlist-icon">🔥</span> Explain the <strong>extruder</strong> — how it grips and feeds filament into the nozzle under heat</li>
+        <li><span class="punchlist-icon">📐</span> Explain <strong>bed leveling</strong> — why the first layer must be at the right distance from the nozzle, and what happens when it's off</li>
+        <li><span class="punchlist-icon">🔲</span> Show how to properly <strong>align the bed plates</strong> — demonstrate correct placement and common mistakes</li>
+        <li><span class="punchlist-icon">▶️</span> Demonstrate <strong>safe startup</strong> and basic operating procedures</li>
+        <li><span class="punchlist-icon">👁️</span> Point out what students should <strong>watch for during a print</strong> (first layer adhesion, filament flow, any unusual sounds)</li>
+        <li><span class="punchlist-icon">🤲</span> Emphasize <strong>correct handling</strong> of the printer and bed plate — do not touch the hot nozzle, handle the plate by the edges only</li>
       </ul>
     </div>
 
@@ -412,6 +442,9 @@
         <li>🎨 Creative designs (art, decorative prints)</li>
       </ul>
     </div>
+
+    <label for="modelUrl">Paste the URL to the model you found:</label>
+    <input type="text" id="modelUrl" placeholder="https://makerworld.com/..." aria-label="URL of model found online" />
 
     <label for="favoriteModel">What model stood out most to you, and why?</label>
     <textarea id="favoriteModel" placeholder="Describe the model and why it stood out to you..." aria-label="Favorite model and why"></textarea>
