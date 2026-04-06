@@ -1,0 +1,718 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Day 2 Slides — GCI 3D Printing</title>
+  <link rel="stylesheet" href="slides.css" />
+</head>
+<body>
+
+<!-- ── Toolbar ──────────────────────────────────────────────── -->
+<div id="toolbar">
+  <span class="toolbar-title">📋 Day 2 — Bambu Studio: From Model to Print Setup</span>
+  <div class="toolbar-controls">
+    <span id="cumTime">0 min elapsed</span>
+    <span id="slideCounter">1 / 22</span>
+    <button class="tb-btn" id="prevBtn" disabled>← Prev</button>
+    <button class="tb-btn primary" id="nextBtn">Next →</button>
+    <button class="tb-btn" id="notesToggle">📋 Notes</button>
+    <button class="tb-btn" id="fullscreenBtn">⛶ Full</button>
+    <button class="tb-btn" onclick="window.print()">🖨️ Print</button>
+    <a class="tb-btn" href="day2.html" target="_blank">Student Page ↗</a>
+  </div>
+</div>
+
+<!-- ── Slide Viewport ───────────────────────────────────────── -->
+<div id="slideViewport">
+
+  <!-- ═══════════════ SLIDE 1: Title ═══════════════ -->
+  <section class="slide title-slide active" data-time="1">
+    <div class="day-tag">GCI 3D Printing Lab · 90-Minute Block</div>
+    <h1>Day 2</h1>
+    <h2 style="color:var(--accent2);font-size:1.6rem;margin-top:6px;">Bambu Studio — From Model to Print Setup</h2>
+    <p class="subtitle" style="margin-top:10px;">Slicing · Settings · Preview · Guided Practice</p>
+    <div class="slide-num">1 / 22</div>
+    <div class="notes-content" style="display:none">
+      <ul>
+        <li><strong>As students arrive:</strong> Have Bambu Studio open on your instructor machine or projector so they can see it before you start.</li>
+        <li><strong>Say:</strong> <em>"Yesterday you learned how the printer works. Today you learn how to control it — using Bambu Studio."</em></li>
+        <li><strong>Prerequisite check:</strong> Students should have completed Day 1 and have a MakerWorld model URL saved. Quickly verify 2–3 students have their URL ready.</li>
+        <li><strong>Timing tip:</strong> Begin on time — the video takes 8–10 minutes and you need the full period.</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ═══════════════ SLIDE 2: Agenda ═══════════════ -->
+  <section class="slide" data-time="2">
+    <div class="slide-time">⏱ 2 min</div>
+    <h2>Today's Agenda</h2>
+    <div class="slide-cols">
+      <div>
+        <h3>First Half (~40 min)</h3>
+        <ul>
+          <li>Share out — what did you find yesterday?</li>
+          <li>How to choose a model that will actually print</li>
+          <li>What is a slicer?</li>
+          <li>▶ Watch Bambu Studio intro video</li>
+        </ul>
+      </div>
+      <div>
+        <h3>After Break (~40 min)</h3>
+        <ul>
+          <li>Guided notes — fill in the blanks</li>
+          <li>Import → Slice → Preview walkthrough</li>
+          <li>Print settings overview</li>
+          <li>💻 Bambu Studio hands-on exploration</li>
+          <li>Check for understanding + exit ticket</li>
+        </ul>
+      </div>
+    </div>
+    <div class="callout" style="margin-top:8px;">🧠 Brain break at approximately the 40-minute mark</div>
+    <div class="slide-num">2 / 22</div>
+    <div class="notes-content" style="display:none">
+      <ul>
+        <li><strong>Mention the hands-on time</strong> explicitly — students who know they'll get to use Bambu Studio themselves stay more engaged during instruction.</li>
+        <li><strong>Note:</strong> Students who finish early can start exploring the "Dive Deeper" playlist linked on the student page.</li>
+        <li><strong>Transition:</strong> "Let's start with a quick share-out from yesterday."</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ═══════════════ SLIDE 3: Learning Goals ═══════════════ -->
+  <section class="slide" data-time="2">
+    <div class="slide-time">⏱ 2 min</div>
+    <h2>I Can…</h2>
+    <ul style="gap:12px;">
+      <li>✅ Explain what a <strong>slicer</strong> does and why it's a necessary step</li>
+      <li>✅ <strong>Import</strong> a model file into Bambu Studio</li>
+      <li>✅ Adjust basic <strong>print settings</strong> (layer height, infill, supports)</li>
+      <li>✅ Use the <strong>Preview</strong> feature to check a print before sending it</li>
+      <li>✅ Identify at least one potential problem in a model before printing</li>
+    </ul>
+    <div class="slide-num">3 / 22</div>
+    <div class="notes-content" style="display:none">
+      <ul>
+        <li><strong>Read through together.</strong> Ask: "How many of you have ever used a slicer before today?" (Usually very few — that's expected.)</li>
+        <li><strong>Frame the goal:</strong> "Bambu Studio might look complex at first. We're not learning every feature — we're learning the 4 things you need to get a print started. Everything else you can explore on your own."</li>
+        <li><strong>Transition:</strong> "Let's start by sharing what models everyone found yesterday."</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ═══════════════ SLIDE 4: Warm-Up / Share-Out ═══════════════ -->
+  <section class="slide" data-time="4">
+    <div class="slide-time">⏱ 4 min</div>
+    <span class="slide-type pause">💬 Share-Out</span>
+    <h2>Yesterday's MakerWorld Find</h2>
+    <div class="callout" style="font-size:1.05rem;padding:18px;text-align:center;flex:1;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:12px;">
+      <p>Share with a neighbor: <strong>What model did you find? Why did you pick it?</strong></p>
+      <p style="color:var(--muted);font-size:0.9rem;">Then we'll share a few with the whole class.</p>
+      <p style="color:var(--accent2);font-weight:700;font-size:0.9rem;">💡 Bonus: Is your model something you could actually print in class this week?</p>
+    </div>
+    <div class="slide-num">4 / 22</div>
+    <div class="notes-content" style="display:none">
+      <ul>
+        <li><strong>Give ~90 seconds</strong> for partner discussion, then cold call 3–4 students to share with the class.</li>
+        <li><strong>As students share:</strong> Lightly preview printability — "Oh that's interesting — does it have a lot of overhangs? Tiny details? Let's talk about that in a minute."</li>
+        <li><strong>Students who didn't find anything:</strong> Don't shame them — just say "You'll get another chance to explore today after we learn how to evaluate models."</li>
+        <li><strong>Transition:</strong> "Good — now let's talk about what makes a model actually print successfully, because not everything on MakerWorld works perfectly."</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ═══════════════ SLIDE 5: Choose a Good Model ═══════════════ -->
+  <section class="slide" data-time="5">
+    <div class="slide-time">⏱ 5 min</div>
+    <h2>How to Choose a Model That Prints</h2>
+    <div class="slide-cols">
+      <div>
+        <h3>✅ Good signs</h3>
+        <ul>
+          <li>Mostly flat surfaces on the bottom</li>
+          <li>Thick walls and features (&gt; 1.5 mm)</li>
+          <li>No tiny text or micro-details</li>
+          <li>Lots of positive reviews + photos</li>
+          <li>File type: <strong>3MF or STL</strong></li>
+        </ul>
+      </div>
+      <div>
+        <h3>⚠️ Watch out for</h3>
+        <ul>
+          <li>Lots of overhangs with no supports</li>
+          <li>Very thin walls or spires</li>
+          <li>Complex supports that may fail</li>
+          <li>File listed as "print at your own risk"</li>
+          <li>Extremely long print times (&gt; 2 hours)</li>
+        </ul>
+      </div>
+    </div>
+    <div class="slide-num">5 / 22</div>
+    <div class="notes-content" style="display:none">
+      <ul>
+        <li><strong>Use a real example:</strong> Pull up a model you know prints well, and one that commonly fails. Walk through both columns with those examples.</li>
+        <li><strong>Overhangs explained simply:</strong> "Imagine printing a bridge — the middle of the bridge is in the air. If there's nothing below, the plastic just droops. Supports solve that but they add complexity."</li>
+        <li><strong>Quick poll:</strong> "Raise your hand if the model you found has any overhangs or floating parts." Then help those students think through whether it needs supports.</li>
+        <li><strong>Transition:</strong> "OK — before we can do anything with our model, we need to run it through the slicer. Let's learn what that actually means."</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ═══════════════ SLIDE 6: What is a Slicer ═══════════════ -->
+  <section class="slide" data-time="4">
+    <div class="slide-time">⏱ 4 min</div>
+    <h2>What is a Slicer?</h2>
+    <div class="slide-cols">
+      <div>
+        <ul style="gap:10px;">
+          <li>Software that converts a <strong>3D model</strong> into <strong>printer instructions</strong> (G-code)</li>
+          <li>Breaks the model into horizontal layers — like slicing a loaf of bread</li>
+          <li>You control layer height, speed, infill, supports and more</li>
+          <li>Bambu Studio is our slicer — built specifically for Bambu printers</li>
+          <li>Without slicing, the printer has no idea what to build</li>
+        </ul>
+      </div>
+      <div class="col-card" style="justify-content:center;align-items:center;text-align:center;">
+        <div style="font-size:2rem;">🍞</div>
+        <p style="font-size:0.9rem;color:var(--muted);">Think of slicing a loaf of bread — you see each layer. The slicer does this to your 3D model and tells the printer how to build each one.</p>
+      </div>
+    </div>
+    <div class="slide-num">6 / 22</div>
+    <div class="notes-content" style="display:none">
+      <ul>
+        <li><strong>Key emphasis:</strong> Slicing is NOT optional. Every model must be sliced before printing. You can't just drag a file onto the printer.</li>
+        <li><strong>Bread analogy tip:</strong> "If you could only eat a loaf of bread one slice at a time, you'd need to know in advance how thick each slice is, in what order they go, and where the butter goes. That's what the slicer figures out for the printer."</li>
+        <li><strong>Common confusion:</strong> Students sometimes think Tinkercad does the slicing. It doesn't — Tinkercad only creates the 3D model file (STL/3MF). Bambu Studio does the slicing (creates G-code).</li>
+        <li><strong>Transition:</strong> "Let's watch a video that shows Bambu Studio in action. This will make everything much more concrete."</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ═══════════════ SLIDE 7: Vocabulary Set 1 ═══════════════ -->
+  <section class="slide" data-time="3">
+    <div class="slide-time">⏱ 3 min</div>
+    <span class="slide-type vocab">📚 Vocabulary</span>
+    <h2>Key Terms — Bambu Studio</h2>
+    <div class="vocab-grid">
+      <div class="vocab-card">
+        <strong>Slicer</strong>
+        Software that converts a 3D model into layer-by-layer G-code instructions for the printer. Bambu Studio is our slicer.
+      </div>
+      <div class="vocab-card">
+        <strong>G-code</strong>
+        Machine language the printer understands. Contains precise movement, temperature, and speed instructions for every moment of the print.
+      </div>
+      <div class="vocab-card">
+        <strong>Infill</strong>
+        The internal structure of a print. 15% = mostly hollow. 100% = solid. Higher infill = stronger but heavier and slower.
+      </div>
+      <div class="vocab-card">
+        <strong>Layer Height</strong>
+        How thick each printed layer is. 0.1 mm = high detail, slow. 0.3 mm = faster, less detail. 0.2 mm is the standard default.
+      </div>
+    </div>
+    <div class="slide-num">7 / 22</div>
+    <div class="notes-content" style="display:none">
+      <ul>
+        <li><strong>Quick review before the video</strong> — so students are listening for these terms as they watch.</li>
+        <li><strong>Ask after reviewing:</strong> "If you were printing a keychain that needs to be strong, would you use 15% infill or 50%? Why?" (50% — more internal structure = stronger.)</li>
+        <li><strong>Transition:</strong> "Keep these in your head while you watch. You'll need them for the guided notes activity afterward."</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ═══════════════ SLIDE 8: Play Video ═══════════════ -->
+  <section class="slide" data-time="10">
+    <div class="slide-time">⏱ 10 min</div>
+    <span class="slide-type video">▶ Play Video</span>
+    <h2>Bambu Studio — Intro Tutorial</h2>
+    <div class="video-placeholder" style="flex:1;">
+      <div class="play-icon">▶️</div>
+      <p style="font-size:1.1rem;font-weight:700;">Bambu Studio Intro &amp; Walkthrough</p>
+      <a href="https://www.youtube.com/watch?v=8TQCRVS72Us" target="_blank" rel="noopener">
+        https://www.youtube.com/watch?v=8TQCRVS72Us
+      </a>
+      <p style="font-size:0.85rem;color:var(--muted);margin-top:6px;">Watch for: import, slice button, settings panel, preview mode</p>
+    </div>
+    <div class="slide-num">8 / 22</div>
+    <div class="notes-content" style="display:none">
+      <ul>
+        <li><strong>Before playing:</strong> Say "Watch for these four things — you'll fill in the blanks after the break: (1) how to import a file, (2) what settings you can change, (3) what slicing does, (4) how to use the preview."</li>
+        <li><strong>Pause at the import step</strong> (~2 min): "That's how you get your file in — drag-and-drop or File → Import."</li>
+        <li><strong>Pause at slicing step</strong> (~5 min): "Notice how the model changes when you hit Slice — it breaks into layers. What did that look like?"</li>
+        <li><strong>Pause at preview</strong> (~8 min): "The preview is your safety net — you can catch problems before a single millimeter of filament is wasted."</li>
+        <li><strong>After the video:</strong> "Perfect — now we hit the break. When you come back, we'll do the guided notes and then get Bambu Studio open on your machines."</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ═══════════════ SLIDE 9: Vocabulary Set 2 ═══════════════ -->
+  <section class="slide" data-time="3">
+    <div class="slide-time">⏱ 3 min</div>
+    <span class="slide-type vocab">📚 Vocabulary</span>
+    <h2>Key Terms — More Bambu Studio</h2>
+    <div class="vocab-grid">
+      <div class="vocab-card">
+        <strong>Supports</strong>
+        Temporary scaffolding for overhanging parts. Auto-generated by the slicer. Removed after printing — sometimes leaves marks.
+      </div>
+      <div class="vocab-card">
+        <strong>Printer Profile</strong>
+        The set of settings in Bambu Studio that matches your specific Bambu model (A1, P1S, X1, etc.). Must be correct for accurate results.
+      </div>
+      <div class="vocab-card">
+        <strong>Preview</strong>
+        Simulates the print layer-by-layer in Bambu Studio. Use it to verify support placement, check for gaps, and see estimated print time.
+      </div>
+      <div class="vocab-card">
+        <strong>Slicing</strong>
+        The process of converting a 3D model into G-code by dividing it horizontally into layers. Triggered by the "Slice" button in Bambu Studio.
+      </div>
+    </div>
+    <div class="slide-num">9 / 22</div>
+    <div class="notes-content" style="display:none">
+      <ul>
+        <li><strong>Post-video vocabulary review</strong> — reinforce terms students just heard in context.</li>
+        <li><strong>Ask:</strong> "What did you notice in the video about supports — where did they appear?" (Under overhanging parts.)</li>
+        <li><strong>Transition:</strong> "Brain break in one slide — but first, let's check in on where we are." (Advance to agenda check slide or go straight to break.)</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ═══════════════ SLIDE 10: Pre-Break Check ═══════════════ -->
+  <section class="slide" data-time="2">
+    <div class="slide-time">⏱ 2 min</div>
+    <span class="slide-type pause">⏸ Pause &amp; Check</span>
+    <h2>Before the Break — Quick Check</h2>
+    <div class="cfu-card" style="flex:1;display:flex;flex-direction:column;gap:14px;padding:18px;">
+      <p style="font-weight:700;">Thumbs up / thumbs down — no wrong answers:</p>
+      <ul>
+        <li>Could you explain what a slicer does to someone who just walked in? 👍 / 👎</li>
+        <li>Do you remember where the Slice button is in Bambu Studio? 👍 / 👎</li>
+        <li>Could you explain the difference between layer height and infill? 👍 / 👎</li>
+      </ul>
+      <p style="font-size:0.88rem;color:var(--muted);margin-top:4px;">After the break: guided notes, then hands-on Bambu Studio time.</p>
+    </div>
+    <div class="slide-num">10 / 22</div>
+    <div class="notes-content" style="display:none">
+      <ul>
+        <li><strong>Quick formative assessment</strong> — not for a grade, just to gauge the room before the break.</li>
+        <li><strong>If lots of thumbs down on Q1:</strong> Spend 60 seconds re-explaining the bread analogy before the break.</li>
+        <li><strong>Purpose:</strong> Students who know they'll need to fill in guided notes after the break will mentally preview the video during break (cognitive trick — previewing improves recall).</li>
+        <li><strong>Transition:</strong> "Great — brain break time. Computers closed, phones away for 10 minutes."</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ═══════════════ SLIDE 11: BRAIN BREAK ═══════════════ -->
+  <section class="slide brain-break" data-time="10">
+    <div class="break-emoji">🧠</div>
+    <div class="break-title">Brain Break!</div>
+    <div class="break-sub">Stand up · Move · Reset</div>
+    <div class="break-timer" id="breakTimer2">10:00</div>
+    <div class="break-activities">
+      <div class="break-activity">🚶 Walk a lap around the room</div>
+      <div class="break-activity">💬 Talk about anything except class</div>
+      <div class="break-activity">🤸 10 jumping jacks</div>
+      <div class="break-activity">🧘 Breathe — you've got this</div>
+    </div>
+    <span class="break-restart" id="restartBreak2">↺ Restart timer</span>
+    <div class="slide-num">11 / 22</div>
+    <div class="notes-content" style="display:none">
+      <ul>
+        <li><strong>While students break:</strong> Open Bambu Studio on your machine + a student machine. Load a sample STL so you're ready to walk through Import → Slice → Preview when they return.</li>
+        <li><strong>If Bambu Studio isn't installed yet</strong> on student machines, this is the time to sort it out — don't let it eat into instruction time after the break.</li>
+        <li><strong>2-minute warning:</strong> "Two minutes — start heading back to your seats."</li>
+        <li><strong>Re-entry:</strong> When students return, hand out the guided notes worksheet OR direct them to Part 3 on the student page.</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ═══════════════ SLIDE 12: Guided Notes ═══════════════ -->
+  <section class="slide" data-time="5">
+    <div class="slide-time">⏱ 5 min</div>
+    <span class="slide-type work">🎯 Guided Notes</span>
+    <h2>Fill in the Blanks</h2>
+    <div class="callout" style="flex:1;display:flex;flex-direction:column;gap:10px;padding:18px;">
+      <p><strong>From memory (or the video) — complete these on your student page, Part 3:</strong></p>
+      <ol style="gap:10px;padding-left:20px;">
+        <li>Bambu Studio's main job is to convert a 3D model into <em>_______ instructions</em>.</li>
+        <li>The two most common file formats to import are <em>_______ and _______</em>.</li>
+        <li>Slicing breaks your model into horizontal <em>_______</em>.</li>
+        <li>You can adjust layer height, infill, and <em>_______</em> in print settings.</li>
+        <li>The <strong>Preview</strong> feature lets you check the model <em>_______</em> before printing.</li>
+        <li>Selecting the correct <strong>printer profile</strong> tells Bambu Studio the <em>_______ and capabilities</em>.</li>
+      </ol>
+    </div>
+    <div class="slide-num">12 / 22</div>
+    <div class="notes-content" style="display:none">
+      <ul>
+        <li><strong>Give students 3–4 minutes</strong> to fill these in from memory. This is a retrieval practice activity — the struggle of remembering is the learning.</li>
+        <li><strong>Answers:</strong> (1) printer/G-code, (2) STL and 3MF, (3) layers, (4) supports/speed/etc., (5) layer-by-layer, (6) model/capabilities.</li>
+        <li><strong>After 3–4 minutes:</strong> Go over the answers together — read each blank and cold call students. Don't just read the answers yourself.</li>
+        <li><strong>Watch for:</strong> Students who just look everything up on Google. Encourage them to try from memory first — "Google tells you the answer. Trying to remember teaches you the answer."</li>
+        <li><strong>Transition:</strong> "Good. Now let's walk through those steps live in Bambu Studio."</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ═══════════════ SLIDE 13: Import Steps ═══════════════ -->
+  <section class="slide" data-time="5">
+    <div class="slide-time">⏱ 5 min</div>
+    <span class="slide-type demo">🎓 Walkthrough</span>
+    <h2>Step 1 — Import Your Model</h2>
+    <div class="slide-cols">
+      <div class="demo-card">
+        <h3>How to import</h3>
+        <ul>
+          <li>Method A: Drag-and-drop an <strong>STL</strong> or <strong>3MF</strong> file into the workspace</li>
+          <li>Method B: <strong>File → Import → Local File</strong></li>
+          <li>Select your printer model at the top (check the dropdown)</li>
+          <li>Your model appears in the center of the workspace</li>
+        </ul>
+      </div>
+      <div class="demo-card">
+        <h3>Common import mistakes</h3>
+        <ul>
+          <li>Wrong file type (JPG/PNG won't work — must be 3D model)</li>
+          <li>Wrong printer selected in the dropdown</li>
+          <li>Model appears tiny or gigantic — use Scale to fix</li>
+          <li>Model appears underground — right-click → Lay Flat</li>
+        </ul>
+      </div>
+    </div>
+    <div class="slide-num">13 / 22</div>
+    <div class="notes-content" style="display:none">
+      <ul>
+        <li><strong>Show on projector while students follow along.</strong> Import a sample STL so they see exactly what happens step-by-step.</li>
+        <li><strong>Pause and let students import their own file</strong> (the STL from a MakerWorld model they downloaded, or use the provided sample file).</li>
+        <li><strong>Common panic moment:</strong> Student doesn't know where they saved the file. Have a "lost file" plan — suggest Downloads folder first.</li>
+        <li><strong>Scaling tip:</strong> For a keychain, you want roughly 40–60 mm in the longest dimension. Show them how to check and adjust scale (right-click → Scale, or drag the scale handles).</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ═══════════════ SLIDE 14: Print Settings ═══════════════ -->
+  <section class="slide" data-time="5">
+    <div class="slide-time">⏱ 5 min</div>
+    <span class="slide-type demo">🎓 Walkthrough</span>
+    <h2>Step 2 — Adjust Print Settings</h2>
+    <div class="slide-cols thirds">
+      <div class="col-card">
+        <h3>Layer Height</h3>
+        <ul>
+          <li><strong>0.2 mm</strong> — default, good for most prints</li>
+          <li>0.1 mm = higher detail, longer print</li>
+          <li>0.3 mm = faster, less detailed</li>
+        </ul>
+      </div>
+      <div class="col-card">
+        <h3>Infill</h3>
+        <ul>
+          <li><strong>15%</strong> = light, decorative</li>
+          <li><strong>30–40%</strong> = functional parts</li>
+          <li>Keychain: <strong>20–25%</strong> is usually good</li>
+        </ul>
+      </div>
+      <div class="col-card">
+        <h3>Supports</h3>
+        <ul>
+          <li>Turn ON if model has overhangs &gt; 45°</li>
+          <li>Support type: Normal is fine for most</li>
+          <li>Remove supports carefully after printing</li>
+        </ul>
+      </div>
+    </div>
+    <div class="callout" style="margin-top:8px;">📌 For most class projects: <strong>0.2 mm layer height · 20% infill · supports off</strong> is a solid starting point</div>
+    <div class="slide-num">14 / 22</div>
+    <div class="notes-content" style="display:none">
+      <ul>
+        <li><strong>Walk through settings on Bambu Studio live.</strong> Change a setting and show what it affects in the preview — this makes abstract concepts concrete immediately.</li>
+        <li><strong>Key message:</strong> "You don't need to understand every setting right now. Start with these defaults. Once you've done a few prints, you'll know when and why to change them."</li>
+        <li><strong>Common student mistake:</strong> Turning on supports when they're not needed (adds time and material). Ask "Does your model have parts that are floating in the air?" — if no, supports off.</li>
+        <li><strong>Filament profile:</strong> Make sure students select the correct filament type in the slicer (PLA Basic, etc.) — wrong profile = wrong temperatures = bad print.</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ═══════════════ SLIDE 15: Slice and Preview ═══════════════ -->
+  <section class="slide" data-time="5">
+    <div class="slide-time">⏱ 5 min</div>
+    <span class="slide-type demo">🎓 Walkthrough</span>
+    <h2>Step 3 — Slice &amp; Preview</h2>
+    <div class="slide-cols">
+      <div class="demo-card">
+        <h3>How to slice</h3>
+        <ul>
+          <li>Click the <strong>Slice</strong> button (top right)</li>
+          <li>Bambu Studio processes the model — takes 5–30 seconds</li>
+          <li>You're automatically taken to the <strong>Preview</strong> tab</li>
+          <li>Check the <strong>estimated print time</strong> (shown at bottom)</li>
+        </ul>
+      </div>
+      <div class="demo-card">
+        <h3>What to look for in Preview</h3>
+        <ul>
+          <li>Drag the layer slider to inspect layer-by-layer</li>
+          <li>Check supports are where you expect them</li>
+          <li>Look for gaps, unexpected holes, or missing walls</li>
+          <li>Verify the first layer is solid and complete</li>
+        </ul>
+      </div>
+    </div>
+    <div class="callout warn" style="margin-top:8px;">⚠️ <strong>Always preview before printing.</strong> 30 seconds of checking now saves 2 hours of failed printing later.</div>
+    <div class="slide-num">15 / 22</div>
+    <div class="notes-content" style="display:none">
+      <ul>
+        <li><strong>Live demo:</strong> Slice a model on the projector and walk through the Preview tab in real time.</li>
+        <li><strong>Show a "bad" preview</strong> (if you have one): a model with a gap in layer 5 or missing supports — this makes the value of checking obvious.</li>
+        <li><strong>Teach the layer slider:</strong> Drag from layer 1 upward — they should see the model build up visually. Ask "What does this remind you of?" (the FDM layer-by-layer concept from Day 1.)</li>
+        <li><strong>Common student question:</strong> "The print time says 2 hours — is that right?" Sometimes yes. For a keychain at low detail it should be ~20–40 min. If it's way off, check scale and settings.</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ═══════════════ SLIDE 16: Student Work ═══════════════ -->
+  <section class="slide" data-time="8">
+    <div class="slide-time">⏱ 8 min</div>
+    <span class="slide-type work">🎯 Student Work</span>
+    <h2>Bambu Studio — Try It Yourself</h2>
+    <div class="callout" style="flex:1;display:flex;flex-direction:column;gap:12px;padding:20px;">
+      <p><strong>On your machine — follow along:</strong></p>
+      <ul>
+        <li>Open Bambu Studio on your computer</li>
+        <li><strong>Import</strong> a sample STL (or your MakerWorld download)</li>
+        <li>Set: <strong>layer height 0.2 mm · infill 20% · supports off</strong></li>
+        <li>Click <strong>Slice</strong> — then explore the Preview tab</li>
+        <li>Check print time — is it realistic for a class period?</li>
+      </ul>
+      <p style="font-size:0.88rem;color:var(--muted);">✋ Raise your hand if you get stuck — don't skip ahead.</p>
+    </div>
+    <div class="slide-num">16 / 22</div>
+    <div class="notes-content" style="display:none">
+      <ul>
+        <li><strong>Circulate the room</strong> during this time. Most issues will be: file not found, wrong printer selected, model too large, or unfamiliar with the UI.</li>
+        <li><strong>Quick fixes to have ready:</strong> (1) Wrong printer: click top dropdown, select correct Bambu model. (2) Model too big: right-click → Scale → type 50mm for longest dimension. (3) Can't find slice button: it's top right, blue button.</li>
+        <li><strong>If a student's slice takes very long:</strong> Their model is probably extremely complex. Have them use the sample file instead.</li>
+        <li><strong>After 8 min:</strong> Pause everyone. Ask "Who got all the way to the Preview tab?" — check progress and troubleshoot any blockers before moving on.</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ═══════════════ SLIDE 17: Alt Videos ═══════════════ -->
+  <section class="slide" data-time="2">
+    <div class="slide-time">⏱ 2 min</div>
+    <h2>Need Another Explanation?</h2>
+    <div class="slide-cols">
+      <div class="col-card">
+        <h3>🎥 Alternative Videos</h3>
+        <p style="font-size:0.88rem;color:var(--muted);margin-bottom:8px;">Different explanations work for different people. Try one of these:</p>
+        <ul>
+          <li><a href="https://www.youtube.com/watch?v=rZhy0J0mXBE" target="_blank" style="color:var(--accent);">Bambu Studio Tutorial (Alt View)</a></li>
+          <li><a href="https://youtu.be/Tc6xLuijLBg?si=CoPjfHcssSuhVGcF" target="_blank" style="color:var(--accent);">Bambu Studio Walkthrough (Another Perspective)</a></li>
+        </ul>
+      </div>
+      <div class="col-card">
+        <h3>🚀 Dive Deeper</h3>
+        <p style="font-size:0.88rem;color:var(--muted);margin-bottom:8px;">Finished early or want to go further?</p>
+        <ul>
+          <li><a href="https://youtube.com/playlist?list=PLFUVS59deIm2mawl3Zjk1XI9yp7H7955J" target="_blank" style="color:var(--accent2);">Bambu Studio Deep Dive Playlist →</a></li>
+        </ul>
+        <p style="font-size:0.83rem;color:var(--muted);margin-top:6px;">Covers: advanced settings, supports, multi-material, and more.</p>
+      </div>
+    </div>
+    <div class="slide-num">17 / 22</div>
+    <div class="notes-content" style="display:none">
+      <ul>
+        <li><strong>These are optional resources</strong> — don't spend much time here in whole-class mode. This slide is for reference and for early finishers.</li>
+        <li><strong>Say:</strong> "If today's video didn't fully click, these links are on your student page under Part 3. Try a different explanation and see if it helps."</li>
+        <li><strong>The deep-dive playlist</strong> is for students who are genuinely motivated to go further — great for students who want to optimize prints or use advanced features.</li>
+        <li><strong>Transition:</strong> "Let's talk about what can go wrong — because something always does."</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ═══════════════ SLIDE 18: Troubleshooting Preview ═══════════════ -->
+  <section class="slide" data-time="5">
+    <div class="slide-time">⏱ 5 min</div>
+    <h2>Spotting Problems Before You Print</h2>
+    <div class="slide-cols">
+      <div class="col-card">
+        <h3>🔴 In the model (Bambu Studio)</h3>
+        <ul>
+          <li>Gaps between layers in Preview → model may have holes/errors</li>
+          <li>No bottom layer → model may be floating above the plate</li>
+          <li>Extremely long print time → scale or complexity issue</li>
+          <li>Missing supports on obvious overhangs</li>
+        </ul>
+      </div>
+      <div class="col-card">
+        <h3>🔴 During the print</h3>
+        <ul>
+          <li>First layer not sticking → bed alignment or temperature issue</li>
+          <li>No filament coming out → extruder jam or clog</li>
+          <li>Stringy webbing → retraction settings or wet filament</li>
+          <li>Print shifts mid-print → vibration or loose belt</li>
+        </ul>
+      </div>
+    </div>
+    <div class="slide-num">18 / 22</div>
+    <div class="notes-content" style="display:none">
+      <ul>
+        <li><strong>This is a preview of troubleshooting skills</strong> they'll need on Day 5 (print day). Plant the seeds now.</li>
+        <li><strong>Ask:</strong> "If you're in the middle of a print and you see stringy webbing all over the place — what's the first thing you'd check?" (Retraction settings or filament moisture.)</li>
+        <li><strong>Key message:</strong> "The Preview tab catches half of these problems before you waste any filament. Use it every single time."</li>
+        <li><strong>Watch for:</strong> Students who think they can just trust the slicer defaults without looking at the preview. Reinforce that preview is a required step, not optional.</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ═══════════════ SLIDE 19: Teacher Checkpoint ═══════════════ -->
+  <section class="slide" data-time="5">
+    <div class="slide-time">⏱ 5 min</div>
+    <span class="slide-type pause">✋ Teacher Checkpoint</span>
+    <h2>Model Approval</h2>
+    <div class="callout" style="flex:1;display:flex;flex-direction:column;gap:14px;padding:20px;text-align:center;">
+      <div style="font-size:2rem;">📋</div>
+      <p style="font-size:1.05rem;font-weight:700;">Before students move to Day 3, their model must be approved.</p>
+      <ul style="text-align:left;">
+        <li>Model is sliced and previewed in Bambu Studio</li>
+        <li>Print time is reasonable (under 2 hours for class)</li>
+        <li>No obvious red flags (missing walls, bad overhangs, wrong scale)</li>
+        <li>Student can explain: <em>what it is, why they chose it, and one potential print challenge</em></li>
+      </ul>
+    </div>
+    <div class="slide-num">19 / 22</div>
+    <div class="notes-content" style="display:none">
+      <ul>
+        <li><strong>Circulate and sign off</strong> on each student's model. A simple "thumbs up" or sticky note on their laptop is fine.</li>
+        <li><strong>What to approve:</strong> Is it a reasonable model to print in a class setting? Is it sized correctly? Are settings sensible?</li>
+        <li><strong>Redirect students</strong> whose models are too complex, too large, or inappropriate. Have 3–4 backup models ready to suggest.</li>
+        <li><strong>Students who aren't ready:</strong> They should use this time to finalize their model. Don't let them proceed to exit ticket until they have an approved model.</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ═══════════════ SLIDE 20: Check for Understanding ═══════════════ -->
+  <section class="slide" data-time="3">
+    <div class="slide-time">⏱ 3 min</div>
+    <span class="slide-type check">✅ Check for Understanding</span>
+    <h2>Quick Check</h2>
+    <div class="cfu-card" style="flex:1;">
+      <ol style="gap:14px;">
+        <li>What does Bambu Studio do to a 3D model file? What does it produce?</li>
+        <li>What's the first thing you do after opening Bambu Studio?</li>
+        <li>What does <strong>infill percentage</strong> control?</li>
+        <li>Why is it important to preview before sending to the printer?</li>
+        <li>You see gaps in the Preview at layer 10 — what does that suggest?</li>
+      </ol>
+    </div>
+    <div class="slide-num">20 / 22</div>
+    <div class="notes-content" style="display:none">
+      <ul>
+        <li><strong>Answers:</strong> (1) Converts 3D model → G-code (layer-by-layer printer instructions). (2) Import the model file. (3) Internal fill density / strength vs. weight tradeoff. (4) Catch problems before wasting filament and time. (5) Possible hole or error in the model geometry — may need to repair or find a better file.</li>
+        <li><strong>Use cold-calling</strong> — pick students who seemed uncertain during the hands-on time.</li>
+        <li><strong>If time is tight:</strong> Do questions 1, 3, and 4 only — those are the most critical concepts.</li>
+        <li><strong>Transition:</strong> "One last step — submit your work for today."</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ═══════════════ SLIDE 21: Exit Ticket ═══════════════ -->
+  <section class="slide" data-time="3">
+    <div class="slide-time">⏱ 3 min</div>
+    <h2>Exit Ticket &amp; Submit</h2>
+    <div class="slide-cols">
+      <div>
+        <h3>Before you leave:</h3>
+        <ul class="slide-checklist" style="padding:0;">
+          <li>Part 7 on student page — click <strong>Generate My Responses</strong></li>
+          <li>Output includes your reflection, model name, model link, and quiz score</li>
+          <li>Paste into your <strong>Digital Notebook in Google Classroom</strong></li>
+          <li>Click <strong>Mark Complete</strong> on Part 7</li>
+        </ul>
+      </div>
+      <div class="col-card" style="background:rgba(156,243,219,0.07);">
+        <h3>Tomorrow: Day 3</h3>
+        <ul>
+          <li>TinkerCAD — design your own keychain</li>
+          <li>You'll need your school logo image downloaded</li>
+          <li>Bring your model — you may need it</li>
+        </ul>
+      </div>
+    </div>
+    <div class="slide-num">21 / 22</div>
+    <div class="notes-content" style="display:none">
+      <ul>
+        <li><strong>Confirm all students submit</strong> before dismissal. The summary includes quiz score and guided notes — make sure those are filled in first.</li>
+        <li><strong>Day 3 prep reminder:</strong> Students should find and download their school logo (PNG/JPG) before tomorrow. If possible, send a reminder via Google Classroom tonight.</li>
+        <li><strong>After class:</strong> Review submitted responses. Flag students who didn't complete the guided notes — they'll need support in Day 3.</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ═══════════════ SLIDE 22: Closing ═══════════════ -->
+  <section class="slide title-slide" data-time="1">
+    <div class="day-tag">Day 2 Complete</div>
+    <h2 style="color:var(--accent2);">Great work today.</h2>
+    <p class="subtitle">You learned how to take a 3D model and prepare it for printing.</p>
+    <p class="subtitle" style="margin-top:10px;color:var(--muted);font-size:0.9rem;">Day 3: TinkerCAD — you'll design your own keychain from scratch.</p>
+    <div class="slide-num">22 / 22</div>
+    <div class="notes-content" style="display:none">
+      <ul>
+        <li><strong>End on energy.</strong> Students sliced a real model today — that's a meaningful skill they didn't have 90 minutes ago.</li>
+        <li><strong>Call out specific wins:</strong> "I saw several of you catch issues in the preview that would have caused a failed print — that's exactly the habit we want to build."</li>
+      </ul>
+    </div>
+  </section>
+
+</div><!-- /slideViewport -->
+
+<div id="progressDots"></div>
+<div id="navHint">← → Arrow keys · N = notes · F = fullscreen · P = print</div>
+
+<div id="notesPanel">
+  <h4>📋 Speaker Notes — Day 2</h4>
+  <div id="notesBody" class="notes-content"></div>
+</div>
+
+<script>
+(function () {
+  var slides = Array.from(document.querySelectorAll('.slide'));
+  var total = slides.length, current = 0, showNotes = false, breakTimer = null;
+  var dotsEl = document.getElementById('progressDots');
+  slides.forEach(function (_, i) { var d = document.createElement('span'); d.className = 'dot'; d.addEventListener('click', function () { goTo(i); }); dotsEl.appendChild(d); });
+  function startBreakCountdown(slide) {
+    var display = slide.querySelector('.break-timer'); if (!display) return;
+    var seconds = 600; if (breakTimer) clearInterval(breakTimer);
+    function tick() { var m = Math.floor(seconds/60), s = seconds%60; display.textContent = m+':'+(s<10?'0':'')+s; if (seconds===0){clearInterval(breakTimer);breakTimer=null;display.textContent="Time's up!";display.style.color='var(--danger)';} seconds--; }
+    tick(); breakTimer = setInterval(tick, 1000);
+    slide.querySelectorAll('.break-restart').forEach(function(btn){ btn.onclick = function(){ seconds=600; if(breakTimer)clearInterval(breakTimer); display.style.color=''; tick(); breakTimer=setInterval(tick,1000); }; });
+  }
+  function goTo(idx) {
+    if (breakTimer) { clearInterval(breakTimer); breakTimer = null; }
+    slides[current].classList.remove('active'); current = Math.max(0, Math.min(idx, total-1)); slides[current].classList.add('active');
+    if (slides[current].classList.contains('brain-break')) startBreakCountdown(slides[current]);
+    updateUI();
+  }
+  function updateUI() {
+    document.getElementById('slideCounter').textContent = (current+1)+' / '+total;
+    document.getElementById('prevBtn').disabled = current===0;
+    document.getElementById('nextBtn').disabled = current===total-1;
+    var cum=0; for(var i=0;i<=current;i++) cum+=parseInt(slides[i].getAttribute('data-time')||'0',10);
+    document.getElementById('cumTime').textContent = '≈ '+cum+' min elapsed';
+    Array.from(document.querySelectorAll('.dot')).forEach(function(d,i){ d.classList.toggle('current',i===current); d.classList.toggle('done',i<current); });
+    var notesEl=slides[current].querySelector('.notes-content'), panel=document.getElementById('notesPanel'), body=document.getElementById('notesBody');
+    if(showNotes&&notesEl){body.innerHTML=notesEl.innerHTML;panel.classList.add('visible');}else panel.classList.remove('visible');
+  }
+  document.getElementById('prevBtn').addEventListener('click', function(){if(current>0)goTo(current-1);});
+  document.getElementById('nextBtn').addEventListener('click', function(){if(current<total-1)goTo(current+1);});
+  function toggleNotes(){ showNotes=!showNotes; document.getElementById('notesToggle').textContent=showNotes?'📋 Hide Notes':'📋 Notes'; updateUI(); }
+  document.getElementById('notesToggle').addEventListener('click', toggleNotes);
+  document.getElementById('fullscreenBtn').addEventListener('click', function(){ if(!document.fullscreenElement)document.documentElement.requestFullscreen().catch(function(){}); else document.exitFullscreen(); });
+  document.addEventListener('keydown', function(e){ if(e.target.tagName==='INPUT'||e.target.tagName==='TEXTAREA')return; if(e.key==='ArrowRight'||e.key==='ArrowDown'||e.key===' '){e.preventDefault();if(current<total-1)goTo(current+1);} else if(e.key==='ArrowLeft'||e.key==='ArrowUp'){e.preventDefault();if(current>0)goTo(current-1);} else if(e.key==='n'||e.key==='N')toggleNotes(); else if(e.key==='f'||e.key==='F')document.getElementById('fullscreenBtn').click(); });
+  updateUI();
+}());
+</script>
+</body>
+</html>

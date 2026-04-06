@@ -1,0 +1,691 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Day 3 Slides — GCI 3D Printing</title>
+  <link rel="stylesheet" href="slides.css" />
+</head>
+<body>
+
+<div id="toolbar">
+  <span class="toolbar-title">📋 Day 3 — TinkerCAD Design</span>
+  <div class="toolbar-controls">
+    <span id="cumTime">0 min elapsed</span>
+    <span id="slideCounter">1 / 21</span>
+    <button class="tb-btn" id="prevBtn" disabled>← Prev</button>
+    <button class="tb-btn primary" id="nextBtn">Next →</button>
+    <button class="tb-btn" id="notesToggle">📋 Notes</button>
+    <button class="tb-btn" id="fullscreenBtn">⛶ Full</button>
+    <button class="tb-btn" onclick="window.print()">🖨️ Print</button>
+    <a class="tb-btn" href="day3.html" target="_blank">Student Page ↗</a>
+  </div>
+</div>
+
+<div id="slideViewport">
+
+  <!-- SLIDE 1: Title -->
+  <section class="slide title-slide active" data-time="1">
+    <div class="day-tag">GCI 3D Printing Lab · 90-Minute Block</div>
+    <h1>Day 3</h1>
+    <h2 style="color:var(--accent2);font-size:1.6rem;margin-top:6px;">TinkerCAD — Design Your Keychain</h2>
+    <p class="subtitle" style="margin-top:10px;">File Types · Design Tools · Export &amp; Preview</p>
+    <div class="slide-num">1 / 21</div>
+    <div class="notes-content" style="display:none">
+      <ul>
+        <li><strong>As students arrive:</strong> Have TinkerCAD open on the projector — even the login screen is helpful context. Direct students to open Day 3 student page.</li>
+        <li><strong>Say:</strong> <em>"Today you go from watching to doing. You'll build your own 3D model in TinkerCAD. By the end of class, you'll have a 3D shape on your screen that came entirely from your hands."</em></li>
+        <li><strong>Prerequisite check:</strong> Students should have their school logo image saved. If not, give them 3 minutes at the start to find and download it.</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- SLIDE 2: Agenda -->
+  <section class="slide" data-time="2">
+    <div class="slide-time">⏱ 2 min</div>
+    <h2>Today's Agenda</h2>
+    <div class="slide-cols">
+      <div>
+        <h3>First Half (~40 min)</h3>
+        <ul>
+          <li>Review file types: STL, 3MF, G-code</li>
+          <li>The 3D printing workflow</li>
+          <li>Intro to TinkerCAD</li>
+          <li>▶ Watch TinkerCAD tutorial video</li>
+        </ul>
+      </div>
+      <div>
+        <h3>After Break (~40 min)</h3>
+        <ul>
+          <li>Join your class in TinkerCAD</li>
+          <li>TinkerCAD interface tour</li>
+          <li>Design your keychain</li>
+          <li>Export and preview in Bambu Studio</li>
+          <li>Check for understanding (5 questions)</li>
+        </ul>
+      </div>
+    </div>
+    <div class="callout" style="margin-top:8px;">🧠 Brain break at approximately the 40-minute mark</div>
+    <div class="slide-num">2 / 21</div>
+    <div class="notes-content" style="display:none">
+      <ul>
+        <li><strong>Today is heavy on hands-on time</strong> — students should expect to spend the second half actively building in TinkerCAD.</li>
+        <li><strong>Manage expectations:</strong> "TinkerCAD takes a little getting used to. It's okay if you don't finish the keychain today — that's what Day 4 is for. What matters today is getting comfortable with the tools."</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- SLIDE 3: Learning Goals -->
+  <section class="slide" data-time="2">
+    <div class="slide-time">⏱ 2 min</div>
+    <h2>I Can…</h2>
+    <ul style="gap:12px;">
+      <li>✅ Explain the difference between <strong>STL, 3MF, and G-code</strong> files</li>
+      <li>✅ Navigate the TinkerCAD workspace and place, resize, and delete shapes</li>
+      <li>✅ Use the <strong>Hole</strong> tool to subtract shapes and create a keyring hole</li>
+      <li>✅ Group shapes together to create a single object</li>
+      <li>✅ <strong>Export</strong> a finished design as STL or 3MF</li>
+    </ul>
+    <div class="slide-num">3 / 21</div>
+    <div class="notes-content" style="display:none">
+      <ul>
+        <li><strong>Ask:</strong> "Has anyone used TinkerCAD before?" — some students may have, which is useful for peer support later.</li>
+        <li><strong>Flag the Hole tool</strong> early: "The Hole tool is the trickiest concept today. It feels backwards at first but it's incredibly powerful once you get it."</li>
+        <li><strong>Transition:</strong> "Before TinkerCAD, let's make sure we're solid on file types — because you'll need to export the right format."</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- SLIDE 4: File Types Warm-Up -->
+  <section class="slide" data-time="4">
+    <div class="slide-time">⏱ 4 min</div>
+    <span class="slide-type pause">🤔 Warm-Up</span>
+    <h2>File Types Review</h2>
+    <div class="callout" style="font-size:1.05rem;padding:18px;flex:1;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:14px;text-align:center;">
+      <p><strong>Quick — can you match them from memory?</strong></p>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;width:100%;max-width:600px;">
+        <div class="col-card"><strong>.STL</strong></div>
+        <div class="col-card" style="color:var(--muted);">G-code — printer movement instructions</div>
+        <div class="col-card"><strong>.3MF</strong></div>
+        <div class="col-card" style="color:var(--muted);">3D model geometry only (no settings)</div>
+        <div class="col-card"><strong>.gcode</strong></div>
+        <div class="col-card" style="color:var(--muted);">3D model + settings + color info</div>
+      </div>
+    </div>
+    <div class="slide-num">4 / 21</div>
+    <div class="notes-content" style="display:none">
+      <ul>
+        <li><strong>Ask students to match before revealing answers.</strong> Cold call 3 students.</li>
+        <li><strong>Answers:</strong> STL = geometry only; 3MF = model + settings; G-code = printer movement instructions.</li>
+        <li><strong>Common confusion:</strong> Students sometimes think STL and G-code are the same thing. Key distinction: STL/3MF are design files (created in Tinkercad); G-code is printer instructions (created by the slicer). The slicer sits between them.</li>
+        <li><strong>Transition:</strong> "Let's nail these down with the full breakdown."</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- SLIDE 5: File Types Detail -->
+  <section class="slide" data-time="5">
+    <div class="slide-time">⏱ 5 min</div>
+    <h2>File Types: STL · 3MF · G-code</h2>
+    <div class="slide-cols thirds">
+      <div class="col-card" style="text-align:center;">
+        <div style="font-size:2rem;">📄</div>
+        <h3>STL</h3>
+        <p style="font-size:0.84rem;color:var(--muted);">Standard format. Stores only the 3D shape as a mesh of triangles. No color, no settings, no print info.</p>
+        <p style="font-size:0.82rem;margin-top:8px;"><strong>Created in:</strong> Tinkercad<br><strong>Opened by:</strong> Bambu Studio</p>
+      </div>
+      <div class="col-card" style="text-align:center;">
+        <div style="font-size:2rem;">📦</div>
+        <h3>3MF</h3>
+        <p style="font-size:0.84rem;color:var(--muted);">Newer format. Stores shape + materials + color + print settings in one file. The preferred format for Bambu.</p>
+        <p style="font-size:0.82rem;margin-top:8px;"><strong>Created by:</strong> Bambu Studio (sliced)<br><strong>Sent to:</strong> Printer</p>
+      </div>
+      <div class="col-card" style="text-align:center;">
+        <div style="font-size:2rem;">🖨️</div>
+        <h3>G-code</h3>
+        <p style="font-size:0.84rem;color:var(--muted);">Machine language. Exact movement + temperature instructions for every second of the print. Created by slicing.</p>
+        <p style="font-size:0.82rem;margin-top:8px;"><strong>Created by:</strong> Slicer<br><strong>Read by:</strong> Printer firmware</p>
+      </div>
+    </div>
+    <div class="slide-num">5 / 21</div>
+    <div class="notes-content" style="display:none">
+      <ul>
+        <li><strong>The workflow:</strong> TinkerCAD → STL → Bambu Studio (slice) → 3MF/G-code → printer. Each step creates a different file type.</li>
+        <li><strong>Practical tip for students:</strong> "Always save your TinkerCAD design to your account in TinkerCAD. Then export STL for slicing. Then save the sliced 3MF from Bambu Studio. You need all three — don't delete any of them."</li>
+        <li><strong>Ask:</strong> "Which of these three files does the printer actually read?" (G-code / 3MF — both contain G-code.)</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- SLIDE 6: Vocabulary -->
+  <section class="slide" data-time="3">
+    <div class="slide-time">⏱ 3 min</div>
+    <span class="slide-type vocab">📚 Vocabulary</span>
+    <h2>Key Terms — TinkerCAD &amp; Design</h2>
+    <div class="vocab-grid">
+      <div class="vocab-card">
+        <strong>Workplane</strong>
+        The flat surface in TinkerCAD where you place shapes. All objects are built relative to this surface.
+      </div>
+      <div class="vocab-card">
+        <strong>Hole</strong>
+        A TinkerCAD shape set to "Hole" mode. When grouped with a solid, it cuts that shape out — perfect for the keyring hole.
+      </div>
+      <div class="vocab-card">
+        <strong>Group</strong>
+        Combining shapes together. Grouping a hole shape with a solid shape cuts the void — finalizes the keyring hole cutout.
+      </div>
+      <div class="vocab-card">
+        <strong>Export</strong>
+        Saving your design as STL or 3MF. Required to move your model from TinkerCAD into Bambu Studio.
+      </div>
+    </div>
+    <div class="slide-num">6 / 21</div>
+    <div class="notes-content" style="display:none">
+      <ul>
+        <li><strong>The Hole concept is counterintuitive</strong> — spend an extra 30 seconds on it. "You're not creating nothing — you're creating a 'negative' shape. When you group it with something solid, it removes that volume."</li>
+        <li><strong>Visual tip:</strong> Show a cylinder, turn it to Hole, then group it with a box — students immediately understand when they see it happen in real time.</li>
+        <li><strong>Transition:</strong> "Let's watch TinkerCAD in action. Pay attention to how shapes and holes work together."</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- SLIDE 7: Workflow -->
+  <section class="slide" data-time="3">
+    <div class="slide-time">⏱ 3 min</div>
+    <h2>The 3D Design Workflow</h2>
+    <div class="workflow-row" style="flex:1;">
+      <div class="wf-step">
+        <div class="wf-num">1</div>
+        <h4>Design</h4>
+        <p>TinkerCAD — shapes, holes, groups</p>
+      </div>
+      <div class="wf-arrow">→</div>
+      <div class="wf-step">
+        <div class="wf-num">2</div>
+        <h4>Export</h4>
+        <p>Save as STL from TinkerCAD</p>
+      </div>
+      <div class="wf-arrow">→</div>
+      <div class="wf-step">
+        <div class="wf-num">3</div>
+        <h4>Import</h4>
+        <p>Open STL in Bambu Studio</p>
+      </div>
+      <div class="wf-arrow">→</div>
+      <div class="wf-step">
+        <div class="wf-num">4</div>
+        <h4>Slice</h4>
+        <p>Generate G-code / 3MF</p>
+      </div>
+      <div class="wf-arrow">→</div>
+      <div class="wf-step">
+        <div class="wf-num">5</div>
+        <h4>Print</h4>
+        <p>Send to printer</p>
+      </div>
+    </div>
+    <div class="callout warn" style="margin-top:8px;">📌 Today covers Steps 1–3. Steps 4–5 are Day 5 (print day).</div>
+    <div class="slide-num">7 / 21</div>
+    <div class="notes-content" style="display:none">
+      <ul>
+        <li><strong>This is a review of the Day 1 workflow</strong> — now with more specificity. Students should recognize it. Ask: "What was Step 1 called on Day 1?" (Design.) "What tool do we use?" (TinkerCAD.)</li>
+        <li><strong>Frame today's scope:</strong> "We're doing steps 1 through 3 today. You design it, export it, and open it in Bambu Studio to verify it looks right. Then next week on Day 5 you print it."</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- SLIDE 8: Intro TinkerCAD -->
+  <section class="slide" data-time="3">
+    <div class="slide-time">⏱ 3 min</div>
+    <h2>What is TinkerCAD?</h2>
+    <div class="slide-cols">
+      <div>
+        <ul style="gap:10px;">
+          <li>Free, browser-based 3D design tool made by Autodesk</li>
+          <li>No download required — works in Chrome, Firefox, Safari</li>
+          <li>Designed for beginners — uses simple shapes as building blocks</li>
+          <li>You <strong>add</strong> shapes or <strong>subtract</strong> them (using holes)</li>
+          <li>Used by students, hobbyists, engineers, and professionals</li>
+        </ul>
+      </div>
+      <div class="col-card" style="align-items:center;justify-content:center;text-align:center;">
+        <div style="font-size:2rem;">🏗️</div>
+        <p style="font-size:0.9rem;color:var(--muted);">TinkerCAD is like digital LEGOs. You snap shapes together (and punch holes out of them) to build anything you can imagine.</p>
+      </div>
+    </div>
+    <div class="slide-num">8 / 21</div>
+    <div class="notes-content" style="display:none">
+      <ul>
+        <li><strong>LEGO analogy works great</strong> with high school students — it disarms the "this looks complicated" fear that often appears when opening CAD software for the first time.</li>
+        <li><strong>Show TinkerCAD on your screen now</strong> — briefly navigate to a sample design so students can see the interface before the video.</li>
+        <li><strong>Transition:</strong> "Let's watch a quick tutorial that shows you the essentials of TinkerCAD. Watch how shapes are placed, resized, and used as holes."</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- SLIDE 9: Play Video -->
+  <section class="slide" data-time="10">
+    <div class="slide-time">⏱ 10 min</div>
+    <span class="slide-type video">▶ Play Video</span>
+    <h2>TinkerCAD Tutorial</h2>
+    <div class="video-placeholder" style="flex:1;">
+      <div class="play-icon">▶️</div>
+      <p style="font-size:1.1rem;font-weight:700;">Getting Started in TinkerCAD</p>
+      <p style="font-size:0.9rem;color:var(--muted);">Search YouTube for: <strong>"TinkerCAD beginner tutorial keychain"</strong></p>
+      <p style="font-size:0.85rem;color:var(--muted);margin-top:6px;">Watch for: workspace, shapes panel, hole tool, group button, export</p>
+    </div>
+    <div class="slide-num">9 / 21</div>
+    <div class="notes-content" style="display:none">
+      <ul>
+        <li><strong>Before playing:</strong> "Focus on these 4 things: (1) how shapes are placed, (2) how to resize a shape, (3) how the Hole tool works, (4) how to Group shapes. Everything else you can explore on your own."</li>
+        <li><strong>Pause when they show the Hole tool</strong> — this is the most important moment. Ask: "What did they just do? Why did the cylinder disappear?" Reinforce: it became a negative — it removes material when grouped.</li>
+        <li><strong>Pause when they show the Group button</strong> — "This is how you lock shapes together. Once grouped, holes are applied. Don't forget this step or your hole won't actually cut through."</li>
+        <li><strong>After the video:</strong> "Brain break — when you come back, you're going to do exactly what you just watched, on your own machine, building your keychain."</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- SLIDE 10: Pre-Break Review -->
+  <section class="slide" data-time="2">
+    <div class="slide-time">⏱ 2 min</div>
+    <span class="slide-type pause">⏸ Quick Review</span>
+    <h2>Before the Break</h2>
+    <div class="callout" style="flex:1;padding:20px;display:flex;flex-direction:column;gap:14px;">
+      <p style="font-weight:700;">What did you just see in the video? Pair-share:</p>
+      <ul>
+        <li>What does the <strong>Hole</strong> tool do when grouped with a solid shape?</li>
+        <li>Where are the <strong>shapes</strong> in TinkerCAD? (right panel)</li>
+        <li>What's the difference between <strong>Move</strong> and <strong>Resize</strong> handles?</li>
+      </ul>
+      <p style="font-size:0.88rem;color:var(--muted);margin-top:4px;">After the break: you open TinkerCAD and start building.</p>
+    </div>
+    <div class="slide-num">10 / 21</div>
+    <div class="notes-content" style="display:none">
+      <ul>
+        <li><strong>30-second pair discussion, then cold call.</strong> This locks in the key concepts before the break interrupts the flow.</li>
+        <li><strong>Transition:</strong> "Brain break — 10 minutes. When you come back, open TinkerCAD and log in with your class account. We'll join the class first, then start building."</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- SLIDE 11: BRAIN BREAK -->
+  <section class="slide brain-break" data-time="10">
+    <div class="break-emoji">🧠</div>
+    <div class="break-title">Brain Break!</div>
+    <div class="break-sub">Stand up · Shake it out · Reset</div>
+    <div class="break-timer" id="breakTimer3">10:00</div>
+    <div class="break-activities">
+      <div class="break-activity">🕺 Freestyle stretch</div>
+      <div class="break-activity">💬 Tell someone what TinkerCAD is in one sentence</div>
+      <div class="break-activity">🚶 Walk to the printer and name 3 parts</div>
+      <div class="break-activity">🧘 5 deep breaths</div>
+    </div>
+    <span class="break-restart" id="restartBreak3">↺ Restart timer</span>
+    <div class="slide-num">11 / 21</div>
+    <div class="notes-content" style="display:none">
+      <ul>
+        <li><strong>While students break:</strong> Open TinkerCAD on your machine. Have a sample project open that shows a keychain shape with a hole — this will be your live demo when they return.</li>
+        <li><strong>Check:</strong> Do all students have TinkerCAD accounts? Are any students having login issues? Resolve before the break ends.</li>
+        <li><strong>2-minute warning:</strong> "Two minutes — open TinkerCAD on your machine and make sure you're logged in."</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- SLIDE 12: Join TinkerCAD Class -->
+  <section class="slide" data-time="3">
+    <div class="slide-time">⏱ 3 min</div>
+    <span class="slide-type work">🎯 Student Action</span>
+    <h2>Join Your Class in TinkerCAD</h2>
+    <div class="slide-cols">
+      <div class="col-card" style="text-align:center;justify-content:center;align-items:center;">
+        <h3>1st Session</h3>
+        <a href="https://www.tinkercad.com/joinclass/SN6MGPSUA" target="_blank" style="color:var(--accent);font-size:0.95rem;word-break:break-all;">
+          tinkercad.com/joinclass/SN6MGPSUA
+        </a>
+        <p style="font-size:0.83rem;color:var(--muted);margin-top:6px;">Click the link or type it in your browser</p>
+      </div>
+      <div class="col-card" style="text-align:center;justify-content:center;align-items:center;">
+        <h3>2nd Session</h3>
+        <a href="https://www.tinkercad.com/joinclass/EFLEVJC68" target="_blank" style="color:var(--accent);font-size:0.95rem;word-break:break-all;">
+          tinkercad.com/joinclass/EFLEVJC68
+        </a>
+        <p style="font-size:0.83rem;color:var(--muted);margin-top:6px;">Click the link or type it in your browser</p>
+      </div>
+    </div>
+    <div class="callout warn" style="margin-top:8px;">⚠️ Students under 12: must use <strong>Join a Class</strong> button — NOT "Sign Up"</div>
+    <div class="slide-num">12 / 21</div>
+    <div class="notes-content" style="display:none">
+      <ul>
+        <li><strong>Display the correct link prominently.</strong> Students may also find these links on their student page (day3.html → Part 3).</li>
+        <li><strong>Verify everyone has joined</strong> before moving on — check your TinkerCAD class roster to see who's connected.</li>
+        <li><strong>If a student can't join:</strong> They may have used the wrong Google account. Try signing out and back in. Alternatively, have them use a guest link you provide.</li>
+        <li><strong>Quick tip for students:</strong> "After joining, click '+ New Design' in your TinkerCAD dashboard. That's where you'll build today."</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- SLIDE 13: TinkerCAD Interface Tour -->
+  <section class="slide" data-time="4">
+    <div class="slide-time">⏱ 4 min</div>
+    <span class="slide-type demo">🎓 Interface Tour</span>
+    <h2>TinkerCAD — Key Areas</h2>
+    <div class="slide-cols thirds">
+      <div class="col-card">
+        <h3>🖱️ Viewport</h3>
+        <ul>
+          <li>Center of the screen</li>
+          <li>Right-click + drag = rotate view</li>
+          <li>Scroll = zoom in/out</li>
+          <li>Middle-click + drag = pan</li>
+        </ul>
+      </div>
+      <div class="col-card">
+        <h3>📐 Top Toolbar</h3>
+        <ul>
+          <li>Group button (Ctrl+G)</li>
+          <li>Ungroup button (Ctrl+Shift+G)</li>
+          <li>Hole / Solid toggle</li>
+          <li>Align and Mirror tools</li>
+        </ul>
+      </div>
+      <div class="col-card">
+        <h3>➡️ Right Panel</h3>
+        <ul>
+          <li>Shape library — drag onto workplane</li>
+          <li>Basic Shapes: Box, Cylinder, Sphere</li>
+          <li>Scroll down for more categories</li>
+        </ul>
+      </div>
+    </div>
+    <div class="slide-num">13 / 21</div>
+    <div class="notes-content" style="display:none">
+      <ul>
+        <li><strong>Show each area live on TinkerCAD as you describe it.</strong> Students should have their machines open — follow along.</li>
+        <li><strong>Most important shortcuts to teach:</strong> Ctrl+G (Group), Ctrl+Z (Undo), Ctrl+D (Duplicate). Write these on the board.</li>
+        <li><strong>Common early frustration:</strong> Students accidentally rotate the view when they want to move a shape. Clarify: click the shape first to select it, THEN drag it. Don't drag without selecting.</li>
+        <li><strong>Home view tip:</strong> If students get lost in the viewport (disoriented), press F to fit everything in view, or use the cube in the top-right corner to reset orientation.</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- SLIDE 14: Key Tools -->
+  <section class="slide" data-time="4">
+    <div class="slide-time">⏱ 4 min</div>
+    <span class="slide-type demo">🎓 Key Tools</span>
+    <h2>TinkerCAD — Essential Operations</h2>
+    <div class="slide-cols">
+      <div class="demo-card">
+        <h3>Building</h3>
+        <ul>
+          <li><strong>Drag</strong> a shape from the right panel onto the workplane</li>
+          <li>Click white handles to <strong>resize</strong></li>
+          <li>Click the shape and drag to <strong>move</strong> it</li>
+          <li>Right-click → <strong>Duplicate</strong> (or Ctrl+D)</li>
+        </ul>
+      </div>
+      <div class="demo-card">
+        <h3>Holes &amp; Grouping</h3>
+        <ul>
+          <li>Select a shape → click <strong>Hole</strong> in top toolbar</li>
+          <li>Position the hole shape over your solid shape</li>
+          <li>Select BOTH shapes → click <strong>Group</strong> (Ctrl+G)</li>
+          <li>The hole is now cut out — permanent until ungrouped</li>
+        </ul>
+      </div>
+    </div>
+    <div class="callout warn" style="margin-top:8px;">⚠️ You MUST Group a hole with its solid shape — otherwise the hole has no effect!</div>
+    <div class="slide-num">14 / 21</div>
+    <div class="notes-content" style="display:none">
+      <ul>
+        <li><strong>Live demo on projector:</strong> Create a box, drag a cylinder onto it, set cylinder to Hole, Group them. The whole room should see the cylinder disappear from the box. This "aha" moment is worth 2 minutes of demo time.</li>
+        <li><strong>Critical mistake to prevent:</strong> Students set a shape to Hole but forget to Group. Then nothing gets cut. Circulate and check: if you see a transparent cylinder just sitting on a box, they forgot to Group.</li>
+        <li><strong>Undo is your friend:</strong> Ctrl+Z undoes in TinkerCAD. Encourage students to experiment boldly — every mistake is undoable.</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- SLIDE 15: Design Tips -->
+  <section class="slide" data-time="3">
+    <div class="slide-time">⏱ 3 min</div>
+    <h2>Design Tips for Keychains</h2>
+    <div class="slide-cols">
+      <div>
+        <h3>✅ Do this</h3>
+        <ul>
+          <li>Keep the keychain <strong>40–60 mm</strong> in length (actual keychain size)</li>
+          <li>Make walls and text at least <strong>2 mm thick</strong> — thin features break off</li>
+          <li>Place the keyring hole <strong>at least 3 mm from any edge</strong></li>
+          <li>Keep the design flat (low profile) for better bed adhesion</li>
+        </ul>
+      </div>
+      <div>
+        <h3>⚠️ Avoid this</h3>
+        <ul>
+          <li>Extremely thin spires or walls (&lt; 1 mm) — they snap</li>
+          <li>Overhangs that need supports (adds complexity)</li>
+          <li>Designs much taller than 5 mm (wobble risk)</li>
+          <li>Tiny text below ~4pt equivalent — letters won't print clearly</li>
+        </ul>
+      </div>
+    </div>
+    <div class="slide-num">15 / 21</div>
+    <div class="notes-content" style="display:none">
+      <ul>
+        <li><strong>Print an example keychain</strong> (if you have one) and pass it around while reviewing these tips. Physical reference beats slides every time.</li>
+        <li><strong>Keyring hole size tip:</strong> The hole should be at least 5 mm in diameter to fit a standard keyring. Show students how to check the hole size in TinkerCAD (dimensions appear when you click a shape).</li>
+        <li><strong>Thickness matters most:</strong> More failed keychains result from thin walls than any other issue. When in doubt, make it thicker.</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- SLIDE 16: Student Work -->
+  <section class="slide" data-time="15">
+    <div class="slide-time">⏱ 15 min</div>
+    <span class="slide-type work">🎯 Student Work</span>
+    <h2>Build Your Keychain</h2>
+    <div class="callout" style="flex:1;display:flex;flex-direction:column;gap:12px;padding:20px;">
+      <p><strong>In TinkerCAD — start building:</strong></p>
+      <ul>
+        <li>Create a base shape for your keychain (rectangle or custom shape)</li>
+        <li>Add any design elements or logos (we'll import SVG tomorrow)</li>
+        <li>Add the <strong>keyring hole</strong> using a cylinder set to Hole, then Group</li>
+        <li>Scale to approximately <strong>50 × 30 mm</strong></li>
+        <li>Save your design in TinkerCAD (auto-saves, but name it clearly)</li>
+      </ul>
+      <div class="callout warn" style="margin-top:4px;">✋ Don't export yet — make sure your design looks right first. Export is the next step.</div>
+    </div>
+    <div class="slide-num">16 / 21</div>
+    <div class="notes-content" style="display:none">
+      <ul>
+        <li><strong>Circulate constantly during this 15 minutes.</strong> The most common issues: (1) Hole not grouped — transparent cylinder just sitting there. (2) Shape too large (100+ mm instead of 50mm). (3) Keyring hole too small (less than 5 mm).</li>
+        <li><strong>Encourage experimentation:</strong> "Try putting a text shape on your keychain. Text in TinkerCAD is under the Shape panel → Text."</li>
+        <li><strong>For students who finish quickly:</strong> Ask them to help a neighbor, OR have them add additional design details, OR start thinking about their school logo placement for Day 4.</li>
+        <li><strong>Before advancing:</strong> Pause the class and ask 2–3 students to share their design on the projector. This sparks ideas and normalizes different approaches.</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- SLIDE 17: Export from TinkerCAD -->
+  <section class="slide" data-time="4">
+    <div class="slide-time">⏱ 4 min</div>
+    <span class="slide-type demo">🎓 Walkthrough</span>
+    <h2>Export Your Design</h2>
+    <div class="slide-cols">
+      <div class="demo-card">
+        <h3>How to export from TinkerCAD</h3>
+        <ul>
+          <li>Click <strong>Export</strong> button (top right)</li>
+          <li>Choose <strong>.STL</strong> format</li>
+          <li>File downloads to your Downloads folder</li>
+          <li>Rename it: <code>YourName_Keychain_v1.stl</code></li>
+        </ul>
+      </div>
+      <div class="demo-card">
+        <h3>Then open in Bambu Studio</h3>
+        <ul>
+          <li>Drag the STL file into Bambu Studio</li>
+          <li>Verify the model looks correct</li>
+          <li>Scale if needed (should be ~50 mm)</li>
+          <li>You don't need to slice yet — just check it looks right</li>
+        </ul>
+      </div>
+    </div>
+    <div class="callout" style="margin-top:8px;">📌 Naming convention matters — <strong>FirstName_Keychain_v1.stl</strong> prevents lost files on Day 5</div>
+    <div class="slide-num">17 / 21</div>
+    <div class="notes-content" style="display:none">
+      <ul>
+        <li><strong>Demo the export live</strong> — Export from TinkerCAD on your machine, then drag into Bambu Studio and show the result on the projector.</li>
+        <li><strong>Naming convention:</strong> This is not optional. On print day you'll have 20+ files on your machine. Students who use vague names ("keychain.stl") cause confusion. Enforce the naming standard today.</li>
+        <li><strong>Common export issue:</strong> Student exports the whole project instead of the selected shape. Make sure they select all shapes first (Ctrl+A) or select just what they want before exporting.</li>
+        <li><strong>Bambu Studio check:</strong> If the model appears correct in Bambu Studio (right size, right shape, no obvious gaps), the design is good. Students don't need to slice today — that's Day 5.</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- SLIDE 18: Check for Understanding -->
+  <section class="slide" data-time="5">
+    <div class="slide-time">⏱ 5 min</div>
+    <span class="slide-type check">✅ Check for Understanding — 5 Questions</span>
+    <h2>Quick Check</h2>
+    <div class="cfu-card" style="flex:1;">
+      <ol style="gap:12px;">
+        <li>Students under 12 should click which button to create a TinkerCAD account?</li>
+        <li>Where are shapes located in TinkerCAD? (Be specific.)</li>
+        <li>How do you delete a shape in TinkerCAD? (Two methods.)</li>
+        <li>What does setting a shape to <strong>Hole</strong> do when you Group it with a solid?</li>
+        <li>What is the correct order? <em>Export → Design → Group</em> or <em>Design → Group → Export</em>?</li>
+      </ol>
+    </div>
+    <div class="slide-num">18 / 21</div>
+    <div class="notes-content" style="display:none">
+      <ul>
+        <li><strong>Answers:</strong> (1) "Join a class" button. (2) Right side panel. (3) Click shape + Delete key, OR trash can icon. (4) It cuts that shape's volume out of the solid when grouped. (5) Design → Group → Export.</li>
+        <li><strong>Q4 is the most important.</strong> If students can't answer it, the Hole tool demo needs to be repeated — have them try it one more time on their own machine before moving on.</li>
+        <li><strong>Use cold-calling strategically</strong> — pick students who seemed confused during the work time for Q3 and Q4.</li>
+        <li><strong>Transition:</strong> "Great. Last step — submit your work for today."</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- SLIDE 19: Exit Ticket -->
+  <section class="slide" data-time="3">
+    <div class="slide-time">⏱ 3 min</div>
+    <h2>Exit Ticket &amp; Submit</h2>
+    <div class="slide-cols">
+      <div>
+        <h3>Before you leave:</h3>
+        <ul class="slide-checklist" style="padding:0;">
+          <li>TinkerCAD design is saved and named</li>
+          <li>STL exported and named: <strong>Name_Keychain_v1.stl</strong></li>
+          <li>Opened in Bambu Studio — model looks correct</li>
+          <li>Part 6 on student page — complete exit ticket</li>
+          <li>Click <strong>Generate My Responses</strong> and submit to Google Classroom</li>
+        </ul>
+      </div>
+      <div class="col-card" style="background:rgba(156,243,219,0.07);">
+        <h3>Tomorrow: Day 4</h3>
+        <ul>
+          <li>Converting your <strong>school logo to SVG</strong></li>
+          <li>Importing the SVG into your keychain design</li>
+          <li><strong>Bring your logo image</strong> (downloaded as PNG/JPG)</li>
+        </ul>
+      </div>
+    </div>
+    <div class="slide-num">19 / 21</div>
+    <div class="notes-content" style="display:none">
+      <ul>
+        <li><strong>Key check before dismissal:</strong> Has each student exported their STL? Can you see it on their machine? If not, they need to redo the export step.</li>
+        <li><strong>Day 4 homework:</strong> Tell students to bring their school logo image tomorrow. Search Google Images for "[school name] logo PNG" and save it. This 2-minute task prevents a 15-minute delay at the start of Day 4.</li>
+        <li><strong>After class:</strong> Review TinkerCAD class roster — who joined, who hasn't? Send a reminder to students who haven't joined yet.</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- SLIDE 20: CFU Debrief -->
+  <section class="slide" data-time="2">
+    <div class="slide-time">⏱ 2 min</div>
+    <span class="slide-type check">✅ Design Checkpoint</span>
+    <h2>Before You Submit — Ask Yourself</h2>
+    <div class="cfu-card" style="flex:1;display:flex;flex-direction:column;gap:10px;padding:18px;">
+      <ul style="gap:10px;">
+        <li>Is my keychain between <strong>40–60 mm</strong> in length?</li>
+        <li>Does the keyring hole go all the way through? (Grouped correctly?)</li>
+        <li>Are there any walls thinner than <strong>2 mm</strong>?</li>
+        <li>Is the design saved in TinkerCAD with a clear name?</li>
+        <li>Is the STL exported and visible in Bambu Studio without errors?</li>
+      </ul>
+    </div>
+    <div class="slide-num">20 / 21</div>
+    <div class="notes-content" style="display:none">
+      <ul>
+        <li><strong>Quick self-check</strong> before students finalize. Walk the room one more time and verify.</li>
+        <li><strong>If the hole isn't going through:</strong> The most likely cause is that the cylinder wasn't grouped with the keychain body. Ungroup → verify both shapes are selected → Group again.</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- SLIDE 21: Closing -->
+  <section class="slide title-slide" data-time="1">
+    <div class="day-tag">Day 3 Complete</div>
+    <h2 style="color:var(--accent2);">You just designed a 3D object. 🎉</h2>
+    <p class="subtitle">That keychain exists because you built it. That's real CAD work.</p>
+    <p class="subtitle" style="margin-top:10px;color:var(--muted);font-size:0.9rem;">Day 4: Add your school logo — then your keychain becomes yours.</p>
+    <div class="slide-num">21 / 21</div>
+    <div class="notes-content" style="display:none">
+      <ul>
+        <li><strong>Celebrate the win.</strong> Students often underestimate what they just accomplished — they created a functional 3D model. That's meaningful.</li>
+        <li><strong>Energy check:</strong> If students are excited about their designs, let them share briefly. 60 seconds of "show and tell" before dismissal builds culture and motivation for Day 4.</li>
+      </ul>
+    </div>
+  </section>
+
+</div>
+
+<div id="progressDots"></div>
+<div id="navHint">← → Arrow keys · N = notes · F = fullscreen · P = print</div>
+<div id="notesPanel">
+  <h4>📋 Speaker Notes — Day 3</h4>
+  <div id="notesBody" class="notes-content"></div>
+</div>
+
+<script>
+(function () {
+  var slides = Array.from(document.querySelectorAll('.slide'));
+  var total = slides.length, current = 0, showNotes = false, breakTimer = null;
+  var dotsEl = document.getElementById('progressDots');
+  slides.forEach(function (_, i) { var d = document.createElement('span'); d.className = 'dot'; d.addEventListener('click', function () { goTo(i); }); dotsEl.appendChild(d); });
+  function startBreakCountdown(slide) {
+    var display = slide.querySelector('.break-timer'); if (!display) return;
+    var seconds = 600; if (breakTimer) clearInterval(breakTimer);
+    function tick() { var m = Math.floor(seconds/60), s = seconds%60; display.textContent = m+':'+(s<10?'0':'')+s; if (seconds===0){clearInterval(breakTimer);breakTimer=null;display.textContent="Time's up!";display.style.color='var(--danger)';} seconds--; }
+    tick(); breakTimer = setInterval(tick, 1000);
+    slide.querySelectorAll('.break-restart').forEach(function(btn){ btn.onclick = function(){ seconds=600; if(breakTimer)clearInterval(breakTimer); display.style.color=''; tick(); breakTimer=setInterval(tick,1000); }; });
+  }
+  function goTo(idx) {
+    if (breakTimer) { clearInterval(breakTimer); breakTimer = null; }
+    slides[current].classList.remove('active'); current = Math.max(0, Math.min(idx, total-1)); slides[current].classList.add('active');
+    if (slides[current].classList.contains('brain-break')) startBreakCountdown(slides[current]);
+    updateUI();
+  }
+  function updateUI() {
+    document.getElementById('slideCounter').textContent = (current+1)+' / '+total;
+    document.getElementById('prevBtn').disabled = current===0;
+    document.getElementById('nextBtn').disabled = current===total-1;
+    var cum=0; for(var i=0;i<=current;i++) cum+=parseInt(slides[i].getAttribute('data-time')||'0',10);
+    document.getElementById('cumTime').textContent = '≈ '+cum+' min elapsed';
+    Array.from(document.querySelectorAll('.dot')).forEach(function(d,i){ d.classList.toggle('current',i===current); d.classList.toggle('done',i<current); });
+    var notesEl=slides[current].querySelector('.notes-content'), panel=document.getElementById('notesPanel'), body=document.getElementById('notesBody');
+    if(showNotes&&notesEl){body.innerHTML=notesEl.innerHTML;panel.classList.add('visible');}else panel.classList.remove('visible');
+  }
+  document.getElementById('prevBtn').addEventListener('click', function(){if(current>0)goTo(current-1);});
+  document.getElementById('nextBtn').addEventListener('click', function(){if(current<total-1)goTo(current+1);});
+  function toggleNotes(){ showNotes=!showNotes; document.getElementById('notesToggle').textContent=showNotes?'📋 Hide Notes':'📋 Notes'; updateUI(); }
+  document.getElementById('notesToggle').addEventListener('click', toggleNotes);
+  document.getElementById('fullscreenBtn').addEventListener('click', function(){ if(!document.fullscreenElement)document.documentElement.requestFullscreen().catch(function(){}); else document.exitFullscreen(); });
+  document.addEventListener('keydown', function(e){ if(e.target.tagName==='INPUT'||e.target.tagName==='TEXTAREA')return; if(e.key==='ArrowRight'||e.key==='ArrowDown'||e.key===' '){e.preventDefault();if(current<total-1)goTo(current+1);} else if(e.key==='ArrowLeft'||e.key==='ArrowUp'){e.preventDefault();if(current>0)goTo(current-1);} else if(e.key==='n'||e.key==='N')toggleNotes(); else if(e.key==='f'||e.key==='F')document.getElementById('fullscreenBtn').click(); });
+  updateUI();
+}());
+</script>
+</body>
+</html>

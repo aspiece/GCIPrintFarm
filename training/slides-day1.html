@@ -1,0 +1,798 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Day 1 Slides — GCI 3D Printing</title>
+  <link rel="stylesheet" href="slides.css" />
+</head>
+<body>
+
+<!-- ── Toolbar ──────────────────────────────────────────────── -->
+<div id="toolbar">
+  <span class="toolbar-title">📋 Day 1 — Introduction to 3D Printing</span>
+  <div class="toolbar-controls">
+    <span id="cumTime">0 min elapsed</span>
+    <span id="slideCounter">1 / 22</span>
+    <button class="tb-btn" id="prevBtn" disabled>← Prev</button>
+    <button class="tb-btn primary" id="nextBtn">Next →</button>
+    <button class="tb-btn" id="notesToggle">📋 Notes</button>
+    <button class="tb-btn" id="fullscreenBtn">⛶ Full</button>
+    <button class="tb-btn" onclick="window.print()">🖨️ Print</button>
+    <a class="tb-btn" href="day1.html" target="_blank">Student Page ↗</a>
+  </div>
+</div>
+
+<!-- ── Slide Viewport ───────────────────────────────────────── -->
+<div id="slideViewport">
+
+  <!-- ═══════════════ SLIDE 1: Title ═══════════════ -->
+  <section class="slide title-slide active" data-time="1">
+    <div class="day-tag">GCI 3D Printing Lab · 90-Minute Block</div>
+    <h1>Day 1</h1>
+    <h2 style="color:var(--accent2);font-size:1.6rem;margin-top:6px;">Introduction to 3D Printing</h2>
+    <p class="subtitle" style="margin-top:10px;">Foundations · Printer Demo · MakerWorld Exploration</p>
+    <div class="slide-num">1 / 22</div>
+    <div class="notes-content" style="display:none">
+      <ul>
+        <li><strong>As students arrive:</strong> Have this slide up and greet them at the door. Direct them to open the Day 1 student page at their station.</li>
+        <li><strong>Say:</strong> <em>"Today we're building the foundation for everything we do this week. By the end of class, you'll know how these machines actually work and you'll have explored a library of 3D models."</em></li>
+        <li><strong>Watch for:</strong> Students who haven't opened the student page — make sure everyone is on <code>day1.html</code> before advancing.</li>
+        <li><strong>Timing tip:</strong> Don't linger here. Move to the agenda within 1 minute of class starting.</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ═══════════════ SLIDE 2: Agenda ═══════════════ -->
+  <section class="slide" data-time="2">
+    <div class="slide-time">⏱ 2 min</div>
+    <h2>Today's Agenda</h2>
+    <div class="slide-cols">
+      <div>
+        <h3>First Half (~40 min)</h3>
+        <ul>
+          <li>What is 3D printing?</li>
+          <li>How FDM works</li>
+          <li>Design → Slice → Print workflow</li>
+          <li>Watch the printer overview video</li>
+          <li>Printer parts overview</li>
+        </ul>
+      </div>
+      <div>
+        <h3>After Break (~40 min)</h3>
+        <ul>
+          <li>🎓 Teacher demo (printer parts hands-on)</li>
+          <li>Parts matching activity</li>
+          <li>Filament types: PLA vs PETG</li>
+          <li>Explore MakerWorld</li>
+          <li>Exit ticket</li>
+        </ul>
+      </div>
+    </div>
+    <div class="callout" style="margin-top:8px;">🧠 Brain break at approximately the 40-minute mark</div>
+    <div class="slide-num">2 / 22</div>
+    <div class="notes-content" style="display:none">
+      <ul>
+        <li><strong>Walk through both columns</strong> so students know what to expect. This reduces "what are we doing?" interruptions later.</li>
+        <li><strong>Mention the brain break explicitly</strong> — students respond better when they know a break is coming.</li>
+        <li><strong>Say:</strong> <em>"We have a full 90 minutes today. Work through the student page alongside what we're doing up here — don't get ahead of the slides."</em></li>
+        <li><strong>Transition:</strong> "Let's start with what you're trying to accomplish today."</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ═══════════════ SLIDE 3: Learning Goals ═══════════════ -->
+  <section class="slide" data-time="2">
+    <div class="slide-time">⏱ 2 min</div>
+    <h2>I Can…</h2>
+    <ul style="gap:12px;">
+      <li>✅ Explain how FDM 3D printing builds objects <strong>layer by layer</strong></li>
+      <li>✅ Identify the key parts of a Bambu printer and say what each one does</li>
+      <li>✅ Compare <strong>PLA and PETG</strong> and know when to use each</li>
+      <li>✅ Set up a reusable filament spool the right way</li>
+      <li>✅ Explore MakerWorld and find at least one model I'd actually want to print</li>
+    </ul>
+    <div class="slide-num">3 / 22</div>
+    <div class="notes-content" style="display:none">
+      <ul>
+        <li><strong>Read these aloud together.</strong> Ask students to raise their hand if any of these already make sense to them — gauge prior knowledge.</li>
+        <li><strong>Ask:</strong> <em>"Which of these five feels like the biggest mystery right now?"</em> — cold call 1–2 students.</li>
+        <li><strong>Common misconception to address early:</strong> Many students think 3D printers "just print" like an inkjet — clarify that the printer physically builds an object, it doesn't spray ink on flat paper.</li>
+        <li><strong>Transition:</strong> "Let's start with a quick question to get your brains warmed up."</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ═══════════════ SLIDE 4: Warm-Up ═══════════════ -->
+  <section class="slide" data-time="4">
+    <div class="slide-time">⏱ 4 min</div>
+    <span class="slide-type pause">🤔 Warm-Up</span>
+    <h2>Think About This…</h2>
+    <div class="callout" style="font-size:1.15rem;padding:20px;text-align:center;margin:10px 0;flex:1;">
+      "Have you ever seen something that was 3D printed? What was it?<br>
+      How do you think it was made — layer by layer?"
+    </div>
+    <p style="font-size:0.9rem;color:var(--muted);">💬 Turn and talk with the person next to you for 60 seconds, then share out.</p>
+    <div class="slide-num">4 / 22</div>
+    <div class="notes-content" style="display:none">
+      <ul>
+        <li><strong>Give 60 seconds</strong> of turn-and-talk, then cold call 2–3 pairs to share.</li>
+        <li><strong>Common answers:</strong> phone cases, Funko Pops, toys, prosthetics, car parts, NASA components.</li>
+        <li><strong>If no one has seen one:</strong> Show a quick example from your desk — a simple printed object you have on hand works great here.</li>
+        <li><strong>Bridge to next slide:</strong> <em>"So how does the printer actually build something out of nothing? That's what we're about to break down."</em></li>
+        <li><strong>Watch for:</strong> Students who say "it's like a regular printer but 3D" — good starting point but needs correction. A regular printer uses ink; a 3D printer melts and deposits plastic.</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ═══════════════ SLIDE 5: What is 3D Printing ═══════════════ -->
+  <section class="slide" data-time="5">
+    <div class="slide-time">⏱ 5 min</div>
+    <h2>What is 3D Printing?</h2>
+    <div class="slide-cols">
+      <div>
+        <ul style="gap:10px;">
+          <li><strong>Additive manufacturing</strong> — material is <em>added</em>, not cut away</li>
+          <li>Builds objects <strong>layer by layer</strong> from the bottom up</li>
+          <li>Uses a <strong>digital 3D model</strong> as the blueprint</li>
+          <li>Most common type for beginners: <strong>FDM</strong> (Fused Deposition Modeling)</li>
+          <li>The printer melts plastic and deposits it in precise paths</li>
+        </ul>
+      </div>
+      <div class="col-card" style="justify-content:center;align-items:center;text-align:center;gap:6px;">
+        <div style="font-size:2rem;">🏗️</div>
+        <p style="font-size:0.9rem;color:var(--muted);">Think of building a skyscraper one floor at a time — except the "floors" are 0.2 mm thin layers of plastic.</p>
+      </div>
+    </div>
+    <div class="slide-num">5 / 22</div>
+    <div class="notes-content" style="display:none">
+      <ul>
+        <li><strong>Key analogy to use:</strong> "Think of stacking very thin pancakes. Each pancake is one layer. Thousands of pancakes stacked together create a solid object."</li>
+        <li><strong>Contrast with subtractive manufacturing:</strong> CNC machines remove material (like carving). 3D printers ADD material. Ask: "Why might adding material be better than removing it for some things?" (Less waste, can make complex hollow shapes.)</li>
+        <li><strong>FDM stands for</strong> Fused Deposition Modeling — "fused" = melted together. You don't need students to memorize this but it's useful if it comes up.</li>
+        <li><strong>Watch for:</strong> Students conflating 3D printing with laser cutting (also common in makerspaces) — laser cutting is subtractive and 2D.</li>
+        <li><strong>Transition:</strong> "So how does FDM actually work step by step? Let's zoom in."</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ═══════════════ SLIDE 6: How FDM Works ═══════════════ -->
+  <section class="slide" data-time="5">
+    <div class="slide-time">⏱ 5 min</div>
+    <h2>How FDM Works</h2>
+    <div class="workflow-row" style="flex:1;">
+      <div class="wf-step">
+        <div class="wf-num">1</div>
+        <h4>Filament Loaded</h4>
+        <p>Plastic spool feeds into extruder</p>
+      </div>
+      <div class="wf-arrow">→</div>
+      <div class="wf-step">
+        <div class="wf-num">2</div>
+        <h4>Nozzle Heats</h4>
+        <p>Plastic melts (200–280°C)</p>
+      </div>
+      <div class="wf-arrow">→</div>
+      <div class="wf-step">
+        <div class="wf-num">3</div>
+        <h4>Layer Deposited</h4>
+        <p>Melted plastic laid on build plate</p>
+      </div>
+      <div class="wf-arrow">→</div>
+      <div class="wf-step">
+        <div class="wf-num">4</div>
+        <h4>Layer Cools</h4>
+        <p>Plastic hardens and bonds</p>
+      </div>
+      <div class="wf-arrow">→</div>
+      <div class="wf-step">
+        <div class="wf-num">5</div>
+        <h4>Repeat</h4>
+        <p>Hundreds of layers = finished object</p>
+      </div>
+    </div>
+    <div class="callout" style="margin-top:8px;">⚠️ Most prints use <strong>hundreds to thousands of layers</strong> — each one only 0.1–0.3 mm thick</div>
+    <div class="slide-num">6 / 22</div>
+    <div class="notes-content" style="display:none">
+      <ul>
+        <li><strong>Walk through each step slowly.</strong> Ask students to visualize a Bambu printer's print head moving back and forth as you describe each step.</li>
+        <li><strong>Temperature context:</strong> 200°C is about twice the temperature of boiling water. PLA melts around 190–210°C; PETG at 220–250°C. That's why you must never touch the nozzle during or after a print.</li>
+        <li><strong>Ask check question:</strong> "If a layer is 0.2 mm thick and the final object is 20 mm tall, how many layers is that?" (Answer: 100 layers.) This helps students appreciate the scale.</li>
+        <li><strong>Common student question:</strong> "Why does the first layer matter so much?" — Because all subsequent layers rest on it. A bad first layer = a failed print. This is why bed leveling is critical (coming up in the demo).</li>
+        <li><strong>Transition:</strong> "Now let's zoom out and see the full pipeline from idea to finished object."</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ═══════════════ SLIDE 7: Workflow ═══════════════ -->
+  <section class="slide" data-time="3">
+    <div class="slide-time">⏱ 3 min</div>
+    <h2>Design → Slice → Print</h2>
+    <div class="workflow-row" style="flex:1;gap:12px;">
+      <div class="wf-step" style="background:rgba(124,192,255,0.08);">
+        <div class="wf-num">1</div>
+        <h4>Design</h4>
+        <p>Create model in<br>Tinkercad / download from MakerWorld</p>
+      </div>
+      <div class="wf-arrow">→</div>
+      <div class="wf-step" style="background:rgba(156,243,219,0.08);">
+        <div class="wf-num">2</div>
+        <h4>Slice</h4>
+        <p>Open in Bambu Studio — set settings, generate G-code</p>
+      </div>
+      <div class="wf-arrow">→</div>
+      <div class="wf-step" style="background:rgba(255,212,0,0.07);">
+        <div class="wf-num">3</div>
+        <h4>Print</h4>
+        <p>Send to Bambu printer — monitor first layer</p>
+      </div>
+    </div>
+    <div class="callout warn" style="margin-top:8px;">📌 You will repeat this workflow every single day for the rest of the lab. It is THE pipeline.</div>
+    <div class="slide-num">7 / 22</div>
+    <div class="notes-content" style="display:none">
+      <ul>
+        <li><strong>This is the most important conceptual slide of Day 1.</strong> Refer back to it throughout the week whenever students seem lost on "what step are we at?"</li>
+        <li><strong>Tools summary:</strong> Day 1 = overview. Day 2 = Bambu Studio (slice). Day 3 = Tinkercad (design). Day 4 = Logo design. Day 5 = Print day. Every day fits this workflow.</li>
+        <li><strong>Ask:</strong> "What do you think happens if you skip the Slice step and try to send a raw Tinkercad file to the printer?" (The printer won't understand it — it needs G-code.)</li>
+        <li><strong>Transition:</strong> "Let's watch a video that shows you what all three stages look like in practice."</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ═══════════════ SLIDE 8: Play Video ═══════════════ -->
+  <section class="slide" data-time="10">
+    <div class="slide-time">⏱ 10 min</div>
+    <span class="slide-type video">▶ Play Video</span>
+    <h2>Printer Overview Video</h2>
+    <div class="video-placeholder" style="flex:1;">
+      <div class="play-icon">▶️</div>
+      <p style="font-size:1.1rem;font-weight:700;">Bambu 3D Printer Overview</p>
+      <a href="https://www.youtube.com/watch?v=4CKbIzpFvDc" target="_blank" rel="noopener">
+        https://www.youtube.com/watch?v=4CKbIzpFvDc
+      </a>
+      <p style="font-size:0.85rem;color:var(--muted);margin-top:6px;">Click the link above or open on your classroom display</p>
+    </div>
+    <div class="slide-num">8 / 22</div>
+    <div class="notes-content" style="display:none">
+      <ul>
+        <li><strong>Play this on your main display</strong> — students watch, they do NOT need to open it on their own devices.</li>
+        <li><strong>Before pressing play, say:</strong> <em>"Watch for: the extruder, the nozzle, and the build plate. You'll need to identify all three in the matching activity later."</em></li>
+        <li><strong>Pause suggestion at ~3 minutes:</strong> Stop and ask "What part did they just show? What does it do?" — keeps attention from drifting.</li>
+        <li><strong>Pause suggestion at ~6 minutes:</strong> Ask "What happens if the bed isn't level? What would the print look like?" — primes them for the demo.</li>
+        <li><strong>After the video:</strong> Ask 2–3 students to name one thing they noticed. Accept all responses.</li>
+        <li><strong>Timing note:</strong> If the video runs long, it's OK to cut it at a natural stopping point around 8–9 minutes.</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ═══════════════ SLIDE 9: Vocabulary Set 1 ═══════════════ -->
+  <section class="slide" data-time="3">
+    <div class="slide-time">⏱ 3 min</div>
+    <span class="slide-type vocab">📚 Vocabulary</span>
+    <h2>Key Terms — Printer Parts</h2>
+    <div class="vocab-grid">
+      <div class="vocab-card">
+        <strong>Extruder</strong>
+        Grips and pushes filament into the hot nozzle. If it slips or jams, the filament stops feeding.
+      </div>
+      <div class="vocab-card">
+        <strong>Nozzle</strong>
+        The metal tip that melts filament and deposits it. Temperature matters — too cold = clog, too hot = stringing.
+      </div>
+      <div class="vocab-card">
+        <strong>Build Plate / Print Bed</strong>
+        The flat surface where your print is built. Must be clean and level for the first layer to stick.
+      </div>
+      <div class="vocab-card">
+        <strong>Bed Leveling</strong>
+        Ensuring the nozzle is the right distance from the plate across its whole surface. Bambu printers do this automatically.
+      </div>
+    </div>
+    <div class="slide-num">9 / 22</div>
+    <div class="notes-content" style="display:none">
+      <ul>
+        <li><strong>Read each term and definition aloud.</strong> Have students repeat the term after you.</li>
+        <li><strong>Quick check:</strong> Point to a picture or a real printer part and ask "What am I pointing at?" before moving on.</li>
+        <li><strong>Reinforce:</strong> "You'll see all four of these terms on the matching activity in the second half of class — make sure they stick."</li>
+        <li><strong>Watch for:</strong> Students confusing the extruder and the nozzle. The extruder is the mechanism that PUSHES filament. The nozzle is where filament comes OUT.</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ═══════════════ SLIDE 10: Printer Parts Overview ═══════════════ -->
+  <section class="slide" data-time="3">
+    <div class="slide-time">⏱ 3 min</div>
+    <h2>Key Printer Parts</h2>
+    <div class="slide-cols">
+      <ul style="gap:10px;">
+        <li><strong>Nozzle</strong> — Melts & places filament (most common failure point)</li>
+        <li><strong>Extruder</strong> — Pushes filament toward the nozzle</li>
+        <li><strong>Build plate</strong> — Print surface; must be clean for adhesion</li>
+        <li><strong>Filament spool</strong> — Holds the plastic; must feed smoothly</li>
+        <li><strong>X/Y/Z axes</strong> — Control movement in three directions</li>
+      </ul>
+      <div class="col-card" style="align-items:center;justify-content:center;text-align:center;">
+        <div style="font-size:2.5rem;">🖨️</div>
+        <p style="font-size:0.85rem;color:var(--muted);">During the demo you'll see all of these parts in action on a real Bambu printer.</p>
+      </div>
+    </div>
+    <div class="callout" style="margin-top:8px;">⏩ Coming up: Brain Break, then Teacher Demo</div>
+    <div class="slide-num">10 / 22</div>
+    <div class="notes-content" style="display:none">
+      <ul>
+        <li><strong>Keep this brief</strong> — you're setting the stage for the hands-on demo, not lecturing here.</li>
+        <li><strong>Foreshadow:</strong> "After our break, I'm going to walk you up to the printer and show you each of these parts. If you can't remember the names right now, don't worry — the demo will lock them in."</li>
+        <li><strong>Transition:</strong> Tell students you're about to hit the 40-minute mark and it's time for a brain break.</li>
+        <li><strong>Prep for break:</strong> Ask students to stand up and push in their chairs.</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ═══════════════ SLIDE 11: BRAIN BREAK ═══════════════ -->
+  <section class="slide brain-break" data-time="10">
+    <div class="break-emoji">🧠</div>
+    <div class="break-title">Brain Break!</div>
+    <div class="break-sub">Stand up, move around, reset your focus</div>
+    <div class="break-timer" id="breakTimer1">10:00</div>
+    <div class="break-activities">
+      <div class="break-activity">🚶 Walk a lap around the room</div>
+      <div class="break-activity">🤸 10 jumping jacks</div>
+      <div class="break-activity">💬 Chat with a neighbor about something non-class related</div>
+      <div class="break-activity">🧘 Deep breaths + shoulder rolls</div>
+    </div>
+    <span class="break-restart" id="restartBreak1">↺ Restart timer</span>
+    <div class="slide-num">11 / 22</div>
+    <div class="notes-content" style="display:none">
+      <ul>
+        <li><strong>Stand up yourself</strong> — model the behavior you want. Walk around, stretch.</li>
+        <li><strong>Enforce the break.</strong> Students who try to work through it often crash in the second half. A genuine 10-minute break improves focus more than 10 extra minutes of instruction.</li>
+        <li><strong>Use this time to:</strong> Set up at the printer for the demo. Pull up the demo punch list on your device. Check in with any students who seemed confused in the first half.</li>
+        <li><strong>2 minutes before time:</strong> Give a heads up — "Two minutes left — start wrapping up conversations and finding a seat."</li>
+        <li><strong>Re-entry:</strong> When students are seated, do a quick 30-second reset before starting the demo.</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ═══════════════ SLIDE 12: Demo Ready ═══════════════ -->
+  <section class="slide" data-time="1">
+    <div class="slide-time">⏱ 1 min</div>
+    <span class="slide-type demo">🎓 Teacher Demo</span>
+    <h2>Gather Around the Printer</h2>
+    <div class="callout warn" style="flex:1;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:14px;padding:24px;text-align:center;">
+      <div style="font-size:2rem;">🖨️</div>
+      <p style="font-size:1.1rem;font-weight:700;">Close your laptops — watch the real thing</p>
+      <p style="font-size:0.9rem;color:var(--muted);">Pull your chairs forward or gather near the demo printer</p>
+    </div>
+    <div class="slide-num">12 / 22</div>
+    <div class="notes-content" style="display:none">
+      <ul>
+        <li><strong>Be explicit:</strong> "Laptops closed, phones away. You cannot learn this by looking at a screen — you need to see the actual machine."</li>
+        <li><strong>Arrange students</strong> so everyone can see. Consider having them stand in a semicircle around the printer.</li>
+        <li><strong>Timing:</strong> This is a quick 1-minute transition slide — move to the punch list immediately after students are settled.</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ═══════════════ SLIDE 13: Demo Punch List ═══════════════ -->
+  <section class="slide" data-time="2">
+    <div class="slide-time">⏱ 2 min</div>
+    <span class="slide-type demo">🎓 Teacher Demo</span>
+    <h2>Demo Punch List</h2>
+    <div class="demo-card" style="flex:1;">
+      <h3 style="margin-bottom:10px;">What we're covering today:</h3>
+      <ul class="slide-checklist" style="padding:0;">
+        <li>Introduce the printer and point out all major parts</li>
+        <li>Explain the <strong>extruder</strong> — how it grips and feeds filament</li>
+        <li>Explain <strong>bed leveling</strong> — why the first layer must be at the right distance</li>
+        <li>Show how to properly <strong>align the bed plates</strong> — correct placement vs. common mistakes</li>
+        <li>Demonstrate <strong>safe startup</strong> and basic operating procedures</li>
+        <li>Point out what students should watch for <strong>during a print</strong></li>
+        <li>Emphasize <strong>correct handling</strong> — never touch the hot nozzle, hold plate by edges</li>
+      </ul>
+    </div>
+    <div class="slide-num">13 / 22</div>
+    <div class="notes-content" style="display:none">
+      <ul>
+        <li><strong>Read through this list with students</strong> before you start the demo so they know what to look for.</li>
+        <li><strong>Tell them:</strong> "You're going to see all of these things in the next 15 minutes. The parts matching activity afterward will test whether you caught them."</li>
+        <li><strong>Instructor tip:</strong> Go through the list in order — don't skip around. The flow is intentional (big picture → specific parts → safety).</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ═══════════════ SLIDE 14: Demo — Extruder ═══════════════ -->
+  <section class="slide" data-time="5">
+    <div class="slide-time">⏱ 5 min</div>
+    <span class="slide-type demo">🎓 Teacher Demo</span>
+    <h2>The Extruder</h2>
+    <div class="slide-cols">
+      <div class="demo-card">
+        <h3>What it does</h3>
+        <ul>
+          <li>Grips the filament with a drive gear</li>
+          <li>Pushes filament into the heated nozzle at a controlled rate</li>
+          <li>Controls how much material is deposited per movement</li>
+        </ul>
+      </div>
+      <div class="demo-card">
+        <h3>What to show students</h3>
+        <ul>
+          <li>Point to the extruder housing on the printer</li>
+          <li>Show where filament enters and exits</li>
+          <li>Demonstrate what a clog looks like (extruder moves, nothing comes out)</li>
+          <li>Show proper vs. improper filament loading angle</li>
+        </ul>
+      </div>
+    </div>
+    <div class="slide-num">14 / 22</div>
+    <div class="notes-content" style="display:none">
+      <ul>
+        <li><strong>Physically point to the extruder</strong> on the real printer — say its name aloud while touching it.</li>
+        <li><strong>Key analogy:</strong> "The extruder is like a very precise toothpaste tube squeezer — it controls exactly how much plastic comes out and when."</li>
+        <li><strong>Most common student question:</strong> "What happens when the extruder jams?" Answer: the print head keeps moving but no filament comes out — you get air gaps or a completely empty print. This is called "under-extrusion."</li>
+        <li><strong>Safety point:</strong> The extruder mechanism can pinch fingers if it's moving. Do not put fingers in the drive gear area during a print.</li>
+        <li><strong>Transition:</strong> "The extruder gets the filament to the nozzle. But where does the nozzle put it? On the build plate — and that plate needs to be perfectly set up. That's bed leveling."</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ═══════════════ SLIDE 15: Demo — Bed Leveling ═══════════════ -->
+  <section class="slide" data-time="5">
+    <div class="slide-time">⏱ 5 min</div>
+    <span class="slide-type demo">🎓 Teacher Demo</span>
+    <h2>Bed Leveling</h2>
+    <div class="slide-cols">
+      <div class="demo-card">
+        <h3>Why it matters</h3>
+        <ul>
+          <li>Nozzle must be the same distance from the plate <strong>everywhere</strong></li>
+          <li>Too close → nozzle drags through plastic, clogs</li>
+          <li>Too far → filament falls instead of sticking</li>
+          <li>A bad first layer = a failed print</li>
+        </ul>
+      </div>
+      <div class="demo-card">
+        <h3>On a Bambu printer</h3>
+        <ul>
+          <li>Automatic bed leveling happens before every print</li>
+          <li>The printer probes multiple points on the plate</li>
+          <li>Creates a mesh map of the surface</li>
+          <li>Adjusts Z height dynamically during the first layer</li>
+        </ul>
+      </div>
+    </div>
+    <div class="slide-num">15 / 22</div>
+    <div class="notes-content" style="display:none">
+      <ul>
+        <li><strong>Show the leveling process</strong> by starting a print (or showing a video clip of auto-leveling) — students can visually see the probe touching multiple points.</li>
+        <li><strong>Key analogy:</strong> "Imagine trying to write on paper that's on a bumpy table. The pen drags in some spots and barely touches in others. Bed leveling makes sure the 'table' (build plate) is as flat as possible relative to the 'pen' (nozzle)."</li>
+        <li><strong>Common student question:</strong> "Does the Bambu always level by itself?" Yes — but you still need to make sure the plate is seated correctly before the print starts. Auto-leveling compensates for minor differences; it can't fix a badly misaligned plate.</li>
+        <li><strong>Watch for:</strong> Students thinking auto-leveling means you never have to think about the bed. Emphasize that a clean, correctly placed plate is a prerequisite for auto-leveling to work well.</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ═══════════════ SLIDE 16: Demo — Bed Plate Alignment ═══════════════ -->
+  <section class="slide" data-time="3">
+    <div class="slide-time">⏱ 3 min</div>
+    <span class="slide-type demo">🎓 Teacher Demo</span>
+    <h2>Bed Plate Alignment</h2>
+    <div class="slide-cols">
+      <div class="demo-card">
+        <h3>✅ Correct placement</h3>
+        <ul>
+          <li>Plate sits flat and is fully seated on the magnetic base</li>
+          <li>No gaps between plate and frame</li>
+          <li>Plate does not rock or shift when touched</li>
+          <li>Handle plate by the <strong>edges only</strong> — fingerprints = poor adhesion</li>
+        </ul>
+      </div>
+      <div class="demo-card" style="background:rgba(255,77,77,0.08);border-color:rgba(255,77,77,0.4);">
+        <h3 style="color:var(--danger);">❌ Common mistakes</h3>
+        <ul>
+          <li>Plate is tilted or partially lifted at one edge</li>
+          <li>Plate has residue or oils from fingers</li>
+          <li>Plate removed and reinserted upside-down</li>
+          <li>Wrong type of plate used for the filament</li>
+        </ul>
+      </div>
+    </div>
+    <div class="slide-num">16 / 22</div>
+    <div class="notes-content" style="display:none">
+      <ul>
+        <li><strong>Physically demonstrate:</strong> Remove the plate, show correct grip (edges only), place it back correctly, then show what a misaligned plate looks like.</li>
+        <li><strong>Safety/handling rule to state explicitly:</strong> "Touching the print surface with your fingers leaves oils that prevent the print from sticking. Always handle by the edges. If the plate gets dirty, clean it with isopropyl alcohol."</li>
+        <li><strong>Bambu-specific note:</strong> Bambu printers use magnetic build plates. The plate should snap into place smoothly — if you have to force it, something is wrong.</li>
+        <li><strong>Transition:</strong> "Now that you've seen the three critical things — extruder, bed leveling, and plate alignment — let's see if you can identify the parts on your own. Open your laptops — we're doing the matching activity."</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ═══════════════ SLIDE 17: Student Work — Parts Matching ═══════════════ -->
+  <section class="slide" data-time="8">
+    <div class="slide-time">⏱ 8 min</div>
+    <span class="slide-type work">🎯 Student Work</span>
+    <h2>Parts Matching Activity</h2>
+    <div class="callout" style="flex:1;display:flex;flex-direction:column;gap:12px;padding:20px;">
+      <p><strong>On your student page (day1.html) → Part 3:</strong></p>
+      <ul>
+        <li>Match each printer part to its function using the dropdowns</li>
+        <li>You need at least <strong>3/4 correct</strong> to unlock the next section</li>
+        <li>Use what you saw in the demo — not Google</li>
+      </ul>
+      <div class="callout warn" style="margin-top:4px;">
+        💡 Hint if stuck: Think about what each part physically touches — filament? the plate? the air?
+      </div>
+    </div>
+    <div class="slide-num">17 / 22</div>
+    <div class="notes-content" style="display:none">
+      <ul>
+        <li><strong>Circulate during this 8 minutes.</strong> Students who are stuck often just need a redirect: "What did I point to when I talked about filament feeding?" rather than giving the answer.</li>
+        <li><strong>Common error:</strong> Confusing extruder and nozzle. Remind: extruder = the mechanism that PUSHES filament; nozzle = the tip where filament comes OUT.</li>
+        <li><strong>If most students finish early (~5 min):</strong> Ask them to write one sentence about what they think would happen if each part broke during a print. This is excellent prep for the troubleshooting section.</li>
+        <li><strong>After 8 min:</strong> Quick debrief — "Who got all 4? Who found one tricky? What was it?" — then advance to filament vocabulary.</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ═══════════════ SLIDE 18: Vocabulary Set 2 ═══════════════ -->
+  <section class="slide" data-time="2">
+    <div class="slide-time">⏱ 2 min</div>
+    <span class="slide-type vocab">📚 Vocabulary</span>
+    <h2>Key Terms — Filament</h2>
+    <div class="vocab-grid" style="grid-template-columns:repeat(3,1fr);">
+      <div class="vocab-card">
+        <strong>Filament</strong>
+        The plastic wire that a 3D printer melts and deposits. Comes on spools, usually 1.75 mm diameter.
+      </div>
+      <div class="vocab-card">
+        <strong>PLA</strong>
+        Most common beginner filament. Made from plant-based materials. Easy to print; lower heat resistance.
+      </div>
+      <div class="vocab-card">
+        <strong>PETG</strong>
+        Tougher, more heat-resistant than PLA. Harder to print with but better for parts that need durability.
+      </div>
+    </div>
+    <div class="slide-num">18 / 22</div>
+    <div class="notes-content" style="display:none">
+      <ul>
+        <li><strong>Quick, high-energy vocab review</strong> — you're building to the comparison table on the next slide.</li>
+        <li><strong>Hold up spools of PLA and PETG</strong> if you have them — physical props dramatically help students remember which is which.</li>
+        <li><strong>Say:</strong> "For most of what we do in this class, you'll be using PLA. PETG comes into play when someone needs something stronger — like a part that gets hot or handles stress."</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ═══════════════ SLIDE 19: PLA vs PETG ═══════════════ -->
+  <section class="slide" data-time="4">
+    <div class="slide-time">⏱ 4 min</div>
+    <h2>PLA vs PETG</h2>
+    <div class="compare-grid">
+      <div class="compare-card compare-good">
+        <div class="compare-label">✅ PLA — Use for most projects</div>
+        <ul class="compare-items">
+          <li>🟢 Easy to print — fewer settings to worry about</li>
+          <li>🟢 Low warping — great first layer adhesion</li>
+          <li>🟢 Many colors available</li>
+          <li>🟡 Lower heat resistance (softens ~60°C)</li>
+          <li>🟡 Less flexible — can be brittle</li>
+        </ul>
+      </div>
+      <div class="compare-card" style="background:rgba(124,192,255,0.07);border:1px solid rgba(124,192,255,0.3);">
+        <div class="compare-label" style="color:var(--accent);">🔵 PETG — Use when you need toughness</div>
+        <ul class="compare-items">
+          <li>🟢 Stronger and more flexible than PLA</li>
+          <li>🟢 Higher heat resistance (~80°C)</li>
+          <li>🟢 Good for functional parts</li>
+          <li>🔴 More challenging to print — stringier</li>
+          <li>🔴 Needs higher temperatures &amp; slower speeds</li>
+        </ul>
+      </div>
+    </div>
+    <div class="slide-num">19 / 22</div>
+    <div class="notes-content" style="display:none">
+      <ul>
+        <li><strong>Practical guidance:</strong> "For your keychains in this class — use PLA. It prints cleanly, comes in great colors, and is easy to manage. We'd only switch to PETG if you needed the keychain to survive being left in a hot car."</li>
+        <li><strong>Common student question:</strong> "Can you mix PLA and PETG?" Technically yes with a multi-material printer, but it requires careful settings. Not relevant for this class.</li>
+        <li><strong>Common student question:</strong> "Which is more expensive?" PETG is generally slightly more expensive, but both are affordable — typically $20–30 per kg.</li>
+        <li><strong>After this slide:</strong> Transition to the MakerWorld exploration. "Now let's get hands-on — open MakerWorld and find something you'd actually want to print."</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ═══════════════ SLIDE 20: Explore MakerWorld ═══════════════ -->
+  <section class="slide" data-time="8">
+    <div class="slide-time">⏱ 8 min</div>
+    <span class="slide-type work">🎯 Student Work</span>
+    <h2>Explore MakerWorld</h2>
+    <div class="callout" style="flex:1;display:flex;flex-direction:column;gap:12px;padding:20px;">
+      <p><strong>Part 6 on the student page:</strong></p>
+      <ul>
+        <li>Go to <strong>makerworld.com</strong> — browse freely</li>
+        <li>Find a model you'd actually want to print</li>
+        <li><strong>Paste the URL</strong> in the text box on the student page</li>
+        <li>Write a short note about why you chose it</li>
+      </ul>
+      <div class="callout" style="margin-top:4px;">
+        💡 Categories to explore: tools, toys, school items, art, practical prints, keychains
+      </div>
+    </div>
+    <div class="slide-num">20 / 22</div>
+    <div class="notes-content" style="display:none">
+      <ul>
+        <li><strong>This is free-choice exploration time</strong> — don't over-structure it. Students should just browse and get excited about what's possible.</li>
+        <li><strong>Circulate and ask students what they found.</strong> "Oh that's interesting — why that one?" gets great discussions going.</li>
+        <li><strong>Remind about the URL field:</strong> Students sometimes find something they like but forget to paste the link. Walk around and check.</li>
+        <li><strong>If MakerWorld is blocked on school network:</strong> Have a backup plan — Thingiverse or Printables are good alternatives.</li>
+        <li><strong>After 8 min:</strong> "Save your tab — you might come back to this when we're working on Day 4 and 5 prints."</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ═══════════════ SLIDE 21: Check for Understanding ═══════════════ -->
+  <section class="slide" data-time="3">
+    <div class="slide-time">⏱ 3 min</div>
+    <span class="slide-type check">✅ Check for Understanding</span>
+    <h2>Quick Check</h2>
+    <div class="cfu-card" style="flex:1;">
+      <ol style="gap:14px;">
+        <li>What does the <strong>extruder</strong> do? (Don't say "it extrudes.")</li>
+        <li>What happens to a print if the bed isn't level?</li>
+        <li>What's the difference between <strong>PLA</strong> and <strong>PETG</strong>? When would you choose each?</li>
+        <li>Put the three steps in order: <em>Print → Design → Slice</em></li>
+        <li>Where does the model file come from before you slice it?</li>
+      </ol>
+    </div>
+    <div class="slide-num">21 / 22</div>
+    <div class="notes-content" style="display:none">
+      <ul>
+        <li><strong>Use think-pair-share:</strong> 30 seconds to think alone, 30 seconds to discuss with a neighbor, then cold call.</li>
+        <li><strong>Answers:</strong> (1) Pushes filament into the nozzle. (2) Poor first layer adhesion — print may not stick or be warped. (3) PLA = easy, beginner; PETG = tougher, more challenging. (4) Design → Slice → Print. (5) MakerWorld download OR original design in Tinkercad.</li>
+        <li><strong>Don't linger more than 3 minutes here</strong> — you want to leave enough time for the exit ticket and submit step.</li>
+        <li><strong>If most students got it:</strong> Great, transition to exit ticket. If many missed Q2 or Q3, spend 60 extra seconds clarifying.</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ═══════════════ SLIDE 22: Exit Ticket + Closing ═══════════════ -->
+  <section class="slide" data-time="2">
+    <div class="slide-time">⏱ 2 min</div>
+    <h2>Exit Ticket &amp; Submit</h2>
+    <div class="slide-cols">
+      <div>
+        <h3>Before you leave:</h3>
+        <ul class="slide-checklist" style="padding:0;">
+          <li>Part 7 on student page — click <strong>Generate My Responses</strong></li>
+          <li>Paste output into your <strong>Digital Notebook in Google Classroom</strong></li>
+          <li>Click <strong>Mark Complete</strong> on Part 7</li>
+        </ul>
+      </div>
+      <div class="col-card" style="background:rgba(156,243,219,0.07);">
+        <h3>Tomorrow: Day 2</h3>
+        <ul>
+          <li>Bambu Studio — the slicing software</li>
+          <li>You'll take your model from today and prepare it for printing</li>
+          <li><strong>Remember your MakerWorld model URL!</strong></li>
+        </ul>
+      </div>
+    </div>
+    <div class="slide-num">22 / 22</div>
+    <div class="notes-content" style="display:none">
+      <ul>
+        <li><strong>Make sure every student submits before the bell.</strong> Walk the room — check that the Generate button has been clicked and output is in the textarea.</li>
+        <li><strong>Preview Day 2:</strong> "Tomorrow we're taking your model and learning how to prepare it for printing in Bambu Studio. It's going to get a lot more hands-on."</li>
+        <li><strong>End on energy:</strong> Tell students what they accomplished today — they learned how FDM works, saw a real demo, completed matching and vocab activities, and found a model they want to print. That's a full day's work.</li>
+        <li><strong>After class:</strong> Review which students didn't submit. Follow up if needed.</li>
+      </ul>
+    </div>
+  </section>
+
+</div><!-- /slideViewport -->
+
+<!-- ── Progress Dots ─────────────────────────────────────────── -->
+<div id="progressDots"></div>
+<div id="navHint">← → Arrow keys · N = notes · F = fullscreen · P = print</div>
+
+<!-- ── Notes Panel ───────────────────────────────────────────── -->
+<div id="notesPanel">
+  <h4>📋 Speaker Notes — Day 1</h4>
+  <div id="notesBody" class="notes-content"></div>
+</div>
+
+<script>
+(function () {
+  var slides    = Array.from(document.querySelectorAll('.slide'));
+  var total     = slides.length;
+  var current   = 0;
+  var showNotes = false;
+  var breakTimer = null;
+
+  /* Build progress dots */
+  var dotsEl = document.getElementById('progressDots');
+  slides.forEach(function (_, i) {
+    var d = document.createElement('span');
+    d.className = 'dot';
+    d.addEventListener('click', function () { goTo(i); });
+    dotsEl.appendChild(d);
+  });
+
+  /* Brain-break countdown */
+  function startBreakCountdown(slide) {
+    var display = slide.querySelector('.break-timer');
+    if (!display) return;
+    var seconds = 10 * 60;
+    if (breakTimer) clearInterval(breakTimer);
+    function tick() {
+      var m = Math.floor(seconds / 60);
+      var s = seconds % 60;
+      display.textContent = m + ':' + (s < 10 ? '0' : '') + s;
+      if (seconds === 0) { clearInterval(breakTimer); breakTimer = null; display.textContent = "Time's up!"; display.style.color = 'var(--danger)'; }
+      seconds--;
+    }
+    tick();
+    breakTimer = setInterval(tick, 1000);
+    var restartBtns = slide.querySelectorAll('.break-restart');
+    restartBtns.forEach(function(btn) {
+      btn.onclick = function() { seconds = 10 * 60; if(breakTimer) clearInterval(breakTimer); display.style.color = ''; tick(); breakTimer = setInterval(tick, 1000); };
+    });
+  }
+
+  function goTo(idx) {
+    if (breakTimer) { clearInterval(breakTimer); breakTimer = null; }
+    slides[current].classList.remove('active');
+    current = Math.max(0, Math.min(idx, total - 1));
+    slides[current].classList.add('active');
+    if (slides[current].classList.contains('brain-break')) startBreakCountdown(slides[current]);
+    updateUI();
+  }
+
+  function updateUI() {
+    document.getElementById('slideCounter').textContent = (current + 1) + ' / ' + total;
+    document.getElementById('prevBtn').disabled = current === 0;
+    document.getElementById('nextBtn').disabled = current === total - 1;
+    /* Cumulative elapsed time (sum of data-time for slides 0..current) */
+    var cum = 0;
+    for (var i = 0; i <= current; i++) cum += parseInt(slides[i].getAttribute('data-time') || '0', 10);
+    document.getElementById('cumTime').textContent = '≈ ' + cum + ' min elapsed';
+    /* Dots */
+    Array.from(document.querySelectorAll('.dot')).forEach(function (d, i) {
+      d.classList.toggle('current', i === current);
+      d.classList.toggle('done', i < current);
+    });
+    /* Notes */
+    var notesEl = slides[current].querySelector('.notes-content');
+    var panel   = document.getElementById('notesPanel');
+    var body    = document.getElementById('notesBody');
+    if (showNotes && notesEl) { body.innerHTML = notesEl.innerHTML; panel.classList.add('visible'); }
+    else panel.classList.remove('visible');
+  }
+
+  document.getElementById('prevBtn').addEventListener('click', function () { if (current > 0) goTo(current - 1); });
+  document.getElementById('nextBtn').addEventListener('click', function () { if (current < total - 1) goTo(current + 1); });
+
+  function toggleNotes() {
+    showNotes = !showNotes;
+    document.getElementById('notesToggle').textContent = showNotes ? '📋 Hide Notes' : '📋 Notes';
+    updateUI();
+  }
+  document.getElementById('notesToggle').addEventListener('click', toggleNotes);
+
+  document.getElementById('fullscreenBtn').addEventListener('click', function () {
+    if (!document.fullscreenElement) document.documentElement.requestFullscreen().catch(function(){});
+    else document.exitFullscreen();
+  });
+
+  document.addEventListener('keydown', function (e) {
+    if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') return;
+    if (e.key === 'ArrowRight' || e.key === 'ArrowDown' || e.key === ' ') { e.preventDefault(); if (current < total - 1) goTo(current + 1); }
+    else if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') { e.preventDefault(); if (current > 0) goTo(current - 1); }
+    else if (e.key === 'n' || e.key === 'N') toggleNotes();
+    else if (e.key === 'f' || e.key === 'F') document.getElementById('fullscreenBtn').click();
+  });
+
+  updateUI();
+}());
+</script>
+</body>
+</html>

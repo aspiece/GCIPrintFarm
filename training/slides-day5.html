@@ -1,0 +1,681 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Day 5 Slides — GCI 3D Printing</title>
+  <link rel="stylesheet" href="slides.css" />
+</head>
+<body>
+
+<div id="toolbar">
+  <span class="toolbar-title">📋 Day 5 — Print Day: Run the Lab</span>
+  <div class="toolbar-controls">
+    <span id="cumTime">0 min elapsed</span>
+    <span id="slideCounter">1 / 20</span>
+    <button class="tb-btn" id="prevBtn" disabled>← Prev</button>
+    <button class="tb-btn primary" id="nextBtn">Next →</button>
+    <button class="tb-btn" id="notesToggle">📋 Notes</button>
+    <button class="tb-btn" id="fullscreenBtn">⛶ Full</button>
+    <button class="tb-btn" onclick="window.print()">🖨️ Print</button>
+    <a class="tb-btn" href="day5.html" target="_blank">Student Page ↗</a>
+  </div>
+</div>
+
+<div id="slideViewport">
+
+  <!-- SLIDE 1: Title -->
+  <section class="slide title-slide active" data-time="1">
+    <div class="day-tag">GCI 3D Printing Lab · 90-Minute Block</div>
+    <h1>Day 5</h1>
+    <h2 style="color:var(--accent2);font-size:1.6rem;margin-top:6px;">Print Day — Run the Lab 🖨️</h2>
+    <p class="subtitle" style="margin-top:10px;">Print Lab Roles · Submit Your Keychain · Reflect</p>
+    <div class="slide-num">1 / 20</div>
+    <div class="notes-content" style="display:none">
+      <ul>
+        <li><strong>As students arrive:</strong> Have the printers warming up. This slide should be showing as students walk in — it signals that today is different.</li>
+        <li><strong>Say:</strong> <em>"Today is what everything has been building toward. You designed a keychain, prepared it for printing, and now it goes live. This is your work — own it."</em></li>
+        <li><strong>Prerequisite check (critical):</strong> Students MUST have their 3MF files ready. First 5 minutes: ask everyone to confirm their 3MF file is accessible (laptop, USB, or Google Drive). Do not start printing until this is verified.</li>
+        <li><strong>Role assignment:</strong> Have role cards ready (Print Technician, Materials Manager, Quality Control, Helpdesk). Assign before the first slide about roles.</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- SLIDE 2: Agenda -->
+  <section class="slide" data-time="2">
+    <div class="slide-time">⏱ 2 min</div>
+    <h2>Today's Agenda</h2>
+    <div class="slide-cols">
+      <div>
+        <h3>First Half (~40 min)</h3>
+        <ul>
+          <li>Full workflow + file types review</li>
+          <li>Print farm rules &amp; expectations</li>
+          <li>Print lab roles</li>
+          <li>File submission checklist</li>
+          <li>Starting your print — step by step</li>
+          <li>Printer parts quick review</li>
+        </ul>
+      </div>
+      <div>
+        <h3>After Break (~40 min)</h3>
+        <ul>
+          <li>🖨️ Run the print lab</li>
+          <li>Troubleshooting guide</li>
+          <li>Monitor prints / rotate roles</li>
+          <li>Reflection prompts</li>
+          <li>Self-assessment + submit</li>
+        </ul>
+      </div>
+    </div>
+    <div class="callout" style="margin-top:8px;">🧠 Brain break at approximately the 40-minute mark</div>
+    <div class="slide-num">2 / 20</div>
+    <div class="notes-content" style="display:none">
+      <ul>
+        <li><strong>Today is logistics-heavy.</strong> Keep transitions tight — every minute of instruction is a minute students aren't printing.</li>
+        <li><strong>The print queue:</strong> Students won't all print at the same time. The queue is managed through Helpdesk. Set that expectation now: "There are 11 printers. Some of you will wait. Use the wait time wisely."</li>
+        <li><strong>Transition:</strong> "Before we start printing, let's make sure everyone remembers how we got here."</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- SLIDE 3: Learning Goals -->
+  <section class="slide" data-time="2">
+    <div class="slide-time">⏱ 2 min</div>
+    <h2>I Can…</h2>
+    <ul style="gap:12px;">
+      <li>✅ Explain the full <strong>Design → Slice → Print</strong> workflow from memory</li>
+      <li>✅ Fulfill my <strong>print lab role</strong> and support my team</li>
+      <li>✅ Submit my <strong>3MF file</strong> to the print queue correctly</li>
+      <li>✅ Monitor the first layer and identify whether a print is starting correctly</li>
+      <li>✅ Describe at least one thing I would fix about my design or process next time</li>
+    </ul>
+    <div class="slide-num">3 / 20</div>
+    <div class="notes-content" style="display:none">
+      <ul>
+        <li><strong>Ask:</strong> "How many of you are excited about seeing your design print?" — build anticipation.</li>
+        <li><strong>Ask:</strong> "What's the very first thing a print technician should do when they walk up to a printer?" — previews the startup checklist coming up.</li>
+        <li><strong>Transition:</strong> "Let's do a quick review of everything — then we get into the rules and roles."</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- SLIDE 4: Workflow Review -->
+  <section class="slide" data-time="4">
+    <div class="slide-time">⏱ 4 min</div>
+    <span class="slide-type pause">🔄 Review</span>
+    <h2>The Full Workflow — All 5 Days</h2>
+    <div class="workflow-row" style="flex:1;">
+      <div class="wf-step" style="background:rgba(124,192,255,0.1);">
+        <div class="wf-num">D1</div>
+        <h4>Understand</h4>
+        <p>FDM, parts, filament, MakerWorld</p>
+      </div>
+      <div class="wf-arrow">→</div>
+      <div class="wf-step" style="background:rgba(156,243,219,0.1);">
+        <div class="wf-num">D2</div>
+        <h4>Slice</h4>
+        <p>Bambu Studio — settings, preview, 3MF</p>
+      </div>
+      <div class="wf-arrow">→</div>
+      <div class="wf-step" style="background:rgba(255,212,0,0.1);">
+        <div class="wf-num">D3</div>
+        <h4>Design</h4>
+        <p>TinkerCAD — keychain + keyring hole</p>
+      </div>
+      <div class="wf-arrow">→</div>
+      <div class="wf-step" style="background:rgba(156,243,219,0.1);">
+        <div class="wf-num">D4</div>
+        <h4>Prep</h4>
+        <p>SVG logo + final 3MF export</p>
+      </div>
+      <div class="wf-arrow">→</div>
+      <div class="wf-step" style="background:rgba(76,175,80,0.15);border-color:rgba(76,175,80,0.4);">
+        <div class="wf-num" style="background:var(--success);">D5</div>
+        <h4 style="color:var(--success);">Print!</h4>
+        <p>Run the lab. Watch it happen.</p>
+      </div>
+    </div>
+    <div class="callout success" style="margin-top:8px;">🎉 You have completed the full pipeline — from idea to physical object. That's real engineering.</div>
+    <div class="slide-num">4 / 20</div>
+    <div class="notes-content" style="display:none">
+      <ul>
+        <li><strong>Ask cold-call questions</strong> as you walk through this: "What did we do on Day 2?" "What file does TinkerCAD export?" "What does Bambu Studio create?" — students should know these answers now.</li>
+        <li><strong>Celebrate the journey:</strong> "Four days ago you didn't know what FDM meant. Today you're running a print lab. That's a real change."</li>
+        <li><strong>Bridge to files:</strong> "The most important thing you need right now is your 3MF file. Let's review file types one more time."</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- SLIDE 5: File Types Quick Review -->
+  <section class="slide" data-time="3">
+    <div class="slide-time">⏱ 3 min</div>
+    <span class="slide-type pause">🔄 Review</span>
+    <h2>File Types — Quick Review</h2>
+    <div class="slide-cols thirds">
+      <div class="col-card" style="text-align:center;">
+        <div style="font-size:2rem;">🖼️</div>
+        <h3>SVG</h3>
+        <p style="font-size:0.84rem;color:var(--muted);">Your logo image — converted to vector for TinkerCAD import</p>
+      </div>
+      <div class="col-card" style="text-align:center;">
+        <div style="font-size:2rem;">📄</div>
+        <h3>STL</h3>
+        <p style="font-size:0.84rem;color:var(--muted);">Your 3D model exported from TinkerCAD — geometry only</p>
+      </div>
+      <div class="col-card" style="text-align:center;">
+        <div style="font-size:2rem;">🖨️</div>
+        <h3>3MF</h3>
+        <p style="font-size:0.84rem;color:var(--muted);">Your <strong>print-ready file</strong> from Bambu Studio — this goes to the printer today</p>
+      </div>
+    </div>
+    <div class="callout warn" style="margin-top:8px;">🖨️ The printer needs the <strong>3MF</strong>. Not the STL. Not the SVG. The <strong>3MF</strong>.</div>
+    <div class="slide-num">5 / 20</div>
+    <div class="notes-content" style="display:none">
+      <ul>
+        <li><strong>This is a quick but critical review.</strong> Students sometimes try to send the STL to the printer — it won't work correctly without the slicer settings embedded in the 3MF.</li>
+        <li><strong>Ask:</strong> "Raise your hand if you have your 3MF file right now. If you don't have your hand up — fix that in the next 2 minutes."</li>
+        <li><strong>If a student lost their 3MF:</strong> They need to re-open Bambu Studio, re-import their STL, re-slice it, and save again. This takes ~5 minutes — direct them to do it now, not during print time.</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- SLIDE 6: Print Farm Expectations -->
+  <section class="slide" data-time="4">
+    <div class="slide-time">⏱ 4 min</div>
+    <h2>Print Farm Rules &amp; Expectations</h2>
+    <div class="slide-cols">
+      <div>
+        <ul style="gap:10px;">
+          <li>We have <strong>11 printers</strong> — you may need to wait for one</li>
+          <li><strong>Never touch</strong> another student's print — even to "help"</li>
+          <li>All file submissions go through <strong>Helpdesk</strong></li>
+          <li>Watch the <strong>first layer</strong> — if something looks wrong, say something immediately</li>
+          <li>If a print fails, <strong>pause and ask</strong> — don't let a bad print run for 20 minutes</li>
+        </ul>
+      </div>
+      <div>
+        <ul style="gap:10px;">
+          <li>Keep the area <strong>clean</strong> — no food, no drinks near the printers</li>
+          <li><strong>Don't touch the nozzle</strong> — it reaches 200°C and stays hot after printing</li>
+          <li>Handle the <strong>build plate by the edges</strong> — fingerprints = poor adhesion</li>
+          <li>Follow all lab procedures <strong>every time</strong> — not just when you feel like it</li>
+          <li>Your role matters — your team depends on you</li>
+        </ul>
+      </div>
+    </div>
+    <div class="slide-num">6 / 20</div>
+    <div class="notes-content" style="display:none">
+      <ul>
+        <li><strong>Spend extra time on the safety rules</strong> — nozzle temperature and build plate handling are the two most common causes of injury and failed prints.</li>
+        <li><strong>"Don't touch another student's print"</strong> is important for ownership and safety — a print that gets bumped mid-print will fail. Enforce this strictly.</li>
+        <li><strong>Helpdesk process:</strong> Explain exactly how students submit their file. Is it a Google Form? A shared folder? A USB? Clarify this before the brain break.</li>
+        <li><strong>Common Day 5 issue:</strong> Students crowd around printers. Establish a "2 people max per printer" rule upfront. Others should be at their desks monitoring or working on reflection.</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- SLIDE 7: Print Lab Roles -->
+  <section class="slide" data-time="4">
+    <div class="slide-time">⏱ 4 min</div>
+    <h2>Print Lab Roles</h2>
+    <div class="slide-cols" style="grid-template-columns:1fr 1fr;gap:14px;flex:1;">
+      <div class="col-card">
+        <h3>🖨️ Print Technician</h3>
+        <ul>
+          <li>Load the 3MF file and start the print</li>
+          <li>Watch the first layer closely</li>
+          <li>Report any issues immediately</li>
+        </ul>
+      </div>
+      <div class="col-card">
+        <h3>📦 Materials Manager</h3>
+        <ul>
+          <li>Check filament levels before each print starts</li>
+          <li>Help load filament if a spool runs out</li>
+          <li>Track which printer has which student's print</li>
+        </ul>
+      </div>
+      <div class="col-card">
+        <h3>🔍 Quality Control</h3>
+        <ul>
+          <li>Inspect finished prints before they leave the printer</li>
+          <li>Flag anything that looks wrong (stringing, gaps, bad adhesion)</li>
+          <li>Clear the build plate between prints — clean it with IPA wipe</li>
+        </ul>
+      </div>
+      <div class="col-card">
+        <h3>🎧 Helpdesk / Support</h3>
+        <ul>
+          <li>First stop when something goes wrong</li>
+          <li>Help classmates troubleshoot — don't touch their printer without asking</li>
+          <li>Manage the print queue and file submissions</li>
+        </ul>
+      </div>
+    </div>
+    <div class="slide-num">7 / 20</div>
+    <div class="notes-content" style="display:none">
+      <ul>
+        <li><strong>Assign roles before this slide</strong> if you haven't already. Give each student a clear role — "everyone is Print Technician" leads to chaos.</li>
+        <li><strong>Roles may rotate</strong> during the lab if a student's print is running and they have nothing to do. That's fine — the key is that everyone knows their default role.</li>
+        <li><strong>Watch for:</strong> Helpdesk students who try to solve every problem themselves instead of escalating. Remind them: "Your job is to be the first line of triage. If it's beyond you, come to me."</li>
+        <li><strong>Transition:</strong> "Let's do the file submission checklist, then review how to start a print, and then we break."</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- SLIDE 8: File Submission Checklist -->
+  <section class="slide" data-time="3">
+    <div class="slide-time">⏱ 3 min</div>
+    <span class="slide-type check">✅ File Submission Checklist</span>
+    <h2>What You Need to Submit Today</h2>
+    <ul class="slide-checklist" style="padding:0;flex:1;">
+      <li>✅ <strong>SVG</strong> — your logo vector file (from Adobe Express)</li>
+      <li>✅ <strong>STL</strong> — your 3D model exported from TinkerCAD</li>
+      <li>✅ <strong>3MF</strong> — your sliced, print-ready file from Bambu Studio (THE MOST IMPORTANT)</li>
+      <li>⬜ <strong>G-code</strong> — if available (export from Bambu Studio → Export G-code)</li>
+      <li>✅ All files named: <code>YourName_Keychain_Final.[ext]</code></li>
+      <li>✅ 3MF previewed in Bambu Studio — no red flags found</li>
+    </ul>
+    <div class="callout warn" style="margin-top:8px;">⚠️ Files without a student name will not be printed. No exceptions.</div>
+    <div class="slide-num">8 / 20</div>
+    <div class="notes-content" style="display:none">
+      <ul>
+        <li><strong>Walk through each item.</strong> Give students 60 seconds to verify they have each file. Raise your hand if you're missing any — resolve it before the brain break.</li>
+        <li><strong>G-code note:</strong> G-code export is optional. In Bambu Studio: File → Export → Export G-code. This is listed for completeness — the 3MF is what we'll actually print from.</li>
+        <li><strong>The naming rule is a real issue on print day</strong> — "keychain.3mf" with 20 students = chaos. Enforce it now, not when you're managing 11 running printers.</li>
+        <li><strong>Collection method:</strong> Have students submit to your shared folder now (Google Drive folder, USB, or your laptop). Collect files before the brain break so you can start queuing prints during the break.</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- SLIDE 9: Starting Your Print -->
+  <section class="slide" data-time="4">
+    <div class="slide-time">⏱ 4 min</div>
+    <span class="slide-type demo">🎓 Step by Step</span>
+    <h2>Starting Your Print — In Order</h2>
+    <ol style="gap:10px;flex:1;padding-left:22px;">
+      <li>Clean the <strong>build plate</strong> — IPA wipe, let dry 30 seconds</li>
+      <li>Check <strong>filament</strong> — is there enough on the spool for your print?</li>
+      <li>Load your <strong>3MF file</strong> onto the printer (USB or WiFi)</li>
+      <li>Start the print — confirm it is <strong>accepted and warming up</strong></li>
+      <li>Watch the <strong>first layer</strong> for the first 2 minutes — do not walk away</li>
+      <li>If first layer looks bad → <strong>pause</strong> and ask for help. Don't let it run.</li>
+    </ol>
+    <div class="callout warn" style="margin-top:8px;">⚠️ <strong>The first layer is the most important layer.</strong> A bad first layer = a failed print. Never ignore it.</div>
+    <div class="slide-num">9 / 20</div>
+    <div class="notes-content" style="display:none">
+      <ul>
+        <li><strong>Walk through this list with students.</strong> Have a printer in front of the class and demonstrate steps 1–4 live — especially the IPA wipe and filament check.</li>
+        <li><strong>First layer characteristics of a GOOD print:</strong> Filament presses firmly into the bed. Lines are touching each other. Color is consistent. No gaps.</li>
+        <li><strong>First layer characteristics of a BAD print:</strong> Lines separate. Filament strings or doesn't stick. Print head drags through deposited material. Nozzle too close = looks crushed. Nozzle too far = spaghetti-like lines.</li>
+        <li><strong>The 2-minute rule:</strong> "If it looks good after 2 minutes, you can step back and monitor from a normal distance. If it looks wrong at any point, pause immediately. Every bad layer compounds the problem."</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- SLIDE 10: Printer Parts Quick Review -->
+  <section class="slide" data-time="3">
+    <div class="slide-time">⏱ 3 min</div>
+    <span class="slide-type pause">🔄 Quick Review</span>
+    <h2>Know Your Printer</h2>
+    <div class="slide-cols">
+      <div>
+        <ul style="gap:8px;">
+          <li><strong>Nozzle</strong> — melts &amp; deposits filament. Most common failure point. 200°C+ during printing.</li>
+          <li><strong>Extruder</strong> — pushes filament to the nozzle. Slippage = under-extrusion.</li>
+          <li><strong>Build plate</strong> — print surface. Must be clean. Handle by edges only.</li>
+        </ul>
+      </div>
+      <div>
+        <ul style="gap:8px;">
+          <li><strong>Filament spool</strong> — holds the material. Must feed smoothly.</li>
+          <li><strong>X/Y/Z axes</strong> — three directions of movement. Calibrated by the printer.</li>
+          <li><strong>Bambu AMS</strong> — automatic material system (if equipped). Manages filament loading.</li>
+        </ul>
+      </div>
+    </div>
+    <div class="callout" style="margin-top:8px;">🔎 Point to each part on a real printer right now — you can't learn this from a slide alone.</div>
+    <div class="slide-num">10 / 20</div>
+    <div class="notes-content" style="display:none">
+      <ul>
+        <li><strong>Walk to a real printer</strong> and point to each part as you say its name. Students should be able to identify all five parts by now — this is a final check.</li>
+        <li><strong>Ask:</strong> "If your print stops feeding filament mid-print, what part do you check first?" (Extruder — check if it's gripping the filament.)</li>
+        <li><strong>Ask:</strong> "The build plate feels slightly greasy. What should you do?" (Clean it with IPA wipe before starting.)</li>
+        <li><strong>Transition:</strong> "Good — brain break time. When you come back, the printers are running. 10 minutes."</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- SLIDE 11: BRAIN BREAK -->
+  <section class="slide brain-break" data-time="10">
+    <div class="break-emoji">🖨️</div>
+    <div class="break-title">Brain Break!</div>
+    <div class="break-sub">Move around · The printers are warming up · Come back ready to run the lab</div>
+    <div class="break-timer" id="breakTimer5">10:00</div>
+    <div class="break-activities">
+      <div class="break-activity">🚶 Walk over to a printer — can you name all 5 parts?</div>
+      <div class="break-activity">💬 Tell a classmate what role you have today</div>
+      <div class="break-activity">🤸 Quick stretch — hands, neck, shoulders</div>
+      <div class="break-activity">📁 Confirm your 3MF is ready and submitted</div>
+    </div>
+    <span class="break-restart" id="restartBreak5">↺ Restart timer</span>
+    <div class="slide-num">11 / 20</div>
+    <div class="notes-content" style="display:none">
+      <ul>
+        <li><strong>During the break:</strong> Start loading the first batch of print files. Queue 3–4 prints to begin as soon as students return from the break.</li>
+        <li><strong>Verify file collection is complete.</strong> Any student who hasn't submitted their 3MF must do so before the break ends.</li>
+        <li><strong>Brief the Helpdesk student:</strong> Give them a quick 60-second orientation on the print queue process.</li>
+        <li><strong>2-minute warning:</strong> "Two minutes — get back to your stations and get ready. When the timer ends, we're printing."</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- SLIDE 12: Troubleshooting Guide -->
+  <section class="slide" data-time="4">
+    <div class="slide-time">⏱ 4 min</div>
+    <h2>Troubleshooting — What to Do When…</h2>
+    <div class="slide-cols">
+      <div class="col-card">
+        <h3>🔴 Print won't stick to bed</h3>
+        <p style="font-size:0.85rem;color:var(--muted);">→ Clean build plate with IPA wipe. Let dry. Try again. Check plate is fully seated.</p>
+        <h3 style="margin-top:12px;">🔴 Stringy lines / webbing</h3>
+        <p style="font-size:0.85rem;color:var(--muted);">→ Check retraction settings. May indicate wet filament. Report to instructor.</p>
+      </div>
+      <div class="col-card">
+        <h3>🔴 Print feels fragile / brittle</h3>
+        <p style="font-size:0.85rem;color:var(--muted);">→ Next print: increase infill % or wall thickness in Bambu Studio before re-slicing.</p>
+        <h3 style="margin-top:12px;">🔴 No filament coming out</h3>
+        <p style="font-size:0.85rem;color:var(--muted);">→ Extruder jam or clog. Do NOT try to fix without instructor. Pause print immediately.</p>
+      </div>
+    </div>
+    <div class="callout warn" style="margin-top:8px;">💡 Rule: <strong>Never cancel a print</strong> without checking with Helpdesk first. What looks wrong sometimes isn't.</div>
+    <div class="slide-num">12 / 20</div>
+    <div class="notes-content" style="display:none">
+      <ul>
+        <li><strong>Keep this slide up as a reference</strong> during print time. Students can look at it if they encounter an issue rather than interrupting you.</li>
+        <li><strong>The "don't cancel without asking" rule is important.</strong> Students sometimes panic and cancel a print that was actually printing correctly. The first layer often looks rougher than the final product.</li>
+        <li><strong>Extruder clogs:</strong> Don't let students try to fix these themselves. A mishandled clog can damage the printer. Always escalate to the instructor.</li>
+        <li><strong>Additional tip:</strong> If stringing is bad, check if the filament has absorbed moisture (PLA is hygroscopic). Store filament in sealed bags between uses.</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- SLIDE 13: Vocabulary Review -->
+  <section class="slide" data-time="3">
+    <div class="slide-time">⏱ 3 min</div>
+    <span class="slide-type vocab">📚 Vocabulary Review</span>
+    <h2>Terms from All 5 Days</h2>
+    <div class="vocab-grid">
+      <div class="vocab-card">
+        <strong>FDM</strong> (Day 1) — Fused Deposition Modeling. Melts plastic filament layer by layer to build an object.
+      </div>
+      <div class="vocab-card">
+        <strong>Slicer / Bambu Studio</strong> (Day 2) — Software that converts a 3D model into G-code printer instructions.
+      </div>
+      <div class="vocab-card">
+        <strong>Hole + Group</strong> (Day 3) — TinkerCAD tools used to subtract one shape from another — creates the keyring hole.
+      </div>
+      <div class="vocab-card">
+        <strong>SVG</strong> (Day 4) — Scalable Vector Graphics. Math-based image format. Needed to import a logo into TinkerCAD.
+      </div>
+    </div>
+    <div class="callout" style="margin-top:8px;">📖 <a href="glossary.html" target="_blank" style="color:var(--accent);">Open the Full Glossary →</a> all terms from Day 1–5 in one place.</div>
+    <div class="slide-num">13 / 20</div>
+    <div class="notes-content" style="display:none">
+      <ul>
+        <li><strong>Quick cumulative review</strong> — ask students to explain each term to the person next to them in one sentence. This is active recall and takes only 2 minutes.</li>
+        <li><strong>Point to the glossary link</strong> on the student page — useful for the reflection activity and for any future reference.</li>
+        <li><strong>Transition:</strong> "Great — now let's get into print work time. Printers are running. Know your role. Here's what the next 20 minutes look like."</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- SLIDE 14: Work Time -->
+  <section class="slide" data-time="20">
+    <div class="slide-time">⏱ 20 min</div>
+    <span class="slide-type work">🎯 Work Time</span>
+    <h2>Print Lab — Run It</h2>
+    <div class="slide-cols">
+      <div class="callout" style="height:100%;">
+        <h3 style="margin-bottom:10px;">What you should be doing:</h3>
+        <ul style="gap:8px;">
+          <li><strong>Printing:</strong> Submit file → start print → watch first layer</li>
+          <li><strong>Waiting:</strong> Use the time to review your design — is there anything you'd change?</li>
+          <li><strong>Supporting:</strong> Help a classmate troubleshoot if you have nothing to do</li>
+          <li><strong>Quality checking:</strong> Inspect finished prints before they leave the printer</li>
+        </ul>
+      </div>
+      <div class="callout warn" style="height:100%;">
+        <h3 style="margin-bottom:10px;">What you should NOT be doing:</h3>
+        <ul style="gap:8px;">
+          <li>❌ Touching other students' prints</li>
+          <li>❌ Cancelling a print without Helpdesk</li>
+          <li>❌ Standing idle — there's always something to do</li>
+          <li>❌ On your phone or gaming</li>
+        </ul>
+      </div>
+    </div>
+    <div class="slide-num">14 / 20</div>
+    <div class="notes-content" style="display:none">
+      <ul>
+        <li><strong>Leave this slide up</strong> during the entire work time period. Students can refer to it for expectations.</li>
+        <li><strong>Your job during this time:</strong> Circulate. Don't sit down. Watch first layers. Troubleshoot. Help Helpdesk. Manage the queue. Celebrate successful prints.</li>
+        <li><strong>For students whose prints finish early:</strong> Have them answer the reflection prompts (coming up) while they wait. This prevents downtime becoming distraction time.</li>
+        <li><strong>For students still waiting for a printer:</strong> Direct them to the reflection prompts or vocabulary review. Don't let them idle.</li>
+        <li><strong>Common print day issue:</strong> Students leave the printer during the first layer. Enforce the "watch for 2 minutes" rule actively — physically stand near anyone whose print just started.</li>
+        <li><strong>First layer success indicator:</strong> Filament should be pressed flat into the build plate, lines should be touching, no gaps. If lines are round like spaghetti, the nozzle is too far — pause and re-level.</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- SLIDE 15: First Layer Check -->
+  <section class="slide" data-time="3">
+    <div class="slide-time">⏱ 3 min</div>
+    <span class="slide-type check">🔍 First Layer</span>
+    <h2>First Layer — What Are You Looking For?</h2>
+    <div class="compare-grid" style="flex:1;">
+      <div class="compare-card compare-good">
+        <div class="compare-label">✅ Good First Layer</div>
+        <ul class="compare-items" style="gap:6px;">
+          <li>🟢 Lines pressed flat into the plate</li>
+          <li>🟢 Lines touching each other (no gaps)</li>
+          <li>🟢 Consistent color and width</li>
+          <li>🟢 Print head moves smoothly</li>
+          <li>🟢 No scraping sounds</li>
+        </ul>
+      </div>
+      <div class="compare-card compare-bad">
+        <div class="compare-label">❌ Bad First Layer — Pause Now</div>
+        <ul class="compare-items" style="gap:6px;">
+          <li>🔴 Spaghetti-like round strands (not pressed flat)</li>
+          <li>🔴 Lines lifting off the plate</li>
+          <li>🔴 Filament bunching around nozzle</li>
+          <li>🔴 Gaps in the first layer</li>
+          <li>🔴 Scraping or grinding sounds</li>
+        </ul>
+      </div>
+    </div>
+    <div class="slide-num">15 / 20</div>
+    <div class="notes-content" style="display:none">
+      <ul>
+        <li><strong>This slide is most useful DURING the first layer.</strong> Bring students to look at a running print and describe what they see using this vocabulary.</li>
+        <li><strong>The most teachable moment of print day:</strong> When a print fails on the first layer. Ask students to diagnose: "What does this look like? Which column does it fall into? What do you do?"</li>
+        <li><strong>Reference for circulating students:</strong> "Your Quality Control student should be checking every first layer against this slide."</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- SLIDE 16: Reflection Prompts -->
+  <section class="slide" data-time="5">
+    <div class="slide-time">⏱ 5 min</div>
+    <span class="slide-type work">💡 Reflection</span>
+    <h2>Reflect on the Week</h2>
+    <div class="callout" style="flex:1;display:flex;flex-direction:column;gap:12px;padding:18px;">
+      <p><strong>Part 7 on the student page — answer honestly:</strong></p>
+      <ol style="gap:10px;padding-left:20px;">
+        <li>What went wrong today — and what did you do about it?</li>
+        <li>What did you learn about how the printer actually works?</li>
+        <li>If you could do one thing differently next time, what would it be?</li>
+      </ol>
+      <p style="font-size:0.88rem;color:var(--muted);margin-top:4px;">💡 Be specific. "I would try a different logo" is a better answer than "I would do better." What exactly would you change?</p>
+    </div>
+    <div class="slide-num">16 / 20</div>
+    <div class="notes-content" style="display:none">
+      <ul>
+        <li><strong>These prompts are not busywork.</strong> Reflection is how students consolidate learning. It also gives you data on what worked and what didn't for future classes.</li>
+        <li><strong>Model good reflection:</strong> Share one thing that went wrong in your own teaching today and what you'd change. This normalizes the process and builds trust.</li>
+        <li><strong>Watch for vague answers</strong> like "I would do better" or "It was fine." Prompt with follow-ups: "What specifically would you change about your logo choice / SVG conversion / TinkerCAD design?"</li>
+        <li><strong>If a student's print is still running:</strong> They can do reflection while waiting. Don't let them stare at the printer the whole time.</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- SLIDE 17: Self-Assessment -->
+  <section class="slide" data-time="4">
+    <div class="slide-time">⏱ 4 min</div>
+    <span class="slide-type check">✅ Self-Assessment</span>
+    <h2>Rate Yourself on the Learning Goals</h2>
+    <div class="cfu-card" style="flex:1;">
+      <p style="font-weight:700;margin-bottom:10px;">For each goal — rate yourself 1 (not yet) to 4 (I could teach this):</p>
+      <ol style="gap:10px;">
+        <li>I can explain how FDM printing works (layer by layer)</li>
+        <li>I can use Bambu Studio to import, slice, and preview a model</li>
+        <li>I can build and export a design in TinkerCAD using the Hole + Group tools</li>
+        <li>I can convert a PNG logo to SVG and import it into TinkerCAD</li>
+        <li>I can monitor a print's first layer and identify whether it looks correct</li>
+      </ol>
+    </div>
+    <div class="slide-num">17 / 20</div>
+    <div class="notes-content" style="display:none">
+      <ul>
+        <li><strong>Ask students to share one "4" and one "1"</strong> — a strength and a growth area. This is richer than just averaging their scores.</li>
+        <li><strong>Common pattern:</strong> Students rate themselves low on TinkerCAD (Day 3–4 skills) and high on print day skills (Day 5). If Day 3 skills are still weak, that's a signal for re-teaching.</li>
+        <li><strong>Use this data:</strong> Review self-assessments after class. If multiple students rate goal 3 or 4 low, plan a mini-lesson or provide additional resources before the next time you run this lab.</li>
+        <li><strong>Growth mindset framing:</strong> "A 1 just means you haven't learned it yet. That's information, not failure."</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- SLIDE 18: Exit Ticket -->
+  <section class="slide" data-time="3">
+    <div class="slide-time">⏱ 3 min</div>
+    <h2>Exit Ticket &amp; Submit</h2>
+    <div class="slide-cols">
+      <div>
+        <h3>Before you leave:</h3>
+        <ul class="slide-checklist" style="padding:0;">
+          <li>All three reflections answered on student page (Part 7)</li>
+          <li>Click <strong>Generate My Responses</strong> (Part 8)</li>
+          <li>Paste into <strong>Digital Notebook in Google Classroom</strong></li>
+          <li>3MF submitted (if not already)</li>
+          <li>Print collected or noted in queue</li>
+          <li>Station clean and ready for next class</li>
+        </ul>
+      </div>
+      <div class="col-card" style="background:rgba(76,175,80,0.07);border-color:rgba(76,175,80,0.3);justify-content:center;align-items:center;text-align:center;">
+        <div style="font-size:2.5rem;">🏆</div>
+        <h3 style="color:var(--success);margin-top:8px;">Lab Complete!</h3>
+        <p style="font-size:0.9rem;margin-top:4px;">You designed, sliced, and printed something real. That's a genuine engineering achievement.</p>
+      </div>
+    </div>
+    <div class="slide-num">18 / 20</div>
+    <div class="notes-content" style="display:none">
+      <ul>
+        <li><strong>Walk the room</strong> — confirm every student has submitted before dismissal. The summary should include reflection responses and print status.</li>
+        <li><strong>Cleanup:</strong> Remind students to clear their workspace — no leftover filament scraps, no forgotten USB drives, no files left open.</li>
+        <li><strong>Celebrate:</strong> If any prints came out well, hold them up and show the class. That physical object is the most powerful evidence of what they accomplished.</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- SLIDE 19: Lab Debrief -->
+  <section class="slide" data-time="3">
+    <div class="slide-time">⏱ 3 min</div>
+    <span class="slide-type pause">💬 Debrief</span>
+    <h2>Class Debrief</h2>
+    <div class="callout" style="flex:1;display:flex;flex-direction:column;gap:14px;padding:20px;">
+      <p style="font-weight:700;font-size:1.05rem;">Quick whole-class discussion:</p>
+      <ul style="gap:10px;">
+        <li>What was the hardest part of the whole 5-day project?</li>
+        <li>What surprised you most about how 3D printing actually works?</li>
+        <li>If someone asked you to explain 3D printing in 30 seconds, what would you say?</li>
+        <li>What's one thing you'd do differently if you ran this project again?</li>
+      </ul>
+    </div>
+    <div class="slide-num">19 / 20</div>
+    <div class="notes-content" style="display:none">
+      <ul>
+        <li><strong>Pick 2–3 questions</strong> based on how much time you have. Don't rush this — it's the synthesis moment where learning becomes lasting.</li>
+        <li><strong>Common "hardest part" answers:</strong> SVG conversion, TinkerCAD hole tool, finding the right logo. These signal where future instruction should focus.</li>
+        <li><strong>The "30-second explanation" question</strong> is great for formative assessment — students who truly understand can explain it simply. Students who can't should revisit the Day 1 material.</li>
+        <li><strong>End by connecting to the bigger picture:</strong> "The skills you used this week — designing, iterating, understanding tools and materials, troubleshooting — these are used every day by engineers, product designers, and makers everywhere."</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- SLIDE 20: Closing -->
+  <section class="slide title-slide" data-time="1">
+    <div class="day-tag">Day 5 Complete · GCI 3D Printing Lab Complete</div>
+    <h2 style="color:var(--success);font-size:2rem;">You ran a print lab. 🎉</h2>
+    <p class="subtitle" style="font-size:1.1rem;">Design · Slice · Print · Troubleshoot · Reflect.</p>
+    <p class="subtitle" style="margin-top:12px;color:var(--muted);font-size:0.9rem;">That's the full pipeline. And you can do it again — better, faster, smarter.</p>
+    <div class="slide-num">20 / 20</div>
+    <div class="notes-content" style="display:none">
+      <ul>
+        <li><strong>End with genuine celebration.</strong> Show off any completed prints. Name specific student achievements ("Jordan's keychain had a perfect logo on the first try"). Concrete recognition lands better than generic praise.</li>
+        <li><strong>Look ahead:</strong> If there's a follow-up project, tease it. If not, tell students what skills they've demonstrated: "You can now say you've done CAD modeling, slicing, and 3D fabrication. That's a real portfolio item."</li>
+        <li><strong>After class:</strong> Log which prints succeeded, which failed, and why. This data will make the next time you run this lab significantly smoother.</li>
+      </ul>
+    </div>
+  </section>
+
+</div>
+
+<div id="progressDots"></div>
+<div id="navHint">← → Arrow keys · N = notes · F = fullscreen · P = print</div>
+<div id="notesPanel">
+  <h4>📋 Speaker Notes — Day 5</h4>
+  <div id="notesBody" class="notes-content"></div>
+</div>
+
+<script>
+(function () {
+  var slides = Array.from(document.querySelectorAll('.slide'));
+  var total = slides.length, current = 0, showNotes = false, breakTimer = null;
+  var dotsEl = document.getElementById('progressDots');
+  slides.forEach(function (_, i) { var d = document.createElement('span'); d.className = 'dot'; d.addEventListener('click', function () { goTo(i); }); dotsEl.appendChild(d); });
+  function startBreakCountdown(slide) {
+    var display = slide.querySelector('.break-timer'); if (!display) return;
+    var seconds = 600; if (breakTimer) clearInterval(breakTimer);
+    function tick() { var m = Math.floor(seconds/60), s = seconds%60; display.textContent = m+':'+(s<10?'0':'')+s; if (seconds===0){clearInterval(breakTimer);breakTimer=null;display.textContent="Time's up!";display.style.color='var(--danger)';} seconds--; }
+    tick(); breakTimer = setInterval(tick, 1000);
+    slide.querySelectorAll('.break-restart').forEach(function(btn){ btn.onclick = function(){ seconds=600; if(breakTimer)clearInterval(breakTimer); display.style.color=''; tick(); breakTimer=setInterval(tick,1000); }; });
+  }
+  function goTo(idx) {
+    if (breakTimer) { clearInterval(breakTimer); breakTimer = null; }
+    slides[current].classList.remove('active'); current = Math.max(0, Math.min(idx, total-1)); slides[current].classList.add('active');
+    if (slides[current].classList.contains('brain-break')) startBreakCountdown(slides[current]);
+    updateUI();
+  }
+  function updateUI() {
+    document.getElementById('slideCounter').textContent = (current+1)+' / '+total;
+    document.getElementById('prevBtn').disabled = current===0;
+    document.getElementById('nextBtn').disabled = current===total-1;
+    var cum=0; for(var i=0;i<=current;i++) cum+=parseInt(slides[i].getAttribute('data-time')||'0',10);
+    document.getElementById('cumTime').textContent = '≈ '+cum+' min elapsed';
+    Array.from(document.querySelectorAll('.dot')).forEach(function(d,i){ d.classList.toggle('current',i===current); d.classList.toggle('done',i<current); });
+    var notesEl=slides[current].querySelector('.notes-content'), panel=document.getElementById('notesPanel'), body=document.getElementById('notesBody');
+    if(showNotes&&notesEl){body.innerHTML=notesEl.innerHTML;panel.classList.add('visible');}else panel.classList.remove('visible');
+  }
+  document.getElementById('prevBtn').addEventListener('click', function(){if(current>0)goTo(current-1);});
+  document.getElementById('nextBtn').addEventListener('click', function(){if(current<total-1)goTo(current+1);});
+  function toggleNotes(){ showNotes=!showNotes; document.getElementById('notesToggle').textContent=showNotes?'📋 Hide Notes':'📋 Notes'; updateUI(); }
+  document.getElementById('notesToggle').addEventListener('click', toggleNotes);
+  document.getElementById('fullscreenBtn').addEventListener('click', function(){ if(!document.fullscreenElement)document.documentElement.requestFullscreen().catch(function(){}); else document.exitFullscreen(); });
+  document.addEventListener('keydown', function(e){ if(e.target.tagName==='INPUT'||e.target.tagName==='TEXTAREA')return; if(e.key==='ArrowRight'||e.key==='ArrowDown'||e.key===' '){e.preventDefault();if(current<total-1)goTo(current+1);} else if(e.key==='ArrowLeft'||e.key==='ArrowUp'){e.preventDefault();if(current>0)goTo(current-1);} else if(e.key==='n'||e.key==='N')toggleNotes(); else if(e.key==='f'||e.key==='F')document.getElementById('fullscreenBtn').click(); });
+  updateUI();
+}());
+</script>
+</body>
+</html>
