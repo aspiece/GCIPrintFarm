@@ -42,7 +42,7 @@
       <!-- Row 3: Step progress + jump links -->
       <div class="progress-row">
         <div class="progress-meta">
-          <span id="progressStep" class="step-text">Step 1 of 7</span>
+          <span id="progressStep" class="step-text">Step 1 of 8</span>
           <span id="progressPercent" class="percent-text">0%</span>
         </div>
         <div class="bar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" aria-label="Overall progress">
@@ -56,6 +56,7 @@
           <a class="jump-link" href="#part5">5</a>
           <a class="jump-link" href="#part6">6</a>
           <a class="jump-link" href="#part7">7</a>
+          <a class="jump-link" href="#part8">8</a>
         </div>
       </div>
     </div><!-- /sticky-progress -->
@@ -69,6 +70,7 @@
         <div class="intro-card">
           <h3>🎯 Learning Objectives</h3>
           <ul class="objectives-list">
+            <li>Open Bambu Studio, complete the setup wizard, and select the correct printers and filaments</li>
             <li>Share what you found on MakerWorld and hear what your group discovered</li>
             <li>Pick a realistic model to print and be able to explain why it'll work</li>
             <li>Learn your way around Bambu Studio — the software that runs the printer</li>
@@ -85,13 +87,14 @@
               <tr><th>Part</th><th>Activity</th><th>Time</th></tr>
             </thead>
             <tbody>
-              <tr><td>1</td><td>Share-Out</td><td>10 min</td></tr>
-              <tr><td>2</td><td>Choose a Model</td><td>10 min</td></tr>
-              <tr><td>3</td><td>Bambu Studio Intro</td><td>15 min</td></tr>
-              <tr><td>4</td><td>Studio Controls</td><td>10 min</td></tr>
-              <tr><td>5</td><td>Troubleshooting</td><td>10 min</td></tr>
-              <tr><td>6</td><td>Teacher Checkpoint</td><td>5 min</td></tr>
-              <tr><td>7</td><td>Submit</td><td>5 min</td></tr>
+              <tr><td>1</td><td>Bambu Studio Setup</td><td>5 min</td></tr>
+              <tr><td>2</td><td>Share-Out</td><td>10 min</td></tr>
+              <tr><td>3</td><td>Choose a Model</td><td>10 min</td></tr>
+              <tr><td>4</td><td>Bambu Studio Intro</td><td>15 min</td></tr>
+              <tr><td>5</td><td>Studio Controls</td><td>10 min</td></tr>
+              <tr><td>6</td><td>Troubleshooting</td><td>10 min</td></tr>
+              <tr><td>7</td><td>Self-Check</td><td>5 min</td></tr>
+              <tr><td>8</td><td>Submit</td><td>5 min</td></tr>
             </tbody>
           </table>
         </div>
@@ -115,6 +118,7 @@
         <div class="goal-card">
           <h3>✅ Success Criteria</h3>
           <ul>
+            <li>I opened Bambu Studio and set it up with the three lab printers and classroom filament</li>
             <li>I shared what I found and listened to what my group picked</li>
             <li>I chose a model that'll actually print and explained my reasoning</li>
             <li>I know how to navigate Bambu Studio's main tools</li>
@@ -142,14 +146,66 @@
     </section>
 
     <!-- ═══════════════════════════════════════════════════════
-         PART 1: Day 2 Share-Out
+         PART 1: Open Bambu Studio — Setup Wizard
          ═══════════════════════════════════════════════════════ -->
     <details id="part1" class="active-card" open>
       <summary>
         <div class="summary-row">
           <div class="summary-left">
-            <span class="step-badge">Step 1 of 7</span>
+            <span class="step-badge">Step 1 of 8</span>
             <span class="state-badge active" id="badge1">Active</span>
+            <span class="part-title">Open Bambu Studio — Setup Wizard</span>
+          </div>
+        </div>
+      </summary>
+
+      <div class="part-content">
+        <div class="note">
+          <strong>📌 Instructions:</strong> Open Bambu Studio on your computer. If this is your first time launching it, a Setup Wizard will appear automatically. Work through each screen — the most important steps are selecting your printers and your filament.
+        </div>
+
+        <h3>Step-by-Step Setup</h3>
+        <ol>
+          <li><strong>Launch Bambu Studio</strong> — find it on your Desktop or in the Start menu / Applications folder.</li>
+          <li>When the Setup Wizard opens, click <strong>Get Started</strong>.</li>
+          <li><strong>Select your printers</strong> — add all three printers used in our lab:
+            <ul style="margin-top:6px;">
+              <li>✅ Bambu Lab A1</li>
+              <li>✅ Bambu Lab P1S</li>
+              <li>✅ Bambu Lab X1C</li>
+            </ul>
+          </li>
+          <li><strong>Select your filaments</strong> — add the filaments we use in class:
+            <ul style="margin-top:6px;">
+              <li>✅ Bambu PLA Basic</li>
+            </ul>
+          </li>
+          <li>Click <strong>Finish</strong> to complete the wizard. Bambu Studio is now ready to use.</li>
+        </ol>
+
+        <div class="fun">
+          💡 Already ran the wizard before? You can add printers anytime: go to <strong>File → Printer → Add Printer</strong> in Bambu Studio.
+        </div>
+
+        <div class="note" style="margin-top:10px;">
+          <strong>⚠️ Not sure which printer to pick?</strong> Our lab has the <strong>A1</strong> (open-frame, great for PLA), the <strong>P1S</strong> (enclosed, multi-material ready), and the <strong>X1C</strong> (enclosed, high-speed, carbon-fiber capable). Add all three so you can choose the right one for each print.
+        </div>
+
+        <div class="part-actions">
+          <button type="button" onclick="window.complete(1)">Mark Complete</button>
+        </div>
+      </div>
+    </details>
+
+    <!-- ═══════════════════════════════════════════════════════
+         PART 2: Day 2 Share-Out
+         ═══════════════════════════════════════════════════════ -->
+    <details id="part2" class="locked-card">
+      <summary>
+        <div class="summary-row">
+          <div class="summary-left">
+            <span class="step-badge">Step 2 of 8</span>
+            <span class="state-badge locked" id="badge2">Locked</span>
             <span class="part-title">MakerWorld Share-Out</span>
           </div>
         </div>
@@ -176,20 +232,20 @@
         <textarea id="reflection" rows="4" placeholder="Describe the model or idea that stuck with you and why it caught your attention..."></textarea>
 
         <div class="part-actions">
-          <button type="button" onclick="window.complete(1)">Mark Complete</button>
+          <button type="button" onclick="window.complete(2)">Mark Complete</button>
         </div>
       </div>
     </details>
 
     <!-- ═══════════════════════════════════════════════════════
-         PART 2: Choose a Good Print
+         PART 3: Choose a Good Print
          ═══════════════════════════════════════════════════════ -->
-    <details id="part2" class="locked-card">
+    <details id="part3" class="locked-card">
       <summary>
         <div class="summary-row">
           <div class="summary-left">
-            <span class="step-badge">Step 2 of 7</span>
-            <span class="state-badge locked" id="badge2">Locked</span>
+            <span class="step-badge">Step 3 of 8</span>
+            <span class="state-badge locked" id="badge3">Locked</span>
             <span class="part-title">Choose a Good Print</span>
           </div>
         </div>
@@ -197,7 +253,7 @@
 
       <div class="part-content">
         <div class="note">
-          <strong>📌 Instructions:</strong> Open <a href="https://makerworld.com" target="_blank" rel="noopener">MakerWorld</a> and look for something you'd genuinely want to print — not just anything, but a model that fits our printers, isn't too complex, and actually means something to you.
+          <strong>📌 Instructions:</strong> Open <a href="https://makerworld.com" target="_blank" rel="noopener">MakerWorld</a> and find the model you want to print. Once you've found it, click the <strong>Download</strong> button on MakerWorld and choose <strong>"Open with Bambu Studio"</strong> (or "Download and Open") to load it directly. Fill in the fields below before you move on.
         </div>
 
         <h3>What Makes a Good Choice?</h3>
@@ -217,6 +273,10 @@
             <label for="modelLink">MakerWorld link:</label>
             <input type="text" id="modelLink" placeholder="https://makerworld.com/..." />
           </div>
+        </div>
+
+        <div class="note" style="margin-top:10px;">
+          <strong>💡 Tip:</strong> On MakerWorld, look for the <strong>Download</strong> button on the model page. Choose <strong>"Open with Bambu Studio"</strong> — this opens the file directly in Bambu Studio so you don't have to import it manually.
         </div>
 
         <label for="whyModel">Why is this a good model to print? Be specific.</label>
@@ -239,20 +299,20 @@
         </div>
 
         <div class="part-actions">
-          <button type="button" onclick="window.complete(2)">Mark Complete</button>
+          <button type="button" onclick="window.complete(3)">Mark Complete</button>
         </div>
       </div>
     </details>
 
     <!-- ═══════════════════════════════════════════════════════
-         PART 3: Intro to Bambu Studio
+         PART 4: Intro to Bambu Studio
          ═══════════════════════════════════════════════════════ -->
-    <details id="part3" class="locked-card">
+    <details id="part4" class="locked-card">
       <summary>
         <div class="summary-row">
           <div class="summary-left">
-            <span class="step-badge">Step 3 of 7</span>
-            <span class="state-badge locked" id="badge3">Locked</span>
+            <span class="step-badge">Step 4 of 8</span>
+            <span class="state-badge locked" id="badge4">Locked</span>
             <span class="part-title">Intro to Bambu Studio</span>
           </div>
         </div>
@@ -265,6 +325,12 @@
 
         <div class="fun">
           🎮 Think of Bambu Studio as mission control — you set everything up here before the printer takes over.
+        </div>
+
+        <div class="note">
+          <strong>🗂️ Demo File:</strong> Before watching the video, download this sample STL. You'll use it to practice importing and navigating in Bambu Studio.
+          <br><br>
+          <a href="demo.stl" download="demo.stl" class="btn-download">⬇ Download Demo STL (demo_plate.stl)</a>
         </div>
 
         <div class="video-wrap">
@@ -318,21 +384,38 @@
           <p><a href="https://youtube.com/playlist?list=PLFUVS59deIm2mawl3Zjk1XI9yp7H7955J&si=MTJBUMOklFNwSzSC" target="_blank" rel="noopener noreferrer">📺 Bambu Studio Deep Dive Playlist</a></p>
         </div>
 
+        <div class="guided-notes" aria-label="Workspace navigation practice">
+          <div class="guided-notes-header">🖱️ Navigate the Workspace</div>
+          <p class="guided-notes-intro">After you import the demo STL (or your MakerWorld model), use these controls to explore it from every angle. Try each one before moving on.</p>
+          <table class="time-table" style="margin-top:10px;">
+            <thead>
+              <tr><th>Action</th><th>How to Do It</th></tr>
+            </thead>
+            <tbody>
+              <tr><td><strong>Rotate</strong></td><td>Left-click + drag</td></tr>
+              <tr><td><strong>Pan</strong></td><td>Right-click + drag (or middle-click + drag)</td></tr>
+              <tr><td><strong>Zoom</strong></td><td>Scroll wheel (or pinch on trackpad)</td></tr>
+              <tr><td><strong>Reset View</strong></td><td>Press <kbd>R</kbd> on the keyboard, or right-click the model → Reset View</td></tr>
+            </tbody>
+          </table>
+          <p style="margin-top:10px;font-size:0.9rem;color:var(--muted);">✅ Practice: rotate until you can see the bottom of the model, zoom in to see surface detail, then press <kbd>R</kbd> to reset.</p>
+        </div>
+
         <div class="part-actions">
-          <button type="button" onclick="window.complete(3)">Mark Complete</button>
+          <button type="button" onclick="window.complete(4)">Mark Complete</button>
         </div>
       </div>
     </details>
 
     <!-- ═══════════════════════════════════════════════════════
-         PART 4: Bambu Studio Controls
+         PART 5: Bambu Studio Controls
          ═══════════════════════════════════════════════════════ -->
-    <details id="part4" class="locked-card">
+    <details id="part5" class="locked-card">
       <summary>
         <div class="summary-row">
           <div class="summary-left">
-            <span class="step-badge">Step 4 of 7</span>
-            <span class="state-badge locked" id="badge4">Locked</span>
+            <span class="step-badge">Step 5 of 8</span>
+            <span class="state-badge locked" id="badge5">Locked</span>
             <span class="part-title">Bambu Studio Controls</span>
           </div>
         </div>
@@ -359,20 +442,20 @@
         </div>
 
         <div class="part-actions">
-          <button type="button" id="completePart4" onclick="window.complete(4)" disabled>Mark Complete</button>
+          <button type="button" id="completePart5" onclick="window.complete(5)" disabled>Mark Complete</button>
         </div>
       </div>
     </details>
 
     <!-- ═══════════════════════════════════════════════════════
-         PART 5: Why This Print Might Fail
+         PART 6: Why This Print Might Fail
          ═══════════════════════════════════════════════════════ -->
-    <details id="part5" class="locked-card">
+    <details id="part6" class="locked-card">
       <summary>
         <div class="summary-row">
           <div class="summary-left">
-            <span class="step-badge">Step 5 of 7</span>
-            <span class="state-badge locked" id="badge5">Locked</span>
+            <span class="step-badge">Step 6 of 8</span>
+            <span class="state-badge locked" id="badge6">Locked</span>
             <span class="part-title">Why This Print Might Fail</span>
           </div>
         </div>
@@ -404,72 +487,78 @@
         </div>
 
         <div class="part-actions">
-          <button type="button" id="completePart5" onclick="window.complete(5)" disabled>Mark Complete</button>
-        </div>
-      </div>
-    </details>
-
-    <!-- ═══════════════════════════════════════════════════════
-         PART 6: Teacher Checkpoint
-         ═══════════════════════════════════════════════════════ -->
-    <details id="part6" class="locked-card">
-      <summary>
-        <div class="summary-row">
-          <div class="summary-left">
-            <span class="step-badge">Step 6 of 7</span>
-            <span class="state-badge locked" id="badge6">Locked</span>
-            <span class="part-title">Teacher Checkpoint</span>
-          </div>
-        </div>
-      </summary>
-
-      <div class="part-content">
-        <div class="note">
-          <strong>📌 Instructions:</strong> Check all four boxes honestly — this isn't about rushing, it's about making sure you're actually ready. Then raise your hand and show your teacher what you picked.
-        </div>
-
-        <ul class="checklist" role="group" aria-label="Self-check list">
-          <li>
-            <label>
-              <input type="checkbox" id="check1" onchange="window.updateChecklistBtn()" />
-              I selected a model on MakerWorld
-            </label>
-          </li>
-          <li>
-            <label>
-              <input type="checkbox" id="check2" onchange="window.updateChecklistBtn()" />
-              I can explain why I chose this model
-            </label>
-          </li>
-          <li>
-            <label>
-              <input type="checkbox" id="check3" onchange="window.updateChecklistBtn()" />
-              I can describe at least one possible print problem
-            </label>
-          </li>
-          <li>
-            <label>
-              <input type="checkbox" id="check4" onchange="window.updateChecklistBtn()" />
-              I am ready for teacher approval
-            </label>
-          </li>
-        </ul>
-
-        <div class="part-actions">
           <button type="button" id="completePart6" onclick="window.complete(6)" disabled>Mark Complete</button>
         </div>
       </div>
     </details>
 
     <!-- ═══════════════════════════════════════════════════════
-         PART 7: Submit Your Work
+         PART 7: Student Self-Check
          ═══════════════════════════════════════════════════════ -->
     <details id="part7" class="locked-card">
       <summary>
         <div class="summary-row">
           <div class="summary-left">
-            <span class="step-badge">Step 7 of 7</span>
+            <span class="step-badge">Step 7 of 8</span>
             <span class="state-badge locked" id="badge7">Locked</span>
+            <span class="part-title">Student Self-Check</span>
+          </div>
+        </div>
+      </summary>
+
+      <div class="part-content">
+        <div class="note">
+          <strong>📌 Instructions:</strong> Check each box below honestly — you're checking yourself, not performing for anyone. Only click Mark Complete when you can truthfully say yes to all of them.
+        </div>
+
+        <ul class="checklist" role="group" aria-label="Self-check list">
+          <li>
+            <label>
+              <input type="checkbox" id="check1" onchange="window.updateChecklistBtn()" />
+              I opened Bambu Studio and completed the setup wizard
+            </label>
+          </li>
+          <li>
+            <label>
+              <input type="checkbox" id="check2" onchange="window.updateChecklistBtn()" />
+              I found my model on MakerWorld and opened it in Bambu Studio
+            </label>
+          </li>
+          <li>
+            <label>
+              <input type="checkbox" id="check3" onchange="window.updateChecklistBtn()" />
+              I can rotate, pan, zoom, and reset the view in Bambu Studio
+            </label>
+          </li>
+          <li>
+            <label>
+              <input type="checkbox" id="check4" onchange="window.updateChecklistBtn()" />
+              I sliced my model and checked it in the Preview tab
+            </label>
+          </li>
+          <li>
+            <label>
+              <input type="checkbox" id="check5" onchange="window.updateChecklistBtn()" />
+              I can describe at least one thing that could go wrong with my print
+            </label>
+          </li>
+        </ul>
+
+        <div class="part-actions">
+          <button type="button" id="completePart7" onclick="window.complete(7)" disabled>Mark Complete</button>
+        </div>
+      </div>
+    </details>
+
+    <!-- ═══════════════════════════════════════════════════════
+         PART 8: Submit Your Work
+         ═══════════════════════════════════════════════════════ -->
+    <details id="part8" class="locked-card">
+      <summary>
+        <div class="summary-row">
+          <div class="summary-left">
+            <span class="step-badge">Step 8 of 8</span>
+            <span class="state-badge locked" id="badge8">Locked</span>
             <span class="part-title">Submit Your Work</span>
           </div>
         </div>
@@ -488,7 +577,7 @@
         <textarea id="summaryOutput" class="summary-output" rows="14" readonly placeholder="Click 'Generate My Responses' to populate this..."></textarea>
 
         <div class="part-actions">
-          <button type="button" onclick="window.complete(7)">Mark Complete</button>
+          <button type="button" onclick="window.complete(8)">Mark Complete</button>
         </div>
       </div>
     </details>

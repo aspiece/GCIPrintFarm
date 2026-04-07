@@ -140,7 +140,7 @@ var D2_STORAGE_QUIZ     = 'gci-day2-quiz';
 var D2_STORAGE_MATCHING = 'gci-day2-matching';
 var D2_STORAGE_TROUBLE  = 'gci-day2-trouble';
 
-var D2_TOTAL_PARTS   = 7;
+var D2_TOTAL_PARTS   = 8;
 var d2CompletedParts = [];
 
 /* ── Progress ──────────────────────────────────────────────── */
@@ -492,7 +492,7 @@ window.checkMatching = function checkMatching() {
         fb.classList.add(numCorrect >= 3 ? 'correct' : 'incorrect');
     }
 
-    var completeBtn = document.getElementById('completePart4');
+    var completeBtn = document.getElementById('completePart5');
     if (completeBtn) completeBtn.disabled = numCorrect < 3;
 
     var hint = document.getElementById('hintBoxMatching');
@@ -502,7 +502,7 @@ window.checkMatching = function checkMatching() {
 window.resetMatching = function resetMatching() {
     d2MatchingState = { attempts: 0, answers: {} };
     localStorage.removeItem(D2_STORAGE_MATCHING);
-    var completeBtn = document.getElementById('completePart4');
+    var completeBtn = document.getElementById('completePart5');
     if (completeBtn) completeBtn.disabled = true;
     d2RenderMatching();
 };
@@ -584,7 +584,7 @@ function d2CheckTroubleMastery() {
     });
     var mastery     = correctCount >= 3;
     var masteryMsg  = document.getElementById('masteryMsg');
-    var completeBtn = document.getElementById('completePart5');
+    var completeBtn = document.getElementById('completePart6');
     if (masteryMsg)  masteryMsg.style.display = mastery ? 'block' : 'none';
     if (completeBtn) completeBtn.disabled     = !mastery;
     return mastery;
@@ -707,7 +707,7 @@ window.prevTrouble = function prevTrouble() {
 window.resetTrouble = function resetTrouble() {
     d2TroubleState = { current: 0, answers: {}, checked: {}, attempts: {}, correct: [] };
     d2SaveTroubleState();
-    var completeBtn = document.getElementById('completePart5');
+    var completeBtn = document.getElementById('completePart6');
     if (completeBtn) completeBtn.disabled = true;
     var masteryMsg = document.getElementById('masteryMsg');
     if (masteryMsg) masteryMsg.style.display = 'none';
@@ -743,18 +743,18 @@ window.launchConfetti = function launchConfetti() {
     setTimeout(function () { particles.forEach(function (el) { el.remove(); }); }, 4500);
 };
 
-/* ── Teacher Checkpoint (Part 6) ───────────────────────────── */
+/* ── Student Self-Check (Part 7) ───────────────────────────── */
 window.updateChecklistBtn = function updateChecklistBtn() {
-    var ids = ['check1', 'check2', 'check3', 'check4'];
+    var ids = ['check1', 'check2', 'check3', 'check4', 'check5'];
     var allChecked = ids.every(function (id) {
         var el = document.getElementById(id);
         return el && el.checked;
     });
-    var btn = document.getElementById('completePart6');
+    var btn = document.getElementById('completePart7');
     if (btn) btn.disabled = !allChecked;
 };
 
-/* ── Summary Generation (Part 7) ───────────────────────────── */
+/* ── Summary Generation (Part 8) ───────────────────────────── */
 window.generateSummary = function generateSummary() {
     function val(id) {
         var el = document.getElementById(id);
@@ -842,14 +842,14 @@ document.addEventListener('DOMContentLoaded', function () {
     } catch (e) { console.warn('Day 2: failed to restore matching state:', e); d2MatchingState = { attempts: 0, answers: {} }; }
     d2RenderMatching();
 
-    // Restore Part 4 complete-button state after previous attempts
+    // Restore Part 5 complete-button state after previous attempts
     if (d2MatchingState.attempts > 0) {
         var numCorrect = 0;
         d2MatchingPairs.forEach(function (pair, i) {
             if (d2MatchingState.answers[i] === pair.correct) numCorrect++;
         });
-        var btn4 = document.getElementById('completePart4');
-        if (btn4) btn4.disabled = numCorrect < 3;
+        var btn5 = document.getElementById('completePart5');
+        if (btn5) btn5.disabled = numCorrect < 3;
     }
 
     /* Restore and render the Part 5 troubleshooting activity */
