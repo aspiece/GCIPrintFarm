@@ -743,7 +743,7 @@ window.launchConfetti = function launchConfetti() {
     setTimeout(function () { particles.forEach(function (el) { el.remove(); }); }, 4500);
 };
 
-/* ── Teacher Checkpoint (Part 6) ───────────────────────────── */
+/* ── Student Self-Check (Part 7) ───────────────────────────── */
 window.updateChecklistBtn = function updateChecklistBtn() {
     var ids = ['check1', 'check2', 'check3', 'check4', 'check5'];
     var allChecked = ids.every(function (id) {
@@ -754,7 +754,7 @@ window.updateChecklistBtn = function updateChecklistBtn() {
     if (btn) btn.disabled = !allChecked;
 };
 
-/* ── Summary Generation (Part 7) ───────────────────────────── */
+/* ── Summary Generation (Part 8) ───────────────────────────── */
 window.generateSummary = function generateSummary() {
     function val(id) {
         var el = document.getElementById(id);

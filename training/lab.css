@@ -472,6 +472,34 @@ label {
    Classes used exclusively by day2.html
    ============================================================ */
 
+/* ── Download button ────────────────────────────────────────── */
+.btn-download {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 16px;
+  border-radius: 10px;
+  background: rgba(156, 243, 219, 0.14);
+  border: 1px solid rgba(156, 243, 219, 0.38);
+  color: var(--accent2);
+  font-weight: 700;
+  font-size: 0.95rem;
+  text-decoration: none;
+  transition: background 0.15s;
+}
+.btn-download:hover { background: rgba(156, 243, 219, 0.24); }
+
+/* ── Keyboard key style ─────────────────────────────────────── */
+kbd {
+  background: rgba(124, 192, 255, 0.12);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  padding: 1px 6px;
+  font-size: 0.88em;
+  font-family: monospace;
+  color: var(--accent);
+}
+
 /* ── Page header banner ─────────────────────────────────────── */
 .page-header {
   background: linear-gradient(135deg, #0d1b2a, #1a3050);
