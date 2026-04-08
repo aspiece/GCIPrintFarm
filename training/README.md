@@ -18,6 +18,18 @@ This directory contains the five-day student training guide for the GCI 3D print
 
 ---
 
+## 📊 Slides
+
+| Day | Topic | Link |
+|-----|-------|------|
+| Day 1 | Foundations of 3D Printing | [Open Slides](slides-day1.html) |
+| Day 2 | From Model to Print Setup | [Open Slides](slides-day2.html) |
+| Day 3 | Slice and Start Your Print | [Open Slides](slides-day3.html) |
+| Day 4 | Troubleshoot and Reflect | [Open Slides](slides-day4.html) |
+| Day 5 | Capstone – Remix and Improve | [Open Slides](slides-day5.html) |
+
+---
+
 ## 🗂 File Structure
 
 ```
@@ -25,6 +37,8 @@ training/
 ├── README.md                          ← You are here
 ├── lab.css                            ← Shared stylesheet for all pages
 ├── training.js                        ← Shared JavaScript (theme switcher, quiz renderer)
+├── glossary.html                      ← 3D printing glossary
+├── slides-day1.html … slides-day5.html ← Instructor slide decks
 ├── day1.html
 ├── day2.html
 ├── day3.html
@@ -72,6 +86,7 @@ Shared JavaScript loaded by all five day pages. Includes:
 
 | File | Description |
 |------|-------------|
+| [`glossary.html`](glossary.html) | 3D printing glossary |
 | [`../Intro_to_3D_Printing.html`](../Intro_to_3D_Printing.html) | All-in-one tabbed guide (alternative format) |
 | [`../Intro_to_3D_Printing_Orientation.html`](../Intro_to_3D_Printing_Orientation.html) | Pre-lab orientation activities |
 | [`../Digital_3D_Printing_Notebook_Bambu_A1.html`](../Digital_3D_Printing_Notebook_Bambu_A1.html) | Student digital notebook |
