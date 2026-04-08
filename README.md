@@ -29,7 +29,7 @@ The [`training/`](training/README.md) directory contains a complete five-day stu
 |-----|--------|
 | Day 1 | [Foundations of 3D Printing](training/slides-day1.html) |
 | Day 2 | [From Model to Print Setup](training/slides-day2.html) |
-| Day 3 | [Slice and Start Your Print](training/slides-day3.html) |
+| Day 3 | [Designing for 3D Printing — File Types and Tinkercad](training/slides-day3.html) |
 | Day 4 | [Troubleshoot and Reflect](training/slides-day4.html) |
 | Day 5 | [Capstone – Remix and Improve](training/slides-day5.html) |
 
@@ -39,7 +39,7 @@ The [`training/`](training/README.md) directory contains a complete five-day stu
 |-----|-------|------|
 | Day 1 | Foundations of 3D Printing | [Open Day 1](training/day1.html) |
 | Day 2 | From Model to Print Setup | [Open Day 2](training/day2.html) |
-| Day 3 | Slice and Start Your Print | [Open Day 3](training/day3.html) |
+| Day 3 | Designing for 3D Printing — File Types and Tinkercad | [Open Day 3](training/day3.html) |
 | Day 4 | Troubleshoot and Reflect | [Open Day 4](training/day4.html) |
 | Day 5 | Capstone – Remix and Improve | [Open Day 5](training/day5.html) |
 
