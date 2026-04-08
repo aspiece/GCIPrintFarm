@@ -186,6 +186,9 @@ function d2UpdateCardStates() {
             if (!btn.id) btn.disabled = isLocked;
         });
 
+        var link = document.querySelector('.jump-link[href="#part' + n + '"]');
+        if (link) link.classList.toggle('done', isDone);
+
         // Locked cards cannot be opened
         if (isLocked) card.removeAttribute('open');
     }
@@ -921,6 +924,9 @@ function d3UpdateCardStates() {
             if (!btn.id) btn.disabled = isLocked;
         });
 
+        var link = document.querySelector('.jump-link[href="#part' + n + '"]');
+        if (link) link.classList.toggle('done', isDone);
+
         if (isLocked) card.removeAttribute('open');
     }
 }
@@ -1546,6 +1552,9 @@ function d1UpdateCardStates() {
             badge.textContent = isDone ? 'Complete' : isLocked ? 'Locked' : 'Active';
             badge.className   = 'state-badge ' + (isDone ? 'completed' : isLocked ? 'locked' : 'active');
         }
+
+        var link = document.querySelector('.jump-link[href="#part' + n + '"]');
+        if (link) link.classList.toggle('done', isDone);
 
         if (isLocked) card.removeAttribute('open');
     }
@@ -2244,6 +2253,9 @@ function d4UpdateCardStates() {
             if (!btn.id) btn.disabled = isLocked;
         });
 
+        var link = document.querySelector('.jump-link[href="#part' + n + '"]');
+        if (link) link.classList.toggle('done', isDone);
+
         if (isLocked) card.removeAttribute('open');
     }
 }
@@ -2367,6 +2379,9 @@ function d5UpdateCardStates() {
         card.querySelectorAll('button[onclick*="window.complete"]').forEach(function (btn) {
             if (!btn.id) btn.disabled = isLocked;
         });
+
+        var link = document.querySelector('.jump-link[href="#part' + n + '"]');
+        if (link) link.classList.toggle('done', isDone);
 
         if (isLocked) card.removeAttribute('open');
     }
