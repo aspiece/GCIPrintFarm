@@ -103,12 +103,12 @@
           <div class="workflow-arrow" aria-hidden="true">&rarr;</div>
           <div class="workflow-step">
             <div class="ws-num">2</div>
-            <h4>Convert</h4>
+            <h4>Generate</h4>
           </div>
           <div class="workflow-arrow" aria-hidden="true">&rarr;</div>
           <div class="workflow-step">
             <div class="ws-num">3</div>
-            <h4>Build</h4>
+            <h4>Export</h4>
           </div>
           <div class="workflow-arrow" aria-hidden="true">&rarr;</div>
           <div class="workflow-step">
@@ -124,11 +124,11 @@
         <div class="filetype-grid" style="margin-top:8px;">
           <div class="filetype-card">
             <div class="filetype-icon">🖼️</div>
-            <h4><abbr title="Scalable Vector Graphics">SVG</abbr></h4>
-            <span class="ft-tag">Design shapes</span>
+            <h4>Image</h4>
+            <span class="ft-tag">Your logo</span>
           </div>
           <div class="filetype-card">
-            <div class="filetype-icon">📄</div>
+            <div class="filetype-icon">📐</div>
             <h4><abbr title="Standard Triangle Language">STL</abbr></h4>
             <span class="ft-tag">3D model</span>
           </div>
@@ -266,20 +266,30 @@
 
       <div class="part-content">
         <div class="note">
-          <strong>📌 Goal:</strong> Know what each part does — so when something goes wrong, you know where to look.
+          <strong>📌 Goal:</strong> Know what each part does and how to take basic care of it — so when something goes wrong, you know where to look and what to do.
         </div>
 
         <ul>
-          <li><strong>Nozzle</strong> &mdash; melts and deposits the filament, and the most common source of print problems</li>
-          <li><strong>Extruder</strong> &mdash; pushes filament to the nozzle</li>
-          <li><strong>Build plate</strong> &mdash; where the print sticks; getting it clean is critical for adhesion</li>
-          <li><strong>Filament spool</strong> &mdash; holds the material; filament must feed smoothly for a good print</li>
-          <li><strong>X, Y, Z axes</strong> &mdash; control movement in three directions</li>
+          <li><strong>Nozzle</strong> &mdash; melts and deposits the filament; the most common source of print problems. Keep it clear — never poke it with anything that could scratch it.</li>
+          <li><strong>Extruder</strong> &mdash; pushes filament to the nozzle. If it clicks or skips, the filament may be jammed or the nozzle may be clogged.</li>
+          <li><strong>Build plate</strong> &mdash; where the print sticks. Wipe with IPA before every print for consistent adhesion. Handle it by the edges only — fingerprints reduce adhesion.</li>
+          <li><strong>Filament spool</strong> &mdash; holds the material. Make sure it feeds freely and isn't tangled. Store filament in a sealed bag or dry box when not in use.</li>
+          <li><strong>X, Y, Z axes</strong> &mdash; control movement in three directions. Keep the rods clean and unobstructed.</li>
         </ul>
 
         <div class="fun">
           🔎 Walk up to a printer and find each part. You can't really understand this from a list alone.
         </div>
+
+        <h3>🧹 Basic Maintenance Checklist</h3>
+        <p>These are the care steps you're responsible for every time you use the lab:</p>
+        <ul class="checklist" role="group" aria-label="Basic maintenance checklist">
+          <li><label><input type="checkbox" id="d5MaintCheck1" /> I wiped the build plate with IPA before printing</label></li>
+          <li><label><input type="checkbox" id="d5MaintCheck2" /> I checked that the filament spool feeds freely (no tangles)</label></li>
+          <li><label><input type="checkbox" id="d5MaintCheck3" /> I handled the build plate by the edges only</label></li>
+          <li><label><input type="checkbox" id="d5MaintCheck4" /> I did not touch the nozzle or any hot surface</label></li>
+          <li><label><input type="checkbox" id="d5MaintCheck5" /> I left the printer clean and ready for the next person</label></li>
+        </ul>
 
         <div class="part-actions">
           <button type="button" onclick="window.complete(3)">Mark Complete</button>

@@ -3,8 +3,8 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="description" content="Day 4: Create Your School Logo Keychain — GCI 3D Printing Lab" />
-  <title>Day 4: Create Your School Logo Keychain | GCI 3D Printing</title>
+  <meta name="description" content="Day 4: Design Your School Logo Keychain — GCI 3D Printing Lab" />
+  <title>Day 4: Design Your School Logo Keychain | GCI 3D Printing</title>
   <link rel="stylesheet" href="lab.css" />
   <script src="training.js" defer></script>
 </head>
@@ -13,7 +13,7 @@
   <!-- Page Header -->
   <header class="page-header">
     <h1>Intro to 3D Printing with Bambu Printers</h1>
-    <p>Day 4: Create Your School Logo Keychain</p>
+    <p>Day 4: Design Your School Logo Keychain</p>
   </header>
 
   <main class="wrap" id="mainContent" tabindex="-1">
@@ -59,16 +59,18 @@
 
     <!-- ── Page intro / hero ───────────────────────────────── -->
     <section class="hero intro-section" aria-labelledby="pageTitle">
-      <h2 id="pageTitle">Day 4: Create Your School Logo Keychain</h2>
+      <h2 id="pageTitle">Day 4: Design Your School Logo Keychain</h2>
 
       <div class="intro-grid">
         <div class="intro-card">
           <h3>🎯 Goal</h3>
-          <p>Today you'll create a keychain from your own school's logo — design it, prep it, and send it to the printer. Something real, something yours.</p>
+          <p>Today you'll turn your school logo into a real, printable keychain — using an online generator to do the heavy lifting. You'll add the keyring hole, export the file, slice it in Bambu Studio, and queue it for print.</p>
           <ul class="objectives-list">
-            <li>Find a clean version of your school logo and convert it to SVG</li>
-            <li>Import the SVG into Tinkercad and build a printable keychain</li>
-            <li>Slice the model in Bambu Studio and save it as a 3MF file</li>
+            <li>Find a clean version of your school logo or mascot</li>
+            <li>Upload it to the Keychain Generator and adjust settings</li>
+            <li>Enable the keyring hole so it actually works as a keychain</li>
+            <li>Export the STL and slice it in Bambu Studio</li>
+            <li>Save as 3MF and submit to the print queue</li>
           </ul>
         </div>
 
@@ -80,33 +82,33 @@
             </thead>
             <tbody>
               <tr><td>1</td><td>Get Your Logo</td><td>5 min</td></tr>
-              <tr><td>2</td><td>Convert to SVG</td><td>10 min</td></tr>
-              <tr><td>3</td><td>Import into Tinkercad</td><td>10 min</td></tr>
-              <tr><td>4</td><td>Make It a Keychain</td><td>20 min</td></tr>
-              <tr><td>5</td><td>Export + Slice</td><td>15 min</td></tr>
+              <tr><td>2</td><td>Upload to Keychain Generator</td><td>10 min</td></tr>
+              <tr><td>3</td><td>Adjust Settings</td><td>10 min</td></tr>
+              <tr><td>4</td><td>Add the Keyring Hole</td><td>10 min</td></tr>
+              <tr><td>5</td><td>Export STL + Slice</td><td>15 min</td></tr>
               <tr><td>6</td><td>Save Your File</td><td>5 min</td></tr>
-              <tr><td>7</td><td>Print + Reflect</td><td>25 min</td></tr>
+              <tr><td>7</td><td>Print + Reflect</td><td>30 min</td></tr>
               <tr><td>8</td><td>Submit</td><td>5 min</td></tr>
             </tbody>
           </table>
         </div>
       </div>
 
-      <!-- Quick Idea callout -->
+      <!-- File types quick reference -->
       <div class="note" style="margin-top:14px;" aria-label="Key file types quick reference">
-        <strong>💡 Quick Idea — File Types</strong>
+        <strong>💡 File Types You'll Use Today</strong>
         <div class="filetype-grid" style="margin-top:10px;">
           <div class="filetype-card">
             <div class="filetype-icon">🖼️</div>
-            <h4><abbr title="Scalable Vector Graphics">SVG</abbr></h4>
-            <span class="ft-tag">Vector image</span>
-            <p>Clean shapes used in Tinkercad</p>
+            <h4>PNG / JPG</h4>
+            <span class="ft-tag">Your logo image</span>
+            <p>What you upload to the generator</p>
           </div>
           <div class="filetype-card">
             <div class="filetype-icon">📐</div>
             <h4><abbr title="Standard Tessellation Language">STL</abbr></h4>
             <span class="ft-tag">3D model</span>
-            <p>Your exported 3D design</p>
+            <p>Exported from the generator</p>
           </div>
           <div class="filetype-card">
             <div class="filetype-icon">🖨️</div>
@@ -121,20 +123,20 @@
       <div class="workflow-row" aria-label="Day 4 workflow" style="margin-top:14px;">
         <div class="workflow-step">
           <div class="ws-num">1</div>
-          <h4>Design</h4>
-          <p>Find your logo</p>
+          <h4>Logo</h4>
+          <p>Find image</p>
         </div>
         <div class="workflow-arrow" aria-hidden="true">→</div>
         <div class="workflow-step">
           <div class="ws-num">2</div>
-          <h4>Convert</h4>
-          <p>PNG → SVG</p>
+          <h4>Generate</h4>
+          <p>Keychain Generator</p>
         </div>
         <div class="workflow-arrow" aria-hidden="true">→</div>
         <div class="workflow-step">
           <div class="ws-num">3</div>
-          <h4>Build</h4>
-          <p>Tinkercad</p>
+          <h4>Export</h4>
+          <p>STL file</p>
         </div>
         <div class="workflow-arrow" aria-hidden="true">→</div>
         <div class="workflow-step">
@@ -163,10 +165,10 @@
         <div class="goal-card">
           <h3>✅ Success Criteria</h3>
           <ul>
-            <li>I found a clean version of my school logo</li>
-            <li>I converted it to SVG and imported it into Tinkercad</li>
-            <li>I built a keychain that fits the size requirements and has a working keyring hole</li>
-            <li>I sliced my model and saved a properly named 3MF file</li>
+            <li>I found a simple, clean version of my school logo</li>
+            <li>I uploaded it to the Keychain Generator and adjusted the settings</li>
+            <li>My keychain has a working keyring hole (4–6 mm, near the top edge)</li>
+            <li>I exported the STL, sliced it in Bambu Studio, and saved a properly named 3MF file</li>
           </ul>
         </div>
       </div>
@@ -174,17 +176,17 @@
 
     <!-- ── Day 4 Vocabulary ───────────────────────────────────── -->
     <section class="hero vocab-section" aria-labelledby="d4VocabTitle">
-      <h3 id="d4VocabTitle">📚 Day 4 Vocabulary — Logo, SVG &amp; Printable Design</h3>
+      <h3 id="d4VocabTitle">📚 Day 4 Vocabulary — Keychain Design &amp; Printing</h3>
       <p>Review these terms before you start. They'll help you understand the steps ahead. <a href="glossary.html" class="glossary-link">📖 Open Full Glossary</a></p>
       <div class="vocab-grid">
-        <div class="vocab-card"><strong>SVG (Scalable Vector Graphics)</strong> — A file format that stores images as mathematical shapes rather than pixels. Tinkercad can read SVG files and convert them into 3D shapes.</div>
-        <div class="vocab-card"><strong>Vector Image</strong> — An image made of lines and curves that can be scaled to any size without becoming blurry. SVG files are vector images.</div>
-        <div class="vocab-card"><strong>Raster Image</strong> — An image made of pixels (like a photo or PNG). Raster images lose quality when enlarged. You must convert them to SVG before importing into Tinkercad.</div>
+        <div class="vocab-card"><strong>Keychain Generator</strong> — A free web tool that turns an uploaded image into a printable 3D keychain model. It automatically creates the base shape, thickness, and optional keyring hole.</div>
         <div class="vocab-card"><strong>Logo Complexity</strong> — How many shapes, details, and fine elements a logo has. Simple logos with bold shapes print much better at keychain scale than complex logos with thin lines and small text.</div>
-        <div class="vocab-card"><strong>Keyring Hole</strong> — The small hole at the top of a keychain that a ring or clip passes through. In Tinkercad, you create this by subtracting a cylinder hole from the keychain body.</div>
-        <div class="vocab-card"><strong>3MF</strong> — The print-ready file format saved from Bambu Studio. It stores your model plus all the slicer settings in one file. You'll save your keychain as a 3MF.</div>
+        <div class="vocab-card"><strong>Keyring Hole</strong> — The small hole at the top of a keychain that a ring or clip passes through. This must be enabled in the generator. It should be 4–6 mm wide with at least 2 mm of material around it.</div>
         <div class="vocab-card"><strong>Silhouette</strong> — The outer outline of a shape or logo when viewed as a solid black form. A strong, recognizable silhouette usually means a logo will print well.</div>
-        <div class="vocab-card"><strong>Resolution (Print)</strong> — How much detail the printer can reproduce. Fine lines thinner than about 1–2 mm may not print clearly, especially at keychain scale.</div>
+        <div class="vocab-card"><strong>STL</strong> — Standard Tessellation Language. The 3D model file exported from the keychain generator. Import it into Bambu Studio to slice.</div>
+        <div class="vocab-card"><strong>3MF</strong> — The print-ready file format saved from Bambu Studio. It stores your model plus all the slicer settings in one file. You'll save your keychain as a 3MF.</div>
+        <div class="vocab-card"><strong>Resolution (Print)</strong> — How much detail the printer can reproduce. Fine lines thinner than about 1–2 mm may not print clearly at keychain scale.</div>
+        <div class="vocab-card"><strong>Orientation</strong> — How your model is positioned on the build plate. Lay the keychain flat (face down) for the strongest result and cleanest surface.</div>
       </div>
     </section>
 
@@ -226,10 +228,10 @@
                 <span>🟢 Minimal fine lines</span>
                 <span>🟢 Clear silhouette</span>
                 <span>🟢 No tiny text</span>
-                <span>🟢 Easy to convert to SVG</span>
+                <span>🟢 Easy to upload to the generator</span>
               </div>
             </div>
-            <p class="logo-note">A simple star, letter, or bold mascot shape will print cleanly, hold up well as a keychain, and be easy to convert to SVG in Adobe Express.</p>
+            <p class="logo-note">A simple star, letter, or bold mascot shape will process cleanly in the Keychain Generator, hold up well as a keychain, and print with clear detail.</p>
           </div>
           <div class="logo-example logo-bad">
             <div class="logo-label">❌ Complicated Logo — Harder to Print</div>
@@ -240,19 +242,19 @@
                 <span>🔴 Small text details</span>
                 <span>🔴 Complex gradients</span>
                 <span>🔴 Overlapping shapes</span>
-                <span>🔴 Hard to clean up in SVG</span>
+                <span>🔴 Hard to process cleanly</span>
               </div>
             </div>
-            <p class="logo-note">A detailed crest with thin lines, small text, and overlapping shapes will be hard to convert cleanly, difficult to scale in Tinkercad, and may lose key details when printed at keychain size.</p>
+            <p class="logo-note">A detailed crest with thin lines, small text, and overlapping shapes may not process cleanly in the generator and could lose key details when printed at keychain size.</p>
           </div>
         </div>
 
         <div class="logo-tips-callout">
           <strong>💡 How to Choose a Logo That Will Print Successfully:</strong>
           <ul>
-            <li><strong>Bold shapes win</strong> — thick outlines and filled areas print clearly at keychain size (40–60 mm)</li>
+            <li><strong>Bold shapes win</strong> — thick outlines and filled areas process and print clearly at keychain size (40–60 mm)</li>
             <li><strong>Avoid tiny text</strong> — letters smaller than about 5 mm will blur or disappear in the print</li>
-            <li><strong>Fewer shapes = easier SVG</strong> — the more separate pieces a logo has, the harder it is to clean up</li>
+            <li><strong>Fewer shapes = cleaner result</strong> — the more separate pieces a logo has, the harder it is for the generator to process</li>
             <li><strong>Check the silhouette</strong> — could you recognize your logo if it was a solid black shape? If yes, it'll probably print well</li>
             <li><strong>When in doubt, simplify</strong> — it's always better to print a clean simple design than a messy complex one</li>
           </ul>
@@ -269,7 +271,7 @@
     </details>
 
     <!-- ═══════════════════════════════════════════════════════
-         STEP 2: Convert to SVG
+         STEP 2: Upload to Keychain Generator
          ═══════════════════════════════════════════════════════ -->
     <details id="part2" class="locked-card">
       <summary>
@@ -277,40 +279,31 @@
           <div class="summary-left">
             <span class="step-badge">Step 2 of 8</span>
             <span class="state-badge locked" id="badge2">Locked</span>
-            <span class="part-title">🔄 Convert to SVG</span>
+            <span class="part-title">🌐 Upload to Keychain Generator</span>
           </div>
         </div>
       </summary>
 
       <div class="part-content">
         <div class="note">
-          <strong>📌 Goal:</strong> Turn your logo into an <strong>SVG</strong> so Tinkercad can read it as a 3D shape.
+          <strong>📌 Goal:</strong> Upload your logo to the Keychain Generator. It will automatically turn your image into a 3D keychain shape — no Tinkercad required for this step.
         </div>
 
-        <h3>First — Sign In to Adobe Express</h3>
-        <ul>
-          <li>Go to <a href="https://www.adobe.com/express/" target="_blank" rel="noopener">Adobe Express</a></li>
-          <li>Sign in with your school Google account</li>
-        </ul>
+        <h3>Step-by-Step</h3>
+        <ol>
+          <li>Open the <a href="https://www.teachingtech.site/3D/keychain/" target="_blank" rel="noopener">Keychain Generator</a> (https://www.teachingtech.site/3D/keychain)</li>
+          <li>Click <strong>Choose File</strong> (or drag your logo onto the upload area)</li>
+          <li>Select the PNG or JPG you downloaded in Step 1</li>
+          <li>Wait a moment — the generator will process your image and show a 3D preview</li>
+          <li>Rotate and zoom the preview to make sure the logo shape looks right</li>
+        </ol>
 
-        <h3>🎥 Watch and Follow</h3>
-        <div class="video-wrap">
-          <iframe
-            src="https://www.youtube.com/embed/Bfi_qPJu7pc"
-            title="Convert image to SVG using Adobe Express"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-            allowfullscreen>
-          </iframe>
+        <div class="note" style="margin-top:10px;">
+          <strong>⚠️ Logo not looking right?</strong> Try a simpler version of your logo — the generator works best with images that have a clear, solid shape and good contrast between the logo and background.
         </div>
-
-        <ul>
-          <li>Upload your logo</li>
-          <li>Remove the background if there is one</li>
-          <li>Download it as <strong>SVG</strong></li>
-        </ul>
 
         <div class="fun">
-          ✅ <strong>Checkpoint:</strong> Your file should end in <code>.svg</code>
+          💡 If the background is white, use a logo with a dark or colored shape. If it's a dark logo on a dark background, download a version with a white or transparent background first.
         </div>
 
         <div class="part-actions">
@@ -320,7 +313,7 @@
     </details>
 
     <!-- ═══════════════════════════════════════════════════════
-         STEP 3: Import into Tinkercad
+         STEP 3: Adjust Settings in the Generator
          ═══════════════════════════════════════════════════════ -->
     <details id="part3" class="locked-card">
       <summary>
@@ -328,31 +321,31 @@
           <div class="summary-left">
             <span class="step-badge">Step 3 of 8</span>
             <span class="state-badge locked" id="badge3">Locked</span>
-            <span class="part-title">📦 Import into Tinkercad</span>
+            <span class="part-title">⚙️ Adjust Keychain Settings</span>
           </div>
         </div>
       </summary>
 
       <div class="part-content">
         <div class="note">
-          <strong>📌 Goal:</strong> Import your SVG into Tinkercad and scale it to keychain size.
+          <strong>📌 Goal:</strong> Set the size and thickness of your keychain so it's strong enough to use but light enough to carry.
         </div>
 
-        <h3>🎥 Watch and Follow</h3>
-        <div class="video-wrap">
-          <iframe
-            src="https://www.youtube.com/embed/788-l-9qFOU"
-            title="Import SVG into Tinkercad"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-            allowfullscreen>
-          </iframe>
-        </div>
+        <h3>Settings to Check</h3>
+        <table class="time-table" style="margin-top:8px;">
+          <thead>
+            <tr><th>Setting</th><th>Recommended Value</th><th>Why It Matters</th></tr>
+          </thead>
+          <tbody>
+            <tr><td><strong>Width</strong></td><td>40–60 mm</td><td>Fits well in your hand and on the build plate</td></tr>
+            <tr><td><strong>Depth / Thickness</strong></td><td>3–5 mm</td><td>Strong enough to not snap; light enough to carry</td></tr>
+            <tr><td><strong>Base layer</strong></td><td>On / enabled</td><td>Gives the logo something to sit on; improves durability</td></tr>
+          </tbody>
+        </table>
 
-        <ul>
-          <li>Open <a href="https://www.tinkercad.com" target="_blank" rel="noopener">Tinkercad</a>, sign in, and start a new design</li>
-          <li>Click <strong>Import</strong> and upload your SVG</li>
-          <li>Scale it to roughly <strong>40–60 mm</strong> wide</li>
-        </ul>
+        <div class="fun">
+          💡 <strong>Wider isn't always better.</strong> At keychain scale (40–60 mm), less detail is more — bold shapes show up cleanly, tiny lines don't.
+        </div>
 
         <div class="part-actions">
           <button type="button" onclick="window.complete(3)">Mark Complete</button>
@@ -361,7 +354,7 @@
     </details>
 
     <!-- ═══════════════════════════════════════════════════════
-         STEP 4: Make It a Keychain
+         STEP 4: Add the Keyring Hole — Required
          ═══════════════════════════════════════════════════════ -->
     <details id="part4" class="locked-card">
       <summary>
@@ -369,29 +362,62 @@
           <div class="summary-left">
             <span class="step-badge">Step 4 of 8</span>
             <span class="state-badge locked" id="badge4">Locked</span>
-            <span class="part-title">🔑 Make It a Keychain</span>
+            <span class="part-title">🔑 Add the Keyring Hole — Required</span>
           </div>
         </div>
       </summary>
 
       <div class="part-content">
-        <div class="note">
-          <strong>📌 Goal:</strong> Give your logo shape depth and add a keyring hole — that's what makes it a keychain.
+        <div class="note" style="border-left: 4px solid var(--accent);">
+          <strong>⚠️ This step is required.</strong> A keychain without a hole is just a charm. You must enable or add a keyring hole before you export. Without it, your design won't be approved to print.
         </div>
 
-        <ul>
-          <li>Set the thickness to <strong>3–5 mm</strong> — thin enough to be light, thick enough to be durable</li>
-          <li>Add a <strong>cylinder hole</strong> near one edge for the keyring (about 4–5 mm diameter)</li>
-          <li>Group everything together before you export</li>
-        </ul>
+        <h3>How to Add the Hole</h3>
+        <ol>
+          <li>In the Keychain Generator, look for the <strong>Hole</strong> or <strong>Keyring</strong> option in the settings panel</li>
+          <li>Enable it — a circular hole should appear near the top of your keychain in the 3D preview</li>
+          <li>Check the hole size — it should be <strong>4–6 mm in diameter</strong></li>
+          <li>Make sure there is <strong>at least 2 mm of solid material</strong> around the hole — if the walls are too thin, the keychain will snap when a ring is attached</li>
+          <li>Position the hole near the top edge of the keychain (most generators place it automatically)</li>
+        </ol>
 
-        <div class="fun">
-          💡 <strong>Quick Tips:</strong>
-          <ul style="margin:6px 0 0;">
-            <li>Tiny details get lost in the print — keep it bold</li>
-            <li>Thick, solid shapes give the cleanest results</li>
+        <div class="note" style="margin-top:10px;">
+          <strong>💡 Hole Size Guide:</strong>
+          <ul style="margin:8px 0 0;">
+            <li><strong>Too small (&lt; 3 mm)</strong> — A standard keyring won't fit through it</li>
+            <li><strong>Just right (4–6 mm)</strong> — Fits a standard keyring; leaves enough material around it for strength</li>
+            <li><strong>Too large (&gt; 8 mm)</strong> — Weakens the keychain body; could snap under stress</li>
           </ul>
         </div>
+
+        <!-- Keyring Hole Checklist -->
+        <h3>✅ Hole Check</h3>
+        <ul class="checklist">
+          <li>
+            <label>
+              <input type="checkbox" id="d4-holeenabled" />
+              Keyring hole is enabled in the generator
+            </label>
+          </li>
+          <li>
+            <label>
+              <input type="checkbox" id="d4-holesize" />
+              Hole is 4–6 mm in diameter
+            </label>
+          </li>
+          <li>
+            <label>
+              <input type="checkbox" id="d4-holematerial" />
+              At least 2 mm of material surrounds the hole
+            </label>
+          </li>
+          <li>
+            <label>
+              <input type="checkbox" id="d4-holeposition" />
+              Hole is positioned near the top edge of the keychain
+            </label>
+          </li>
+        </ul>
 
         <div class="part-actions">
           <button type="button" onclick="window.complete(4)">Mark Complete</button>
@@ -400,7 +426,7 @@
     </details>
 
     <!-- ═══════════════════════════════════════════════════════
-         STEP 5: Export + Slice
+         STEP 5: Export STL + Slice
          ═══════════════════════════════════════════════════════ -->
     <details id="part5" class="locked-card">
       <summary>
@@ -408,29 +434,36 @@
           <div class="summary-left">
             <span class="step-badge">Step 5 of 8</span>
             <span class="state-badge locked" id="badge5">Locked</span>
-            <span class="part-title">⚙️ Export + Slice</span>
+            <span class="part-title">⚙️ Export STL + Slice</span>
           </div>
         </div>
       </summary>
 
       <div class="part-content">
         <div class="note">
-          <strong>📌 Goal:</strong> Get your design out of Tinkercad and into Bambu Studio, ready to slice.
+          <strong>📌 Goal:</strong> Export your keychain from the generator as an STL file, then import it into Bambu Studio to slice it for printing.
         </div>
 
-        <h3>Export from Tinkercad</h3>
-        <ul>
-          <li>Click <strong>Export → STL</strong></li>
-        </ul>
+        <h3>Export from the Keychain Generator</h3>
+        <ol>
+          <li>Click the <strong>Download STL</strong> (or Export) button in the generator</li>
+          <li>Save the file somewhere you can find it — your Desktop or Downloads folder works</li>
+        </ol>
 
         <h3>In Bambu Studio</h3>
-        <ul>
-          <li>Import your <strong>STL</strong></li>
-          <li>Lay it flat on the build plate</li>
-          <li>Check that filament is set to the right color</li>
-          <li>Click <strong>Slice</strong></li>
-          <li>Preview the layers to make sure it looks right</li>
-        </ul>
+        <ol>
+          <li>Open Bambu Studio</li>
+          <li>Drag your STL file onto the build plate, or use <strong>File → Import → Import 3D Models</strong></li>
+          <li>Make sure the keychain is <strong>lying flat</strong> on the build plate (face down) — this gives the strongest result</li>
+          <li>Select the correct <strong>printer profile</strong> for the lab printer you're using</li>
+          <li>Select <strong>Bambu PLA Basic</strong> as the filament</li>
+          <li>Click <strong>Slice Plate</strong></li>
+          <li>Open the <strong>Preview</strong> tab and scroll through the layers — check that the keyring hole is present and the shape looks correct</li>
+        </ol>
+
+        <div class="fun">
+          💡 If the model is on its side, right-click → <strong>Lay on Face</strong> to flip it flat automatically.
+        </div>
 
         <div class="part-actions">
           <button type="button" onclick="window.complete(5)">Mark Complete</button>
@@ -502,32 +535,38 @@
           </ul>
         </div>
 
-        <!-- Final checklist -->
-        <h3>✅ Final Checklist</h3>
-        <p>Before submitting, confirm all boxes below:</p>
+        <!-- Pre-print checklist -->
+        <h3>✅ Pre-Print Checklist</h3>
+        <p>Confirm all boxes before you submit to the print queue:</p>
         <ul class="checklist">
           <li>
             <label>
               <input type="checkbox" id="d4-size" />
-              Size is correct (40–60 mm)
+              Model is 40–60 mm wide
             </label>
           </li>
           <li>
             <label>
               <input type="checkbox" id="d4-thick" />
-              Thick enough (3–5 mm)
+              Thickness is 3–5 mm
             </label>
           </li>
           <li>
             <label>
               <input type="checkbox" id="d4-hole" />
-              Keyring hole works
+              Keyring hole is present (4–6 mm, material around it)
+            </label>
+          </li>
+          <li>
+            <label>
+              <input type="checkbox" id="d4-orient" />
+              Model is lying flat (face down) on the build plate
             </label>
           </li>
           <li>
             <label>
               <input type="checkbox" id="d4-sliced" />
-              File sliced correctly in Bambu Studio
+              File sliced and previewed in Bambu Studio
             </label>
           </li>
           <li>
@@ -540,11 +579,11 @@
 
         <!-- Reflection -->
         <h3>💭 Reflection</h3>
-        <label for="d4-reflect1">1. What did you simplify or change to make the logo work in 3D?</label>
-        <textarea id="d4-reflect1" rows="3" placeholder="What details did you remove or simplify, and why?" aria-label="Day 4 reflection: what did you simplify"></textarea>
+        <label for="d4-reflect1">1. What settings did you change in the Keychain Generator, and why did you make those choices?</label>
+        <textarea id="d4-reflect1" rows="3" placeholder="Describe the size, thickness, or other settings you adjusted and why..." aria-label="Day 4 reflection: settings adjusted"></textarea>
 
-        <label for="d4-reflect2" style="margin-top:10px;display:block;">2. What was the trickiest part of recreating your logo — and how did you work through it?</label>
-        <textarea id="d4-reflect2" rows="3" placeholder="Describe the hardest part and what you tried to solve it..." aria-label="Day 4 reflection: what was hardest to recreate"></textarea>
+        <label for="d4-reflect2" style="margin-top:10px;display:block;">2. What does your keychain look like — and what would you change if you could print it again?</label>
+        <textarea id="d4-reflect2" rows="3" placeholder="Describe your result and what you'd improve next time..." aria-label="Day 4 reflection: result and improvement"></textarea>
 
         <div class="part-actions">
           <button type="button" onclick="window.complete(7)">Mark Complete</button>
@@ -580,6 +619,60 @@
 
         <div class="part-actions">
           <button type="button" onclick="window.complete(8)">Mark Complete</button>
+        </div>
+      </div>
+    </details>
+
+    <!-- ═══════════════════════════════════════════════════════
+         OPTIONAL: Want to Go Further?
+         ═══════════════════════════════════════════════════════ -->
+    <details id="partExtra" style="margin-top:24px;">
+      <summary>
+        <div class="summary-row">
+          <div class="summary-left">
+            <span class="step-badge" style="background:var(--accent-muted,#2a4a2a);color:var(--accent);">Optional</span>
+            <span class="part-title">🚀 Want to Go Further?</span>
+          </div>
+        </div>
+      </summary>
+
+      <div class="part-content">
+        <div class="note">
+          <strong>🌟 These workflows are optional.</strong> If you finished early, want more control over your design, or just want to go deeper — explore any of these paths. None of them are required to complete today's assignment.
+        </div>
+
+        <h3>🖼️ Clean Up Your Logo Image</h3>
+        <p>If your logo had a background or looked messy in the generator, try cleaning it up first:</p>
+        <ul>
+          <li>Use <a href="https://remove.bg" target="_blank" rel="noopener">remove.bg</a> to automatically remove the background from your logo</li>
+          <li>Use <a href="https://www.adobe.com/express/" target="_blank" rel="noopener">Adobe Express</a> to touch up or simplify the image before uploading</li>
+        </ul>
+
+        <h3>🔄 Convert Your Logo to SVG</h3>
+        <p>SVG files give you cleaner outlines and more flexibility in design tools:</p>
+        <ul>
+          <li>Go to <a href="https://www.adobe.com/express/" target="_blank" rel="noopener">Adobe Express</a> and sign in with your school Google account</li>
+          <li>Upload your logo and use the background remover if needed</li>
+          <li>Download it as <strong>SVG</strong></li>
+          <li>✅ Your file should end in <code>.svg</code></li>
+        </ul>
+
+        <h3>🏗️ Build a Custom Keychain in Tinkercad</h3>
+        <p>Want full control over every dimension? Use Tinkercad to build your keychain from scratch:</p>
+        <ol>
+          <li>Open <a href="https://www.tinkercad.com" target="_blank" rel="noopener">Tinkercad</a>, sign in, and start a new design</li>
+          <li>Click <strong>Import</strong> and upload your SVG — scale it to <strong>40–60 mm</strong> wide</li>
+          <li>Set the extrusion height to <strong>3–5 mm</strong></li>
+          <li>Add a <strong>cylinder hole</strong> near the top edge (4–5 mm diameter) and group it to cut the hole</li>
+          <li>Export as <strong>STL</strong> and import into Bambu Studio</li>
+        </ol>
+
+        <div class="note" style="margin-top:10px;">
+          <strong>🎥 Watch and Follow:</strong>
+          <ul style="margin:8px 0 0;">
+            <li><a href="https://www.youtube.com/watch?v=Bfi_qPJu7pc" target="_blank" rel="noopener noreferrer">▶ Convert image to SVG using Adobe Express</a></li>
+            <li><a href="https://www.youtube.com/watch?v=788-l-9qFOU" target="_blank" rel="noopener noreferrer">▶ Import SVG into Tinkercad</a></li>
+          </ul>
         </div>
       </div>
     </details>

@@ -2316,17 +2316,17 @@ if (document.body.getAttribute('data-page') === 'day4') {
             return (el && el.value && el.value.trim()) || '(not entered)';
         }
         var lines = [
-            '=== Day 4: Create Your School Logo Keychain ===',
+            '=== Day 4: Design Your School Logo Keychain ===',
             '',
             '💾 File name:',
             val('d4FileName'),
             '',
             '💭 Reflection',
             '',
-            '1. What did you simplify in your design?',
+            '1. What settings did you change in the Keychain Generator, and why?',
             val('d4-reflect1'),
             '',
-            '2. What was hardest to recreate?',
+            '2. What does your keychain look like — and what would you change next time?',
             val('d4-reflect2'),
             '',
             '--- Copy and paste this into your Digital Notebook in Google Classroom ---'
