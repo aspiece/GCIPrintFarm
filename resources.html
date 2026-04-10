@@ -1,0 +1,526 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="GCI 3D Print Lab Resources — Bambu Studio guides, MakerWorld tutorials, Tinkercad design tools, maintenance how-tos, troubleshooting, glossary, and FAQ." />
+  <title>Resources | GCI 3D Print Lab</title>
+  <link rel="stylesheet" href="theme.css" />
+  <script src="site.js" defer></script>
+</head>
+<body>
+
+  <a class="skip-link" href="#main">Skip to main content</a>
+
+  <!-- ── Navigation ── -->
+  <nav class="site-nav" aria-label="Main navigation">
+    <div class="nav-container">
+      <a href="/" class="nav-brand" aria-label="GCI 3D Print Lab – Home">
+        <span class="nav-brand-icon" aria-hidden="true">🖨️</span>
+        <span class="nav-brand-text">GCI <span>3D Print Lab</span></span>
+      </a>
+      <button class="nav-toggle" aria-expanded="false" aria-controls="nav-menu" aria-label="Open navigation menu">
+        <span class="nav-toggle-bar" aria-hidden="true"></span>
+        <span class="nav-toggle-bar" aria-hidden="true"></span>
+        <span class="nav-toggle-bar" aria-hidden="true"></span>
+      </button>
+      <ul class="nav-menu" id="nav-menu" role="list">
+        <li><a href="/" class="nav-link">Home</a></li>
+        <li><a href="/training/" class="nav-link">Training</a></li>
+        <li><a href="/print-farm.html" class="nav-link">Print Farm</a></li>
+        <li><a href="/resources.html" class="nav-link">Resources</a></li>
+        <li><a href="/projects.html" class="nav-link">Projects</a></li>
+        <li><a href="https://www.geneseelearninglab.com" class="nav-link nav-link--external" target="_blank" rel="noopener noreferrer">GeneseeLearningLab.com ↗</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <main id="main" tabindex="-1">
+
+    <!-- ── Page Hero ── -->
+    <section class="hero" aria-labelledby="page-hero-title">
+      <div class="container">
+        <div class="hero__content">
+          <p class="hero__eyebrow">
+            <span aria-hidden="true">🔧</span> Tools, Guides &amp; References
+          </p>
+          <h1 class="hero__title" id="page-hero-title">
+            3D Printing<br><span class="highlight">Resource Library</span>
+          </h1>
+          <p class="hero__subtitle">
+            Everything you need to design, prepare, print, and maintain — Bambu Studio, MakerWorld, Tinkercad,
+            troubleshooting guides, and a full glossary.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── Quick Jump Navigation ── -->
+    <section class="section section--sm section--alt" aria-label="Jump to section">
+      <div class="container">
+        <p class="footer-heading" style="margin-bottom: var(--space-3);">Jump to Section</p>
+        <div class="d-flex gap-3 flex-wrap">
+          <a href="#bambu-studio" class="btn btn--secondary btn--sm">Bambu Studio</a>
+          <a href="#makerworld" class="btn btn--secondary btn--sm">MakerWorld</a>
+          <a href="#design-tools" class="btn btn--secondary btn--sm">Design Tools</a>
+          <a href="#maintenance" class="btn btn--secondary btn--sm">Maintenance</a>
+          <a href="#troubleshooting" class="btn btn--secondary btn--sm">Troubleshooting</a>
+          <a href="#glossary-link" class="btn btn--secondary btn--sm">Glossary</a>
+          <a href="#faq" class="btn btn--secondary btn--sm">FAQ</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── Bambu Studio ── -->
+    <section class="section" id="bambu-studio" aria-labelledby="bambu-heading">
+      <div class="container">
+        <div class="section-header">
+          <p class="section-eyebrow">Slicing Software</p>
+          <h2 class="section-title" id="bambu-heading">Bambu Studio</h2>
+          <p class="section-subtitle">The official slicing software for all Bambu Lab printers. Import models, configure settings, preview layers, and send jobs directly to the printer.</p>
+        </div>
+        <div class="grid-2" style="align-items: start; gap: var(--space-10);">
+          <div>
+            <h3 class="card__title" style="margin-bottom: var(--space-4);">Getting Started</h3>
+            <ol class="step-list">
+              <li>
+                <div>
+                  <strong>Download Bambu Studio</strong>
+                  <p style="color: var(--color-text-muted); margin: var(--space-1) 0 0;">Get the latest version from the <a href="https://bambulab.com/en/download/studio" target="_blank" rel="noopener noreferrer">Bambu Lab download page ↗</a>. Available for Windows, macOS, and Linux.</p>
+                </div>
+              </li>
+              <li>
+                <div>
+                  <strong>Select your printer profile</strong>
+                  <p style="color: var(--color-text-muted); margin: var(--space-1) 0 0;">Choose the correct printer (A1, A1 Mini, or P1S) and filament type (PLA, PETG, etc.) from the profile menu.</p>
+                </div>
+              </li>
+              <li>
+                <div>
+                  <strong>Import your model</strong>
+                  <p style="color: var(--color-text-muted); margin: var(--space-1) 0 0;">Drag and drop your STL or 3MF file onto the build plate. Bambu Studio will auto-orient on import.</p>
+                </div>
+              </li>
+              <li>
+                <div>
+                  <strong>Slice &amp; Preview</strong>
+                  <p style="color: var(--color-text-muted); margin: var(--space-1) 0 0;">Click Slice to generate G-code. Use the layer-by-layer preview to check for gaps, overhangs, and supports.</p>
+                </div>
+              </li>
+              <li>
+                <div>
+                  <strong>Export or send to printer</strong>
+                  <p style="color: var(--color-text-muted); margin: var(--space-1) 0 0;">Save the sliced file to an SD card, or send directly to a connected Bambu Lab printer over Wi-Fi.</p>
+                </div>
+              </li>
+            </ol>
+          </div>
+          <div>
+            <h3 class="card__title" style="margin-bottom: var(--space-4);">Key Settings to Know</h3>
+            <div class="table-responsive">
+              <table class="table" aria-label="Bambu Studio key settings">
+                <thead>
+                  <tr>
+                    <th scope="col">Setting</th>
+                    <th scope="col">What It Does</th>
+                    <th scope="col">Typical Value</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><strong>Layer Height</strong></td>
+                    <td>Thickness of each printed layer</td>
+                    <td>0.2 mm (standard)</td>
+                  </tr>
+                  <tr>
+                    <td><strong>Infill %</strong></td>
+                    <td>How solid the interior is</td>
+                    <td>15–20% general use</td>
+                  </tr>
+                  <tr>
+                    <td><strong>Infill Pattern</strong></td>
+                    <td>Internal structure pattern</td>
+                    <td>Grid, Gyroid</td>
+                  </tr>
+                  <tr>
+                    <td><strong>Supports</strong></td>
+                    <td>Props for overhangs &gt;45°</td>
+                    <td>Auto or Manual</td>
+                  </tr>
+                  <tr>
+                    <td><strong>Print Speed</strong></td>
+                    <td>How fast the head moves</td>
+                    <td>Standard preset</td>
+                  </tr>
+                  <tr>
+                    <td><strong>Wall Loops</strong></td>
+                    <td>Number of perimeter shells</td>
+                    <td>3 loops typical</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div style="margin-top: var(--space-4);">
+              <a href="https://bambulab.com/en/support" class="btn btn--secondary btn--sm" target="_blank" rel="noopener noreferrer">Bambu Lab Support Docs ↗</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── MakerWorld ── -->
+    <section class="section section--alt" id="makerworld" aria-labelledby="makerworld-heading">
+      <div class="container">
+        <div class="section-header">
+          <p class="section-eyebrow">Free 3D Models</p>
+          <h2 class="section-title" id="makerworld-heading">MakerWorld</h2>
+          <p class="section-subtitle">Bambu Lab's official model repository. Thousands of free, print-ready models optimized for Bambu printers.</p>
+        </div>
+        <div class="grid-3">
+          <div class="card">
+            <div class="card__icon" aria-hidden="true">🔍</div>
+            <h3 class="card__title">Finding Models</h3>
+            <p class="card__body">Search by category, keyword, or printer type. Filter by material, print time, and complexity. MakerWorld also shows print profiles submitted by other users.</p>
+          </div>
+          <div class="card">
+            <div class="card__icon" aria-hidden="true">⬇️</div>
+            <h3 class="card__title">Downloading Files</h3>
+            <p class="card__body">Download 3MF files directly — they often include pre-configured Bambu Studio settings. You can also download STL files for manual slicing.</p>
+          </div>
+          <div class="card">
+            <div class="card__icon" aria-hidden="true">📤</div>
+            <h3 class="card__title">Sharing Your Work</h3>
+            <p class="card__body">Create a free account to upload your own designs, share print profiles, and build a public maker portfolio. Great for capstone projects!</p>
+          </div>
+        </div>
+        <div style="margin-top: var(--space-6);">
+          <a href="https://makerworld.com" class="btn btn--primary" target="_blank" rel="noopener noreferrer">Browse MakerWorld ↗</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── Design Tools ── -->
+    <section class="section" id="design-tools" aria-labelledby="design-heading">
+      <div class="container">
+        <div class="section-header">
+          <p class="section-eyebrow">CAD &amp; Design</p>
+          <h2 class="section-title" id="design-heading">Design Tools</h2>
+          <p class="section-subtitle">Tools for creating original 3D models — from beginner-friendly web apps to professional CAD software.</p>
+        </div>
+        <div class="grid-auto">
+
+          <div class="card">
+            <div class="card__icon" aria-hidden="true">🔷</div>
+            <span class="card__tag card__tag--green">Beginner</span>
+            <h3 class="card__title">Tinkercad</h3>
+            <p class="card__body">Free, browser-based 3D design tool by Autodesk. Perfect for beginners — drag, drop, and combine shapes to create printable models.</p>
+            <div style="margin-top: var(--space-4);">
+              <a href="https://www.tinkercad.com" class="btn btn--secondary btn--sm" target="_blank" rel="noopener noreferrer">Open Tinkercad ↗</a>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="card__icon" aria-hidden="true">🟩</div>
+            <span class="card__tag">Intermediate</span>
+            <h3 class="card__title">Fusion 360</h3>
+            <p class="card__body">Professional parametric CAD by Autodesk. Free for students and educators. Excellent for precise, complex, and functional designs.</p>
+            <div style="margin-top: var(--space-4);">
+              <a href="https://www.autodesk.com/products/fusion-360/education" class="btn btn--secondary btn--sm" target="_blank" rel="noopener noreferrer">Fusion 360 for Education ↗</a>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="card__icon" aria-hidden="true">🟦</div>
+            <span class="card__tag">Intermediate</span>
+            <h3 class="card__title">Onshape</h3>
+            <p class="card__body">Cloud-based parametric CAD with a strong free education tier. Works entirely in your browser — no installation needed.</p>
+            <div style="margin-top: var(--space-4);">
+              <a href="https://www.onshape.com/en/education/" class="btn btn--secondary btn--sm" target="_blank" rel="noopener noreferrer">Onshape for Education ↗</a>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="card__icon" aria-hidden="true">🐉</div>
+            <span class="card__tag">Advanced</span>
+            <h3 class="card__title">Blender</h3>
+            <p class="card__body">Free, open-source 3D modeling suite. Steep learning curve, but very powerful for organic, artistic, and complex models.</p>
+            <div style="margin-top: var(--space-4);">
+              <a href="https://www.blender.org" class="btn btn--secondary btn--sm" target="_blank" rel="noopener noreferrer">Download Blender ↗</a>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="card__icon" aria-hidden="true">📐</div>
+            <span class="card__tag">Repair</span>
+            <h3 class="card__title">Microsoft 3D Builder</h3>
+            <p class="card__body">Simple Windows app that can open, repair, and export STL files. Useful for fixing non-manifold geometry before printing.</p>
+            <div style="margin-top: var(--space-4);">
+              <a href="https://apps.microsoft.com/detail/9wzdncrfj3t6" class="btn btn--secondary btn--sm" target="_blank" rel="noopener noreferrer">Get 3D Builder ↗</a>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="card__icon" aria-hidden="true">🔩</div>
+            <span class="card__tag card__tag--green">Parametric</span>
+            <h3 class="card__title">OpenSCAD</h3>
+            <p class="card__body">Code-based 3D modeler — write scripts to define geometry programmatically. Great for precise, repeatable, and parametric parts.</p>
+            <div style="margin-top: var(--space-4);">
+              <a href="https://openscad.org" class="btn btn--secondary btn--sm" target="_blank" rel="noopener noreferrer">OpenSCAD Website ↗</a>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ── Maintenance ── -->
+    <section class="section section--alt" id="maintenance" aria-labelledby="maintenance-heading">
+      <div class="container">
+        <div class="section-header">
+          <p class="section-eyebrow">Keep Printers Running</p>
+          <h2 class="section-title" id="maintenance-heading">Maintenance Guides</h2>
+        </div>
+        <div class="grid-3">
+          <div class="card">
+            <div class="card__icon" aria-hidden="true">🛏️</div>
+            <h3 class="card__title">Bed Cleaning</h3>
+            <p class="card__body">Clean the print surface with 90%+ isopropyl alcohol after every 5–10 prints. Remove adhesive residue with warm water. Never touch the print surface with bare hands.</p>
+          </div>
+          <div class="card">
+            <div class="card__icon" aria-hidden="true">🧹</div>
+            <h3 class="card__title">Nozzle Maintenance</h3>
+            <p class="card__body">Perform a cold pull monthly to remove residue. Inspect the nozzle tip for charred filament. Replace if drips are uneven or clogs persist after two cold pulls.</p>
+          </div>
+          <div class="card">
+            <div class="card__icon" aria-hidden="true">⚙️</div>
+            <h3 class="card__title">Belt &amp; Rails</h3>
+            <p class="card__body">Check belt tension by gently plucking — it should make a low hum. Lubricate X/Y/Z rails monthly with white lithium grease or PTFE-compatible oil.</p>
+          </div>
+          <div class="card">
+            <div class="card__icon" aria-hidden="true">📦</div>
+            <h3 class="card__title">AMS Care</h3>
+            <p class="card__body">Keep filament spools dry. Use desiccant packets in the AMS. Clean the PTFE feed tubes by running a thin wire through them if filament drag increases.</p>
+          </div>
+          <div class="card">
+            <div class="card__icon" aria-hidden="true">📋</div>
+            <h3 class="card__title">Calibration</h3>
+            <p class="card__body">Run Bambu Studio's built-in calibration tools monthly: first-layer calibration, flow calibration, and vibration compensation. Log results in the maintenance notebook.</p>
+          </div>
+          <div class="card">
+            <div class="card__icon" aria-hidden="true">📔</div>
+            <h3 class="card__title">Maintenance Log</h3>
+            <p class="card__body">Record every maintenance task with a date, printer ID, and description. This helps identify recurring issues and ensures printer warranties are maintained.</p>
+          </div>
+        </div>
+        <div style="margin-top: var(--space-6);">
+          <a href="https://wiki.bambulab.com/en/maintenance" class="btn btn--secondary" target="_blank" rel="noopener noreferrer">Official Bambu Maintenance Wiki ↗</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── Troubleshooting ── -->
+    <section class="section" id="troubleshooting" aria-labelledby="troubleshoot-heading">
+      <div class="container">
+        <div class="section-header">
+          <p class="section-eyebrow">Fix Common Issues</p>
+          <h2 class="section-title" id="troubleshoot-heading">Troubleshooting Guide</h2>
+        </div>
+        <div class="table-responsive">
+          <table class="table" aria-label="Troubleshooting common print problems">
+            <thead>
+              <tr>
+                <th scope="col">Problem</th>
+                <th scope="col">Likely Cause</th>
+                <th scope="col">Fix</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>Print won't stick to bed</strong></td>
+                <td>Dirty bed, incorrect Z-offset, or cold ambient temperature</td>
+                <td>Clean bed with IPA, re-run first-layer calibration, increase bed temperature slightly</td>
+              </tr>
+              <tr>
+                <td><strong>Stringing between parts</strong></td>
+                <td>Retraction too low, temperature too high, travel speed too slow</td>
+                <td>Increase retraction distance, lower nozzle temp by 5°C, enable combing in Bambu Studio</td>
+              </tr>
+              <tr>
+                <td><strong>Layer separation</strong></td>
+                <td>Temperature too low, print speed too high, wet filament</td>
+                <td>Increase nozzle temp, reduce speed, dry filament in a dehydrator for 4–6 hours</td>
+              </tr>
+              <tr>
+                <td><strong>Warping / lifting corners</strong></td>
+                <td>Poor bed adhesion, rapid cooling, ABS/ASA without enclosure</td>
+                <td>Add a brim in Bambu Studio, use glue stick on bed, ensure enclosure is closed (P1S)</td>
+              </tr>
+              <tr>
+                <td><strong>Clog / filament not extruding</strong></td>
+                <td>Charred material in nozzle, tangled spool, PTFE damage</td>
+                <td>Perform a cold pull, inspect PTFE tube, manually unload and reload filament</td>
+              </tr>
+              <tr>
+                <td><strong>Blobs or zits on surface</strong></td>
+                <td>Over-extrusion, wet filament, poor seam settings</td>
+                <td>Run flow calibration, dry filament, adjust seam position to a corner in Bambu Studio</td>
+              </tr>
+              <tr>
+                <td><strong>AMS jam / feed error</strong></td>
+                <td>Tangled filament, clogged AMS path, incompatible filament</td>
+                <td>Open AMS, gently clear the jam, check filament path, ensure spool is within weight limit</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="alert alert--info" style="margin-top: var(--space-6);">
+          <span class="alert__icon" aria-hidden="true">ℹ️</span>
+          <p style="margin: 0;">Still stuck? Ask a lab operator during open hours, or visit the <a href="https://wiki.bambulab.com/en/troubleshooting" target="_blank" rel="noopener noreferrer">Bambu Lab troubleshooting wiki ↗</a>.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── Glossary Link ── -->
+    <section class="section section--alt" id="glossary-link" aria-labelledby="glossary-heading">
+      <div class="container">
+        <div class="section-header">
+          <p class="section-eyebrow">Learn the Language</p>
+          <h2 class="section-title" id="glossary-heading">3D Printing Glossary</h2>
+          <p class="section-subtitle">New to 3D printing? Look up any term you don't recognize in the full glossary.</p>
+        </div>
+        <a href="training/glossary.html" class="card card--link card--accent" style="max-width: 480px;" aria-label="Open the 3D printing glossary">
+          <div class="card__icon" aria-hidden="true">📖</div>
+          <h3 class="card__title">3D Printing Glossary</h3>
+          <p class="card__body">Definitions for every key term — AMS, bed adhesion, G-code, infill, PTFE, retraction, slicing, and more.</p>
+          <div class="card__footer">
+            <span class="badge badge--blue">Full Reference</span>
+            <span class="text-primary" aria-hidden="true">→</span>
+          </div>
+        </a>
+      </div>
+    </section>
+
+    <!-- ── FAQ ── -->
+    <section class="section" id="faq" aria-labelledby="faq-heading">
+      <div class="container">
+        <div class="section-header">
+          <p class="section-eyebrow">Common Questions</p>
+          <h2 class="section-title" id="faq-heading">Frequently Asked Questions</h2>
+        </div>
+        <div style="max-width: 780px; display: flex; flex-direction: column; gap: var(--space-4);">
+
+          <details class="card" style="cursor: pointer;">
+            <summary style="font-weight: var(--font-semi); cursor: pointer; list-style: none; display: flex; justify-content: space-between; align-items: center;">
+              <span>Do I need training before I can print?</span>
+              <span aria-hidden="true" class="text-muted">▾</span>
+            </summary>
+            <p style="margin-top: var(--space-3); color: var(--color-text-muted);">Yes. Students must complete the 5-day training program before operating printers independently. After training, you can submit print jobs, work with lab operators, and eventually become an operator yourself.</p>
+          </details>
+
+          <details class="card" style="cursor: pointer;">
+            <summary style="font-weight: var(--font-semi); cursor: pointer; list-style: none; display: flex; justify-content: space-between; align-items: center;">
+              <span>What file format should I submit?</span>
+              <span aria-hidden="true" class="text-muted">▾</span>
+            </summary>
+            <p style="margin-top: var(--space-3); color: var(--color-text-muted);">STL or 3MF are both accepted. 3MF is preferred because it preserves color, orientation, and Bambu Studio settings. If you designed in Tinkercad, export as STL — it works perfectly.</p>
+          </details>
+
+          <details class="card" style="cursor: pointer;">
+            <summary style="font-weight: var(--font-semi); cursor: pointer; list-style: none; display: flex; justify-content: space-between; align-items: center;">
+              <span>How long does a print take?</span>
+              <span aria-hidden="true" class="text-muted">▾</span>
+            </summary>
+            <p style="margin-top: var(--space-3); color: var(--color-text-muted);">It depends on the model's size, infill, and layer height. Small parts (keychains, clips) can take 20–60 minutes. Medium prints run 2–4 hours. Large or complex prints can take 8+ hours. Bambu Studio shows an accurate estimate before printing.</p>
+          </details>
+
+          <details class="card" style="cursor: pointer;">
+            <summary style="font-weight: var(--font-semi); cursor: pointer; list-style: none; display: flex; justify-content: space-between; align-items: center;">
+              <span>Is there a cost to print?</span>
+              <span aria-hidden="true" class="text-muted">▾</span>
+            </summary>
+            <p style="margin-top: var(--space-3); color: var(--color-text-muted);">Educational and coursework prints may be free depending on your class. Other projects may have a small filament cost. Ask a lab operator or supervisor for the current fee schedule.</p>
+          </details>
+
+          <details class="card" style="cursor: pointer;">
+            <summary style="font-weight: var(--font-semi); cursor: pointer; list-style: none; display: flex; justify-content: space-between; align-items: center;">
+              <span>Can I watch my print in progress?</span>
+              <span aria-hidden="true" class="text-muted">▾</span>
+            </summary>
+            <p style="margin-top: var(--space-3); color: var(--color-text-muted);">Yes! Bambu Lab printers have a built-in camera. During open lab hours, you can observe the printing process. Ask a lab operator for access to the Bambu Cloud camera feed if available.</p>
+          </details>
+
+          <details class="card" style="cursor: pointer;">
+            <summary style="font-weight: var(--font-semi); cursor: pointer; list-style: none; display: flex; justify-content: space-between; align-items: center;">
+              <span>What happens if my print fails?</span>
+              <span aria-hidden="true" class="text-muted">▾</span>
+            </summary>
+            <p style="margin-top: var(--space-3); color: var(--color-text-muted);">The lab operator will contact you with a description of the failure and suggest corrections. You can resubmit a revised file. If the failure was a printer error, it may be re-printed at no additional cost.</p>
+          </details>
+
+          <details class="card" style="cursor: pointer;">
+            <summary style="font-weight: var(--font-semi); cursor: pointer; list-style: none; display: flex; justify-content: space-between; align-items: center;">
+              <span>Can I bring my own filament?</span>
+              <span aria-hidden="true" class="text-muted">▾</span>
+            </summary>
+            <p style="margin-top: var(--space-3); color: var(--color-text-muted);">With supervisor approval, yes. The filament must be compatible with Bambu Lab printers, properly labeled, and stored in a resealable bag. We recommend Bambu Lab-brand filament for best results.</p>
+          </details>
+
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ── Footer ── -->
+  <footer class="site-footer" aria-label="Site footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <a href="/" class="footer-brand" aria-label="GCI 3D Print Lab – Home">
+            <span class="footer-brand-icon" aria-hidden="true">🖨️</span>
+            GCI 3D Print Lab
+          </a>
+          <p class="footer-tagline">Student-operated 3D printing lab at Genesee Community College. Part of <a href="https://www.geneseelearninglab.com" target="_blank" rel="noopener noreferrer">GeneseeLearningLab.com</a>.</p>
+        </div>
+        <div>
+          <p class="footer-heading">Training</p>
+          <ul class="footer-links">
+            <li><a href="/training/">Training Home</a></li>
+            <li><a href="training/day1.html">Day 1 – Foundations</a></li>
+            <li><a href="training/day2.html">Day 2 – Model to Print</a></li>
+            <li><a href="training/day3.html">Day 3 – Design</a></li>
+            <li><a href="training/day4.html">Day 4 – Troubleshoot</a></li>
+            <li><a href="training/day5.html">Day 5 – Capstone</a></li>
+          </ul>
+        </div>
+        <div>
+          <p class="footer-heading">Resources</p>
+          <ul class="footer-links">
+            <li><a href="#bambu-studio">Bambu Studio</a></li>
+            <li><a href="#makerworld">MakerWorld</a></li>
+            <li><a href="#design-tools">Design Tools</a></li>
+            <li><a href="#troubleshooting">Troubleshooting</a></li>
+            <li><a href="training/glossary.html">Glossary</a></li>
+          </ul>
+        </div>
+        <div>
+          <p class="footer-heading">Site</p>
+          <ul class="footer-links">
+            <li><a href="/">Home</a></li>
+            <li><a href="/print-farm.html">Print Farm</a></li>
+            <li><a href="/projects.html">Projects</a></li>
+            <li><a href="https://www.geneseelearninglab.com" target="_blank" rel="noopener noreferrer">GeneseeLearningLab.com ↗</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p class="footer-copyright">© 2025 GCI 3D Print Lab · Genesee Community College · <a href="https://www.geneseelearninglab.com" target="_blank" rel="noopener noreferrer">GeneseeLearningLab.com</a></p>
+        <div class="footer-meta-links">
+          <a href="https://github.com/aspiece/GCIPrintFarm" target="_blank" rel="noopener noreferrer">GitHub</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>

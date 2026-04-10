@@ -1,0 +1,457 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="GCI 3D Print Lab Projects — Browse a gallery of student and staff 3D printing projects, from keychains to prototypes and creative models." />
+  <title>Projects | GCI 3D Print Lab</title>
+  <link rel="stylesheet" href="theme.css" />
+  <script src="site.js" defer></script>
+  <style>
+    /* ── Projects Gallery Extra Styles ── */
+    .project-card {
+      background: var(--color-surface);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      transition: border-color var(--transition-base), box-shadow var(--transition-base), transform var(--transition-base);
+      display: flex;
+      flex-direction: column;
+    }
+
+    .project-card:hover {
+      border-color: var(--color-primary);
+      box-shadow: var(--shadow-lg);
+      transform: translateY(-4px);
+    }
+
+    .project-card__image {
+      aspect-ratio: 4 / 3;
+      background: var(--color-surface-2);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 4rem;
+      border-bottom: 1px solid var(--color-border);
+    }
+
+    .project-card__body {
+      padding: var(--space-5);
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-2);
+    }
+
+    .project-card__title {
+      font-size: var(--text-lg);
+      font-weight: var(--font-bold);
+      color: var(--color-text);
+      margin: 0;
+    }
+
+    .project-card__meta {
+      font-size: var(--text-xs);
+      color: var(--color-text-muted);
+    }
+
+    .project-card__desc {
+      font-size: var(--text-sm);
+      color: var(--color-text-muted);
+      line-height: 1.55;
+      flex: 1;
+      margin: 0;
+    }
+
+    .project-card__footer {
+      padding: var(--space-3) var(--space-5);
+      border-top: 1px solid var(--color-border);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: var(--space-2);
+    }
+
+    .filter-bar {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-2);
+      margin-bottom: var(--space-8);
+    }
+
+    .filter-btn {
+      padding: var(--space-2) var(--space-4);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-full);
+      background: transparent;
+      color: var(--color-text-muted);
+      font-size: var(--text-sm);
+      font-family: var(--font-sans);
+      cursor: pointer;
+      transition: all var(--transition-fast);
+    }
+
+    .filter-btn:hover {
+      border-color: var(--color-primary);
+      color: var(--color-primary-light);
+      background: rgba(0,150,214,0.08);
+    }
+
+    .filter-btn.active,
+    .filter-btn[aria-pressed="true"] {
+      background: rgba(0,150,214,0.15);
+      border-color: var(--color-primary);
+      color: var(--color-primary-light);
+      font-weight: var(--font-semi);
+    }
+
+    .filter-btn:focus-visible {
+      outline: 3px solid var(--color-accent);
+      outline-offset: 2px;
+    }
+
+    .submit-cta {
+      background: linear-gradient(135deg, rgba(0,150,214,0.12), rgba(126,217,87,0.08));
+      border: 1px solid rgba(0,150,214,0.25);
+      border-radius: var(--radius-xl);
+      padding: var(--space-12);
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+
+  <a class="skip-link" href="#main">Skip to main content</a>
+
+  <!-- ── Navigation ── -->
+  <nav class="site-nav" aria-label="Main navigation">
+    <div class="nav-container">
+      <a href="/" class="nav-brand" aria-label="GCI 3D Print Lab – Home">
+        <span class="nav-brand-icon" aria-hidden="true">🖨️</span>
+        <span class="nav-brand-text">GCI <span>3D Print Lab</span></span>
+      </a>
+      <button class="nav-toggle" aria-expanded="false" aria-controls="nav-menu" aria-label="Open navigation menu">
+        <span class="nav-toggle-bar" aria-hidden="true"></span>
+        <span class="nav-toggle-bar" aria-hidden="true"></span>
+        <span class="nav-toggle-bar" aria-hidden="true"></span>
+      </button>
+      <ul class="nav-menu" id="nav-menu" role="list">
+        <li><a href="/" class="nav-link">Home</a></li>
+        <li><a href="/training/" class="nav-link">Training</a></li>
+        <li><a href="/print-farm.html" class="nav-link">Print Farm</a></li>
+        <li><a href="/resources.html" class="nav-link">Resources</a></li>
+        <li><a href="/projects.html" class="nav-link">Projects</a></li>
+        <li><a href="https://www.geneseelearninglab.com" class="nav-link nav-link--external" target="_blank" rel="noopener noreferrer">GeneseeLearningLab.com ↗</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <main id="main" tabindex="-1">
+
+    <!-- ── Page Hero ── -->
+    <section class="hero" aria-labelledby="page-hero-title">
+      <div class="container">
+        <div class="hero__content">
+          <p class="hero__eyebrow">
+            <span aria-hidden="true">🏆</span> Student Work
+          </p>
+          <h1 class="hero__title" id="page-hero-title">
+            GCI Print Lab<br><span class="highlight">Projects Gallery</span>
+          </h1>
+          <p class="hero__subtitle">
+            Explore designs and prints made by students and staff at the GCI Print Lab.
+            From capstone keychains to prototypes — see what's possible.
+          </p>
+          <div class="hero__actions">
+            <a href="GCI3Dorder.html" class="btn btn--primary btn--lg">Submit Your Project →</a>
+            <a href="/training/" class="btn btn--secondary btn--lg">Get Trained</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── Gallery ── -->
+    <section class="section" aria-labelledby="gallery-heading">
+      <div class="container">
+        <div class="section-header">
+          <p class="section-eyebrow">Browse Projects</p>
+          <h2 class="section-title" id="gallery-heading">Project Gallery</h2>
+        </div>
+
+        <!-- Filter Bar -->
+        <div class="filter-bar" role="group" aria-label="Filter projects by category">
+          <button class="filter-btn active" aria-pressed="true" data-filter="all">All Projects</button>
+          <button class="filter-btn" aria-pressed="false" data-filter="capstone">Capstone</button>
+          <button class="filter-btn" aria-pressed="false" data-filter="functional">Functional</button>
+          <button class="filter-btn" aria-pressed="false" data-filter="art">Art &amp; Creative</button>
+          <button class="filter-btn" aria-pressed="false" data-filter="multi-color">Multi-Color</button>
+          <button class="filter-btn" aria-pressed="false" data-filter="miniature">Miniatures</button>
+        </div>
+
+        <!-- Gallery Grid -->
+        <div class="grid-auto" id="projects-grid" role="list">
+
+          <!-- Project: GCI Logo Keychain -->
+          <article class="project-card" role="listitem" data-category="capstone" aria-label="GCI Logo Keychain project">
+            <div class="project-card__image" aria-label="Illustration placeholder for GCI Logo Keychain">
+              <span aria-hidden="true">🔑</span>
+            </div>
+            <div class="project-card__body">
+              <div class="d-flex gap-3 items-center">
+                <span class="badge badge--blue">Capstone</span>
+                <span class="badge badge--green">Day 5</span>
+              </div>
+              <h3 class="project-card__title">GCI Logo Keychain</h3>
+              <p class="project-card__meta">Printed on Bambu A1 Mini · PLA · ~35 min</p>
+              <p class="project-card__desc">The classic Day 5 capstone project — an original school logo keychain designed in Tinkercad and printed on the A1 Mini.</p>
+            </div>
+            <div class="project-card__footer">
+              <span class="badge badge--amber">Student Project</span>
+              <a href="/training/day5.html" class="btn btn--secondary btn--sm" aria-label="Learn how to make a keychain in Day 5 training">How to Make This →</a>
+            </div>
+          </article>
+
+          <!-- Project: Multi-Color Name Tag -->
+          <article class="project-card" role="listitem" data-category="multi-color" aria-label="Multi-Color Name Tag project">
+            <div class="project-card__image" aria-label="Illustration placeholder for Multi-Color Name Tag">
+              <span aria-hidden="true">🏷️</span>
+            </div>
+            <div class="project-card__body">
+              <div class="d-flex gap-3 items-center">
+                <span class="badge badge--blue">Multi-Color</span>
+              </div>
+              <h3 class="project-card__title">Multi-Color Name Tag</h3>
+              <p class="project-card__meta">Printed on Bambu A1 · PLA (4 colors) · AMS</p>
+              <p class="project-card__desc">Personalized name tags with embossed text using the AMS for 4-color printing on the full-size A1.</p>
+            </div>
+            <div class="project-card__footer">
+              <span class="badge badge--blue">AMS Print</span>
+            </div>
+          </article>
+
+          <!-- Project: Phone Stand -->
+          <article class="project-card" role="listitem" data-category="functional" aria-label="Parametric Phone Stand project">
+            <div class="project-card__image" aria-label="Illustration placeholder for Parametric Phone Stand">
+              <span aria-hidden="true">📱</span>
+            </div>
+            <div class="project-card__body">
+              <div class="d-flex gap-3 items-center">
+                <span class="badge badge--green">Functional</span>
+              </div>
+              <h3 class="project-card__title">Parametric Phone Stand</h3>
+              <p class="project-card__meta">Printed on Bambu A1 Mini · PETG · ~2 hrs</p>
+              <p class="project-card__desc">Adjustable-angle phone stand designed in Fusion 360 with parametric sizing. Printed in PETG for added durability.</p>
+            </div>
+            <div class="project-card__footer">
+              <span class="badge badge--green">PETG</span>
+            </div>
+          </article>
+
+          <!-- Project: Mini Dragon -->
+          <article class="project-card" role="listitem" data-category="miniature art" aria-label="Articulated Mini Dragon project">
+            <div class="project-card__image" aria-label="Illustration placeholder for Articulated Mini Dragon">
+              <span aria-hidden="true">🐉</span>
+            </div>
+            <div class="project-card__body">
+              <div class="d-flex gap-3 items-center">
+                <span class="badge badge--blue">Miniature</span>
+                <span class="badge badge--amber">Art</span>
+              </div>
+              <h3 class="project-card__title">Articulated Mini Dragon</h3>
+              <p class="project-card__meta">Printed on Bambu A1 · PLA · 0.12mm layers</p>
+              <p class="project-card__desc">A fully articulated dragon model from MakerWorld — printed in one piece with no assembly required. Fine 0.12mm layer detail.</p>
+            </div>
+            <div class="project-card__footer">
+              <span class="badge badge--blue">MakerWorld</span>
+            </div>
+          </article>
+
+          <!-- Project: Desk Organizer -->
+          <article class="project-card" role="listitem" data-category="functional" aria-label="Modular Desk Organizer project">
+            <div class="project-card__image" aria-label="Illustration placeholder for Modular Desk Organizer">
+              <span aria-hidden="true">🗂️</span>
+            </div>
+            <div class="project-card__body">
+              <div class="d-flex gap-3 items-center">
+                <span class="badge badge--green">Functional</span>
+              </div>
+              <h3 class="project-card__title">Modular Desk Organizer</h3>
+              <p class="project-card__meta">Printed on Bambu A1 · PLA · 4-piece set</p>
+              <p class="project-card__desc">Stackable, interlocking desk organizer modules. Designed in Tinkercad with click-fit connections between segments.</p>
+            </div>
+            <div class="project-card__footer">
+              <span class="badge badge--green">4-Piece Set</span>
+            </div>
+          </article>
+
+          <!-- Project: Abstract Vase -->
+          <article class="project-card" role="listitem" data-category="art" aria-label="Spiral Vase Mode art print project">
+            <div class="project-card__image" aria-label="Illustration placeholder for Spiral Vase Mode print">
+              <span aria-hidden="true">🏺</span>
+            </div>
+            <div class="project-card__body">
+              <div class="d-flex gap-3 items-center">
+                <span class="badge badge--amber">Art</span>
+              </div>
+              <h3 class="project-card__title">Spiral Vase Mode Print</h3>
+              <p class="project-card__meta">Printed on Bambu P1S · Silk PLA · Vase Mode</p>
+              <p class="project-card__desc">Decorative vase printed using Bambu Studio's spiral (vase) mode for a single-wall, seamless exterior. Silk PLA gives a glossy finish.</p>
+            </div>
+            <div class="project-card__footer">
+              <span class="badge badge--amber">Silk PLA</span>
+            </div>
+          </article>
+
+          <!-- Project: Cable Clips -->
+          <article class="project-card" role="listitem" data-category="functional" aria-label="Magnetic Cable Clip project">
+            <div class="project-card__image" aria-label="Illustration placeholder for Magnetic Cable Clips">
+              <span aria-hidden="true">🔌</span>
+            </div>
+            <div class="project-card__body">
+              <div class="d-flex gap-3 items-center">
+                <span class="badge badge--green">Functional</span>
+              </div>
+              <h3 class="project-card__title">Magnetic Cable Clips</h3>
+              <p class="project-card__meta">Printed on Bambu A1 Mini · TPU · 10-pack</p>
+              <p class="project-card__desc">Flexible cable management clips printed in TPU. Paired with small embedded neodymium magnets for easy desk attachment.</p>
+            </div>
+            <div class="project-card__footer">
+              <span class="badge badge--green">TPU</span>
+            </div>
+          </article>
+
+          <!-- Project: Flexi Rex -->
+          <article class="project-card" role="listitem" data-category="miniature art" aria-label="Flexi T-Rex project">
+            <div class="project-card__image" aria-label="Illustration placeholder for Flexi T-Rex project">
+              <span aria-hidden="true">🦖</span>
+            </div>
+            <div class="project-card__body">
+              <div class="d-flex gap-3 items-center">
+                <span class="badge badge--blue">Miniature</span>
+                <span class="badge badge--amber">Art</span>
+              </div>
+              <h3 class="project-card__title">Flexi T-Rex</h3>
+              <p class="project-card__meta">Printed on Bambu A1 · PLA + TPU blend</p>
+              <p class="project-card__desc">Classic articulated flexible dinosaur — a crowd favorite. Each joint is printed as a snap-fit hinge. Great first print for new students.</p>
+            </div>
+            <div class="project-card__footer">
+              <span class="badge badge--blue">Beginner-Friendly</span>
+            </div>
+          </article>
+
+          <!-- Submit your project placeholder -->
+          <article class="project-card" role="listitem" aria-label="Submit your own project" style="border-style: dashed; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; min-height: 300px; gap: var(--space-4); padding: var(--space-8);">
+            <span style="font-size: 3rem;" aria-hidden="true">➕</span>
+            <h3 style="font-size: var(--text-lg); font-weight: var(--font-bold);">Share Your Project</h3>
+            <p style="font-size: var(--text-sm); color: var(--color-text-muted);">Have a print you're proud of? Submit it to be featured in the gallery.</p>
+            <a href="GCI3Dorder.html" class="btn btn--primary btn--sm">Submit Project →</a>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ── Submit CTA ── -->
+    <section class="section section--alt" aria-labelledby="submit-cta-heading">
+      <div class="container">
+        <div class="submit-cta">
+          <p class="hero__eyebrow" style="justify-content: center; margin-bottom: var(--space-4);">
+            <span aria-hidden="true">🚀</span> Your Turn
+          </p>
+          <h2 class="section-title" id="submit-cta-heading" style="margin: 0 auto var(--space-4); max-width: 500px;">Ready to Print Your Own Project?</h2>
+          <p style="color: var(--color-text-muted); max-width: 520px; margin: 0 auto var(--space-8);">
+            Complete the training program, design your model, and submit it through the print order form. Lab operators will help you bring it to life.
+          </p>
+          <div class="hero__actions" style="justify-content: center;">
+            <a href="/training/" class="btn btn--primary btn--lg">Start Training →</a>
+            <a href="GCI3Dorder.html" class="btn btn--secondary btn--lg">Submit a Print Job</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ── Footer ── -->
+  <footer class="site-footer" aria-label="Site footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <a href="/" class="footer-brand" aria-label="GCI 3D Print Lab – Home">
+            <span class="footer-brand-icon" aria-hidden="true">🖨️</span>
+            GCI 3D Print Lab
+          </a>
+          <p class="footer-tagline">Student-operated 3D printing lab at Genesee Community College. Part of <a href="https://www.geneseelearninglab.com" target="_blank" rel="noopener noreferrer">GeneseeLearningLab.com</a>.</p>
+        </div>
+        <div>
+          <p class="footer-heading">Training</p>
+          <ul class="footer-links">
+            <li><a href="/training/">Training Home</a></li>
+            <li><a href="training/day1.html">Day 1 – Foundations</a></li>
+            <li><a href="training/day2.html">Day 2 – Model to Print</a></li>
+            <li><a href="training/day3.html">Day 3 – Design</a></li>
+            <li><a href="training/day4.html">Day 4 – Troubleshoot</a></li>
+            <li><a href="training/day5.html">Day 5 – Capstone</a></li>
+          </ul>
+        </div>
+        <div>
+          <p class="footer-heading">Resources</p>
+          <ul class="footer-links">
+            <li><a href="/resources.html">Resources Home</a></li>
+            <li><a href="training/glossary.html">Glossary</a></li>
+            <li><a href="/print-farm.html">Print Farm</a></li>
+            <li><a href="GCI3Dorder.html">Print Order Form</a></li>
+          </ul>
+        </div>
+        <div>
+          <p class="footer-heading">Site</p>
+          <ul class="footer-links">
+            <li><a href="/">Home</a></li>
+            <li><a href="/projects.html">Projects</a></li>
+            <li><a href="https://www.geneseelearninglab.com" target="_blank" rel="noopener noreferrer">GeneseeLearningLab.com ↗</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p class="footer-copyright">© 2025 GCI 3D Print Lab · Genesee Community College · <a href="https://www.geneseelearninglab.com" target="_blank" rel="noopener noreferrer">GeneseeLearningLab.com</a></p>
+        <div class="footer-meta-links">
+          <a href="https://github.com/aspiece/GCIPrintFarm" target="_blank" rel="noopener noreferrer">GitHub</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Simple filter behavior for project gallery
+    (function () {
+      const buttons = document.querySelectorAll('.filter-btn');
+      const cards   = document.querySelectorAll('#projects-grid [data-category]');
+
+      buttons.forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          const filter = btn.dataset.filter;
+
+          // Update button states
+          buttons.forEach(function (b) {
+            b.classList.remove('active');
+            b.setAttribute('aria-pressed', 'false');
+          });
+          btn.classList.add('active');
+          btn.setAttribute('aria-pressed', 'true');
+
+          // Show/hide cards
+          cards.forEach(function (card) {
+            const cats = (card.dataset.category || '').split(' ');
+            if (filter === 'all' || cats.includes(filter)) {
+              card.style.display = '';
+            } else {
+              card.style.display = 'none';
+            }
+          });
+        });
+      });
+    }());
+  </script>
+
+</body>
+</html>
