@@ -1,0 +1,258 @@
+/* ============================================================
+   GCI Print Lab – Site Navigation (training pages)
+   Adds the shared nav bar without overriding training page styles.
+   ============================================================ */
+
+/* ── Navigation Variables ─────────────────────────────────── */
+.site-nav {
+  --nav-primary:        #0096d6;
+  --nav-primary-light:  #4fbde8;
+  --nav-accent:         #ffb800;
+  --nav-bg:             rgba(15, 19, 23, 0.97);
+  --nav-text:           #f0f4f8;
+  --nav-text-muted:     #8fa0b2;
+  --nav-border:         rgba(255,255,255,0.1);
+  --nav-surface-2:      #23282c;
+  --nav-height:         56px;
+}
+
+body[data-theme="light"] .site-nav {
+  --nav-bg: rgba(240, 244, 248, 0.97);
+  --nav-text: #181c1f;
+  --nav-text-muted: #4a5568;
+  --nav-border: rgba(0,0,0,0.12);
+  --nav-surface-2: #e8edf2;
+}
+
+/* ── Skip Link ────────────────────────────────────────────── */
+.site-skip-link {
+  position: absolute;
+  top: -100%;
+  left: 16px;
+  padding: 8px 16px;
+  background: #ffb800;
+  color: #181c1f;
+  font-weight: 600;
+  border-radius: 6px;
+  text-decoration: none;
+  z-index: 1001;
+  transition: top 150ms ease;
+  font-family: inherit;
+}
+
+.site-skip-link:focus {
+  top: 16px;
+}
+
+/* ── Site Nav Container ───────────────────────────────────── */
+.site-nav {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: var(--nav-bg);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--nav-border);
+  height: var(--nav-height);
+  box-sizing: border-box;
+}
+
+.nav-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 24px;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  box-sizing: border-box;
+}
+
+/* ── Brand ────────────────────────────────────────────────── */
+.nav-brand {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  text-decoration: none;
+  color: var(--nav-text);
+  font-weight: 800;
+  font-size: 1.05rem;
+  flex-shrink: 0;
+  transition: color 150ms ease;
+}
+
+.nav-brand:hover {
+  color: var(--nav-primary-light);
+  text-decoration: none;
+}
+
+.nav-brand:focus-visible {
+  outline: 3px solid var(--nav-accent);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+.nav-brand-icon {
+  font-size: 1.3rem;
+  line-height: 1;
+}
+
+.nav-brand-text {
+  font-weight: 800;
+  color: var(--nav-text);
+}
+
+.nav-brand-text span {
+  color: var(--nav-primary-light);
+}
+
+/* ── Menu ─────────────────────────────────────────────────── */
+.nav-menu {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  flex: 1;
+}
+
+.nav-menu li {
+  margin: 0;
+}
+
+.nav-link {
+  display: inline-flex;
+  align-items: center;
+  padding: 6px 12px;
+  border-radius: 6px;
+  text-decoration: none;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--nav-text-muted);
+  transition: color 150ms ease, background 150ms ease;
+  white-space: nowrap;
+}
+
+.nav-link:hover {
+  color: var(--nav-text);
+  background: var(--nav-surface-2);
+  text-decoration: none;
+}
+
+.nav-link:focus-visible {
+  outline: 3px solid var(--nav-accent);
+  outline-offset: 2px;
+  color: var(--nav-text);
+}
+
+.nav-link[aria-current="page"],
+.nav-link.active {
+  color: var(--nav-primary-light);
+  background: rgba(0, 150, 214, 0.15);
+  font-weight: 600;
+}
+
+.nav-link--external {
+  margin-left: auto;
+  color: var(--nav-text-muted);
+  border: 1px solid var(--nav-border);
+}
+
+.nav-link--external:hover {
+  border-color: var(--nav-primary);
+  color: var(--nav-primary-light);
+  background: rgba(0, 150, 214, 0.1);
+}
+
+/* ── Hamburger Toggle ─────────────────────────────────────── */
+.nav-toggle {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+  width: 40px;
+  height: 40px;
+  background: none;
+  border: 1px solid var(--nav-border);
+  border-radius: 6px;
+  cursor: pointer;
+  margin-left: auto;
+  padding: 0;
+  transition: background 150ms ease;
+}
+
+.nav-toggle:hover {
+  background: var(--nav-surface-2);
+}
+
+.nav-toggle:focus-visible {
+  outline: 3px solid var(--nav-accent);
+  outline-offset: 2px;
+}
+
+.nav-toggle-bar {
+  display: block;
+  width: 20px;
+  height: 2px;
+  background: var(--nav-text);
+  border-radius: 2px;
+  transition: transform 250ms ease, opacity 150ms ease;
+  transform-origin: center;
+}
+
+.nav-toggle[aria-expanded="true"] .nav-toggle-bar:nth-child(1) {
+  transform: translateY(7px) rotate(45deg);
+}
+.nav-toggle[aria-expanded="true"] .nav-toggle-bar:nth-child(2) {
+  opacity: 0;
+  transform: scaleX(0);
+}
+.nav-toggle[aria-expanded="true"] .nav-toggle-bar:nth-child(3) {
+  transform: translateY(-7px) rotate(-45deg);
+}
+
+/* ── Adjust sticky progress bar for training pages ─────────── */
+.sticky-progress {
+  top: calc(var(--nav-height) + 10px);
+}
+
+/* ── Mobile ───────────────────────────────────────────────── */
+@media (max-width: 768px) {
+  .nav-toggle {
+    display: flex;
+  }
+
+  .nav-menu {
+    position: fixed;
+    top: var(--nav-height);
+    left: 0;
+    right: 0;
+    flex-direction: column;
+    align-items: stretch;
+    background: var(--nav-bg);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--nav-border);
+    padding: 12px 16px 20px;
+    gap: 2px;
+    display: none;
+    z-index: 99;
+  }
+
+  .nav-menu.is-open {
+    display: flex;
+  }
+
+  .nav-link {
+    padding: 10px 16px;
+    font-size: 1rem;
+    border-radius: 8px;
+  }
+
+  .nav-link--external {
+    margin-left: 0;
+    margin-top: 6px;
+  }
+}

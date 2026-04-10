@@ -1,0 +1,474 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="GCI 3D Print Lab — Print Farm overview, Bambu Lab printer inventory, job submission workflow, safety rules, maintenance, and student support." />
+  <title>Print Farm | GCI 3D Print Lab</title>
+  <link rel="stylesheet" href="theme.css" />
+  <script src="site.js" defer></script>
+</head>
+<body>
+
+  <a class="skip-link" href="#main">Skip to main content</a>
+
+  <!-- ── Navigation ── -->
+  <nav class="site-nav" aria-label="Main navigation">
+    <div class="nav-container">
+      <a href="/" class="nav-brand" aria-label="GCI 3D Print Lab – Home">
+        <span class="nav-brand-icon" aria-hidden="true">🖨️</span>
+        <span class="nav-brand-text">GCI <span>3D Print Lab</span></span>
+      </a>
+      <button class="nav-toggle" aria-expanded="false" aria-controls="nav-menu" aria-label="Open navigation menu">
+        <span class="nav-toggle-bar" aria-hidden="true"></span>
+        <span class="nav-toggle-bar" aria-hidden="true"></span>
+        <span class="nav-toggle-bar" aria-hidden="true"></span>
+      </button>
+      <ul class="nav-menu" id="nav-menu" role="list">
+        <li><a href="/" class="nav-link">Home</a></li>
+        <li><a href="/training/" class="nav-link">Training</a></li>
+        <li><a href="/print-farm.html" class="nav-link">Print Farm</a></li>
+        <li><a href="/resources.html" class="nav-link">Resources</a></li>
+        <li><a href="/projects.html" class="nav-link">Projects</a></li>
+        <li><a href="https://www.geneseelearninglab.com" class="nav-link nav-link--external" target="_blank" rel="noopener noreferrer">GeneseeLearningLab.com ↗</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <main id="main" tabindex="-1">
+
+    <!-- ── Page Hero ── -->
+    <section class="hero" aria-labelledby="page-hero-title">
+      <div class="container">
+        <div class="hero__content">
+          <p class="hero__eyebrow">
+            <span aria-hidden="true">🏭</span> Student-Operated Lab
+          </p>
+          <h1 class="hero__title" id="page-hero-title">
+            The GCI<br><span class="highlight">3D Print Farm</span>
+          </h1>
+          <p class="hero__subtitle">
+            Bambu Lab A1, A1 Mini, and P1S printers — operated by students, open to the campus community.
+            From rapid prototyping to multi-color prints, we've got the tools to bring your ideas to life.
+          </p>
+          <div class="hero__actions">
+            <a href="GCI3Dorder.html" class="btn btn--primary btn--lg">Submit a Print Job →</a>
+            <a href="/training/" class="btn btn--secondary btn--lg">Get Trained First</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── Lab Overview ── -->
+    <section class="section" aria-labelledby="overview-heading">
+      <div class="container">
+        <div class="section-header">
+          <p class="section-eyebrow">About the Lab</p>
+          <h2 class="section-title" id="overview-heading">Lab Overview</h2>
+        </div>
+        <div class="grid-2" style="align-items: start; gap: var(--space-10);">
+          <div>
+            <p style="color: var(--color-text-muted); font-size: var(--text-lg); margin-bottom: var(--space-6);">
+              The GCI Print Farm is a student-operated 3D printing lab providing accessible fabrication services for learners and staff across Genesee Community College.
+            </p>
+            <p style="color: var(--color-text-muted); margin-bottom: var(--space-6);">
+              Students manage the full workflow — from model review and slicing to printing, quality inspection, and handoff. Working in the lab builds real-world skills in manufacturing, problem solving, and team operations.
+            </p>
+            <ul class="feature-list">
+              <li>3 Bambu Lab printer models available</li>
+              <li>PLA, PETG, and specialty filaments stocked</li>
+              <li>Multi-color AMS printing supported (A1 and P1S)</li>
+              <li>Open to trained students, staff, and campus projects</li>
+              <li>Structured 5-day training required before independent operation</li>
+            </ul>
+          </div>
+          <div class="card" style="background: var(--color-surface-2);">
+            <h3 class="card__title" style="margin-bottom: var(--space-4);">Quick Facts</h3>
+            <div class="grid-2" style="gap: var(--space-4);">
+              <div class="stat-block" style="padding: var(--space-4); background: var(--color-surface); border-radius: var(--radius-md);">
+                <div class="stat-block__number" style="font-size: var(--text-3xl);">3</div>
+                <div class="stat-block__label">Printer Models</div>
+              </div>
+              <div class="stat-block" style="padding: var(--space-4); background: var(--color-surface); border-radius: var(--radius-md);">
+                <div class="stat-block__number" style="font-size: var(--text-3xl);">FDM</div>
+                <div class="stat-block__label">Print Technology</div>
+              </div>
+              <div class="stat-block" style="padding: var(--space-4); background: var(--color-surface); border-radius: var(--radius-md);">
+                <div class="stat-block__number" style="font-size: var(--text-3xl);">256</div>
+                <div class="stat-block__label">mm × 256 mm Build (A1)</div>
+              </div>
+              <div class="stat-block" style="padding: var(--space-4); background: var(--color-surface); border-radius: var(--radius-md);">
+                <div class="stat-block__number" style="font-size: var(--text-3xl);">4</div>
+                <div class="stat-block__label">AMS Color Slots</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── Printer Inventory ── -->
+    <section class="section section--alt" aria-labelledby="inventory-heading">
+      <div class="container">
+        <div class="section-header">
+          <p class="section-eyebrow">Equipment</p>
+          <h2 class="section-title" id="inventory-heading">Printer Inventory</h2>
+          <p class="section-subtitle">Three Bambu Lab models — each suited to different project types and scales.</p>
+        </div>
+        <div class="grid-3">
+
+          <div class="card card--accent">
+            <div class="card__icon" aria-hidden="true">🖨️</div>
+            <span class="card__tag">FDM · AMS</span>
+            <h3 class="card__title">Bambu Lab A1</h3>
+            <p class="card__body">Large build volume with full AMS multi-color support. Ideal for bigger projects that need more detail or multiple colors.</p>
+            <div class="card__footer">
+              <div>
+                <div style="font-size: var(--text-xs); color: var(--color-text-muted); margin-bottom: var(--space-1);">Build Volume</div>
+                <div style="font-size: var(--text-sm); font-weight: var(--font-semi);">256 × 256 × 256 mm</div>
+              </div>
+              <span class="badge badge--green">Available</span>
+            </div>
+          </div>
+
+          <div class="card card--accent">
+            <div class="card__icon" aria-hidden="true">🖥️</div>
+            <span class="card__tag">FDM · AMS</span>
+            <h3 class="card__title">Bambu Lab A1 Mini</h3>
+            <p class="card__body">Compact desktop printer with fast print speeds and AMS support. Perfect for quick iterations and smaller parts.</p>
+            <div class="card__footer">
+              <div>
+                <div style="font-size: var(--text-xs); color: var(--color-text-muted); margin-bottom: var(--space-1);">Build Volume</div>
+                <div style="font-size: var(--text-sm); font-weight: var(--font-semi);">180 × 180 × 180 mm</div>
+              </div>
+              <span class="badge badge--green">Available</span>
+            </div>
+          </div>
+
+          <div class="card card--accent">
+            <div class="card__icon" aria-hidden="true">🏗️</div>
+            <span class="card__tag">FDM · Enclosed</span>
+            <h3 class="card__title">Bambu Lab P1S</h3>
+            <p class="card__body">Fully enclosed chamber for high-temperature filaments like ABS, ASA, and PA. Quieter and ideal for engineering-grade parts.</p>
+            <div class="card__footer">
+              <div>
+                <div style="font-size: var(--text-xs); color: var(--color-text-muted); margin-bottom: var(--space-1);">Build Volume</div>
+                <div style="font-size: var(--text-sm); font-weight: var(--font-semi);">256 × 256 × 256 mm</div>
+              </div>
+              <span class="badge badge--green">Available</span>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Filament Table -->
+        <div style="margin-top: var(--space-10);">
+          <h3 class="section-title" style="font-size: var(--text-2xl); margin-bottom: var(--space-6);">Available Filaments</h3>
+          <div class="table-responsive">
+            <table class="table" aria-label="Available filament types">
+              <thead>
+                <tr>
+                  <th scope="col">Material</th>
+                  <th scope="col">Printers</th>
+                  <th scope="col">Best Uses</th>
+                  <th scope="col">Notes</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><strong>PLA</strong></td>
+                  <td>A1, A1 Mini, P1S</td>
+                  <td>General printing, prototypes, figurines</td>
+                  <td><span class="badge badge--green">Most Common</span></td>
+                </tr>
+                <tr>
+                  <td><strong>PETG</strong></td>
+                  <td>A1, A1 Mini, P1S</td>
+                  <td>Durable parts, functional prints</td>
+                  <td><span class="badge badge--blue">Flexible &amp; Strong</span></td>
+                </tr>
+                <tr>
+                  <td><strong>ABS / ASA</strong></td>
+                  <td>P1S only</td>
+                  <td>UV-resistant outdoor parts, heat-tolerant</td>
+                  <td><span class="badge badge--amber">Requires Enclosure</span></td>
+                </tr>
+                <tr>
+                  <td><strong>TPU</strong></td>
+                  <td>A1, P1S</td>
+                  <td>Flexible parts, gaskets, bumpers</td>
+                  <td><span class="badge badge--amber">Check Availability</span></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ── Workflow ── -->
+    <section class="section" aria-labelledby="workflow-heading">
+      <div class="container">
+        <div class="section-header">
+          <p class="section-eyebrow">How It Works</p>
+          <h2 class="section-title" id="workflow-heading">Print Job Workflow</h2>
+          <p class="section-subtitle">Follow these steps to get your design printed at the GCI Print Farm.</p>
+        </div>
+        <ol class="step-list" style="max-width: 640px;">
+          <li>
+            <div>
+              <strong>Prepare your file</strong>
+              <p style="color: var(--color-text-muted); margin: var(--space-1) 0 0;">Export your design as STL or 3MF. If you haven't designed your own, find a model on MakerWorld. Verify it's printable in Bambu Studio before submitting.</p>
+            </div>
+          </li>
+          <li>
+            <div>
+              <strong>Submit the order form</strong>
+              <p style="color: var(--color-text-muted); margin: var(--space-1) 0 0;">Fill out the <a href="GCI3Dorder.html">Print Order Form</a> with your name, file, material preference, quantity, and any special notes.</p>
+            </div>
+          </li>
+          <li>
+            <div>
+              <strong>Lab operator review</strong>
+              <p style="color: var(--color-text-muted); margin: var(--space-1) 0 0;">A trained lab operator will review your submission for printability, estimated time, and filament availability.</p>
+            </div>
+          </li>
+          <li>
+            <div>
+              <strong>Print queue &amp; production</strong>
+              <p style="color: var(--color-text-muted); margin: var(--space-1) 0 0;">Your job is added to the print queue. Operators load filament, configure Bambu Studio, and start the print.</p>
+            </div>
+          </li>
+          <li>
+            <div>
+              <strong>Quality inspection</strong>
+              <p style="color: var(--color-text-muted); margin: var(--space-1) 0 0;">Once complete, prints are inspected for defects. If issues are found, the operator will contact you to discuss re-printing.</p>
+            </div>
+          </li>
+          <li>
+            <div>
+              <strong>Pickup</strong>
+              <p style="color: var(--color-text-muted); margin: var(--space-1) 0 0;">You'll be notified when your print is ready for pickup. Bring any filament cost reimbursement if required.</p>
+            </div>
+          </li>
+        </ol>
+        <div style="margin-top: var(--space-8);">
+          <a href="GCI3Dorder.html" class="btn btn--primary">Submit a Print Job →</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── Submission Expectations ── -->
+    <section class="section section--alt" aria-labelledby="expectations-heading">
+      <div class="container">
+        <div class="section-header">
+          <p class="section-eyebrow">Before You Submit</p>
+          <h2 class="section-title" id="expectations-heading">Submission Expectations</h2>
+        </div>
+        <div class="grid-2">
+          <div>
+            <h3 class="card__title" style="margin-bottom: var(--space-4);">File Requirements</h3>
+            <ul class="feature-list">
+              <li>File must be in STL or 3MF format</li>
+              <li>Model must be manifold (watertight — no holes in geometry)</li>
+              <li>Wall thickness should be at least 1.2 mm for PLA</li>
+              <li>Overhangs beyond 45° should include supports</li>
+              <li>File should be under 100 MB</li>
+            </ul>
+          </div>
+          <div>
+            <h3 class="card__title" style="margin-bottom: var(--space-4);">Print Job Guidelines</h3>
+            <ul class="feature-list">
+              <li>Single jobs should complete within 6 hours</li>
+              <li>Batch jobs should be pre-approved by a lab supervisor</li>
+              <li>Multi-color jobs require AMS-compatible file setup</li>
+              <li>Commercial or for-profit prints require special approval</li>
+              <li>Print jobs are done in order — allow 2–5 business days</li>
+            </ul>
+          </div>
+        </div>
+        <div class="alert alert--info" style="margin-top: var(--space-8);">
+          <span class="alert__icon" aria-hidden="true">ℹ️</span>
+          <p style="margin: 0;"><strong>New to printing?</strong> Complete the 5-day training program before submitting a print job on your own. Trained operators can help with slicing and file prep during open lab hours.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── Safety ── -->
+    <section class="section" aria-labelledby="safety-heading">
+      <div class="container">
+        <div class="section-header">
+          <p class="section-eyebrow">Lab Rules</p>
+          <h2 class="section-title" id="safety-heading">Safety &amp; Lab Expectations</h2>
+        </div>
+        <div class="grid-3">
+          <div class="card">
+            <div class="card__icon" aria-hidden="true">🦺</div>
+            <h3 class="card__title">Personal Safety</h3>
+            <ul style="color: var(--color-text-muted); font-size: var(--text-sm); padding-left: var(--space-4);">
+              <li>Never touch the print head or bed while the printer is running</li>
+              <li>Hot end temperatures can exceed 250°C — always wait for cooldown</li>
+              <li>Do not reach inside the P1S enclosure during a print</li>
+              <li>Wash hands after handling filament</li>
+            </ul>
+          </div>
+          <div class="card">
+            <div class="card__icon" aria-hidden="true">🏠</div>
+            <h3 class="card__title">Lab Conduct</h3>
+            <ul style="color: var(--color-text-muted); font-size: var(--text-sm); padding-left: var(--space-4);">
+              <li>Only trained and authorized students may operate printers</li>
+              <li>Do not modify printer settings without supervisor approval</li>
+              <li>Clean up filament scraps and supports before leaving</li>
+              <li>Report any issues or failures immediately</li>
+            </ul>
+          </div>
+          <div class="card">
+            <div class="card__icon" aria-hidden="true">⚠️</div>
+            <h3 class="card__title">What Not to Print</h3>
+            <ul style="color: var(--color-text-muted); font-size: var(--text-sm); padding-left: var(--space-4);">
+              <li>No weapons, weapon components, or replicas</li>
+              <li>No copyrighted or trademarked designs without permission</li>
+              <li>No items intended to deceive, harm, or intimidate</li>
+              <li>No commercial resale items without prior approval</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── Maintenance ── -->
+    <section class="section section--alt" aria-labelledby="maintenance-heading">
+      <div class="container">
+        <div class="section-header">
+          <p class="section-eyebrow">Keep Printers Running</p>
+          <h2 class="section-title" id="maintenance-heading">Weekly Maintenance</h2>
+          <p class="section-subtitle">Trained operators are responsible for regular maintenance to keep all printers in good condition.</p>
+        </div>
+        <div class="grid-2">
+          <div>
+            <h3 class="card__title" style="margin-bottom: var(--space-4);">Weekly Tasks</h3>
+            <ul class="feature-list">
+              <li>Wipe down the print bed with isopropyl alcohol</li>
+              <li>Check nozzle condition and clear any partial clogs</li>
+              <li>Inspect the AMS feed path and clean if needed</li>
+              <li>Check belt tension on X and Y axes</li>
+              <li>Clear filament scraps and supports from the build area</li>
+              <li>Verify filament spool weight and restock if low</li>
+            </ul>
+          </div>
+          <div>
+            <h3 class="card__title" style="margin-bottom: var(--space-4);">Monthly / As-Needed</h3>
+            <ul class="feature-list">
+              <li>Lubricate X/Y/Z guide rails with appropriate grease</li>
+              <li>Re-level the bed if first layers look uneven</li>
+              <li>Inspect PTFE tubes for cracks or discoloration</li>
+              <li>Check wiring harness for wear or abrasion</li>
+              <li>Run a calibration print and document results</li>
+              <li>Report any hardware issues to the lab supervisor</li>
+            </ul>
+          </div>
+        </div>
+        <div class="alert alert--warning" style="margin-top: var(--space-8);">
+          <span class="alert__icon" aria-hidden="true">🔧</span>
+          <p style="margin: 0;">Maintenance logs should be updated after each session. See the <a href="/resources.html#maintenance">Resources page</a> for full maintenance guides.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── Help Desk / Support ── -->
+    <section class="section" aria-labelledby="support-heading">
+      <div class="container">
+        <div class="section-header">
+          <p class="section-eyebrow">Need Help?</p>
+          <h2 class="section-title" id="support-heading">Help &amp; Support</h2>
+        </div>
+        <div class="grid-3">
+          <div class="card card--accent">
+            <div class="card__icon" aria-hidden="true">👋</div>
+            <h3 class="card__title">Ask a Lab Operator</h3>
+            <p class="card__body">A trained student operator is available during open lab hours. They can help with file prep, settings, and troubleshooting.</p>
+          </div>
+          <div class="card card--accent">
+            <div class="card__icon" aria-hidden="true">📚</div>
+            <h3 class="card__title">Training Program</h3>
+            <p class="card__body">Not sure where to start? Complete the 5-day training program to learn everything you need to print independently.</p>
+            <div style="margin-top: var(--space-4);">
+              <a href="/training/" class="btn btn--secondary btn--sm">Start Training →</a>
+            </div>
+          </div>
+          <div class="card card--accent">
+            <div class="card__icon" aria-hidden="true">🔧</div>
+            <h3 class="card__title">Resource Library</h3>
+            <p class="card__body">Troubleshooting guides, maintenance how-tos, Bambu Studio tips, and a full FAQ — all in the Resources section.</p>
+            <div style="margin-top: var(--space-4);">
+              <a href="/resources.html" class="btn btn--secondary btn--sm">Browse Resources →</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Future Queue Placeholder -->
+        <div class="card card--highlight" style="margin-top: var(--space-8); text-align: center; padding: var(--space-10);">
+          <div class="card__icon" style="font-size: 2.5rem; margin: 0 auto var(--space-4);" aria-hidden="true">📊</div>
+          <span class="badge badge--amber" style="margin-bottom: var(--space-3);">Coming Soon</span>
+          <h3 class="card__title">Live Print Queue</h3>
+          <p class="card__body" style="max-width: 480px; margin: 0 auto var(--space-4);">
+            An online print queue dashboard is planned — check your job status, estimated completion time, and operator notes in real time.
+          </p>
+          <a href="GCI3Dorder.html" class="btn btn--accent btn--sm">Submit a Job Now →</a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ── Footer ── -->
+  <footer class="site-footer" aria-label="Site footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <a href="/" class="footer-brand" aria-label="GCI 3D Print Lab – Home">
+            <span class="footer-brand-icon" aria-hidden="true">🖨️</span>
+            GCI 3D Print Lab
+          </a>
+          <p class="footer-tagline">Student-operated 3D printing lab at Genesee Community College. Part of <a href="https://www.geneseelearninglab.com" target="_blank" rel="noopener noreferrer">GeneseeLearningLab.com</a>.</p>
+        </div>
+        <div>
+          <p class="footer-heading">Training</p>
+          <ul class="footer-links">
+            <li><a href="/training/">Training Home</a></li>
+            <li><a href="training/day1.html">Day 1 – Foundations</a></li>
+            <li><a href="training/day2.html">Day 2 – Model to Print</a></li>
+            <li><a href="training/day3.html">Day 3 – Design</a></li>
+            <li><a href="training/day4.html">Day 4 – Troubleshoot</a></li>
+            <li><a href="training/day5.html">Day 5 – Capstone</a></li>
+          </ul>
+        </div>
+        <div>
+          <p class="footer-heading">Resources</p>
+          <ul class="footer-links">
+            <li><a href="/resources.html">Resources Home</a></li>
+            <li><a href="training/glossary.html">Glossary</a></li>
+            <li><a href="GCI3Dorder.html">Print Order Form</a></li>
+          </ul>
+        </div>
+        <div>
+          <p class="footer-heading">Site</p>
+          <ul class="footer-links">
+            <li><a href="/">Home</a></li>
+            <li><a href="/projects.html">Projects</a></li>
+            <li><a href="https://www.geneseelearninglab.com" target="_blank" rel="noopener noreferrer">GeneseeLearningLab.com ↗</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p class="footer-copyright">© 2025 GCI 3D Print Lab · Genesee Community College · <a href="https://www.geneseelearninglab.com" target="_blank" rel="noopener noreferrer">GeneseeLearningLab.com</a></p>
+        <div class="footer-meta-links">
+          <a href="https://github.com/aspiece/GCIPrintFarm" target="_blank" rel="noopener noreferrer">GitHub</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>
