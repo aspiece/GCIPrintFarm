@@ -38,7 +38,7 @@
   --color-danger:         #f4433b;
   --color-info:           #0096d6;
 
-  /* Link Colors (dark mode defaults — high contrast on dark surfaces) */
+  /* Link Colors (default values — overridden per theme below) */
   --color-link:           #6dd4f5;
   --color-link-visited:   #7ec5e0;
 
