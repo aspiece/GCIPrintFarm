@@ -1,0 +1,487 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Submit a 3D print request to the GCI Print Lab — student job submissions and staff project requests." />
+  <title>Submit a Print Request | GCI 3D Print Lab</title>
+  <link rel="stylesheet" href="theme.css" />
+  <script src="site.js" defer></script>
+  <script src="print-config.js" defer></script>
+  <script src="print-workflow.js" defer></script>
+</head>
+<body>
+
+  <a class="skip-link" href="#main">Skip to main content</a>
+
+  <!-- ── Navigation ── -->
+  <nav class="site-nav" aria-label="Main navigation">
+    <div class="nav-container">
+      <a href="/" class="nav-brand" aria-label="GCI 3D Print Lab – Home">
+        <span class="nav-brand-icon" aria-hidden="true">🖨️</span>
+        <span class="nav-brand-text">GCI <span>3D Print Lab</span></span>
+      </a>
+      <button class="nav-toggle" aria-expanded="false" aria-controls="nav-menu" aria-label="Open navigation menu">
+        <span class="nav-toggle-bar" aria-hidden="true"></span>
+        <span class="nav-toggle-bar" aria-hidden="true"></span>
+        <span class="nav-toggle-bar" aria-hidden="true"></span>
+      </button>
+      <ul class="nav-menu" id="nav-menu" role="list">
+        <li><a href="/" class="nav-link">Home</a></li>
+        <li><a href="/training/" class="nav-link">Training</a></li>
+        <li><a href="/print-farm.html" class="nav-link">Print Farm</a></li>
+        <li><a href="/requests.html" class="nav-link">Submit Request</a></li>
+        <li><a href="/queue.html" class="nav-link">Live Queue</a></li>
+        <li><a href="/resources.html" class="nav-link">Resources</a></li>
+        <li><a href="/projects.html" class="nav-link">Projects</a></li>
+        <li><a href="/instructor.html" class="nav-link">Instructor</a></li>
+        <li><a href="https://www.geneseelearninglab.com" class="nav-link nav-link--external" target="_blank" rel="noopener noreferrer">GeneseeLearningLab.com ↗</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <main id="main" tabindex="-1">
+
+    <!-- ── Page Hero ── -->
+    <section class="hero" aria-labelledby="page-hero-title">
+      <div class="container">
+        <div class="hero__content">
+          <p class="hero__eyebrow">
+            <span aria-hidden="true">📤</span> GCI Print Lab
+          </p>
+          <h1 class="hero__title" id="page-hero-title">
+            Submit a<br><span class="highlight">Print Request</span>
+          </h1>
+          <p class="hero__subtitle">
+            Students submit class project files. Staff submit department print requests.
+            A lab operator will review and confirm your job.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── Rules Reminder ── -->
+    <section class="section section--alt" aria-labelledby="rules-reminder-heading">
+      <div class="container">
+        <div class="alert alert--info">
+          <span class="alert__icon" aria-hidden="true">📋</span>
+          <div>
+            <strong>Before you submit:</strong> Review the
+            <a href="/print-farm.html#rules">Print Rules &amp; Expectations</a> and make sure your file is
+            ready. File names must follow the format:
+            <code style="font-size:var(--text-xs);background:var(--color-surface-2);padding:2px 6px;border-radius:4px;">Lastname_Firstname_Project_v1</code>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── Tabbed Forms ── -->
+    <section class="section" aria-labelledby="forms-heading">
+      <div class="container container--md">
+        <h2 class="sr-only" id="forms-heading">Print Request Forms</h2>
+
+        <!-- Tab navigation -->
+        <div class="tab-nav" role="tablist" aria-label="Request type">
+          <button
+            class="tab-btn"
+            role="tab"
+            id="tab-student"
+            aria-selected="true"
+            aria-controls="panel-student"
+            tabindex="0">
+            🎒 Student Print Submission
+          </button>
+          <button
+            class="tab-btn"
+            role="tab"
+            id="tab-staff"
+            aria-selected="false"
+            aria-controls="panel-staff"
+            tabindex="-1">
+            👩‍🏫 Staff Print Request
+          </button>
+        </div>
+
+        <!-- ── Student Form ── -->
+        <div
+          id="panel-student"
+          role="tabpanel"
+          aria-labelledby="tab-student"
+          class="tab-panel is-active">
+
+          <form id="student-form" novalidate>
+
+            <!-- Student Info -->
+            <div class="form-section">
+              <h3 class="form-section-title"><span aria-hidden="true">👤</span> Your Information</h3>
+              <div class="form-row">
+                <div class="form-group">
+                  <label class="form-label" for="s-firstName">First Name <span class="required" aria-hidden="true">*</span></label>
+                  <input class="form-input" type="text" id="s-firstName" name="firstName" aria-required="true" required autocomplete="given-name" />
+                </div>
+                <div class="form-group">
+                  <label class="form-label" for="s-lastName">Last Name <span class="required" aria-hidden="true">*</span></label>
+                  <input class="form-input" type="text" id="s-lastName" name="lastName" aria-required="true" required autocomplete="family-name" />
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="form-label" for="s-email">Email Address <span class="required" aria-hidden="true">*</span></label>
+                <input class="form-input" type="email" id="s-email" name="email" aria-required="true" required autocomplete="email" />
+                <p class="form-help">You'll receive an email when your print is ready for pickup</p>
+              </div>
+              <div class="form-row">
+                <div class="form-group">
+                  <label class="form-label" for="s-className">Class <span class="required" aria-hidden="true">*</span></label>
+                  <select class="form-select" id="s-className" name="className" aria-required="true" required>
+                    <option value="">— Select class —</option>
+                    <option value="Intro to 3D Printing">Intro to 3D Printing</option>
+                    <option value="Computer Science">Computer Science</option>
+                    <option value="Computer Hardware">Computer Hardware</option>
+                    <option value="Advanced Hardware">Advanced Hardware</option>
+                    <option value="Helpdesk">Helpdesk</option>
+                    <option value="Other">Other</option>
+                  </select>
+                </div>
+                <div class="form-group">
+                  <label class="form-label" for="s-classPeriod">Class Period <span class="required" aria-hidden="true">*</span></label>
+                  <select class="form-select" id="s-classPeriod" name="classPeriod" aria-required="true" required>
+                    <option value="">— Select period —</option>
+                    <option value="Session 1">Session 1</option>
+                    <option value="Session 2">Session 2</option>
+                    <option value="Session 3">Session 3</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+
+            <!-- Project Details -->
+            <div class="form-section">
+              <h3 class="form-section-title"><span aria-hidden="true">📁</span> Project Details</h3>
+              <div class="form-group">
+                <label class="form-label" for="s-projectType">Project Type <span class="required" aria-hidden="true">*</span></label>
+                <select class="form-select" id="s-projectType" name="projectType" aria-required="true" required>
+                  <option value="">— Select project type —</option>
+                  <option value="MakerWorld Print">MakerWorld Print</option>
+                  <option value="School Keychain">School Keychain</option>
+                  <option value="Personal Project (Approved Only)">Personal Project (Approved Only)</option>
+                  <option value="Reprint">Reprint</option>
+                </select>
+              </div>
+              <div class="form-row">
+                <div class="form-group">
+                  <label class="form-label" for="s-fileName">File Name <span class="required" aria-hidden="true">*</span></label>
+                  <input class="form-input" type="text" id="s-fileName" name="fileName" aria-required="true" required
+                    placeholder="Lastname_Firstname_Project_v1" />
+                  <p class="form-help">Use the format: Lastname_Firstname_Project_v1</p>
+                </div>
+                <div class="form-group">
+                  <label class="form-label" for="s-fileLink">File Link <span class="required" aria-hidden="true">*</span></label>
+                  <input class="form-input" type="url" id="s-fileLink" name="fileLink" aria-required="true" required
+                    placeholder="https://…" />
+                  <p class="form-help">Google Drive, MakerWorld, or similar link</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Print Settings -->
+            <div class="form-section">
+              <h3 class="form-section-title"><span aria-hidden="true">⚙️</span> Print Settings</h3>
+              <div class="form-row">
+                <div class="form-group">
+                  <label class="form-label" for="s-estimatedPrint">Estimated Print Time <span class="required" aria-hidden="true">*</span></label>
+                  <select class="form-select" id="s-estimatedPrint" name="estimatedPrintTime" aria-required="true" required>
+                    <option value="">— Select estimated time —</option>
+                    <option value="Under 30 Minutes">Under 30 Minutes</option>
+                    <option value="30–60 Minutes">30–60 Minutes</option>
+                    <option value="1–2 Hours">1–2 Hours</option>
+                    <option value="2+ Hours">2+ Hours</option>
+                  </select>
+                </div>
+                <div class="form-group">
+                  <label class="form-label" for="s-filamentColor">Filament Color Requested <span class="required" aria-hidden="true">*</span></label>
+                  <select class="form-select" id="s-filamentColor" name="filamentColor" aria-required="true" required>
+                    <option value="">— Select color —</option>
+                    <option value="Black">Black</option>
+                    <option value="White">White</option>
+                    <option value="Gray">Gray</option>
+                    <option value="Blue">Blue</option>
+                    <option value="Red">Red</option>
+                    <option value="Green">Green</option>
+                    <option value="Yellow">Yellow</option>
+                    <option value="Other">Other (specify in notes)</option>
+                  </select>
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="form-label" for="s-printerRequested">Printer Requested <span class="required" aria-hidden="true">*</span></label>
+                <select class="form-select" id="s-printerRequested" name="printerRequested" aria-required="true" required>
+                  <option value="">— Select printer —</option>
+                  <option value="Any Available">Any Available</option>
+                  <option value="P1S">P1S (Enclosed – High-Temp)</option>
+                  <option value="A1">A1 (Large Multi-Color)</option>
+                  <option value="A1 Mini">A1 Mini (Compact Fast)</option>
+                </select>
+              </div>
+            </div>
+
+            <!-- Pre-Print Checklist -->
+            <div class="form-section">
+              <h3 class="form-section-title"><span aria-hidden="true">✅</span> Pre-Print Checklist</h3>
+              <p style="color:var(--color-text-muted);font-size:var(--text-sm);margin-bottom:var(--space-5);">
+                All items must be confirmed before your request can be submitted.
+              </p>
+              <fieldset data-checklist style="border:none;padding:0;margin:0;">
+                <legend class="sr-only">Pre-print checklist — all items required</legend>
+                <div class="form-checkbox-group">
+                  <label class="form-checkbox-item">
+                    <input type="checkbox" value="scaled-correctly" aria-required="true" required />
+                    <span>My model is scaled correctly</span>
+                  </label>
+                  <label class="form-checkbox-item">
+                    <input type="checkbox" value="on-build-plate" aria-required="true" required />
+                    <span>My model is on the build plate</span>
+                  </label>
+                  <label class="form-checkbox-item">
+                    <input type="checkbox" value="checked-supports" aria-required="true" required />
+                    <span>I checked supports</span>
+                  </label>
+                  <label class="form-checkbox-item">
+                    <input type="checkbox" value="checked-print-time" aria-required="true" required />
+                    <span>I checked print time</span>
+                  </label>
+                  <label class="form-checkbox-item">
+                    <input type="checkbox" value="saved-correct-file" aria-required="true" required />
+                    <span>I saved the correct file</span>
+                  </label>
+                  <label class="form-checkbox-item">
+                    <input type="checkbox" value="ready-for-review" aria-required="true" required />
+                    <span>I am ready for review</span>
+                  </label>
+                </div>
+              </fieldset>
+            </div>
+
+            <!-- Notes -->
+            <div class="form-section">
+              <h3 class="form-section-title"><span aria-hidden="true">💬</span> Notes / Special Request</h3>
+              <div class="form-group">
+                <label class="form-label" for="s-notes">Notes</label>
+                <textarea class="form-textarea" id="s-notes" name="notes"
+                  placeholder="Any additional details, color specifics, or special handling requests…"></textarea>
+              </div>
+            </div>
+
+            <!-- Feedback region -->
+            <div id="student-feedback" class="form-feedback" role="alert" aria-live="polite">
+              <span class="form-feedback__icon" aria-hidden="true"></span>
+              <span class="form-feedback__msg"></span>
+            </div>
+
+            <button type="submit" class="btn btn--primary btn--lg" data-loading-text="Submitting…" style="margin-top:var(--space-6);">
+              Submit Print Request →
+            </button>
+
+          </form>
+        </div><!-- /panel-student -->
+
+        <!-- ── Staff Form ── -->
+        <div
+          id="panel-staff"
+          role="tabpanel"
+          aria-labelledby="tab-staff"
+          class="tab-panel">
+
+          <form id="staff-form" novalidate>
+
+            <!-- Contact Info -->
+            <div class="form-section">
+              <h3 class="form-section-title"><span aria-hidden="true">👩‍🏫</span> Contact Information</h3>
+              <div class="form-row">
+                <div class="form-group">
+                  <label class="form-label" for="t-firstName">First Name <span class="required" aria-hidden="true">*</span></label>
+                  <input class="form-input" type="text" id="t-firstName" name="firstName" aria-required="true" required autocomplete="given-name" />
+                </div>
+                <div class="form-group">
+                  <label class="form-label" for="t-lastName">Last Name <span class="required" aria-hidden="true">*</span></label>
+                  <input class="form-input" type="text" id="t-lastName" name="lastName" aria-required="true" required autocomplete="family-name" />
+                </div>
+              </div>
+              <div class="form-row">
+                <div class="form-group">
+                  <label class="form-label" for="t-department">Department or Program <span class="required" aria-hidden="true">*</span></label>
+                  <input class="form-input" type="text" id="t-department" name="department" aria-required="true" required />
+                </div>
+                <div class="form-group">
+                  <label class="form-label" for="t-email">Email Address <span class="required" aria-hidden="true">*</span></label>
+                  <input class="form-input" type="email" id="t-email" name="email" aria-required="true" required autocomplete="email" />
+                </div>
+              </div>
+            </div>
+
+            <!-- Project Details -->
+            <div class="form-section">
+              <h3 class="form-section-title"><span aria-hidden="true">📁</span> Project Details</h3>
+              <div class="form-group">
+                <label class="form-label" for="t-projectName">Project Name <span class="required" aria-hidden="true">*</span></label>
+                <input class="form-input" type="text" id="t-projectName" name="projectName" aria-required="true" required />
+              </div>
+              <div class="form-group">
+                <label class="form-label" for="t-purpose">Purpose of Print <span class="required" aria-hidden="true">*</span></label>
+                <textarea class="form-textarea" id="t-purpose" name="purpose" required
+                  placeholder="Describe what this print is for and how it will be used…"></textarea>
+              </div>
+              <div class="form-row">
+                <div class="form-group">
+                  <label class="form-label" for="t-quantity">Quantity <span class="required" aria-hidden="true">*</span></label>
+                  <input class="form-input" type="number" id="t-quantity" name="quantity" aria-required="true" required min="1" max="50" value="1" />
+                </div>
+                <div class="form-group">
+                  <label class="form-label" for="t-neededByDate">Needed By Date</label>
+                  <input class="form-input" type="date" id="t-neededByDate" name="neededByDate" />
+                </div>
+              </div>
+            </div>
+
+            <!-- File Information -->
+            <div class="form-section">
+              <h3 class="form-section-title"><span aria-hidden="true">📂</span> File Information</h3>
+              <div class="form-row">
+                <div class="form-group">
+                  <label class="form-label" for="t-fileName">File Name <span class="required" aria-hidden="true">*</span></label>
+                  <input class="form-input" type="text" id="t-fileName" name="fileName" aria-required="true" required
+                    placeholder="Department_ProjectName_v1" />
+                </div>
+                <div class="form-group">
+                  <label class="form-label" for="t-fileLink">File Link <span class="required" aria-hidden="true">*</span></label>
+                  <input class="form-input" type="url" id="t-fileLink" name="fileLink" aria-required="true" required
+                    placeholder="https://…" />
+                </div>
+              </div>
+            </div>
+
+            <!-- Print Preferences -->
+            <div class="form-section">
+              <h3 class="form-section-title"><span aria-hidden="true">⚙️</span> Print Preferences</h3>
+              <div class="form-row">
+                <div class="form-group">
+                  <label class="form-label" for="t-filamentColor">Filament Color Requested</label>
+                  <select class="form-select" id="t-filamentColor" name="filamentColor">
+                    <option value="No Preference">No Preference</option>
+                    <option value="Black">Black</option>
+                    <option value="White">White</option>
+                    <option value="Gray">Gray</option>
+                    <option value="Blue">Blue</option>
+                    <option value="Red">Red</option>
+                    <option value="Green">Green</option>
+                    <option value="Yellow">Yellow</option>
+                    <option value="Other">Other (specify in notes)</option>
+                  </select>
+                </div>
+                <div class="form-group">
+                  <label class="form-label" for="t-printerRequested">Printer Requested</label>
+                  <select class="form-select" id="t-printerRequested" name="printerRequested">
+                    <option value="Any Available">Any Available</option>
+                    <option value="P1S">P1S (Enclosed – High-Temp)</option>
+                    <option value="A1">A1 (Large Multi-Color)</option>
+                    <option value="A1 Mini">A1 Mini (Compact Fast)</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+
+            <!-- Notes -->
+            <div class="form-section">
+              <h3 class="form-section-title"><span aria-hidden="true">💬</span> Notes / Special Request</h3>
+              <div class="form-group">
+                <label class="form-label" for="t-notes">Notes</label>
+                <textarea class="form-textarea" id="t-notes" name="notes"
+                  placeholder="Material requirements, color details, deadline context, or other special handling…"></textarea>
+              </div>
+            </div>
+
+            <!-- Feedback region -->
+            <div id="staff-feedback" class="form-feedback" role="alert" aria-live="polite">
+              <span class="form-feedback__icon" aria-hidden="true"></span>
+              <span class="form-feedback__msg"></span>
+            </div>
+
+            <button type="submit" class="btn btn--primary btn--lg" data-loading-text="Submitting…" style="margin-top:var(--space-6);">
+              Submit Staff Request →
+            </button>
+
+          </form>
+        </div><!-- /panel-staff -->
+
+      </div>
+    </section>
+
+    <!-- ── Queue Link ── -->
+    <section class="section section--alt" aria-labelledby="queue-link-heading">
+      <div class="container">
+        <div class="card card--highlight" style="text-align:center;padding:var(--space-10);">
+          <div class="card__icon" style="font-size:2.5rem;margin:0 auto var(--space-4);" aria-hidden="true">📊</div>
+          <h2 class="card__title" id="queue-link-heading">Check the Live Queue</h2>
+          <p class="card__body" style="max-width:440px;margin:0 auto var(--space-5);">
+            After submitting, you can track your job status on the public queue page.
+            Job IDs are displayed — no names or personal info shown.
+          </p>
+          <a href="/queue.html" class="btn btn--accent btn--sm">View Live Queue →</a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ── Footer ── -->
+  <footer class="site-footer" aria-label="Site footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <a href="/" class="footer-brand" aria-label="GCI 3D Print Lab – Home">
+            <span class="footer-brand-icon" aria-hidden="true">🖨️</span>
+            GCI 3D Print Lab
+          </a>
+          <p class="footer-tagline">Student-operated 3D printing lab at Genesee Community College. Part of <a href="https://www.geneseelearninglab.com" target="_blank" rel="noopener noreferrer">GeneseeLearningLab.com</a>.</p>
+        </div>
+        <div>
+          <p class="footer-heading">Training</p>
+          <ul class="footer-links">
+            <li><a href="/training/">Training Home</a></li>
+            <li><a href="/training/day1.html">Day 1 – Foundations</a></li>
+            <li><a href="/training/day2.html">Day 2 – Model to Print</a></li>
+            <li><a href="/training/day3.html">Day 3 – Design</a></li>
+            <li><a href="/training/day4.html">Day 4 – Troubleshoot</a></li>
+            <li><a href="/training/day5.html">Day 5 – Capstone</a></li>
+          </ul>
+        </div>
+        <div>
+          <p class="footer-heading">Print System</p>
+          <ul class="footer-links">
+            <li><a href="/print-farm.html">Print Farm</a></li>
+            <li><a href="/requests.html">Submit a Request</a></li>
+            <li><a href="/queue.html">Live Queue</a></li>
+            <li><a href="/resources.html">Resources</a></li>
+            <li><a href="/training/glossary.html">Glossary</a></li>
+          </ul>
+        </div>
+        <div>
+          <p class="footer-heading">Site</p>
+          <ul class="footer-links">
+            <li><a href="/">Home</a></li>
+            <li><a href="/projects.html">Projects</a></li>
+            <li><a href="/instructor.html">Instructor</a></li>
+            <li><a href="https://www.geneseelearninglab.com" target="_blank" rel="noopener noreferrer">GeneseeLearningLab.com ↗</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p class="footer-copyright">© 2025 GCI 3D Print Lab · Genesee Community College · <a href="https://www.geneseelearninglab.com" target="_blank" rel="noopener noreferrer">GeneseeLearningLab.com</a></p>
+        <div class="footer-meta-links">
+          <a href="https://github.com/aspiece/GCIPrintFarm" target="_blank" rel="noopener noreferrer">GitHub</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>

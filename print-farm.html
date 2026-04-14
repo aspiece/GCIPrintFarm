@@ -28,8 +28,11 @@
         <li><a href="/" class="nav-link">Home</a></li>
         <li><a href="/training/" class="nav-link">Training</a></li>
         <li><a href="/print-farm.html" class="nav-link">Print Farm</a></li>
+        <li><a href="/requests.html" class="nav-link">Submit Request</a></li>
+        <li><a href="/queue.html" class="nav-link">Live Queue</a></li>
         <li><a href="/resources.html" class="nav-link">Resources</a></li>
         <li><a href="/projects.html" class="nav-link">Projects</a></li>
+        <li><a href="/instructor.html" class="nav-link">Instructor</a></li>
         <li><a href="https://www.geneseelearninglab.com" class="nav-link nav-link--external" target="_blank" rel="noopener noreferrer">GeneseeLearningLab.com ↗</a></li>
       </ul>
     </div>
@@ -52,7 +55,7 @@
             From rapid prototyping to multi-color prints, we've got the tools to bring your ideas to life.
           </p>
           <div class="hero__actions">
-            <a href="GCI3Dorder.html" class="btn btn--primary btn--lg">Submit a Print Job →</a>
+            <a href="/requests.html" class="btn btn--primary btn--lg">Submit a Print Job →</a>
             <a href="/training/" class="btn btn--secondary btn--lg">Get Trained First</a>
           </div>
         </div>
@@ -225,7 +228,7 @@
           <li>
             <div>
               <strong>Submit the order form</strong>
-              <p style="color: var(--color-text-muted); margin: var(--space-1) 0 0;">Fill out the <a href="GCI3Dorder.html">Print Order Form</a> with your name, file, material preference, quantity, and any special notes.</p>
+              <p style="color: var(--color-text-muted); margin: var(--space-1) 0 0;">Fill out the <a href="/requests.html">Print Request Form</a> with your name, file, material preference, quantity, and any special notes.</p>
             </div>
           </li>
           <li>
@@ -254,7 +257,7 @@
           </li>
         </ol>
         <div style="margin-top: var(--space-8);">
-          <a href="GCI3Dorder.html" class="btn btn--primary">Submit a Print Job →</a>
+          <a href="/requests.html" class="btn btn--primary">Submit a Print Job →</a>
         </div>
       </div>
     </section>
@@ -407,15 +410,86 @@
           </div>
         </div>
 
-        <!-- Future Queue Placeholder -->
+        <!-- Live Queue Link -->
         <div class="card card--highlight" style="margin-top: var(--space-8); text-align: center; padding: var(--space-10);">
           <div class="card__icon" style="font-size: 2.5rem; margin: 0 auto var(--space-4);" aria-hidden="true">📊</div>
-          <span class="badge badge--amber" style="margin-bottom: var(--space-3);">Coming Soon</span>
+          <span class="badge badge--green" style="margin-bottom: var(--space-3);">Live</span>
           <h3 class="card__title">Live Print Queue</h3>
           <p class="card__body" style="max-width: 480px; margin: 0 auto var(--space-4);">
-            An online print queue dashboard is planned — check your job status, estimated completion time, and operator notes in real time.
+            Track your job status in real time on the public queue. Jobs are shown by ID only — no personal information is displayed.
           </p>
-          <a href="GCI3Dorder.html" class="btn btn--accent btn--sm">Submit a Job Now →</a>
+          <a href="/queue.html" class="btn btn--accent btn--sm">View Live Queue →</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── Student Print Rules ── -->
+    <section class="section" aria-labelledby="rules-heading" id="rules">
+      <div class="container">
+        <div class="section-header">
+          <p class="section-eyebrow">Student Guidelines</p>
+          <h2 class="section-title" id="rules-heading">Print Rules &amp; Expectations</h2>
+          <p class="section-subtitle">Follow these rules every time you submit a print job.</p>
+        </div>
+        <div class="grid-2">
+          <div>
+            <h3 class="card__title" style="margin-bottom: var(--space-4);">📁 File Preparation</h3>
+            <ul class="feature-list">
+              <li>Export your file as STL or 3MF — not a Tinkercad project link</li>
+              <li>Open your file in Bambu Studio before submitting to verify it looks correct</li>
+              <li>Place your model on the build plate (not floating in air)</li>
+              <li>Scale your model correctly — check dimensions in Bambu Studio</li>
+              <li>Enable supports for overhangs greater than 45°</li>
+              <li>Confirm print time in Bambu Studio before submitting</li>
+            </ul>
+
+            <h3 class="card__title" style="margin-bottom: var(--space-4); margin-top: var(--space-8);">📛 File Naming</h3>
+            <p style="color: var(--color-text-muted); font-size: var(--text-sm); margin-bottom: var(--space-3);">
+              All submitted files must follow this naming convention:
+            </p>
+            <div class="card" style="background: var(--color-surface-2); padding: var(--space-4);">
+              <code style="font-size: var(--text-sm); color: var(--color-primary-light);">Lastname_Firstname_Project_v1</code>
+            </div>
+            <p style="color: var(--color-text-muted); font-size: var(--text-sm); margin-top: var(--space-3);">
+              Examples: <code style="font-size: var(--text-xs); background: var(--color-surface-2); padding: 2px 6px; border-radius: 4px;">Smith_Alex_Keychain_v1</code>,
+              <code style="font-size: var(--text-xs); background: var(--color-surface-2); padding: 2px 6px; border-radius: 4px;">Jones_Taylor_Robot_v2</code>
+            </p>
+          </div>
+          <div>
+            <h3 class="card__title" style="margin-bottom: var(--space-4);">🔍 Review &amp; Approval Process</h3>
+            <ul class="feature-list">
+              <li>All jobs are reviewed by a helpdesk operator before printing</li>
+              <li>Files with incorrect naming, scale, or setup will be flagged for revision</li>
+              <li>You will be notified if your submission needs changes</li>
+              <li>Approved jobs are added to the print queue with a Job ID</li>
+              <li>Track your job status on the <a href="/queue.html">Live Queue</a></li>
+            </ul>
+
+            <h3 class="card__title" style="margin-bottom: var(--space-4); margin-top: var(--space-8);">📦 Pickup Expectations</h3>
+            <ul class="feature-list">
+              <li>You will be notified when your print is "Ready for Pickup"</li>
+              <li>Check the Live Queue to confirm your job status</li>
+              <li>Pick up your print during class or designated open lab hours</li>
+              <li>Uncollected prints may be discarded after two weeks</li>
+            </ul>
+
+            <h3 class="card__title" style="margin-bottom: var(--space-4); margin-top: var(--space-8);">🔄 Reprint Policy</h3>
+            <ul class="feature-list">
+              <li>Free reprints are available for verified printer errors</li>
+              <li>Reprints due to incorrect file setup are the student's responsibility</li>
+              <li>Request a reprint by submitting a new job with project type "Reprint"</li>
+              <li>Include the original Job ID and reason in the notes field</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="alert alert--info" style="margin-top: var(--space-8);">
+          <span class="alert__icon" aria-hidden="true">📌</span>
+          <div>
+            <strong>Printer Conduct:</strong> Do not touch the printers, open printer doors, or cancel jobs
+            without permission from a lab operator. Unauthorized modification of printer settings may result
+            in loss of printing privileges.
+          </div>
         </div>
       </div>
     </section>
@@ -445,11 +519,13 @@
           </ul>
         </div>
         <div>
-          <p class="footer-heading">Resources</p>
+          <p class="footer-heading">Print System</p>
           <ul class="footer-links">
-            <li><a href="/resources.html">Resources Home</a></li>
+            <li><a href="/print-farm.html">Print Farm</a></li>
+            <li><a href="/requests.html">Submit a Request</a></li>
+            <li><a href="/queue.html">Live Queue</a></li>
+            <li><a href="/resources.html">Resources</a></li>
             <li><a href="training/glossary.html">Glossary</a></li>
-            <li><a href="GCI3Dorder.html">Print Order Form</a></li>
           </ul>
         </div>
         <div>
@@ -457,6 +533,7 @@
           <ul class="footer-links">
             <li><a href="/">Home</a></li>
             <li><a href="/projects.html">Projects</a></li>
+            <li><a href="/instructor.html">Instructor</a></li>
             <li><a href="https://www.geneseelearninglab.com" target="_blank" rel="noopener noreferrer">GeneseeLearningLab.com ↗</a></li>
           </ul>
         </div>
