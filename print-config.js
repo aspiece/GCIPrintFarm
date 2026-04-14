@@ -29,20 +29,20 @@
      * Endpoint for student print submissions (POST).
      * Replace with your deployed Google Apps Script web-app URL.
      */
-    STUDENT_SUBMIT_ENDPOINT: 'YOUR_GOOGLE_APPS_SCRIPT_URL_HERE',
+    STUDENT_SUBMIT_ENDPOINT: 'https://script.google.com/macros/s/AKfycbxEpKpZcIZJk0Ki2PoqXo3mB0c9hWIGZycaZmr5c7ro6Ve6APoZTcr7b2meefecK01Wvg/exec',
 
     /**
      * Endpoint for staff print requests (POST).
      * May be the same URL as STUDENT_SUBMIT_ENDPOINT if you use a single script.
      */
-    STAFF_SUBMIT_ENDPOINT: 'YOUR_GOOGLE_APPS_SCRIPT_URL_HERE',
+    STAFF_SUBMIT_ENDPOINT: 'https://script.google.com/macros/s/AKfycbxEpKpZcIZJk0Ki2PoqXo3mB0c9hWIGZycaZmr5c7ro6Ve6APoZTcr7b2meefecK01Wvg/exec',
 
     /**
      * Endpoint for the public live queue (GET).
      * Must return a JSON array of sanitized job objects (no names, emails, or
      * file links — only: jobId, projectType, status, printerAssigned, pickupStatus).
      */
-    QUEUE_ENDPOINT: 'YOUR_GOOGLE_APPS_SCRIPT_URL_HERE',
+    QUEUE_ENDPOINT: 'https://script.google.com/macros/s/AKfycbxEpKpZcIZJk0Ki2PoqXo3mB0c9hWIGZycaZmr5c7ro6Ve6APoZTcr7b2meefecK01Wvg/exec',
 
     /**
      * How often (in milliseconds) the live queue refreshes automatically.
