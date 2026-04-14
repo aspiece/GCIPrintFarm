@@ -1,0 +1,477 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Instructor resources for the GCI 3D Print Lab — helpdesk workflow, queue management, file review checklist, and class documents." />
+  <title>Instructor Resources | GCI 3D Print Lab</title>
+  <link rel="stylesheet" href="theme.css" />
+  <script src="site.js" defer></script>
+</head>
+<body>
+
+  <a class="skip-link" href="#main">Skip to main content</a>
+
+  <!-- ── Navigation ── -->
+  <nav class="site-nav" aria-label="Main navigation">
+    <div class="nav-container">
+      <a href="/" class="nav-brand" aria-label="GCI 3D Print Lab – Home">
+        <span class="nav-brand-icon" aria-hidden="true">🖨️</span>
+        <span class="nav-brand-text">GCI <span>3D Print Lab</span></span>
+      </a>
+      <button class="nav-toggle" aria-expanded="false" aria-controls="nav-menu" aria-label="Open navigation menu">
+        <span class="nav-toggle-bar" aria-hidden="true"></span>
+        <span class="nav-toggle-bar" aria-hidden="true"></span>
+        <span class="nav-toggle-bar" aria-hidden="true"></span>
+      </button>
+      <ul class="nav-menu" id="nav-menu" role="list">
+        <li><a href="/" class="nav-link">Home</a></li>
+        <li><a href="/training/" class="nav-link">Training</a></li>
+        <li><a href="/print-farm.html" class="nav-link">Print Farm</a></li>
+        <li><a href="/requests.html" class="nav-link">Submit Request</a></li>
+        <li><a href="/queue.html" class="nav-link">Live Queue</a></li>
+        <li><a href="/resources.html" class="nav-link">Resources</a></li>
+        <li><a href="/projects.html" class="nav-link">Projects</a></li>
+        <li><a href="/instructor.html" class="nav-link">Instructor</a></li>
+        <li><a href="https://www.geneseelearninglab.com" class="nav-link nav-link--external" target="_blank" rel="noopener noreferrer">GeneseeLearningLab.com ↗</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <main id="main" tabindex="-1">
+
+    <!-- ── Page Hero ── -->
+    <section class="hero" aria-labelledby="page-hero-title">
+      <div class="container">
+        <div class="hero__content">
+          <p class="hero__eyebrow">
+            <span aria-hidden="true">👩‍🏫</span> Instructor &amp; Staff
+          </p>
+          <h1 class="hero__title" id="page-hero-title">
+            Instructor<br><span class="highlight">Resources</span>
+          </h1>
+          <p class="hero__subtitle">
+            Helpdesk workflow guides, queue management reference, class documents, and
+            tools for managing the GCI 3D Print Lab.
+          </p>
+          <div class="hero__actions">
+            <a href="#helpdesk" class="btn btn--primary btn--lg">Helpdesk Guide →</a>
+            <a href="#documents" class="btn btn--secondary btn--lg">Class Documents</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── Helpdesk Roles ── -->
+    <section class="section section--alt" aria-labelledby="helpdesk-roles-heading" id="helpdesk">
+      <div class="container">
+        <div class="section-header">
+          <p class="section-eyebrow">Helpdesk Overview</p>
+          <h2 class="section-title" id="helpdesk-roles-heading">Roles &amp; Responsibilities</h2>
+          <p class="section-subtitle">
+            Helpdesk students act as lab operators — reviewing files, managing the queue,
+            monitoring printers, and supporting other students.
+          </p>
+        </div>
+        <div class="grid-3">
+          <div class="card card--accent">
+            <div class="card__icon" aria-hidden="true">📋</div>
+            <h3 class="card__title">File Review</h3>
+            <p class="card__body">
+              Review incoming student submissions for correct file naming, proper scale,
+              print plate placement, and appropriate support structure. Approve or flag before adding to the queue.
+            </p>
+          </div>
+          <div class="card card--accent">
+            <div class="card__icon" aria-hidden="true">📊</div>
+            <h3 class="card__title">Queue Management</h3>
+            <p class="card__body">
+              Update job statuses in the Google Sheet as jobs move through the workflow.
+              Ensure the live queue reflects current printer states in real time.
+            </p>
+          </div>
+          <div class="card card--accent">
+            <div class="card__icon" aria-hidden="true">🖨️</div>
+            <h3 class="card__title">Printer Monitoring</h3>
+            <p class="card__body">
+              Monitor active print jobs for failures or quality issues. Pause, cancel,
+              or restart jobs as needed. Document any printer errors in the maintenance log.
+            </p>
+          </div>
+          <div class="card card--accent">
+            <div class="card__icon" aria-hidden="true">📦</div>
+            <h3 class="card__title">Pickup &amp; Handoff</h3>
+            <p class="card__body">
+              Inspect completed prints for quality. Mark jobs as "Ready for Pickup" in the queue.
+              Organize completed prints by class period for easy distribution.
+            </p>
+          </div>
+          <div class="card card--accent">
+            <div class="card__icon" aria-hidden="true">🛠️</div>
+            <h3 class="card__title">Maintenance</h3>
+            <p class="card__body">
+              Complete end-of-class cleanup tasks — clear failed prints, remove supports,
+              and wipe down surfaces. Log any maintenance actions taken.
+            </p>
+          </div>
+          <div class="card card--accent">
+            <div class="card__icon" aria-hidden="true">🤝</div>
+            <h3 class="card__title">Student Support</h3>
+            <p class="card__body">
+              Help classmates with file prep, Bambu Studio settings, and print troubleshooting.
+              Refer unresolved issues to the instructor.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── File Review Checklist ── -->
+    <section class="section" aria-labelledby="review-checklist-heading" id="file-review">
+      <div class="container">
+        <div class="section-header">
+          <p class="section-eyebrow">Helpdesk Workflow</p>
+          <h2 class="section-title" id="review-checklist-heading">File Review Checklist</h2>
+          <p class="section-subtitle">Use this checklist when reviewing every student submission before adding it to the print queue.</p>
+        </div>
+        <div class="grid-2">
+          <div>
+            <h3 class="card__title" style="margin-bottom:var(--space-4);">✅ File &amp; Naming</h3>
+            <ul class="feature-list">
+              <li>File is named using the correct format: <code style="font-size:var(--text-xs);background:var(--color-surface-2);padding:2px 6px;border-radius:4px;">Lastname_Firstname_Project_v1</code></li>
+              <li>File type is .3mf or .stl (not Tinkercad project links)</li>
+              <li>File link opens and downloads without error</li>
+              <li>Model is not empty, corrupt, or a placeholder</li>
+            </ul>
+
+            <h3 class="card__title" style="margin-bottom:var(--space-4);margin-top:var(--space-8);">✅ Model Verification</h3>
+            <ul class="feature-list">
+              <li>Model is scaled to the correct size (not 1 mm or 1,000 mm)</li>
+              <li>Model is placed on the build plate (not floating above it)</li>
+              <li>No non-manifold geometry or obvious mesh errors</li>
+              <li>Print time shown in Bambu Studio matches the submission estimate</li>
+            </ul>
+          </div>
+          <div>
+            <h3 class="card__title" style="margin-bottom:var(--space-4);">✅ Print Settings</h3>
+            <ul class="feature-list">
+              <li>Supports are correctly configured for overhangs &gt; 45°</li>
+              <li>Filament color requested is in stock — check the lab supply</li>
+              <li>Requested printer is available and appropriate for the job</li>
+              <li>Print time is reasonable for the lab schedule</li>
+            </ul>
+
+            <h3 class="card__title" style="margin-bottom:var(--space-4);margin-top:var(--space-8);">✅ Policy Check</h3>
+            <ul class="feature-list">
+              <li>Project type is allowed (no weapons, replicas, or commercial items)</li>
+              <li>Personal projects have prior instructor approval</li>
+              <li>Reprint requests have a valid reason (printer error vs. student error)</li>
+              <li>Student has completed 5-day training (for independent jobs)</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="alert alert--warning" style="margin-top:var(--space-8);">
+          <span class="alert__icon" aria-hidden="true">⚠️</span>
+          <div>
+            <strong>If a submission fails the review:</strong> Flag it in the Google Sheet with a status of
+            "Needs Revision" and add a note explaining what needs to be fixed. The student will resubmit
+            after correcting their file.
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── Daily Workflow ── -->
+    <section class="section section--alt" aria-labelledby="daily-workflow-heading" id="daily-workflow">
+      <div class="container">
+        <div class="section-header">
+          <p class="section-eyebrow">Day-to-Day Operations</p>
+          <h2 class="section-title" id="daily-workflow-heading">Daily Workflow</h2>
+        </div>
+        <div class="grid-2">
+          <div class="card">
+            <h3 class="card__title" style="margin-bottom:var(--space-4);">🌅 Start of Class</h3>
+            <ol class="step-list">
+              <li>Power on all assigned printers and verify they are ready</li>
+              <li>Check the Google Sheet for new student submissions</li>
+              <li>Review and approve pending files using the checklist above</li>
+              <li>Start any jobs that are cleared and ready</li>
+              <li>Update queue statuses: Approved → Waiting → Printing</li>
+            </ol>
+          </div>
+          <div class="card">
+            <h3 class="card__title" style="margin-bottom:var(--space-4);">🌇 End of Class</h3>
+            <ol class="step-list">
+              <li>Inspect any completed prints for quality</li>
+              <li>Mark completed jobs as "Complete" or "Ready for Pickup" in the sheet</li>
+              <li>Organize completed prints by class period in the pickup area</li>
+              <li>Remove failed prints and document the failure reason</li>
+              <li>Clear supports, scraps, and debris from printer beds</li>
+              <li>Update the maintenance log if any issues occurred</li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── Queue Status Reference ── -->
+    <section class="section" aria-labelledby="queue-ref-heading" id="queue-reference">
+      <div class="container">
+        <div class="section-header">
+          <p class="section-eyebrow">Queue Management</p>
+          <h2 class="section-title" id="queue-ref-heading">Queue Status Meanings</h2>
+          <p class="section-subtitle">Update these statuses in the Google Sheet. They automatically appear on the public queue page.</p>
+        </div>
+        <div class="table-responsive">
+          <table class="table" aria-label="Queue status definitions">
+            <thead>
+              <tr>
+                <th scope="col">Status Value</th>
+                <th scope="col">Meaning</th>
+                <th scope="col">Who Sets It</th>
+                <th scope="col">Next Step</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><span class="badge badge--unknown">Submitted</span></td>
+                <td>New submission, not yet reviewed</td>
+                <td>Auto (Google Apps Script on submit)</td>
+                <td>Helpdesk reviews the file</td>
+              </tr>
+              <tr>
+                <td><span class="badge badge--amber">Needs Revision</span></td>
+                <td>File failed review — student must fix and resubmit</td>
+                <td>Helpdesk operator</td>
+                <td>Instructor notifies student; student resubmits</td>
+              </tr>
+              <tr>
+                <td><span class="badge badge--waiting">Waiting</span></td>
+                <td>File approved, queued for printing</td>
+                <td>Helpdesk operator after approval</td>
+                <td>Assign to printer when available</td>
+              </tr>
+              <tr>
+                <td><span class="badge badge--printing">Printing</span></td>
+                <td>Actively printing on assigned printer</td>
+                <td>Helpdesk operator when print starts</td>
+                <td>Monitor for completion or failure</td>
+              </tr>
+              <tr>
+                <td><span class="badge badge--complete">Complete</span></td>
+                <td>Print finished, pending inspection</td>
+                <td>Helpdesk operator on print completion</td>
+                <td>Inspect quality, then set to Ready for Pickup</td>
+              </tr>
+              <tr>
+                <td><span class="badge badge--pickup">Ready for Pickup</span></td>
+                <td>Passed inspection, available to collect</td>
+                <td>Helpdesk operator after inspection</td>
+                <td>Student collects from pickup area</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── Instructor Documents ── -->
+    <section class="section section--alt" aria-labelledby="documents-heading" id="documents">
+      <div class="container">
+        <div class="section-header">
+          <p class="section-eyebrow">Class Materials</p>
+          <h2 class="section-title" id="documents-heading">Instructor Documents</h2>
+          <p class="section-subtitle">Training slides, activity files, and supplemental materials for instructors.</p>
+        </div>
+
+        <div class="alert alert--info" style="margin-bottom:var(--space-8);">
+          <span class="alert__icon" aria-hidden="true">📎</span>
+          <div>
+            Add links to your Google Drive documents, handouts, rubrics, and grading tools below.
+            Update this section in <code style="font-size:var(--text-xs);background:var(--color-surface-2);padding:2px 6px;border-radius:4px;">instructor.html</code> as your document library grows.
+          </div>
+        </div>
+
+        <div class="grid-3">
+
+          <!-- Training Slides -->
+          <div class="card">
+            <div class="card__icon" aria-hidden="true">📑</div>
+            <div class="card__tag">Slides</div>
+            <h3 class="card__title">Training Slides</h3>
+            <p class="card__body">Instructor presentation slides for each day of the 5-day training program.</p>
+            <div class="card__footer">
+              <div style="display:flex;flex-direction:column;gap:var(--space-2);font-size:var(--text-sm);">
+                <a href="/training/slides-day1.html">Day 1 – Foundations</a>
+                <a href="/training/slides-day2.html">Day 2 – Model to Print</a>
+                <a href="/training/slides-day3.html">Day 3 – Design</a>
+                <a href="/training/slides-day4.html">Day 4 – Troubleshoot</a>
+                <a href="/training/slides-day5.html">Day 5 – Capstone</a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Student Activities -->
+          <div class="card">
+            <div class="card__icon" aria-hidden="true">📝</div>
+            <div class="card__tag">Activities</div>
+            <h3 class="card__title">Student Activity Pages</h3>
+            <p class="card__body">Guided student pages for each training day with interactive sections and progress tracking.</p>
+            <div class="card__footer">
+              <div style="display:flex;flex-direction:column;gap:var(--space-2);font-size:var(--text-sm);">
+                <a href="/training/day1.html">Day 1 Student Page</a>
+                <a href="/training/day2.html">Day 2 Student Page</a>
+                <a href="/training/day3.html">Day 3 Student Page</a>
+                <a href="/training/day4.html">Day 4 Student Page</a>
+                <a href="/training/day5.html">Day 5 Student Page</a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Reference Tools -->
+          <div class="card">
+            <div class="card__icon" aria-hidden="true">🔧</div>
+            <div class="card__tag">Reference</div>
+            <h3 class="card__title">Reference Tools</h3>
+            <p class="card__body">Glossary, orientation activities, digital notebook, and the resource library.</p>
+            <div class="card__footer">
+              <div style="display:flex;flex-direction:column;gap:var(--space-2);font-size:var(--text-sm);">
+                <a href="/training/glossary.html">3D Printing Glossary</a>
+                <a href="/Intro_to_3D_Printing_Orientation.html">Orientation Activities</a>
+                <a href="/Digital_3D_Printing_Notebook_Bambu_A1.html">Digital Notebook</a>
+                <a href="/resources.html">Full Resource Library</a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Print System Docs -->
+          <div class="card card--highlight">
+            <div class="card__icon" aria-hidden="true">📊</div>
+            <div class="card__tag card__tag--amber">Print System</div>
+            <h3 class="card__title">Print System Setup</h3>
+            <p class="card__body">
+              Instructions for configuring the Google Apps Script backend, submission endpoints,
+              and queue spreadsheet.
+            </p>
+            <div style="margin-top:var(--space-4);">
+              <a href="https://github.com/aspiece/GCIPrintFarm#google-apps-script-setup" target="_blank" rel="noopener noreferrer" class="btn btn--secondary btn--sm">
+                Setup Guide → GitHub
+              </a>
+            </div>
+          </div>
+
+          <!-- Add Your Documents -->
+          <div class="card" style="border-style:dashed;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;min-height:240px;gap:var(--space-3);padding:var(--space-8);">
+            <span style="font-size:2.5rem;" aria-hidden="true">➕</span>
+            <h3 style="font-size:var(--text-base);font-weight:var(--font-bold);">Add Your Documents</h3>
+            <p style="font-size:var(--text-sm);color:var(--color-text-muted);">
+              Edit <code style="font-size:var(--text-xs);">instructor.html</code> to link to rubrics, handouts, grading sheets, and other class materials.
+            </p>
+          </div>
+
+          <!-- Print Farm Rules -->
+          <div class="card">
+            <div class="card__icon" aria-hidden="true">📜</div>
+            <div class="card__tag">Policy</div>
+            <h3 class="card__title">Lab Rules &amp; Policies</h3>
+            <p class="card__body">
+              Student-facing print rules, expectations, file naming conventions, and the reprint policy.
+            </p>
+            <div style="margin-top:var(--space-4);">
+              <a href="/print-farm.html#rules" class="btn btn--secondary btn--sm">View Lab Rules →</a>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ── Printer Monitoring ── -->
+    <section class="section" aria-labelledby="monitoring-heading">
+      <div class="container">
+        <div class="section-header">
+          <p class="section-eyebrow">During Class</p>
+          <h2 class="section-title" id="monitoring-heading">Printer Monitoring Expectations</h2>
+        </div>
+        <div class="grid-2">
+          <div>
+            <h3 class="card__title" style="margin-bottom:var(--space-4);">Active Monitoring</h3>
+            <ul class="feature-list">
+              <li>Check active prints every 10–15 minutes for quality issues</li>
+              <li>Watch for spaghetti failures on the first few layers</li>
+              <li>Verify filament is feeding properly from the AMS</li>
+              <li>Watch for clogged nozzles (grinding noise, no extrusion)</li>
+              <li>Check bed adhesion on the first layer before walking away</li>
+            </ul>
+          </div>
+          <div>
+            <h3 class="card__title" style="margin-bottom:var(--space-4);">End-of-Class Cleanup</h3>
+            <ul class="feature-list">
+              <li>Remove all completed prints from the build plates</li>
+              <li>Clear support material and filament scraps from the area</li>
+              <li>Wipe down printer exteriors and surfaces</li>
+              <li>Verify the AMS has adequate filament for upcoming sessions</li>
+              <li>Log any printer issues in the maintenance record</li>
+              <li>Leave printers in a clean, ready state for the next class</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ── Footer ── -->
+  <footer class="site-footer" aria-label="Site footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <a href="/" class="footer-brand" aria-label="GCI 3D Print Lab – Home">
+            <span class="footer-brand-icon" aria-hidden="true">🖨️</span>
+            GCI 3D Print Lab
+          </a>
+          <p class="footer-tagline">Student-operated 3D printing lab at Genesee Community College. Part of <a href="https://www.geneseelearninglab.com" target="_blank" rel="noopener noreferrer">GeneseeLearningLab.com</a>.</p>
+        </div>
+        <div>
+          <p class="footer-heading">Training</p>
+          <ul class="footer-links">
+            <li><a href="/training/">Training Home</a></li>
+            <li><a href="/training/day1.html">Day 1 – Foundations</a></li>
+            <li><a href="/training/day2.html">Day 2 – Model to Print</a></li>
+            <li><a href="/training/day3.html">Day 3 – Design</a></li>
+            <li><a href="/training/day4.html">Day 4 – Troubleshoot</a></li>
+            <li><a href="/training/day5.html">Day 5 – Capstone</a></li>
+          </ul>
+        </div>
+        <div>
+          <p class="footer-heading">Print System</p>
+          <ul class="footer-links">
+            <li><a href="/print-farm.html">Print Farm</a></li>
+            <li><a href="/requests.html">Submit a Request</a></li>
+            <li><a href="/queue.html">Live Queue</a></li>
+            <li><a href="/resources.html">Resources</a></li>
+            <li><a href="/training/glossary.html">Glossary</a></li>
+          </ul>
+        </div>
+        <div>
+          <p class="footer-heading">Site</p>
+          <ul class="footer-links">
+            <li><a href="/">Home</a></li>
+            <li><a href="/projects.html">Projects</a></li>
+            <li><a href="/instructor.html">Instructor</a></li>
+            <li><a href="https://www.geneseelearninglab.com" target="_blank" rel="noopener noreferrer">GeneseeLearningLab.com ↗</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p class="footer-copyright">© 2025 GCI 3D Print Lab · Genesee Community College · <a href="https://www.geneseelearninglab.com" target="_blank" rel="noopener noreferrer">GeneseeLearningLab.com</a></p>
+        <div class="footer-meta-links">
+          <a href="https://github.com/aspiece/GCIPrintFarm" target="_blank" rel="noopener noreferrer">GitHub</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>
