@@ -170,6 +170,7 @@
         requestType:        'student',
         firstName:          (form.querySelector('#s-firstName')        || {}).value || '',
         lastName:           (form.querySelector('#s-lastName')         || {}).value || '',
+        email:              (form.querySelector('#s-email')            || {}).value || '',
         className:          (form.querySelector('#s-className')        || {}).value || '',
         classPeriod:        (form.querySelector('#s-classPeriod')      || {}).value || '',
         projectType:        (form.querySelector('#s-projectType')      || {}).value || '',

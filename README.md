@@ -43,12 +43,13 @@ This repository now includes a full **print request and live queue system** inte
 
 ## 🔧 How the Print Request Workflow Works
 
-1. **Student or staff submits** a request through `requests.html`
+1. **Student or staff submits** a request through `requests.html` (email address required)
 2. The form validates required fields, then sends the payload via `fetch()` to a Google Apps Script endpoint
 3. **Google Apps Script** receives the POST, appends the submission to a private Google Sheet, and assigns a Job ID
 4. A **helpdesk operator** reviews the submission and updates the job status in the Sheet
-5. The public `queue.html` fetches **sanitized data only** from a separate GAS endpoint — no names, emails, or file links are ever exposed
-6. The queue auto-refreshes every 60 seconds and supports filter controls (Waiting / Printing / Complete / Ready for Pickup)
+5. When status changes to **Ready for Pickup** or **Needs Revision**, the Apps Script installable trigger automatically emails the submitter
+6. The public `queue.html` fetches **sanitized data only** from a separate GAS endpoint — no names, emails, or file links are ever exposed
+7. The queue auto-refreshes every 60 seconds and supports filter controls (Waiting / Printing / Complete / Ready for Pickup)
 
 ---
 
@@ -80,7 +81,7 @@ All three endpoints can point to the same deployed web app URL if you use a sing
 ```
 Timestamp | Job ID | Request Type | First Name | Last Name | Class/Department |
 Class Period | Project Type | File Name | File Link | Estimated Print Time |
-Filament Color | Printer Requested | Checklist | Notes | Status | Printer Assigned | Pickup Status
+Filament Color | Printer Requested | Checklist | Notes | Status | Printer Assigned | Pickup Status | Email
 ```
 
 4. Create a second sheet tab named **`Queue`** with these headers:
@@ -136,7 +137,8 @@ function doPost(e) {
         sanitize(body.notes),
         'Submitted',   // Status
         '',            // Printer Assigned
-        'No'           // Pickup Status
+        'No',          // Pickup Status
+        sanitize(body.email)  // Email
       ];
     } else if (body.requestType === 'staff') {
       row = [
@@ -157,7 +159,8 @@ function doPost(e) {
         sanitize(body.notes),
         'Submitted',
         '',
-        'No'
+        'No',
+        sanitize(body.email)  // Email
       ];
     } else {
       throw new Error('Unknown requestType');
@@ -225,7 +228,92 @@ function sanitize(value) {
   if (value === undefined || value === null) return '';
   return String(value).replace(/<[^>]*>/g, '').trim().slice(0, 500);
 }
+
+// ── Status-change email notifications ───────────────────────
+// Called automatically by an installable onEdit trigger (see Step 2b).
+// Sends an email when an operator changes Status to "Ready for Pickup"
+// or "Needs Revision".
+function onEditInstallable(e) {
+  if (!e || !e.range) return;
+
+  var sheet = e.range.getSheet();
+  if (sheet.getName() !== SHEET_SUBMISSIONS) return;
+
+  // Status lives in column 16 (1-based) — adjust if you added columns before it
+  var STATUS_COL = 16;
+  if (e.range.getColumn() !== STATUS_COL) return;
+
+  var newStatus = e.value || '';
+  if (newStatus !== 'Ready for Pickup' && newStatus !== 'Needs Revision') return;
+
+  var row = e.range.getRow();
+  if (row === 1) return; // skip header
+
+  var rowData = sheet.getRange(row, 1, 1, sheet.getLastColumn()).getValues()[0];
+  var jobId     = String(rowData[1]  || '');
+  var firstName = String(rowData[3]  || '');
+  var email     = String(rowData[18] || ''); // Email column (0-indexed 18)
+
+  if (!email) return; // no email on file — skip silently
+
+  try {
+    var subject, body;
+    if (newStatus === 'Ready for Pickup') {
+      subject = 'Your 3D print is ready for pickup! (Job ' + jobId + ')';
+      body =
+        'Hi ' + firstName + ',\n\n' +
+        'Great news — your 3D print job ' + jobId + ' has passed inspection ' +
+        'and is ready for pickup at the GCI Print Lab.\n\n' +
+        'Stop by during lab hours to collect your print. ' +
+        'If you have any questions, ask your lab operator.\n\n' +
+        '— GCI Print Lab\n' +
+        'https://print.geneseelearninglab.com';
+    } else {
+      subject = 'Action required: your 3D print needs revision (Job ' + jobId + ')';
+      body =
+        'Hi ' + firstName + ',\n\n' +
+        'Your 3D print job ' + jobId + ' could not be approved as submitted. ' +
+        'Please review the feedback from your lab operator and resubmit your file.\n\n' +
+        'Visit the submission page to try again:\n' +
+        'https://print.geneseelearninglab.com/requests.html\n\n' +
+        '— GCI Print Lab';
+    }
+    GmailApp.sendEmail(email, subject, body);
+  } catch (err) {
+    console.error('Email notification failed for job ' + jobId + ': ' + err.message);
+  }
+}
+
+// ── Run this ONCE to register the installable trigger ────────
+// Open the Apps Script editor, select this function from the dropdown,
+// and click Run. You only need to do this one time per deployment.
+function installStatusTrigger() {
+  var ss = SpreadsheetApp.openById(SPREADSHEET_ID);
+  // Remove any existing copies to avoid duplicate emails
+  ScriptApp.getProjectTriggers().forEach(function (t) {
+    if (t.getHandlerFunction() === 'onEditInstallable') {
+      ScriptApp.deleteTrigger(t);
+    }
+  });
+  ScriptApp.newTrigger('onEditInstallable')
+    .forSpreadsheet(ss)
+    .onEdit()
+    .create();
+  console.log('Status notification trigger installed successfully.');
+}
 ```
+
+---
+
+### Step 2b — Install the Status-Change Email Trigger
+
+The `onEditInstallable` function sends notification emails when you change a job's Status to **Ready for Pickup** or **Needs Revision**. Because it uses Gmail it must run as an **installable trigger** (not a simple `onEdit`), which means you register it once from the editor:
+
+1. In the Apps Script editor, select **`installStatusTrigger`** from the function dropdown at the top.
+2. Click **Run** (▶). You will be prompted to authorize Gmail access — grant it.
+3. That's it. The trigger is now registered. You can verify it under **Triggers** (clock icon in the left sidebar).
+
+> **Note:** You only need to run `installStatusTrigger` once. It removes any old copy of itself automatically, so it's safe to re-run if needed.
 
 ---
 
@@ -325,9 +413,9 @@ See the full [Training README](training/README.md) for details on the program st
 ## 🚀 Recommended Next Improvements
 
 - Add an instructor-only Google Sheet view with filtering and bulk status updates
-- Send email confirmations from Apps Script when a job is approved or ready for pickup
+- ~~Send email confirmations from Apps Script when a job is approved or ready for pickup~~ ✅ Done — `onEditInstallable` handles Ready for Pickup and Needs Revision notifications
 - Add Google Form as a fallback for students without JavaScript enabled
 - Expand `instructor.html` with linked rubrics, grading templates, and class handouts
-- Add an automated "Needs Revision" email notification from Apps Script to the student
+- ~~Add an automated "Needs Revision" email notification from Apps Script to the student~~ ✅ Done — see above
 - Consider migrating to a Cloudflare Worker or similar backend for better CORS handling if GAS CORS issues arise
 
