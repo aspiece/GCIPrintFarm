@@ -117,17 +117,17 @@
               <div class="form-row">
                 <div class="form-group">
                   <label class="form-label" for="s-firstName">First Name <span class="required" aria-hidden="true">*</span></label>
-                  <input class="form-input" type="text" id="s-firstName" name="firstName" required autocomplete="given-name" />
+                  <input class="form-input" type="text" id="s-firstName" name="firstName" aria-required="true" required autocomplete="given-name" />
                 </div>
                 <div class="form-group">
                   <label class="form-label" for="s-lastName">Last Name <span class="required" aria-hidden="true">*</span></label>
-                  <input class="form-input" type="text" id="s-lastName" name="lastName" required autocomplete="family-name" />
+                  <input class="form-input" type="text" id="s-lastName" name="lastName" aria-required="true" required autocomplete="family-name" />
                 </div>
               </div>
               <div class="form-row">
                 <div class="form-group">
                   <label class="form-label" for="s-className">Class <span class="required" aria-hidden="true">*</span></label>
-                  <select class="form-select" id="s-className" name="className" required>
+                  <select class="form-select" id="s-className" name="className" aria-required="true" required>
                     <option value="">— Select class —</option>
                     <option value="Intro to 3D Printing">Intro to 3D Printing</option>
                     <option value="Computer Science">Computer Science</option>
@@ -139,7 +139,7 @@
                 </div>
                 <div class="form-group">
                   <label class="form-label" for="s-classPeriod">Class Period <span class="required" aria-hidden="true">*</span></label>
-                  <select class="form-select" id="s-classPeriod" name="classPeriod" required>
+                  <select class="form-select" id="s-classPeriod" name="classPeriod" aria-required="true" required>
                     <option value="">— Select period —</option>
                     <option value="Session 1">Session 1</option>
                     <option value="Session 2">Session 2</option>
@@ -154,7 +154,7 @@
               <h3 class="form-section-title"><span aria-hidden="true">📁</span> Project Details</h3>
               <div class="form-group">
                 <label class="form-label" for="s-projectType">Project Type <span class="required" aria-hidden="true">*</span></label>
-                <select class="form-select" id="s-projectType" name="projectType" required>
+                <select class="form-select" id="s-projectType" name="projectType" aria-required="true" required>
                   <option value="">— Select project type —</option>
                   <option value="MakerWorld Print">MakerWorld Print</option>
                   <option value="School Keychain">School Keychain</option>
@@ -165,13 +165,13 @@
               <div class="form-row">
                 <div class="form-group">
                   <label class="form-label" for="s-fileName">File Name <span class="required" aria-hidden="true">*</span></label>
-                  <input class="form-input" type="text" id="s-fileName" name="fileName" required
+                  <input class="form-input" type="text" id="s-fileName" name="fileName" aria-required="true" required
                     placeholder="Lastname_Firstname_Project_v1" />
                   <p class="form-help">Use the format: Lastname_Firstname_Project_v1</p>
                 </div>
                 <div class="form-group">
                   <label class="form-label" for="s-fileLink">File Link <span class="required" aria-hidden="true">*</span></label>
-                  <input class="form-input" type="url" id="s-fileLink" name="fileLink" required
+                  <input class="form-input" type="url" id="s-fileLink" name="fileLink" aria-required="true" required
                     placeholder="https://…" />
                   <p class="form-help">Google Drive, MakerWorld, or similar link</p>
                 </div>
@@ -184,7 +184,7 @@
               <div class="form-row">
                 <div class="form-group">
                   <label class="form-label" for="s-estimatedPrint">Estimated Print Time <span class="required" aria-hidden="true">*</span></label>
-                  <select class="form-select" id="s-estimatedPrint" name="estimatedPrintTime" required>
+                  <select class="form-select" id="s-estimatedPrint" name="estimatedPrintTime" aria-required="true" required>
                     <option value="">— Select estimated time —</option>
                     <option value="Under 30 Minutes">Under 30 Minutes</option>
                     <option value="30–60 Minutes">30–60 Minutes</option>
@@ -194,7 +194,7 @@
                 </div>
                 <div class="form-group">
                   <label class="form-label" for="s-filamentColor">Filament Color Requested <span class="required" aria-hidden="true">*</span></label>
-                  <select class="form-select" id="s-filamentColor" name="filamentColor" required>
+                  <select class="form-select" id="s-filamentColor" name="filamentColor" aria-required="true" required>
                     <option value="">— Select color —</option>
                     <option value="Black">Black</option>
                     <option value="White">White</option>
@@ -209,7 +209,7 @@
               </div>
               <div class="form-group">
                 <label class="form-label" for="s-printerRequested">Printer Requested <span class="required" aria-hidden="true">*</span></label>
-                <select class="form-select" id="s-printerRequested" name="printerRequested" required>
+                <select class="form-select" id="s-printerRequested" name="printerRequested" aria-required="true" required>
                   <option value="">— Select printer —</option>
                   <option value="Any Available">Any Available</option>
                   <option value="P1S">P1S (Enclosed – High-Temp)</option>
@@ -229,27 +229,27 @@
                 <legend class="sr-only">Pre-print checklist — all items required</legend>
                 <div class="form-checkbox-group">
                   <label class="form-checkbox-item">
-                    <input type="checkbox" value="scaled-correctly" required />
+                    <input type="checkbox" value="scaled-correctly" aria-required="true" required />
                     <span>My model is scaled correctly</span>
                   </label>
                   <label class="form-checkbox-item">
-                    <input type="checkbox" value="on-build-plate" required />
+                    <input type="checkbox" value="on-build-plate" aria-required="true" required />
                     <span>My model is on the build plate</span>
                   </label>
                   <label class="form-checkbox-item">
-                    <input type="checkbox" value="checked-supports" required />
+                    <input type="checkbox" value="checked-supports" aria-required="true" required />
                     <span>I checked supports</span>
                   </label>
                   <label class="form-checkbox-item">
-                    <input type="checkbox" value="checked-print-time" required />
+                    <input type="checkbox" value="checked-print-time" aria-required="true" required />
                     <span>I checked print time</span>
                   </label>
                   <label class="form-checkbox-item">
-                    <input type="checkbox" value="saved-correct-file" required />
+                    <input type="checkbox" value="saved-correct-file" aria-required="true" required />
                     <span>I saved the correct file</span>
                   </label>
                   <label class="form-checkbox-item">
-                    <input type="checkbox" value="ready-for-review" required />
+                    <input type="checkbox" value="ready-for-review" aria-required="true" required />
                     <span>I am ready for review</span>
                   </label>
                 </div>
@@ -294,21 +294,21 @@
               <div class="form-row">
                 <div class="form-group">
                   <label class="form-label" for="t-firstName">First Name <span class="required" aria-hidden="true">*</span></label>
-                  <input class="form-input" type="text" id="t-firstName" name="firstName" required autocomplete="given-name" />
+                  <input class="form-input" type="text" id="t-firstName" name="firstName" aria-required="true" required autocomplete="given-name" />
                 </div>
                 <div class="form-group">
                   <label class="form-label" for="t-lastName">Last Name <span class="required" aria-hidden="true">*</span></label>
-                  <input class="form-input" type="text" id="t-lastName" name="lastName" required autocomplete="family-name" />
+                  <input class="form-input" type="text" id="t-lastName" name="lastName" aria-required="true" required autocomplete="family-name" />
                 </div>
               </div>
               <div class="form-row">
                 <div class="form-group">
                   <label class="form-label" for="t-department">Department or Program <span class="required" aria-hidden="true">*</span></label>
-                  <input class="form-input" type="text" id="t-department" name="department" required />
+                  <input class="form-input" type="text" id="t-department" name="department" aria-required="true" required />
                 </div>
                 <div class="form-group">
                   <label class="form-label" for="t-email">Email Address <span class="required" aria-hidden="true">*</span></label>
-                  <input class="form-input" type="email" id="t-email" name="email" required autocomplete="email" />
+                  <input class="form-input" type="email" id="t-email" name="email" aria-required="true" required autocomplete="email" />
                 </div>
               </div>
             </div>
@@ -318,7 +318,7 @@
               <h3 class="form-section-title"><span aria-hidden="true">📁</span> Project Details</h3>
               <div class="form-group">
                 <label class="form-label" for="t-projectName">Project Name <span class="required" aria-hidden="true">*</span></label>
-                <input class="form-input" type="text" id="t-projectName" name="projectName" required />
+                <input class="form-input" type="text" id="t-projectName" name="projectName" aria-required="true" required />
               </div>
               <div class="form-group">
                 <label class="form-label" for="t-purpose">Purpose of Print <span class="required" aria-hidden="true">*</span></label>
@@ -328,7 +328,7 @@
               <div class="form-row">
                 <div class="form-group">
                   <label class="form-label" for="t-quantity">Quantity <span class="required" aria-hidden="true">*</span></label>
-                  <input class="form-input" type="number" id="t-quantity" name="quantity" required min="1" max="50" value="1" />
+                  <input class="form-input" type="number" id="t-quantity" name="quantity" aria-required="true" required min="1" max="50" value="1" />
                 </div>
                 <div class="form-group">
                   <label class="form-label" for="t-neededByDate">Needed By Date</label>
@@ -343,12 +343,12 @@
               <div class="form-row">
                 <div class="form-group">
                   <label class="form-label" for="t-fileName">File Name <span class="required" aria-hidden="true">*</span></label>
-                  <input class="form-input" type="text" id="t-fileName" name="fileName" required
+                  <input class="form-input" type="text" id="t-fileName" name="fileName" aria-required="true" required
                     placeholder="Department_ProjectName_v1" />
                 </div>
                 <div class="form-group">
                   <label class="form-label" for="t-fileLink">File Link <span class="required" aria-hidden="true">*</span></label>
-                  <input class="form-input" type="url" id="t-fileLink" name="fileLink" required
+                  <input class="form-input" type="url" id="t-fileLink" name="fileLink" aria-required="true" required
                     placeholder="https://…" />
                 </div>
               </div>

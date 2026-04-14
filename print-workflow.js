@@ -42,9 +42,15 @@
   /** Set button loading state. */
   function setButtonLoading(btn, isLoading) {
     if (!btn) return;
+    // Store the original text the first time we enter loading state
+    if (isLoading && !btn.dataset.defaultText) {
+      btn.dataset.defaultText = btn.textContent.trim();
+    }
     btn.disabled = isLoading;
     btn.setAttribute('aria-busy', String(isLoading));
-    btn.textContent = isLoading ? btn.dataset.loadingText || 'Submitting…' : btn.dataset.defaultText || 'Submit';
+    btn.textContent = isLoading
+      ? (btn.dataset.loadingText || 'Submitting…')
+      : (btn.dataset.defaultText || btn.textContent);
   }
 
   /** Collect all checked checkbox values from a fieldset. */
@@ -61,7 +67,7 @@
    */
   function submitToGAS(endpoint, payload, onSuccess, onError) {
     if (!endpoint || endpoint === 'YOUR_GOOGLE_APPS_SCRIPT_URL_HERE') {
-      onError('The submission endpoint has not been configured yet. Please contact the lab instructor.');
+      onError('The submission endpoint has not been configured yet. Please ask your instructor to complete the Google Apps Script setup described in the README.');
       return;
     }
 
@@ -368,7 +374,7 @@
   function fetchQueue() {
     var endpoint = cfg('QUEUE_ENDPOINT');
     if (!endpoint || endpoint === 'YOUR_GOOGLE_APPS_SCRIPT_URL_HERE') {
-      showQueueError('The queue endpoint has not been configured yet. Please contact the lab instructor.');
+      showQueueError('The queue endpoint has not been configured yet. See the README for Google Apps Script setup instructions.');
       return;
     }
 

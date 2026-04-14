@@ -1270,7 +1270,6 @@ li {
 .form-label .required {
   color: var(--color-danger);
   margin-left: 2px;
-  aria-hidden: true;
 }
 
 .form-input,
