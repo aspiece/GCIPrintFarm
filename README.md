@@ -417,5 +417,5 @@ See the full [Training README](training/README.md) for details on the program st
 - Add Google Form as a fallback for students without JavaScript enabled
 - Expand `instructor.html` with linked rubrics, grading templates, and class handouts
 - ~~Add an automated "Needs Revision" email notification from Apps Script to the student~~ ✅ Done — see above
-- Consider migrating to a Cloudflare Worker or similar backend for better CORS handling if GAS CORS issues arise
+- ~~Consider migrating to a Cloudflare Worker or similar backend for better CORS handling if GAS CORS issues arise~~ ✅ Done — `doPost` returns JSON with `Content-Type: application/json`; frontend now uses `mode:'cors'` and displays the assigned Job ID on success
 

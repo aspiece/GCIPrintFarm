@@ -61,9 +61,10 @@
 
   /**
    * Submit a payload to a Google Apps Script endpoint.
-   * Uses mode:'no-cors' because GAS does not return CORS headers on POST by default.
-   * The request is sent as a plain-text JSON body to avoid a CORS preflight.
-   * The response will be opaque, so we treat a network completion as success.
+   * Uses mode:'cors' so the JSON response (including the assigned Job ID) is readable.
+   * The request is sent as plain-text JSON to avoid a CORS preflight — GAS handles
+   * CORS automatically when the web app is deployed with "Anyone" access.
+   * onSuccess is called with the jobId string from the server response.
    */
   function submitToGAS(endpoint, payload, onSuccess, onError) {
     if (!endpoint || endpoint === 'YOUR_GOOGLE_APPS_SCRIPT_URL_HERE') {
@@ -73,13 +74,20 @@
 
     fetch(endpoint, {
       method: 'POST',
-      mode: 'no-cors',
+      mode: 'cors',
       headers: { 'Content-Type': 'text/plain' },
       body: JSON.stringify(payload)
     })
-      .then(function () {
-        // Response is opaque in no-cors mode — treat completion as success.
-        onSuccess();
+      .then(function (res) {
+        return res.json();
+      })
+      .then(function (data) {
+        if (data && data.success) {
+          onSuccess(data.jobId || '');
+        } else {
+          var serverMsg = (data && data.error) ? data.error : 'The server reported an error. Please try again or contact the lab.';
+          onError(serverMsg);
+        }
       })
       .catch(function (err) {
         console.error('[PrintWorkflow] Submission error:', err);
@@ -186,9 +194,10 @@
       submitToGAS(
         cfg('STUDENT_SUBMIT_ENDPOINT'),
         payload,
-        function () {
+        function (jobId) {
           setButtonLoading(btn, false);
-          setFeedback(feedback, 'success', 'Your print request was submitted! A lab operator will review it and follow up with you.');
+          var idNote = jobId ? ' Your Job ID is \u200b' + jobId + '.' : '';
+          setFeedback(feedback, 'success', 'Your print request was submitted!' + idNote + ' A lab operator will review it and follow up with you.');
           form.reset();
           form.scrollIntoView({ behavior: 'smooth', block: 'start' });
         },
@@ -241,9 +250,10 @@
       submitToGAS(
         cfg('STAFF_SUBMIT_ENDPOINT'),
         payload,
-        function () {
+        function (jobId) {
           setButtonLoading(btn, false);
-          setFeedback(feedback, 'success', 'Your staff request was submitted! The lab will follow up with you by email.');
+          var idNote = jobId ? ' Your Job ID is \u200b' + jobId + '.' : '';
+          setFeedback(feedback, 'success', 'Your staff request was submitted!' + idNote + ' The lab will follow up with you by email.');
           form.reset();
           form.scrollIntoView({ behavior: 'smooth', block: 'start' });
         },
