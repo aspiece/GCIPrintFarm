@@ -88,7 +88,5 @@ Shared JavaScript loaded by all five day pages. Includes:
 |------|-------------|
 | [`glossary.html`](glossary.html) | 3D printing glossary |
 | [`../Intro_to_3D_Printing.html`](../Intro_to_3D_Printing.html) | All-in-one tabbed guide (alternative format) |
-| [`../Intro_to_3D_Printing_Orientation.html`](../Intro_to_3D_Printing_Orientation.html) | Pre-lab orientation activities |
-| [`../Digital_3D_Printing_Notebook_Bambu_A1.html`](../Digital_3D_Printing_Notebook_Bambu_A1.html) | Student digital notebook |
 | [`../GCI3Dorder.html`](../GCI3Dorder.html) | 3D print order form |
 | [`../Invoice_Generator.html`](../Invoice_Generator.html) | Invoice generator |

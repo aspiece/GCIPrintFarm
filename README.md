@@ -45,9 +45,9 @@ This repository now includes a full **print request and live queue system** inte
 
 1. **Student or staff submits** a request through `requests.html` (email address required)
 2. The form validates required fields, then sends the payload via `fetch()` to a Google Apps Script endpoint
-3. **Google Apps Script** receives the POST, appends the submission to a private Google Sheet, and assigns a Job ID
-4. A **helpdesk operator** reviews the submission and updates the job status in the Sheet
-5. When status changes to **Ready for Pickup** or **Needs Revision**, the Apps Script installable trigger automatically emails the submitter
+3. **Google Apps Script** receives the POST, appends the submission to a private Google Sheet, assigns a Job ID, and **immediately emails the submitter** a confirmation with their Job ID
+4. A **helpdesk operator** reviews the submission and updates the job status in the `Submissions` sheet
+5. Whenever the operator saves a new Status value, the installable trigger **automatically rebuilds the `Queue` tab** (public-safe fields only) and emails the submitter when status becomes **Ready for Pickup** or **Needs Revision**
 6. The public `queue.html` fetches **sanitized data only** from a separate GAS endpoint — no names, emails, or file links are ever exposed
 7. The queue auto-refreshes every 60 seconds and supports filter controls (Waiting / Printing / Complete / Ready for Pickup)
 
@@ -168,6 +168,13 @@ function doPost(e) {
 
     sheet.appendRow(row);
 
+    // Send an immediate confirmation email so the submitter knows their Job ID
+    var email = sanitize(body.email);
+    var firstName = sanitize(body.firstName);
+    if (email) {
+      sendSubmissionConfirmation(jobId, firstName, email, body.requestType);
+    }
+
     return ContentService
       .createTextOutput(JSON.stringify({ success: true, jobId: jobId }))
       .setMimeType(ContentService.MimeType.JSON);
@@ -229,10 +236,71 @@ function sanitize(value) {
   return String(value).replace(/<[^>]*>/g, '').trim().slice(0, 500);
 }
 
-// ── Status-change email notifications ───────────────────────
+// ── Immediate submission confirmation email ──────────────────
+// Sent by doPost() as soon as the row is appended to Submissions.
+function sendSubmissionConfirmation(jobId, firstName, email, requestType) {
+  try {
+    var greeting = firstName ? 'Hi ' + firstName + ',' : 'Hello,';
+    var typeLabel = requestType === 'staff' ? 'staff' : 'print';
+    var subject = 'Print request received — Job ' + jobId;
+    var body =
+      greeting + '\n\n' +
+      'We received your 3D ' + typeLabel + ' request and it has been logged.\n\n' +
+      'Your Job ID is: ' + jobId + '\n\n' +
+      'A lab operator will review your submission and begin printing when a printer is ' +
+      'available. You will receive another email when your print is ready for pickup or ' +
+      'if any revisions are needed.\n\n' +
+      'You can check the live status of your job at:\n' +
+      'https://print.geneseelearninglab.com/queue.html\n\n' +
+      '— GCI Print Lab\n' +
+      'https://print.geneseelearninglab.com';
+    GmailApp.sendEmail(email, subject, body);
+  } catch (err) {
+    console.error('Confirmation email failed for job ' + jobId + ': ' + err.message);
+  }
+}
+
+// ── Sync the Queue sheet from Submissions ────────────────────
+// Rebuilds the Queue tab so it always mirrors the active jobs visible
+// on the public queue page. Called automatically by onEditInstallable
+// whenever an operator changes a Status value.
+function syncQueueSheet() {
+  try {
+    var ss = SpreadsheetApp.openById(SPREADSHEET_ID);
+    var subSheet = ss.getSheetByName(SHEET_SUBMISSIONS);
+    var qSheet   = ss.getSheetByName(SHEET_QUEUE);
+    if (!subSheet || !qSheet) return;
+
+    var data = subSheet.getDataRange().getValues();
+    var activeStatuses = ['Waiting', 'Printing', 'Complete', 'Ready for Pickup'];
+
+    // Collect public-safe fields for every active job
+    var queueRows = [['Job ID', 'Project Type', 'Status', 'Printer Assigned', 'Pickup Status']];
+    for (var i = 1; i < data.length; i++) {
+      var row = data[i];
+      var status = String(row[15] || '');
+      if (activeStatuses.indexOf(status) === -1) continue;
+      queueRows.push([
+        String(row[1]  || ''),   // Job ID
+        String(row[7]  || ''),   // Project Type
+        status,                  // Status
+        String(row[16] || ''),   // Printer Assigned
+        String(row[17] || 'No')  // Pickup Status
+      ]);
+    }
+
+    // Clear and rewrite — keeps the tab perfectly in sync with Submissions
+    qSheet.clearContents();
+    qSheet.getRange(1, 1, queueRows.length, 5).setValues(queueRows);
+  } catch (err) {
+    console.error('syncQueueSheet failed: ' + err.message);
+  }
+}
+
+// ── Status-change trigger ────────────────────────────────────
 // Called automatically by an installable onEdit trigger (see Step 2b).
-// Sends an email when an operator changes Status to "Ready for Pickup"
-// or "Needs Revision".
+// • Syncs the Queue sheet on every Status change.
+// • Emails the submitter when Status becomes "Ready for Pickup" or "Needs Revision".
 function onEditInstallable(e) {
   if (!e || !e.range) return;
 
@@ -244,10 +312,14 @@ function onEditInstallable(e) {
   if (e.range.getColumn() !== STATUS_COL) return;
 
   var newStatus = e.value || '';
-  if (newStatus !== 'Ready for Pickup' && newStatus !== 'Needs Revision') return;
-
   var row = e.range.getRow();
   if (row === 1) return; // skip header
+
+  // Always keep the Queue tab in sync whenever any Status value changes
+  syncQueueSheet();
+
+  // Only send email for specific status transitions
+  if (newStatus !== 'Ready for Pickup' && newStatus !== 'Needs Revision') return;
 
   var rowData = sheet.getRange(row, 1, 1, sheet.getLastColumn()).getValues()[0];
   var jobId     = String(rowData[1]  || '');
@@ -289,7 +361,7 @@ function onEditInstallable(e) {
 // and click Run. You only need to do this one time per deployment.
 function installStatusTrigger() {
   var ss = SpreadsheetApp.openById(SPREADSHEET_ID);
-  // Remove any existing copies to avoid duplicate emails
+  // Remove any existing copies to avoid duplicate triggers
   ScriptApp.getProjectTriggers().forEach(function (t) {
     if (t.getHandlerFunction() === 'onEditInstallable') {
       ScriptApp.deleteTrigger(t);
@@ -305,9 +377,14 @@ function installStatusTrigger() {
 
 ---
 
-### Step 2b — Install the Status-Change Email Trigger
+### Step 2b — Install the Status-Change Trigger
 
-The `onEditInstallable` function sends notification emails when you change a job's Status to **Ready for Pickup** or **Needs Revision**. Because it uses Gmail it must run as an **installable trigger** (not a simple `onEdit`), which means you register it once from the editor:
+The `onEditInstallable` function does two things whenever an operator changes a Status value in the `Submissions` sheet:
+
+1. **Rebuilds the `Queue` tab** automatically so it always reflects the current active jobs.
+2. **Emails the submitter** when Status becomes **Ready for Pickup** or **Needs Revision**.
+
+Because it uses Gmail it must run as an **installable trigger** (not a simple `onEdit`), which means you register it once from the editor:
 
 1. In the Apps Script editor, select **`installStatusTrigger`** from the function dropdown at the top.
 2. Click **Run** (▶). You will be prompted to authorize Gmail access — grant it.
@@ -349,7 +426,7 @@ To update job statuses, open your Google Sheet and edit the **Status** column in
 
 Set the **Printer Assigned** column (e.g. `P1S-1`, `A1-2`) and **Pickup Status** column (`Yes` / `No`) as appropriate.
 
-The public queue at `queue.html` will reflect changes within 60 seconds (auto-refresh).
+The public queue at `queue.html` will reflect changes within 60 seconds (auto-refresh). The `Queue` sheet tab in your spreadsheet is also rebuilt automatically every time you save a new Status value, so operators can see the current queue at a glance without opening `queue.html`.
 
 ---
 
@@ -413,9 +490,10 @@ See the full [Training README](training/README.md) for details on the program st
 ## 🚀 Recommended Next Improvements
 
 - Add an instructor-only Google Sheet view with filtering and bulk status updates
-- ~~Send email confirmations from Apps Script when a job is approved or ready for pickup~~ ✅ Done — `onEditInstallable` handles Ready for Pickup and Needs Revision notifications
+- ~~Send email confirmations from Apps Script when a job is approved or ready for pickup~~ ✅ Done — `sendSubmissionConfirmation` fires immediately on submission; `onEditInstallable` handles Ready for Pickup and Needs Revision notifications
 - Add Google Form as a fallback for students without JavaScript enabled
 - Expand `instructor.html` with linked rubrics, grading templates, and class handouts
 - ~~Add an automated "Needs Revision" email notification from Apps Script to the student~~ ✅ Done — see above
+- ~~Keep the Queue sheet auto-synced when status changes~~ ✅ Done — `syncQueueSheet()` rebuilds the Queue tab on every Status edit
 - ~~Consider migrating to a Cloudflare Worker or similar backend for better CORS handling if GAS CORS issues arise~~ ✅ Done — `doPost` returns JSON with `Content-Type: application/json`; frontend now uses `mode:'cors'` and displays the assigned Job ID on success
 
