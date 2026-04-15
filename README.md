@@ -90,7 +90,24 @@ Filament Color | Printer Requested | Checklist | Notes | Status | Printer Assign
 Job ID | Project Type | Status | Printer Assigned | Pickup Status
 ```
 
-The Apps Script will copy only the public-safe fields from `Submissions` into `Queue` when updating.
+5. Create a third sheet tab named **`Dropdown Options`** with these headers in row 1:
+
+```
+Status | Printer Assigned | Pickup Status
+```
+
+Then add your choices underneath each header. Example:
+
+| Status | Printer Assigned | Pickup Status |
+|---|---|---|
+| Submitted | A1-1 | No |
+| Needs Revision | A1-2 | Yes |
+| Waiting | A1 Mini-1 |  |
+| Printing | P1S-1 |  |
+| Complete | P1S-2 |  |
+| Ready for Pickup |  |  |
+
+The Apps Script will copy only the public-safe fields from `Submissions` into `Queue` when updating, and will use `Dropdown Options` to power editable dropdowns in the `Submissions` tab.
 
 ---
 
@@ -104,7 +121,11 @@ The Apps Script will copy only the public-safe fields from `Submissions` into `Q
 var SPREADSHEET_ID = SpreadsheetApp.getActiveSpreadsheet().getId();
 var SHEET_SUBMISSIONS = 'Submissions';
 var SHEET_QUEUE = 'Queue';
+var SHEET_DROPDOWN_OPTIONS = 'Dropdown Options';
 var JOB_ID_PREFIX = 'PF-';  // e.g. PF-26-001
+var STATUS_COL = 16;             // P
+var PRINTER_ASSIGNED_COL = 17;   // Q
+var PICKUP_STATUS_COL = 18;      // R
 
 // ── POST: Receive form submissions ─────────────────────────
 function doPost(e) {
@@ -112,6 +133,10 @@ function doPost(e) {
     var body = JSON.parse(e.postData.contents);
     var ss = SpreadsheetApp.openById(SPREADSHEET_ID);
     var sheet = ss.getSheetByName(SHEET_SUBMISSIONS);
+    if (!sheet) throw new Error('Missing Submissions sheet');
+
+    // Keep dropdown validations in place before writing rows.
+    applySubmissionsDropdowns();
 
     var jobId = generateJobId(sheet);
     var timestamp = new Date().toISOString();
@@ -224,6 +249,88 @@ function doGet(e) {
 }
 
 // ── Helpers ─────────────────────────────────────────────────
+function getColumnValuesFromRow2(sheet, colIndex) {
+  if (!sheet) return [];
+  var lastRow = sheet.getLastRow();
+  if (lastRow < 2) return [];
+  var values = sheet.getRange(2, colIndex, lastRow - 1, 1).getValues();
+  var unique = {};
+  var out = [];
+  for (var i = 0; i < values.length; i++) {
+    var v = String(values[i][0] || '').trim();
+    if (!v || unique[v]) continue;
+    unique[v] = true;
+    out.push(v);
+  }
+  return out;
+}
+
+function getDropdownLists(ss) {
+  var optionsSheet = ss.getSheetByName(SHEET_DROPDOWN_OPTIONS);
+  if (!optionsSheet) {
+    optionsSheet = ss.insertSheet(SHEET_DROPDOWN_OPTIONS);
+    optionsSheet.getRange(1, 1, 1, 3).setValues([['Status', 'Printer Assigned', 'Pickup Status']]);
+    optionsSheet.getRange(2, 1, 6, 3).setValues([
+      ['Submitted', 'A1-1', 'No'],
+      ['Needs Revision', 'A1-2', 'Yes'],
+      ['Waiting', 'A1 Mini-1', ''],
+      ['Printing', 'P1S-1', ''],
+      ['Complete', 'P1S-2', ''],
+      ['Ready for Pickup', '', '']
+    ]);
+  }
+
+  var statuses = getColumnValuesFromRow2(optionsSheet, 1);
+  var printers = getColumnValuesFromRow2(optionsSheet, 2);
+  var pickups  = getColumnValuesFromRow2(optionsSheet, 3);
+
+  // Safe defaults if a column is empty.
+  if (statuses.length === 0) {
+    statuses = ['Submitted', 'Needs Revision', 'Waiting', 'Printing', 'Complete', 'Ready for Pickup'];
+  }
+  if (pickups.length === 0) {
+    pickups = ['No', 'Yes'];
+  }
+
+  return {
+    statuses: statuses,
+    printers: printers,
+    pickups: pickups
+  };
+}
+
+function applySubmissionsDropdowns() {
+  var ss = SpreadsheetApp.openById(SPREADSHEET_ID);
+  var subSheet = ss.getSheetByName(SHEET_SUBMISSIONS);
+  if (!subSheet) return;
+
+  var lists = getDropdownLists(ss);
+  var numRows = Math.max(subSheet.getMaxRows() - 1, 1); // from row 2 onward
+
+  var statusRule = SpreadsheetApp.newDataValidation()
+    .requireValueInList(lists.statuses, true)
+    .setAllowInvalid(false)
+    .build();
+  subSheet.getRange(2, STATUS_COL, numRows, 1).setDataValidation(statusRule);
+
+  var pickupRule = SpreadsheetApp.newDataValidation()
+    .requireValueInList(lists.pickups, true)
+    .setAllowInvalid(false)
+    .build();
+  subSheet.getRange(2, PICKUP_STATUS_COL, numRows, 1).setDataValidation(pickupRule);
+
+  // Printer assignment list is optional; only apply if choices exist.
+  if (lists.printers.length > 0) {
+    var printerRule = SpreadsheetApp.newDataValidation()
+      .requireValueInList(lists.printers, true)
+      .setAllowInvalid(false)
+      .build();
+    subSheet.getRange(2, PRINTER_ASSIGNED_COL, numRows, 1).setDataValidation(printerRule);
+  } else {
+    subSheet.getRange(2, PRINTER_ASSIGNED_COL, numRows, 1).clearDataValidations();
+  }
+}
+
 function generateJobId(sheet) {
   var lastRow = sheet.getLastRow();
   var year = new Date().getFullYear().toString().slice(-2);
@@ -305,10 +412,15 @@ function onEditInstallable(e) {
   if (!e || !e.range) return;
 
   var sheet = e.range.getSheet();
-  if (sheet.getName() !== SHEET_SUBMISSIONS) return;
+  var sheetName = sheet.getName();
 
-  // Status lives in column 16 (1-based) — adjust if you added columns before it
-  var STATUS_COL = 16;
+  // If dropdown options were edited, immediately re-apply validations.
+  if (sheetName === SHEET_DROPDOWN_OPTIONS) {
+    applySubmissionsDropdowns();
+    return;
+  }
+  if (sheetName !== SHEET_SUBMISSIONS) return;
+
   if (e.range.getColumn() !== STATUS_COL) return;
 
   var newStatus = e.value || '';
@@ -361,6 +473,8 @@ function onEditInstallable(e) {
 // and click Run. You only need to do this one time per deployment.
 function installStatusTrigger() {
   var ss = SpreadsheetApp.openById(SPREADSHEET_ID);
+  applySubmissionsDropdowns();
+
   // Remove any existing copies to avoid duplicate triggers
   ScriptApp.getProjectTriggers().forEach(function (t) {
     if (t.getHandlerFunction() === 'onEditInstallable') {
@@ -383,6 +497,7 @@ The `onEditInstallable` function does two things whenever an operator changes a 
 
 1. **Rebuilds the `Queue` tab** automatically so it always reflects the current active jobs.
 2. **Emails the submitter** when Status becomes **Ready for Pickup** or **Needs Revision**.
+3. **Re-applies Submissions dropdowns** when the `Dropdown Options` tab is edited.
 
 Because it uses Gmail it must run as an **installable trigger** (not a simple `onEdit`), which means you register it once from the editor:
 
@@ -390,7 +505,7 @@ Because it uses Gmail it must run as an **installable trigger** (not a simple `o
 2. Click **Run** (▶). You will be prompted to authorize Gmail access — grant it.
 3. That's it. The trigger is now registered. You can verify it under **Triggers** (clock icon in the left sidebar).
 
-> **Note:** You only need to run `installStatusTrigger` once. It removes any old copy of itself automatically, so it's safe to re-run if needed.
+> **Note:** You only need to run `installStatusTrigger` once. It removes any old copy of itself automatically, so it's safe to re-run if needed. It also applies dropdown validation rules to `Status`, `Printer Assigned`, and `Pickup Status`.
 
 ---
 
@@ -413,7 +528,7 @@ Paste this URL into all three endpoint fields in `print-config.js`.
 
 ### Step 4 — Managing the Queue
 
-To update job statuses, open your Google Sheet and edit the **Status** column in the `Submissions` tab directly:
+To update job statuses, open your Google Sheet and edit the **Status** column in the `Submissions` tab directly (using the dropdown):
 
 | Status Value | Meaning |
 |---|---|
@@ -424,7 +539,10 @@ To update job statuses, open your Google Sheet and edit the **Status** column in
 | `Complete` | Print finished; pending pickup inspection |
 | `Ready for Pickup` | Print passed inspection; student can collect |
 
-Set the **Printer Assigned** column (e.g. `P1S-1`, `A1-2`) and **Pickup Status** column (`Yes` / `No`) as appropriate.
+Set the **Printer Assigned** column (e.g. `P1S-1`, `A1-2`) and **Pickup Status** column (`Yes` / `No`) as appropriate using their dropdowns.
+
+To change any dropdown choices, edit the **`Dropdown Options`** tab.  
+Your changes will automatically apply to the `Submissions` tab.
 
 The public queue at `queue.html` will reflect changes within 60 seconds (auto-refresh). The `Queue` sheet tab in your spreadsheet is also rebuilt automatically every time you save a new Status value, so operators can see the current queue at a glance without opening `queue.html`.
 
@@ -496,4 +614,3 @@ See the full [Training README](training/README.md) for details on the program st
 - ~~Add an automated "Needs Revision" email notification from Apps Script to the student~~ ✅ Done — see above
 - ~~Keep the Queue sheet auto-synced when status changes~~ ✅ Done — `syncQueueSheet()` rebuilds the Queue tab on every Status edit
 - ~~Consider migrating to a Cloudflare Worker or similar backend for better CORS handling if GAS CORS issues arise~~ ✅ Done — `doPost` returns JSON with `Content-Type: application/json`; frontend now uses `mode:'cors'` and displays the assigned Job ID on success
-
