@@ -209,6 +209,101 @@
     });
   }
 
+  function currency(value) {
+    return '$' + (Number(value) || 0).toFixed(2);
+  }
+
+  function readStaffEstimateInputs(form) {
+    var quantityEl = form.querySelector('#t-quantity');
+    var printTimeEl = form.querySelector('#t-printTimeHours');
+    var filamentEl = form.querySelector('#t-filamentGrams');
+    var designFeeEl = form.querySelector('#t-designFee');
+    var taxExemptEl = form.querySelector('#t-taxExempt');
+
+    return {
+      quantity: parseInt((quantityEl || {}).value || '0', 10),
+      printTimeHours: parseFloat((printTimeEl || {}).value || '0'),
+      filamentGrams: parseFloat((filamentEl || {}).value || '0'),
+      includeDesignFee: !!((designFeeEl || {}).checked),
+      taxExempt: ((taxExemptEl || {}).value || 'false') === 'true'
+    };
+  }
+
+  function setEstimateFeedback(el, type, message) {
+    if (!el) return;
+    el.className = 'form-feedback form-feedback--' + type + ' is-visible';
+    var iconEl = el.querySelector('.form-feedback__icon');
+    var msgEl = el.querySelector('.form-feedback__msg');
+    if (iconEl) iconEl.textContent = type === 'error' ? '❌' : 'ℹ️';
+    if (msgEl) msgEl.textContent = message;
+  }
+
+  function updateEstimateBreakdown(form, pricing) {
+    var ids = {
+      material: '#estimate-material-cost',
+      machine: '#estimate-machine-cost',
+      fees: '#estimate-additional-fees',
+      subtotal: '#estimate-subtotal',
+      tax: '#estimate-sales-tax',
+      total: '#estimate-total'
+    };
+    form.querySelector(ids.material).textContent = currency(pricing.breakdown.materialCost);
+    form.querySelector(ids.machine).textContent = currency(pricing.breakdown.machineCost);
+    form.querySelector(ids.fees).textContent = currency(pricing.breakdown.additionalFees);
+    form.querySelector(ids.subtotal).textContent = currency(pricing.breakdown.subtotal);
+    form.querySelector(ids.tax).textContent = currency(pricing.breakdown.salesTax);
+    form.querySelector(ids.total).textContent = currency(pricing.breakdown.total);
+  }
+
+  function clearEstimateBreakdown(form) {
+    updateEstimateBreakdown(form, {
+      breakdown: {
+        materialCost: 0,
+        machineCost: 0,
+        additionalFees: 0,
+        subtotal: 0,
+        salesTax: 0,
+        total: 0
+      }
+    });
+  }
+
+  function evaluateStaffEstimate(form, feedbackEl) {
+    if (!global.PrintPricing || typeof global.PrintPricing.calculate !== 'function') {
+      clearEstimateBreakdown(form);
+      setEstimateFeedback(feedbackEl, 'error', 'Estimate pricing is unavailable right now. Please submit and the lab will provide pricing.');
+      return { canSubmit: true, hasEstimate: false, pricing: null, reason: 'pricing-unavailable' };
+    }
+
+    var data = readStaffEstimateInputs(form);
+
+    if (!Number.isFinite(data.quantity) || data.quantity < 1) {
+      clearEstimateBreakdown(form);
+      setEstimateFeedback(feedbackEl, 'error', 'Quantity must be at least 1 to calculate an estimate.');
+      return { canSubmit: false, hasEstimate: false, pricing: null, reason: 'quantity-invalid' };
+    }
+    if (!Number.isFinite(data.printTimeHours) || data.printTimeHours < 0) {
+      clearEstimateBreakdown(form);
+      setEstimateFeedback(feedbackEl, 'error', 'Print time cannot be negative.');
+      return { canSubmit: false, hasEstimate: false, pricing: null, reason: 'print-time-invalid' };
+    }
+    if (!Number.isFinite(data.filamentGrams) || data.filamentGrams < 0) {
+      clearEstimateBreakdown(form);
+      setEstimateFeedback(feedbackEl, 'error', 'Material amount cannot be negative.');
+      return { canSubmit: false, hasEstimate: false, pricing: null, reason: 'material-invalid' };
+    }
+    if (data.printTimeHours === 0 && data.filamentGrams === 0) {
+      clearEstimateBreakdown(form);
+      setEstimateFeedback(feedbackEl, 'info', 'Add print time or material usage to generate an estimate.');
+      return { canSubmit: true, hasEstimate: false, pricing: null, reason: 'not-enough-info' };
+    }
+
+    var pricing = global.PrintPricing.calculate(data);
+    updateEstimateBreakdown(form, pricing);
+    setEstimateFeedback(feedbackEl, 'info', 'Estimate updated automatically as you change print details.');
+    return { canSubmit: true, hasEstimate: true, pricing: pricing, inputs: data };
+  }
+
   /* ── Staff Form ─────────────────────────────────────────── */
   function initStaffForm() {
     var form     = document.getElementById('staff-form');
@@ -216,8 +311,29 @@
 
     var btn      = form.querySelector('[type="submit"]');
     var feedback = document.getElementById('staff-feedback');
+    var estimateFeedback = document.getElementById('staff-estimate-feedback');
 
     if (btn) btn.dataset.defaultText = btn.textContent;
+
+    var estimateFields = [
+      '#t-quantity',
+      '#t-printTimeHours',
+      '#t-filamentGrams',
+      '#t-designFee',
+      '#t-taxExempt'
+    ];
+    estimateFields.forEach(function (selector) {
+      var el = form.querySelector(selector);
+      if (!el) return;
+      el.addEventListener('input', function () {
+        evaluateStaffEstimate(form, estimateFeedback);
+      });
+      el.addEventListener('change', function () {
+        evaluateStaffEstimate(form, estimateFeedback);
+      });
+    });
+
+    evaluateStaffEstimate(form, estimateFeedback);
 
     form.addEventListener('submit', function (e) {
       e.preventDefault();
@@ -227,6 +343,9 @@
         form.reportValidity();
         return;
       }
+
+      var estimateState = evaluateStaffEstimate(form, estimateFeedback);
+      if (!estimateState.canSubmit) return;
 
       setButtonLoading(btn, true);
 
@@ -243,7 +362,19 @@
         fileName:         (form.querySelector('#t-fileName')        || {}).value || '',
         fileLink:         (form.querySelector('#t-fileLink')        || {}).value || '',
         filamentColor:    (form.querySelector('#t-filamentColor')   || {}).value || '',
+        materialType:     (form.querySelector('#t-materialType')    || {}).value || '',
         printerRequested: (form.querySelector('#t-printerRequested')|| {}).value || '',
+        printTimeHours:   (form.querySelector('#t-printTimeHours')  || {}).value || '',
+        filamentGrams:    (form.querySelector('#t-filamentGrams')   || {}).value || '',
+        designFeeApplied: (form.querySelector('#t-designFee')       || {}).checked ? 'Yes' : 'No',
+        taxExempt:        (form.querySelector('#t-taxExempt')       || {}).value === 'true' ? 'Yes' : 'No',
+        estimateStatus:   estimateState.hasEstimate ? 'calculated' : estimateState.reason,
+        estimateMaterialCost: estimateState.hasEstimate ? estimateState.pricing.breakdown.materialCost.toFixed(2) : '',
+        estimateMachineCost: estimateState.hasEstimate ? estimateState.pricing.breakdown.machineCost.toFixed(2) : '',
+        estimateAdditionalFees: estimateState.hasEstimate ? estimateState.pricing.breakdown.additionalFees.toFixed(2) : '',
+        estimateSubtotal: estimateState.hasEstimate ? estimateState.pricing.breakdown.subtotal.toFixed(2) : '',
+        estimateSalesTax: estimateState.hasEstimate ? estimateState.pricing.breakdown.salesTax.toFixed(2) : '',
+        estimateTotal: estimateState.hasEstimate ? estimateState.pricing.breakdown.total.toFixed(2) : '',
         notes:            (form.querySelector('#t-notes')           || {}).value || ''
       };
 
@@ -255,6 +386,7 @@
           var idNote = jobId ? ' Your Job ID is \u200b' + jobId + '.' : '';
           setFeedback(feedback, 'success', 'Your staff request was submitted!' + idNote + ' The lab will follow up with you by email.');
           form.reset();
+          evaluateStaffEstimate(form, estimateFeedback);
           form.scrollIntoView({ behavior: 'smooth', block: 'start' });
         },
         function (msg) {

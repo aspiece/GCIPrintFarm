@@ -41,13 +41,21 @@
                         <label for="printTime">Print Time (hours) *</label>
                         <input type="number" id="printTime" step="0.01" min="0" value="0" required
                             oninput="calculateTotal()" placeholder="e.g., 2.5">
-                        <small style="color: #666; font-size: 12px;">Service: $1.50/hour + $2.00 service fee</small>
+                        <small style="color: #666; font-size: 12px;">Service: $1.50/hour + $2.00 setup fee (per item)</small>
                     </div>
                     <div class="form-group">
                         <label for="filamentGrams">Filament Used (grams) *</label>
                         <input type="number" id="filamentGrams" step="1" min="0" value="0" required
                             oninput="calculateTotal()" placeholder="e.g., 150">
-                        <small style="color: #666; font-size: 12px;">Material: $20.00/kg + 6% tax</small>
+                        <small style="color: #666; font-size: 12px;">Material: $20.00/kg + 6% tax (per item)</small>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group">
+                        <label for="quantity">Quantity *</label>
+                        <input type="number" id="quantity" step="1" min="1" value="1" required
+                            oninput="calculateTotal()" placeholder="e.g., 1">
+                        <small style="color: #666; font-size: 12px;">Quantity multiplies all per-item costs</small>
                     </div>
                 </div>
 
@@ -109,6 +117,7 @@
         </div>
     </div>
 
+    <script src="print-pricing.js"></script>
     <script>
         // Google Apps Script Web App URL - Replace with your deployed web app URL
         const GOOGLE_SHEETS_URL = 'YOUR_WEB_APP_URL_HERE';
@@ -118,12 +127,17 @@
         function calculateTotal() {
             const printTime = parseFloat(document.getElementById('printTime').value) || 0;
             const filamentGrams = parseFloat(document.getElementById('filamentGrams').value) || 0;
+            const quantity = parseInt(document.getElementById('quantity').value, 10) || 1;
             const designFeeChecked = document.getElementById('designFee')?.checked || false;
             const taxExemptChecked = document.getElementById('taxExempt')?.checked || false;
-            const service = (printTime * 1.50) + 2.00;
-            const materials = (filamentGrams / 1000) * 20.00;
-            const salesTax = taxExemptChecked ? 0 : materials * 0.06;
-            const designFee = designFeeChecked ? 5.00 : 0;
+            if (!window.PrintPricing) return;
+            window.PrintPricing.calculate({
+                printTimeHours: printTime,
+                filamentGrams: filamentGrams,
+                quantity: quantity,
+                includeDesignFee: designFeeChecked,
+                taxExempt: taxExemptChecked
+            });
         }
 
         function resetForm() {
@@ -147,16 +161,25 @@
             const ticketNumber = document.getElementById('ticketNumber').value;
             const printTime = parseFloat(document.getElementById('printTime').value) || 0;
             const filamentGrams = parseFloat(document.getElementById('filamentGrams').value) || 0;
+            const quantity = parseInt(document.getElementById('quantity').value, 10) || 1;
             const designFeeChecked = document.getElementById('designFee').checked;
             const taxExemptChecked = document.getElementById('taxExempt').checked;
             const printDescription = document.getElementById('printDescription').value.trim();
             const notes = document.getElementById('notes').value.trim();
 
-            const service = (printTime * 1.50) + 2.00;
-            const materials = (filamentGrams / 1000) * 20.00;
-            const salesTax = taxExemptChecked ? 0 : materials * 0.06;
-            const designFee = designFeeChecked ? 5.00 : 0;
-            const total = service + materials + salesTax + designFee;
+            const pricing = window.PrintPricing.calculate({
+                printTimeHours: printTime,
+                filamentGrams: filamentGrams,
+                quantity: quantity,
+                includeDesignFee: designFeeChecked,
+                taxExempt: taxExemptChecked
+            });
+            const machineCost = pricing.breakdown.machineCost;
+            const materials = pricing.breakdown.materialCost;
+            const designFee = pricing.breakdown.additionalFees;
+            const subtotal = pricing.breakdown.subtotal;
+            const salesTax = pricing.breakdown.salesTax;
+            const total = pricing.breakdown.total;
 
             const subjectLine = `GCI 3D Print Invoice #${ticketNumber}`;
 
@@ -179,13 +202,16 @@ Print Description: ${printDescription}
 
 ----------------------------------------
 Print Details:
-  Print Time:             ${printTime.toFixed(2)} hours
-  Filament Used:          ${filamentGrams}g (${(filamentGrams / 1000).toFixed(3)} kg)
+  Quantity:               ${quantity}
+  Print Time:             ${printTime.toFixed(2)} hours each
+  Filament Used:          ${filamentGrams}g each (${(filamentGrams / 1000).toFixed(3)} kg)
 
 Charges:
-Service Charge:           $${service.toFixed(2)}
+Machine/Print Time Cost:  $${machineCost.toFixed(2)}
 Material Cost:            $${materials.toFixed(2)}
-Sales Tax (6%):           $${salesTax.toFixed(2)}${designFeeChecked ? '\nDesign Fee:               $' + designFee.toFixed(2) : ''}
+Additional Fees:          $${designFee.toFixed(2)}
+Subtotal:                 $${subtotal.toFixed(2)}
+Sales Tax (6%):           $${salesTax.toFixed(2)}
 ----------------------------------------
 TOTAL DUE:                $${total.toFixed(2)}
 ========================================
@@ -216,13 +242,16 @@ Print Description: ${printDescription}
 
 ----------------------------------------
 Print Details:
-  Print Time:             ${printTime.toFixed(2)} hours
-  Filament Used:          ${filamentGrams}g (${(filamentGrams / 1000).toFixed(3)} kg)
+  Quantity:               ${quantity}
+  Print Time:             ${printTime.toFixed(2)} hours each
+  Filament Used:          ${filamentGrams}g each (${(filamentGrams / 1000).toFixed(3)} kg)
 
 Charges:
-Service Charge:           $${service.toFixed(2)}
+Machine/Print Time Cost:  $${machineCost.toFixed(2)}
 Material Cost:            $${materials.toFixed(2)}
-Sales Tax (6%):           $${salesTax.toFixed(2)}${designFeeChecked ? '\nDesign Fee:               $' + designFee.toFixed(2) : ''}
+Additional Fees:          $${designFee.toFixed(2)}
+Subtotal:                 $${subtotal.toFixed(2)}
+Sales Tax (6%):           $${salesTax.toFixed(2)}
 ----------------------------------------
 TOTAL DUE:                $${total.toFixed(2)}
 ========================================
@@ -303,14 +332,17 @@ Thank you for using GCI Student Helpdesk!`;
                 const ticketNumber = document.getElementById('ticketNumber').value;
                 const printTime = parseFloat(document.getElementById('printTime').value) || 0;
                 const filamentGrams = parseFloat(document.getElementById('filamentGrams').value) || 0;
+                const quantity = parseInt(document.getElementById('quantity').value, 10) || 1;
                 const designFeeChecked = document.getElementById('designFee').checked;
+                const taxExemptChecked = document.getElementById('taxExempt').checked;
                 const notes = document.getElementById('notes').value.trim();
-
-                const service = (printTime * 1.50) + 2.00;
-                const materials = (filamentGrams / 1000) * 20.00;
-                const salesTax = materials * 0.06;
-                const designFee = designFeeChecked ? 5.00 : 0;
-                const total = service + materials + salesTax + designFee;
+                const pricing = window.PrintPricing.calculate({
+                    printTimeHours: printTime,
+                    filamentGrams: filamentGrams,
+                    quantity: quantity,
+                    includeDesignFee: designFeeChecked,
+                    taxExempt: taxExemptChecked
+                });
 
                 const data = {
                     timestamp: date.toISOString(),
@@ -320,11 +352,14 @@ Thank you for using GCI Student Helpdesk!`;
                     clientEmail: clientEmail,
                     printTime: printTime,
                     filamentGrams: filamentGrams,
-                    serviceCharge: service.toFixed(2),
-                    materialCost: materials.toFixed(2),
-                    salesTax: salesTax.toFixed(2),
-                    designFee: designFee.toFixed(2),
-                    totalDue: total.toFixed(2),
+                    quantity: quantity,
+                    machineCost: pricing.breakdown.machineCost.toFixed(2),
+                    materialCost: pricing.breakdown.materialCost.toFixed(2),
+                    additionalFees: pricing.breakdown.additionalFees.toFixed(2),
+                    subtotal: pricing.breakdown.subtotal.toFixed(2),
+                    salesTax: pricing.breakdown.salesTax.toFixed(2),
+                    totalDue: pricing.breakdown.total.toFixed(2),
+                    taxExempt: taxExemptChecked ? 'Yes' : 'No',
                     notes: notes
                 };
 

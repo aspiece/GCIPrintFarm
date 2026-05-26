@@ -8,6 +8,7 @@
   <link rel="stylesheet" href="theme.css" />
   <script src="site.js" defer></script>
   <script src="print-config.js" defer></script>
+  <script src="print-pricing.js" defer></script>
   <script src="print-workflow.js" defer></script>
 </head>
 <body>
@@ -386,6 +387,62 @@
                     <option value="A1 Mini">A1 Mini (Compact Fast)</option>
                   </select>
                 </div>
+              </div>
+            </div>
+
+            <!-- Estimate -->
+            <div class="form-section">
+              <h3 class="form-section-title"><span aria-hidden="true">💵</span> Estimate Your Print Cost</h3>
+              <div class="card card--accent estimate-card">
+                <div class="form-row">
+                  <div class="form-group">
+                    <label class="form-label" for="t-printTimeHours">Print Time (hours) <span class="required" aria-hidden="true">*</span></label>
+                    <input class="form-input" type="number" id="t-printTimeHours" name="printTimeHours" min="0" step="0.01" value="0" required />
+                    <p class="form-help">Used for machine/print time cost.</p>
+                  </div>
+                  <div class="form-group">
+                    <label class="form-label" for="t-filamentGrams">Filament Used (grams) <span class="required" aria-hidden="true">*</span></label>
+                    <input class="form-input" type="number" id="t-filamentGrams" name="filamentGrams" min="0" step="1" value="0" required />
+                    <p class="form-help">Used for material and sales tax calculation.</p>
+                  </div>
+                </div>
+
+                <div class="form-row">
+                  <div class="form-group">
+                    <label class="form-label" for="t-materialType">Material Type</label>
+                    <input class="form-input" type="text" id="t-materialType" name="materialType" placeholder="PLA, PETG, etc. (optional)" />
+                  </div>
+                  <div class="form-group">
+                    <label class="form-label" for="t-taxExempt">Sales Tax Option</label>
+                    <select class="form-select" id="t-taxExempt" name="taxExempt">
+                      <option value="false">Apply Sales Tax (6%)</option>
+                      <option value="true">Tax Exempt</option>
+                    </select>
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <label class="form-checkbox-item" for="t-designFee">
+                    <input type="checkbox" id="t-designFee" name="designFee" />
+                    <span>Include Design Fee ($5.00 per item)</span>
+                  </label>
+                </div>
+
+                <div id="staff-estimate-feedback" class="form-feedback form-feedback--error" role="status" aria-live="polite">
+                  <span class="form-feedback__icon" aria-hidden="true">ℹ️</span>
+                  <span class="form-feedback__msg">Add quantity, print time, and material usage to generate an estimate.</span>
+                </div>
+
+                <div id="staff-estimate-breakdown" class="estimate-breakdown" aria-live="polite">
+                  <div class="estimate-breakdown__row"><span>Material Cost</span><strong id="estimate-material-cost">$0.00</strong></div>
+                  <div class="estimate-breakdown__row"><span>Machine/Print Time Cost</span><strong id="estimate-machine-cost">$0.00</strong></div>
+                  <div class="estimate-breakdown__row"><span>Additional Fees</span><strong id="estimate-additional-fees">$0.00</strong></div>
+                  <div class="estimate-breakdown__row"><span>Subtotal</span><strong id="estimate-subtotal">$0.00</strong></div>
+                  <div class="estimate-breakdown__row"><span>Sales Tax</span><strong id="estimate-sales-tax">$0.00</strong></div>
+                  <div class="estimate-breakdown__row estimate-breakdown__row--total"><span>Estimated Total</span><strong id="estimate-total">$0.00</strong></div>
+                </div>
+
+                <p class="form-help estimate-note">This is an estimated cost based on the information provided. Final pricing may change after the Print Farm team reviews the file.</p>
               </div>
             </div>
 
