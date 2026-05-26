@@ -255,8 +255,22 @@
     form.querySelector(ids.total).textContent = currency(pricing.breakdown.total);
   }
 
+  function clearEstimateBreakdown(form) {
+    updateEstimateBreakdown(form, {
+      breakdown: {
+        materialCost: 0,
+        machineCost: 0,
+        additionalFees: 0,
+        subtotal: 0,
+        salesTax: 0,
+        total: 0
+      }
+    });
+  }
+
   function evaluateStaffEstimate(form, feedbackEl) {
     if (!global.PrintPricing || typeof global.PrintPricing.calculate !== 'function') {
+      clearEstimateBreakdown(form);
       setEstimateFeedback(feedbackEl, 'error', 'Estimate pricing is unavailable right now. Please submit and the lab will provide pricing.');
       return { canSubmit: true, hasEstimate: false, pricing: null, reason: 'pricing-unavailable' };
     }
@@ -264,18 +278,22 @@
     var data = readStaffEstimateInputs(form);
 
     if (!Number.isFinite(data.quantity) || data.quantity < 1) {
+      clearEstimateBreakdown(form);
       setEstimateFeedback(feedbackEl, 'error', 'Quantity must be at least 1 to calculate an estimate.');
       return { canSubmit: false, hasEstimate: false, pricing: null, reason: 'quantity-invalid' };
     }
     if (!Number.isFinite(data.printTimeHours) || data.printTimeHours < 0) {
+      clearEstimateBreakdown(form);
       setEstimateFeedback(feedbackEl, 'error', 'Print time cannot be negative.');
       return { canSubmit: false, hasEstimate: false, pricing: null, reason: 'print-time-invalid' };
     }
     if (!Number.isFinite(data.filamentGrams) || data.filamentGrams < 0) {
+      clearEstimateBreakdown(form);
       setEstimateFeedback(feedbackEl, 'error', 'Material amount cannot be negative.');
       return { canSubmit: false, hasEstimate: false, pricing: null, reason: 'material-invalid' };
     }
     if (data.printTimeHours === 0 && data.filamentGrams === 0) {
+      clearEstimateBreakdown(form);
       setEstimateFeedback(feedbackEl, 'info', 'Add print time or material usage to generate an estimate.');
       return { canSubmit: true, hasEstimate: false, pricing: null, reason: 'not-enough-info' };
     }
