@@ -103,7 +103,8 @@
     var tabs   = Array.from(tabList.querySelectorAll('[role="tab"]'));
     var panels = Array.from(document.querySelectorAll('[role="tabpanel"]'));
 
-    function activateTab(targetTab) {
+    function activateTab(targetTab, options) {
+      if (!targetTab) return;
       tabs.forEach(function (t) {
         var selected = t === targetTab;
         t.setAttribute('aria-selected', String(selected));
@@ -115,11 +116,19 @@
       panels.forEach(function (p) {
         p.classList.toggle('is-active', p.id === targetPanelId);
       });
+
+      if (options && options.updateHash && targetPanelId) {
+        if (global.history && typeof global.history.replaceState === 'function') {
+          global.history.replaceState(null, '', '#' + targetPanelId);
+        } else if (global.location) {
+          global.location.hash = targetPanelId;
+        }
+      }
     }
 
     tabs.forEach(function (tab) {
       tab.addEventListener('click', function () {
-        activateTab(tab);
+        activateTab(tab, { updateHash: true });
       });
 
       tab.addEventListener('keydown', function (e) {
@@ -127,13 +136,19 @@
         if (e.key === 'ArrowRight') {
           e.preventDefault();
           tabs[(idx + 1) % tabs.length].focus();
-          activateTab(tabs[(idx + 1) % tabs.length]);
+          activateTab(tabs[(idx + 1) % tabs.length], { updateHash: true });
         } else if (e.key === 'ArrowLeft') {
           e.preventDefault();
           tabs[(idx - 1 + tabs.length) % tabs.length].focus();
-          activateTab(tabs[(idx - 1 + tabs.length) % tabs.length]);
+          activateTab(tabs[(idx - 1 + tabs.length) % tabs.length], { updateHash: true });
         }
       });
+    });
+
+    global.addEventListener('hashchange', function () {
+      var currentHash = global.location && global.location.hash;
+      var hashMatchTab = currentHash ? tabList.querySelector('[aria-controls="' + currentHash.slice(1) + '"]') : null;
+      if (hashMatchTab) activateTab(hashMatchTab);
     });
 
     // Activate tab based on URL hash, or default to first
@@ -213,15 +228,20 @@
     return '$' + (Number(value) || 0).toFixed(2);
   }
 
-  function readStaffEstimateInputs(form) {
-    var quantityEl = form.querySelector('#t-quantity');
-    var printTimeEl = form.querySelector('#t-printTimeHours');
-    var filamentEl = form.querySelector('#t-filamentGrams');
-    var designFeeEl = form.querySelector('#t-designFee');
-    var taxExemptEl = form.querySelector('#t-taxExempt');
+  function readStaffEstimateInputs() {
+    var quantityEl = document.getElementById('estimate-quantity');
+    var staffQuantityEl = document.getElementById('t-quantity');
+    var printTimeEl = document.getElementById('t-printTimeHours');
+    var filamentEl = document.getElementById('t-filamentGrams');
+    var designFeeEl = document.getElementById('t-designFee');
+    var taxExemptEl = document.getElementById('t-taxExempt');
+    var quantity = parseInt((quantityEl || {}).value || '', 10);
+    if (!Number.isFinite(quantity) || quantity < 1) {
+      quantity = parseInt((staffQuantityEl || {}).value || '1', 10);
+    }
 
     return {
-      quantity: parseInt((quantityEl || {}).value || '0', 10),
+      quantity: quantity,
       printTimeHours: parseFloat((printTimeEl || {}).value || '0'),
       filamentGrams: parseFloat((filamentEl || {}).value || '0'),
       includeDesignFee: !!((designFeeEl || {}).checked),
@@ -238,7 +258,7 @@
     if (msgEl) msgEl.textContent = message;
   }
 
-  function updateEstimateBreakdown(form, pricing) {
+  function updateEstimateBreakdown(pricing) {
     var ids = {
       material: '#estimate-material-cost',
       machine: '#estimate-machine-cost',
@@ -247,16 +267,23 @@
       tax: '#estimate-sales-tax',
       total: '#estimate-total'
     };
-    form.querySelector(ids.material).textContent = currency(pricing.breakdown.materialCost);
-    form.querySelector(ids.machine).textContent = currency(pricing.breakdown.machineCost);
-    form.querySelector(ids.fees).textContent = currency(pricing.breakdown.additionalFees);
-    form.querySelector(ids.subtotal).textContent = currency(pricing.breakdown.subtotal);
-    form.querySelector(ids.tax).textContent = currency(pricing.breakdown.salesTax);
-    form.querySelector(ids.total).textContent = currency(pricing.breakdown.total);
+    var materialEl = document.querySelector(ids.material);
+    var machineEl = document.querySelector(ids.machine);
+    var feesEl = document.querySelector(ids.fees);
+    var subtotalEl = document.querySelector(ids.subtotal);
+    var taxEl = document.querySelector(ids.tax);
+    var totalEl = document.querySelector(ids.total);
+    if (!materialEl || !machineEl || !feesEl || !subtotalEl || !taxEl || !totalEl) return;
+    materialEl.textContent = currency(pricing.breakdown.materialCost);
+    machineEl.textContent = currency(pricing.breakdown.machineCost);
+    feesEl.textContent = currency(pricing.breakdown.additionalFees);
+    subtotalEl.textContent = currency(pricing.breakdown.subtotal);
+    taxEl.textContent = currency(pricing.breakdown.salesTax);
+    totalEl.textContent = currency(pricing.breakdown.total);
   }
 
-  function clearEstimateBreakdown(form) {
-    updateEstimateBreakdown(form, {
+  function clearEstimateBreakdown() {
+    updateEstimateBreakdown({
       breakdown: {
         materialCost: 0,
         machineCost: 0,
@@ -268,38 +295,38 @@
     });
   }
 
-  function evaluateStaffEstimate(form, feedbackEl) {
+  function evaluateStaffEstimate(feedbackEl) {
     if (!global.PrintPricing || typeof global.PrintPricing.calculate !== 'function') {
-      clearEstimateBreakdown(form);
+      clearEstimateBreakdown();
       setEstimateFeedback(feedbackEl, 'error', 'Estimate pricing is unavailable right now. Please submit and the lab will provide pricing.');
       return { canSubmit: true, hasEstimate: false, pricing: null, reason: 'pricing-unavailable' };
     }
 
-    var data = readStaffEstimateInputs(form);
+    var data = readStaffEstimateInputs();
 
     if (!Number.isFinite(data.quantity) || data.quantity < 1) {
-      clearEstimateBreakdown(form);
+      clearEstimateBreakdown();
       setEstimateFeedback(feedbackEl, 'error', 'Quantity must be at least 1 to calculate an estimate.');
       return { canSubmit: false, hasEstimate: false, pricing: null, reason: 'quantity-invalid' };
     }
     if (!Number.isFinite(data.printTimeHours) || data.printTimeHours < 0) {
-      clearEstimateBreakdown(form);
+      clearEstimateBreakdown();
       setEstimateFeedback(feedbackEl, 'error', 'Print time cannot be negative.');
       return { canSubmit: false, hasEstimate: false, pricing: null, reason: 'print-time-invalid' };
     }
     if (!Number.isFinite(data.filamentGrams) || data.filamentGrams < 0) {
-      clearEstimateBreakdown(form);
+      clearEstimateBreakdown();
       setEstimateFeedback(feedbackEl, 'error', 'Material amount cannot be negative.');
       return { canSubmit: false, hasEstimate: false, pricing: null, reason: 'material-invalid' };
     }
     if (data.printTimeHours === 0 && data.filamentGrams === 0) {
-      clearEstimateBreakdown(form);
+      clearEstimateBreakdown();
       setEstimateFeedback(feedbackEl, 'info', 'Add print time or material usage to generate an estimate.');
       return { canSubmit: true, hasEstimate: false, pricing: null, reason: 'not-enough-info' };
     }
 
     var pricing = global.PrintPricing.calculate(data);
-    updateEstimateBreakdown(form, pricing);
+    updateEstimateBreakdown(pricing);
     setEstimateFeedback(feedbackEl, 'info', 'Estimate updated automatically as you change print details.');
     return { canSubmit: true, hasEstimate: true, pricing: pricing, inputs: data };
   }
@@ -316,6 +343,7 @@
     if (btn) btn.dataset.defaultText = btn.textContent;
 
     var estimateFields = [
+      '#estimate-quantity',
       '#t-quantity',
       '#t-printTimeHours',
       '#t-filamentGrams',
@@ -323,17 +351,17 @@
       '#t-taxExempt'
     ];
     estimateFields.forEach(function (selector) {
-      var el = form.querySelector(selector);
+      var el = document.querySelector(selector);
       if (!el) return;
       el.addEventListener('input', function () {
-        evaluateStaffEstimate(form, estimateFeedback);
+        evaluateStaffEstimate(estimateFeedback);
       });
       el.addEventListener('change', function () {
-        evaluateStaffEstimate(form, estimateFeedback);
+        evaluateStaffEstimate(estimateFeedback);
       });
     });
 
-    evaluateStaffEstimate(form, estimateFeedback);
+    evaluateStaffEstimate(estimateFeedback);
 
     form.addEventListener('submit', function (e) {
       e.preventDefault();
@@ -344,7 +372,7 @@
         return;
       }
 
-      var estimateState = evaluateStaffEstimate(form, estimateFeedback);
+      var estimateState = evaluateStaffEstimate(estimateFeedback);
       if (!estimateState.canSubmit) return;
 
       setButtonLoading(btn, true);
@@ -362,12 +390,12 @@
         fileName:         (form.querySelector('#t-fileName')        || {}).value || '',
         fileLink:         (form.querySelector('#t-fileLink')        || {}).value || '',
         filamentColor:    (form.querySelector('#t-filamentColor')   || {}).value || '',
-        materialType:     (form.querySelector('#t-materialType')    || {}).value || '',
+        materialType:     (document.querySelector('#t-materialType')    || {}).value || '',
         printerRequested: (form.querySelector('#t-printerRequested')|| {}).value || '',
-        printTimeHours:   (form.querySelector('#t-printTimeHours')  || {}).value || '',
-        filamentGrams:    (form.querySelector('#t-filamentGrams')   || {}).value || '',
-        designFeeApplied: (form.querySelector('#t-designFee')       || {}).checked ? 'Yes' : 'No',
-        taxExempt:        (form.querySelector('#t-taxExempt')       || {}).value === 'true' ? 'Yes' : 'No',
+        printTimeHours:   (document.querySelector('#t-printTimeHours')  || {}).value || '',
+        filamentGrams:    (document.querySelector('#t-filamentGrams')   || {}).value || '',
+        designFeeApplied: (document.querySelector('#t-designFee')       || {}).checked ? 'Yes' : 'No',
+        taxExempt:        (document.querySelector('#t-taxExempt')       || {}).value === 'true' ? 'Yes' : 'No',
         estimateStatus:   estimateState.hasEstimate ? 'calculated' : estimateState.reason,
         estimateMaterialCost: estimateState.hasEstimate ? estimateState.pricing.breakdown.materialCost.toFixed(2) : '',
         estimateMachineCost: estimateState.hasEstimate ? estimateState.pricing.breakdown.machineCost.toFixed(2) : '',
@@ -386,7 +414,7 @@
           var idNote = jobId ? ' Your Job ID is \u200b' + jobId + '.' : '';
           setFeedback(feedback, 'success', 'Your staff request was submitted!' + idNote + ' The lab will follow up with you by email.');
           form.reset();
-          evaluateStaffEstimate(form, estimateFeedback);
+          evaluateStaffEstimate(estimateFeedback);
           form.scrollIntoView({ behavior: 'smooth', block: 'start' });
         },
         function (msg) {
