@@ -443,6 +443,10 @@
     return clean;
   }
 
+  function isPickedUp(job) {
+    return (job.pickupStatus || '').toLowerCase() === 'yes';
+  }
+
   function statusBadgeClass(status) {
     var s = status.toLowerCase();
     if (s === 'waiting')           return 'badge badge--waiting';
@@ -483,7 +487,7 @@
         '<td>' + escHtml(job.projectType) + '</td>' +
         '<td><span class="' + statusBadgeClass(job.status) + '">' + escHtml(job.status) + '</span></td>' +
         '<td>' + escHtml(job.printerAssigned) + '</td>' +
-        '<td>' + (job.pickupStatus.toLowerCase() === 'yes'
+        '<td>' + (isPickedUp(job)
           ? '<span class="badge badge--complete">Ready</span>'
           : '<span class="badge badge--unknown">Not Yet</span>') + '</td>';
       tbody.appendChild(tr);
@@ -566,7 +570,9 @@
         if (!Array.isArray(data)) throw new Error('Unexpected response format');
 
         // Sanitize every job — remove any private fields GAS accidentally includes
-        queueAllJobs = data.map(sanitizeJob);
+        queueAllJobs = data.map(sanitizeJob).filter(function (job) {
+          return !isPickedUp(job);
+        });
 
         updateLastRefreshed();
         applyQueueFilter(queueCurrentFilter);
