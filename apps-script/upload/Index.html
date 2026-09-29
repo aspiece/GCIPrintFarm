@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <base target="_top">
+  <style>
+    body { font: 1rem/1.5 system-ui, sans-serif; max-width: 36rem; margin: 2rem auto; padding: 0 1rem; color: #17212b; }
+    label, button { display: block; margin-top: 1rem; }
+    button { padding: .7rem 1rem; background: #164d76; color: white; border: 0; border-radius: .4rem; cursor: pointer; }
+    button:disabled { opacity: .6; cursor: wait; }
+    .result { padding: 1rem; margin-top: 1rem; background: #eef5fa; border-radius: .4rem; overflow-wrap: anywhere; }
+    .error { background: #fff0ef; }
+  </style>
+</head>
+<body>
+  <h1>Upload a print file</h1>
+  <p>Choose an STL, 3MF, OBJ, STEP, or STP file, up to 10 MB. After uploading, copy its link into the Print Lab request form. Your file is stored in the Print Lab’s Drive folder.</p>
+  <form id="upload-form">
+    <label for="printFile">Print file</label>
+    <input id="printFile" name="printFile" type="file" accept=".stl,.3mf,.obj,.step,.stp" required>
+    <button id="upload-button" type="submit">Upload file</button>
+  </form>
+  <div id="result" role="status" aria-live="polite"></div>
+  <script>
+    var form = document.getElementById('upload-form');
+    var fileInput = document.getElementById('printFile');
+    var button = document.getElementById('upload-button');
+    var result = document.getElementById('result');
+    form.addEventListener('submit', function (event) {
+      event.preventDefault();
+      var file = fileInput.files[0];
+      if (!file) return;
+      if (file.size === 0 || file.size > 10 * 1024 * 1024) {
+        result.className = 'result error';
+        result.textContent = 'Choose a file between 1 byte and 10 MB.';
+        return;
+      }
+      button.disabled = true;
+      result.className = 'result';
+      result.textContent = 'Uploading…';
+      google.script.run
+        .withSuccessHandler(function (uploaded) {
+          button.disabled = false;
+          result.textContent = '';
+          var message = document.createElement('p');
+          message.textContent = uploaded.name + ' is uploaded. Copy this link into the File Link field on your request:';
+          var link = document.createElement('a');
+          link.href = uploaded.url;
+          link.target = '_blank';
+          link.rel = 'noopener noreferrer';
+          link.textContent = uploaded.url;
+          result.appendChild(message);
+          result.appendChild(link);
+        })
+        .withFailureHandler(function (error) {
+          button.disabled = false;
+          result.className = 'result error';
+          result.textContent = error.message || 'Upload failed. Please try again.';
+        })
+        .uploadPrintFile(form);
+    });
+  </script>
+</body>
+</html>

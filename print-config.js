@@ -48,7 +48,11 @@
      * How often (in milliseconds) the live queue refreshes automatically.
      * Default: 60 000 ms = 60 seconds.
      */
-    QUEUE_REFRESH_INTERVAL: 60000
+    QUEUE_REFRESH_INTERVAL: 60000,
+
+    // Add the separately deployed, school-sign-in upload web app URL here.
+    // Leave blank until deployment; the form will show setup text instead.
+    UPLOAD_APP_URL: ''
 
   };
 

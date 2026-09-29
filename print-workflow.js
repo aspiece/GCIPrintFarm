@@ -18,6 +18,18 @@
     return (global.PRINT_CONFIG && global.PRINT_CONFIG[key]) || '';
   }
 
+  function initUploadLinks() {
+    var uploadUrl = cfg('UPLOAD_APP_URL');
+    if (!/^https:\/\/script\.google\.com\/macros\/s\//.test(uploadUrl)) return;
+    document.querySelectorAll('[data-upload-link]').forEach(function (link) {
+      link.href = uploadUrl;
+      link.hidden = false;
+    });
+    document.querySelectorAll('[data-upload-pending]').forEach(function (message) {
+      message.hidden = true;
+    });
+  }
+
   /* ── Utilities ─────────────────────────────────────────── */
 
   /** Show or hide an aria-live feedback region. */
@@ -625,6 +637,7 @@
 
   /* ── Bootstrap ──────────────────────────────────────────── */
   document.addEventListener('DOMContentLoaded', function () {
+    initUploadLinks();
     initTabs();
     initStudentForm();
     initStaffForm();
