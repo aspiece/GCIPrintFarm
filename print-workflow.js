@@ -7,7 +7,7 @@
  *   • Staff print request form
  *   • Live public queue (fetch, render, filter, auto-refresh)
  *
- * Requires print-config.js to be loaded first (defines window.PRINT_CONFIG).
+ * Requires lab-settings.js to be loaded first (defines window.PRINT_CONFIG).
  */
 
 (function (global) {

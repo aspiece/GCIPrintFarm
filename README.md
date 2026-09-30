@@ -23,7 +23,7 @@ This repository now includes a full **print request and live queue system** inte
 
 | File | Description |
 |------|-------------|
-| [`print-config.js`](print-config.js) | Configurable endpoint URLs — **update these before going live** |
+| [`lab-settings.js`](lab-settings.js) | Configurable endpoint URLs — **update these before going live** |
 | [`print-workflow.js`](print-workflow.js) | Handles tab switching, form validation, form submission, and queue rendering |
 
 ### Modified Pages
@@ -55,7 +55,7 @@ This repository now includes a full **print request and live queue system** inte
 
 ## ⚙️ Configuration — Update Before Going Live
 
-The existing request and queue endpoints are configured in [`print-config.js`](print-config.js). After deploying the separate upload app, add its URL to `UPLOAD_APP_URL`:
+The existing request and queue endpoints are configured in [`lab-settings.js`](lab-settings.js). After deploying the separate upload app, add its URL to `UPLOAD_APP_URL`:
 
 ```js
 global.PRINT_CONFIG = {
@@ -151,7 +151,7 @@ Because it uses Gmail it must run as an **installable trigger** (not a simple `o
 7. Copy the **Web app URL** that appears — it will look like:
    `https://script.google.com/macros/s/AKfy.../exec`
 
-Paste this URL into all three endpoint fields in `print-config.js`.
+Paste this URL into all three endpoint fields in `lab-settings.js`.
 
 > **Important:** Every time you edit the Apps Script code, you must click **Deploy → Manage deployments → Edit → New version** to update the live endpoint. Changes to the script do not apply automatically.
 
@@ -181,7 +181,7 @@ The public queue at `queue.html` will reflect changes within 60 seconds (auto-re
 
 The request form offers two ways to provide a file: paste an accessible Google Drive or MakerWorld link, or upload a file through a separate web app and paste its returned link. The upload page and server code are in [`apps-script/upload/`](apps-script/upload/). It accepts STL, 3MF, OBJ, STEP, and STP files up to 10 MB and saves them in the [GCI Print Lab Uploads folder](https://drive.google.com/drive/folders/1MzYyfqfyOT4Mu5Euv-Rn7uUHtQG5sC87).
 
-The [upload web app](https://script.google.com/macros/s/AKfycbz7CIFLQfR9H1gSXejMYqlPpSfKx-iNzxhoeaFXH1tkRvUFYqFl1bz9BH05MwK2T-U/exec) is deployed from the [GCI Print Lab Uploads Apps Script project](https://script.google.com/home/projects/1LW079tQi-o4uXthWG6o-3vC3fdHpIQVryh5NFniTPvFn3AUiNNfL-3sk/edit) under `aspiece@gmail.com`. It **executes as the personal account** and allows **anyone with a Google account**. This requires sign-in but does not require a school account. The URL is set in `UPLOAD_APP_URL` in `print-config.js`. Keep this upload deployment separate from the public request endpoint so its sign-in requirement does not block link-based requests.
+The [upload web app](https://script.google.com/macros/s/AKfycbz7CIFLQfR9H1gSXejMYqlPpSfKx-iNzxhoeaFXH1tkRvUFYqFl1bz9BH05MwK2T-U/exec) is deployed from the [GCI Print Lab Uploads Apps Script project](https://script.google.com/home/projects/1LW079tQi-o4uXthWG6o-3vC3fdHpIQVryh5NFniTPvFn3AUiNNfL-3sk/edit) under `aspiece@gmail.com`. It **executes as the personal account** and allows **anyone with a Google account**. This requires sign-in but does not require a school account. The URL is set in `UPLOAD_APP_URL` in `lab-settings.js`. Keep this upload deployment separate from the public request endpoint so its sign-in requirement does not block link-based requests.
 
 The upload folder is currently shared with anyone who has its link as an editor, as requested. Such users can add or modify files in the folder even without using the upload page.
 
@@ -203,7 +203,7 @@ After deploying, test the GET endpoint in a browser by visiting the web app URL 
 - The `doGet()` function in Apps Script only returns: `jobId`, `projectType`, `status`, `printerAssigned`, `pickupStatus`
 - The frontend (`print-workflow.js`) additionally strips any unexpected fields using a strict `sanitizeJob()` function before rendering
 - Submission names, emails, and file links remain out of the public queue. The live operator Sheet currently allows anyone with its link to edit, so its contents are accessible to link holders.
-- `print-config.js` contains only web app URLs (not secrets) — these are public endpoints by design
+- `lab-settings.js` contains only web app URLs (not secrets) — these are public endpoints by design
 
 ---
 
