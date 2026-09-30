@@ -50,9 +50,8 @@
      */
     QUEUE_REFRESH_INTERVAL: 60000,
 
-    // Add the separately deployed, school-sign-in upload web app URL here.
-    // Leave blank until deployment; the form will show setup text instead.
-    UPLOAD_APP_URL: ''
+    // Separate web app; sign-in with any Google account is required.
+    UPLOAD_APP_URL: 'https://script.google.com/macros/s/AKfycbz7CIFLQfR9H1gSXejMYqlPpSfKx-iNzxhoeaFXH1tkRvUFYqFl1bz9BH05MwK2T-U/exec'
 
   };
 

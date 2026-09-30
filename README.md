@@ -55,7 +55,7 @@ This repository now includes a full **print request and live queue system** inte
 
 ## ⚙️ Configuration — Update Before Going Live
 
-The existing request and queue endpoints are configured in [`print-config.js`](print-config.js). After deploying the separate school upload app, add its URL to `UPLOAD_APP_URL`:
+The existing request and queue endpoints are configured in [`print-config.js`](print-config.js). After deploying the separate upload app, add its URL to `UPLOAD_APP_URL`:
 
 ```js
 global.PRINT_CONFIG = {
@@ -63,12 +63,12 @@ global.PRINT_CONFIG = {
   STAFF_SUBMIT_ENDPOINT:   'YOUR_GOOGLE_APPS_SCRIPT_URL_HERE',
   QUEUE_ENDPOINT:          'YOUR_GOOGLE_APPS_SCRIPT_URL_HERE',
   QUEUE_REFRESH_INTERVAL:  60000,
-  UPLOAD_APP_URL:          'YOUR_SCHOOL_UPLOAD_WEB_APP_URL_HERE'
+  UPLOAD_APP_URL:          'YOUR_UPLOAD_WEB_APP_URL_HERE'
 };
 ```
 
 All three endpoints can point to the same deployed web app URL if you use a single Apps Script project.
-The upload app must be a separate deployment restricted to school accounts. Until `UPLOAD_APP_URL` is set, the request form shows that uploads are being set up and continues to accept Drive or MakerWorld links.
+The upload app must be a separate deployment that requires sign-in with any Google account. Until `UPLOAD_APP_URL` is set, the request form shows that uploads are being set up and continues to accept Drive or MakerWorld links.
 
 ---
 
@@ -177,13 +177,13 @@ Your changes will automatically apply to the `Submissions` tab.
 
 The public queue at `queue.html` will reflect changes within 60 seconds (auto-refresh). The `Queue` sheet tab is rebuilt after edits to Status, Printer Assigned, or Pickup Status. Use the `Operator Guide` tab for the stage sequence.
 
-### School account file uploads
+### Google account file uploads
 
-The request form offers two ways to provide a file: paste an accessible Google Drive or MakerWorld link, or upload a file through a separate school-only web app and paste its returned link. The upload page and server code are in [`apps-script/upload/`](apps-script/upload/). It accepts STL, 3MF, OBJ, STEP, and STP files up to 10 MB and saves them in the [GCI Print Lab Uploads folder](https://drive.google.com/drive/folders/1MzYyfqfyOT4Mu5Euv-Rn7uUHtQG5sC87).
+The request form offers two ways to provide a file: paste an accessible Google Drive or MakerWorld link, or upload a file through a separate web app and paste its returned link. The upload page and server code are in [`apps-script/upload/`](apps-script/upload/). It accepts STL, 3MF, OBJ, STEP, and STP files up to 10 MB and saves them in the [GCI Print Lab Uploads folder](https://drive.google.com/drive/folders/1MzYyfqfyOT4Mu5Euv-Rn7uUHtQG5sC87).
 
-To activate it, create an Apps Script project under `aspiece@geneseeisd.org`, add `Code.gs` and `Index.html` from that folder, and deploy it as a web app that **executes as the deploying school account** and allows **users in the school domain**. The school account has editor access to the upload folder. Paste the new `/exec` URL into `UPLOAD_APP_URL` in `print-config.js`, then test with a school student account. Keep this upload deployment separate from the public request endpoint so its sign-in requirement does not block link-based requests.
+The [upload web app](https://script.google.com/macros/s/AKfycbz7CIFLQfR9H1gSXejMYqlPpSfKx-iNzxhoeaFXH1tkRvUFYqFl1bz9BH05MwK2T-U/exec) is deployed from the [GCI Print Lab Uploads Apps Script project](https://script.google.com/home/projects/1LW079tQi-o4uXthWG6o-3vC3fdHpIQVryh5NFniTPvFn3AUiNNfL-3sk/edit) under `aspiece@gmail.com`. It **executes as the personal account** and allows **anyone with a Google account**. This requires sign-in but does not require a school account. The URL is set in `UPLOAD_APP_URL` in `print-config.js`. Keep this upload deployment separate from the public request endpoint so its sign-in requirement does not block link-based requests.
 
-The upload folder is currently shared with anyone who has its link as an editor, as requested. Such users can add or modify files in the folder even though the upload page itself requires school sign-in.
+The upload folder is currently shared with anyone who has its link as an editor, as requested. Such users can add or modify files in the folder even without using the upload page.
 
 ---
 

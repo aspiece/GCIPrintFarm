@@ -1,32 +1,16 @@
 // Deploy this as a separate web app from the public order endpoint.
-// Execute as: the school account that can edit UPLOAD_FOLDER_ID.
-// Access: users in the school Google Workspace domain only.
+// Execute as: aspiece@gmail.com, the owner of UPLOAD_FOLDER_ID.
+// Access: Anyone with a Google account (sign-in required by the deployment).
 var UPLOAD_FOLDER_ID = '1MzYyfqfyOT4Mu5Euv-Rn7uUHtQG5sC87';
-var SCHOOL_DOMAIN = 'geneseeisd.org';
 var MAX_UPLOAD_BYTES = 10 * 1024 * 1024;
 var ALLOWED_EXTENSIONS = ['stl', '3mf', 'obj', 'step', 'stp'];
 
-function requireSchoolUser_() {
-  var email = String(Session.getActiveUser().getEmail() || '').toLowerCase();
-  if (!email.endsWith('@' + SCHOOL_DOMAIN)) {
-    throw new Error('Sign in with your school Google account to upload a print file.');
-  }
-  return email;
-}
-
 function doGet() {
-  try {
-    requireSchoolUser_();
-    return HtmlService.createHtmlOutputFromFile('Index')
-      .setTitle('Upload a Print File | GCI Print Lab');
-  } catch (err) {
-    return HtmlService.createHtmlOutput('<p>' + err.message + '</p>')
-      .setTitle('School sign-in required');
-  }
+  return HtmlService.createHtmlOutputFromFile('Index')
+    .setTitle('Upload a Print File | GCI Print Lab');
 }
 
 function uploadPrintFile(form) {
-  requireSchoolUser_();
   var blob = form && form.printFile;
   if (!blob || typeof blob.getBytes !== 'function') {
     throw new Error('Choose a print file before uploading.');
