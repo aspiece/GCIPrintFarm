@@ -81,10 +81,12 @@ The upload app must be a separate deployment that requires sign-in with any Goog
 3. Add these column headers in row 1 (exact spelling matters):
 
 ```
-Timestamp | Job ID | Request Type | First Name | Last Name | Class/Department |
-Class Period | Project Type | File Name | File Link | Estimated Print Time |
+Timestamp | Job ID | Request Type | First Name | Last Name | Department/Program (staff) |
+Retired Class Period (hidden) | Project Type | File Name | File Link | Estimated Print Time |
 Filament Color | Printer Requested | Checklist | Notes | Status | Printer Assigned | Pickup Status | Email
 ```
+
+The student form no longer asks for class or class period. Column F is for staff departments; column G is hidden to preserve older submissions and the existing Apps Script column positions.
 
 4. Create a second sheet tab named **`Queue`** with these headers:
 

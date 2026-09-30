@@ -31,8 +31,8 @@ function doPost(e) {
         'student',
         sanitize(body.firstName),
         sanitize(body.lastName),
-        sanitize(body.className),
-        sanitize(body.classPeriod),
+        '', // Reserved for staff department; students no longer enter a class.
+        '', // Retired class period column; keep positions stable for existing jobs.
         sanitize(body.projectType),
         sanitize(body.fileName),
         sanitize(body.fileLink),
