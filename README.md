@@ -179,7 +179,7 @@ The public queue at `queue.html` will reflect changes within 60 seconds (auto-re
 
 ### Google account file uploads
 
-The request form offers two ways to provide a file: paste an accessible Google Drive or MakerWorld link, or upload a file through a separate web app and paste its returned link. The upload page and server code are in [`apps-script/upload/`](apps-script/upload/). It accepts STL, 3MF, OBJ, STEP, and STP files up to 10 MB and saves them in the [GCI Print Lab Uploads folder](https://drive.google.com/drive/folders/1MzYyfqfyOT4Mu5Euv-Rn7uUHtQG5sC87).
+The request form offers two ways to provide a file: paste an accessible Google Drive or MakerWorld link, or upload a file through a separate web app and paste its returned link. The upload page and server code are in [`apps-script/upload/`](apps-script/upload/). It accepts STL, 3MF, OBJ, STEP, and STP files up to 25 MB and saves them in the [GCI Print Lab Uploads folder](https://drive.google.com/drive/folders/1MzYyfqfyOT4Mu5Euv-Rn7uUHtQG5sC87).
 
 The [upload web app](https://script.google.com/macros/s/AKfycbz7CIFLQfR9H1gSXejMYqlPpSfKx-iNzxhoeaFXH1tkRvUFYqFl1bz9BH05MwK2T-U/exec) is deployed from the [GCI Print Lab Uploads Apps Script project](https://script.google.com/home/projects/1LW079tQi-o4uXthWG6o-3vC3fdHpIQVryh5NFniTPvFn3AUiNNfL-3sk/edit) under `aspiece@gmail.com`. It **executes as the personal account** and allows **anyone with a Google account**. This requires sign-in but does not require a school account. The URL is set in `UPLOAD_APP_URL` in `lab-settings.js`. Keep this upload deployment separate from the public request endpoint so its sign-in requirement does not block link-based requests.
 

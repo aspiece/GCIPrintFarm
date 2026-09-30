@@ -2,7 +2,7 @@
 // Execute as: aspiece@gmail.com, the owner of UPLOAD_FOLDER_ID.
 // Access: Anyone with a Google account (sign-in required by the deployment).
 var UPLOAD_FOLDER_ID = '1MzYyfqfyOT4Mu5Euv-Rn7uUHtQG5sC87';
-var MAX_UPLOAD_BYTES = 10 * 1024 * 1024;
+var MAX_UPLOAD_BYTES = 25 * 1024 * 1024;
 var ALLOWED_EXTENSIONS = ['stl', '3mf', 'obj', 'step', 'stp'];
 
 function doGet() {
@@ -23,7 +23,7 @@ function uploadPrintFile(form) {
   }
   var bytes = blob.getBytes();
   if (!bytes.length || bytes.length > MAX_UPLOAD_BYTES) {
-    throw new Error('The file must be between 1 byte and 10 MB.');
+    throw new Error('The file must be between 1 byte and 25 MB.');
   }
 
   var safeName = originalName.replace(/[^A-Za-z0-9._-]/g, '_').slice(0, 100);

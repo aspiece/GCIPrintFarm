@@ -14,7 +14,7 @@
 </head>
 <body>
   <h1>Upload a print file</h1>
-  <p>Sign in with any Google account, then choose an STL, 3MF, OBJ, STEP, or STP file, up to 10 MB. After uploading, copy its link into the Print Lab request form. Your file is stored in the Print Lab’s Drive folder.</p>
+  <p>Sign in with any Google account, then choose an STL, 3MF, OBJ, STEP, or STP file, up to 25 MB. After uploading, copy its link into the Print Lab request form. Your file is stored in the Print Lab’s Drive folder.</p>
   <form id="upload-form">
     <label for="printFile">Print file</label>
     <input id="printFile" name="printFile" type="file" accept=".stl,.3mf,.obj,.step,.stp" required>
@@ -30,9 +30,9 @@
       event.preventDefault();
       var file = fileInput.files[0];
       if (!file) return;
-      if (file.size === 0 || file.size > 10 * 1024 * 1024) {
+      if (file.size === 0 || file.size > 25 * 1024 * 1024) {
         result.className = 'result error';
-        result.textContent = 'Choose a file between 1 byte and 10 MB.';
+        result.textContent = 'Choose a file between 1 byte and 25 MB.';
         return;
       }
       button.disabled = true;
