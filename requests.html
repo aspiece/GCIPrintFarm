@@ -9,7 +9,7 @@
   <script src="site.js" defer></script>
   <script src="lab-settings.js?v=20260929-upload" defer></script>
   <script src="print-pricing.js" defer></script>
-  <script src="print-workflow.js?v=20260929-upload-return" defer></script>
+  <script src="print-workflow.js?v=20260929-idea-image" defer></script>
 </head>
 <body>
 
@@ -54,8 +54,8 @@
             Submit a<br><span class="highlight">Print Request</span>
           </h1>
           <p class="hero__subtitle">
-            Students submit class project files. Staff submit department print requests.
-            A lab operator will review and confirm your job.
+            Students and staff can request a print or share an image of an idea.
+            A lab operator will review your request and follow up.
           </p>
         </div>
       </div>
@@ -68,8 +68,7 @@
           <span class="alert__icon" aria-hidden="true">📋</span>
           <div>
             <strong>Before you submit:</strong> Review the
-            <a href="/print-farm.html#rules">Print Rules &amp; Expectations</a> and make sure your file is
-            ready. File names must follow the format:
+            <a href="/print-farm.html#rules">Print Rules &amp; Expectations</a>. For a print-ready model, check your file before submitting. For an idea image, describe what you hope to make. Use this name format:
             <code style="font-size:var(--text-xs);background:var(--color-surface-2);padding:2px 6px;border-radius:4px;">Lastname_Firstname_Project_v1</code>
           </div>
         </div>
@@ -174,12 +173,13 @@
                   <option value="Class project">Class project</option>
                   <option value="Personal Project">Personal Project</option>
                   <option value="Training Keychain">Training Keychain</option>
+                  <option value="Idea / design help">Idea / design help (image or sketch)</option>
                   <option value="Other">Other</option>
                 </select>
               </div>
               <div class="form-row">
                 <div class="form-group">
-                  <label class="form-label" for="s-fileName">File Name <span class="required" aria-hidden="true">*</span></label>
+                  <label class="form-label" for="s-fileName">File or Idea Name <span class="required" aria-hidden="true">*</span></label>
                   <input class="form-input" type="text" id="s-fileName" name="fileName" aria-required="true" required
                     placeholder="Lastname_Firstname_Project_v1" />
                   <p class="form-help">Use the format: Lastname_Firstname_Project_v1</p>
@@ -188,7 +188,7 @@
                   <label class="form-label" for="s-fileLink">File Link <span class="required" aria-hidden="true">*</span></label>
                   <input class="form-input" type="url" id="s-fileLink" name="fileLink" aria-required="true" aria-describedby="s-fileLink-help" required
                     placeholder="https://…" />
-                  <p class="form-help" id="s-fileLink-help">Paste a Google Drive or MakerWorld link, or upload a file using the option below. An uploaded file fills this field automatically.</p>
+                  <p class="form-help" id="s-fileLink-help">Paste a Google Drive or MakerWorld link, or upload a model or idea image below. An uploaded file fills this field automatically.</p>
                   <p class="form-help" id="s-upload-status" role="status" aria-live="polite"></p>
                 </div>
               </div>
@@ -198,7 +198,7 @@
                   <strong>Choose a way to share your print file</strong>
                   <ol>
                     <li><strong>Paste a link:</strong> For Google Drive, open the file’s Share settings. If your school permits it, set General access to “Anyone with the link” and the role to “Viewer.” For MakerWorld, copy the model page address. Check that the lab can open the file or model.</li>
-                    <li><strong>Upload a file:</strong> <a href="#" data-upload-link data-upload-form="student" hidden target="_blank" rel="noopener noreferrer">Choose a file to upload</a><span data-upload-pending>File upload is being set up.</span> Sign in with any Google account. After uploading, select “Return to request form” to fill the File Link field automatically.</li>
+                    <li><strong>Upload a model or idea image:</strong> <a href="#" data-upload-link data-upload-form="student" hidden target="_blank" rel="noopener noreferrer">Choose a file to upload</a><span data-upload-pending>File upload is being set up.</span> Sign in with any Google account. After uploading, select “Return to request form” to fill the File Link field automatically. If you share an image, choose “Idea / design help” above and describe what you want in Notes.</li>
                   </ol>
                   <p>If you use a Drive or MakerWorld link, check access in a private browser window. The File Link goes to the operator sheet; it is not shown on the public queue.</p>
                 </div>
@@ -206,7 +206,7 @@
             </div>
 
             <!-- Print Settings -->
-            <div class="form-section">
+            <div class="form-section" id="s-print-settings-section">
               <h3 class="form-section-title"><span aria-hidden="true">⚙️</span> Print Settings</h3>
               <div class="form-row">
                 <div class="form-group">
@@ -237,7 +237,7 @@
             </div>
 
             <!-- Pre-Print Checklist -->
-            <div class="form-section">
+            <div class="form-section" id="s-checklist-section">
               <h3 class="form-section-title"><span aria-hidden="true">✅</span> Pre-Print Checklist</h3>
               <p style="color:var(--color-text-muted);font-size:var(--text-sm);margin-bottom:var(--space-5);">
                 All items must be confirmed before your request can be submitted.
@@ -277,9 +277,9 @@
             <div class="form-section">
               <h3 class="form-section-title"><span aria-hidden="true">💬</span> Notes / Special Request</h3>
               <div class="form-group">
-                <label class="form-label" for="s-notes">Notes</label>
+                <label class="form-label" for="s-notes">Notes <span id="s-notes-required" class="required" aria-hidden="true" hidden>*</span></label>
                 <textarea class="form-textarea" id="s-notes" name="notes"
-                  placeholder="Any additional details, color specifics, or special handling requests…"></textarea>
+                  placeholder="For an idea image, describe what you would like us to make. Include size, use, and other details you know."></textarea>
               </div>
             </div>
 
@@ -338,9 +338,9 @@
                 <input class="form-input" type="text" id="t-projectName" name="projectName" aria-required="true" required />
               </div>
               <div class="form-group">
-                <label class="form-label" for="t-purpose">Purpose of Print <span class="required" aria-hidden="true">*</span></label>
+                <label class="form-label" for="t-purpose">Purpose of Print or Idea Description <span class="required" aria-hidden="true">*</span></label>
                 <textarea class="form-textarea" id="t-purpose" name="purpose" required
-                  placeholder="Describe what this print is for and how it will be used…"></textarea>
+                  placeholder="Describe what you want to make, what it is for, and how it will be used…"></textarea>
               </div>
               <div class="form-row">
                 <div class="form-group">
@@ -359,7 +359,7 @@
               <h3 class="form-section-title"><span aria-hidden="true">📂</span> File Information</h3>
               <div class="form-row">
                 <div class="form-group">
-                  <label class="form-label" for="t-fileName">File Name <span class="required" aria-hidden="true">*</span></label>
+                  <label class="form-label" for="t-fileName">File or Idea Name <span class="required" aria-hidden="true">*</span></label>
                   <input class="form-input" type="text" id="t-fileName" name="fileName" aria-required="true" required
                     placeholder="Department_ProjectName_v1" />
                 </div>
@@ -367,11 +367,11 @@
                   <label class="form-label" for="t-fileLink">File Link <span class="required" aria-hidden="true">*</span></label>
                   <input class="form-input" type="url" id="t-fileLink" name="fileLink" aria-required="true" required
                     placeholder="https://…" />
-                  <p class="form-help">Paste a Google Drive or MakerWorld link, or upload a file using the option below. For your own Drive link, use Viewer access and check that the lab can open it.</p>
+                  <p class="form-help">Paste a Google Drive or MakerWorld link, or upload a model or idea image below. For your own Drive link, use Viewer access and check that the lab can open it.</p>
                   <p class="form-help" id="t-upload-status" role="status" aria-live="polite"></p>
                 </div>
               </div>
-              <p class="form-help"><strong>Upload a file instead:</strong> <a href="#" data-upload-link data-upload-form="staff" hidden target="_blank" rel="noopener noreferrer">Choose a file to upload</a><span data-upload-pending>File upload is being set up.</span> Sign in with any Google account. After uploading, select “Return to request form” to fill the File Link field automatically.</p>
+              <p class="form-help"><strong>Upload a model or idea image instead:</strong> <a href="#" data-upload-link data-upload-form="staff" hidden target="_blank" rel="noopener noreferrer">Choose a file to upload</a><span data-upload-pending>File upload is being set up.</span> Sign in with any Google account. After uploading, select “Return to request form” to fill the File Link field automatically. If sharing an image, describe the idea above.</p>
             </div>
 
             <!-- Print Preferences -->

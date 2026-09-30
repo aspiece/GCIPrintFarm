@@ -237,6 +237,35 @@
 
     var btn      = form.querySelector('[type="submit"]');
     var feedback = document.getElementById('student-feedback');
+    var projectType = document.getElementById('s-projectType');
+    var printSettings = document.getElementById('s-print-settings-section');
+    var checklistSection = document.getElementById('s-checklist-section');
+    var notes = document.getElementById('s-notes');
+    var notesRequired = document.getElementById('s-notes-required');
+
+    function updateIdeaMode() {
+      var idea = projectType && projectType.value === 'Idea / design help';
+      if (printSettings) printSettings.hidden = idea;
+      if (checklistSection) checklistSection.hidden = idea;
+      ['s-estimatedPrint', 's-filamentColor'].forEach(function (id) {
+        var field = document.getElementById(id);
+        if (field) {
+          field.required = !idea;
+          field.setAttribute('aria-required', String(!idea));
+        }
+      });
+      if (checklistSection) checklistSection.querySelectorAll('input[type="checkbox"]').forEach(function (box) {
+        box.required = !idea;
+        box.setAttribute('aria-required', String(!idea));
+      });
+      if (notes) {
+        notes.required = idea;
+        notes.setAttribute('aria-required', String(idea));
+      }
+      if (notesRequired) notesRequired.hidden = !idea;
+    }
+    if (projectType) projectType.addEventListener('change', updateIdeaMode);
+    updateIdeaMode();
 
     // Store default button label
     if (btn) btn.dataset.defaultText = btn.textContent;
@@ -254,7 +283,7 @@
       // Checklist: all boxes must be checked
       var checklistFieldset = form.querySelector('[data-checklist]');
       var checkboxes = checklistFieldset ? checklistFieldset.querySelectorAll('input[type="checkbox"]') : [];
-      var unchecked  = Array.from(checkboxes).filter(function (cb) { return !cb.checked; });
+      var unchecked  = Array.from(checkboxes).filter(function (cb) { return cb.required && !cb.checked; });
       if (unchecked.length > 0) {
         setFeedback(feedback, 'error', 'Please confirm all pre-print checklist items before submitting.');
         return;
@@ -285,8 +314,10 @@
         function (jobId) {
           setButtonLoading(btn, false);
           var idNote = jobId ? ' Your Job ID is \u200b' + jobId + '.' : '';
-          setFeedback(feedback, 'success', 'Your print request was submitted!' + idNote + ' A lab operator will review it and follow up with you.');
+          var submittedItem = payload.projectType === 'Idea / design help' ? 'idea' : 'print request';
+          setFeedback(feedback, 'success', 'Your ' + submittedItem + ' was submitted!' + idNote + ' A lab operator will review it and follow up with you.');
           form.reset();
+          updateIdeaMode();
           form.scrollIntoView({ behavior: 'smooth', block: 'start' });
         },
         function (msg) {
@@ -476,7 +507,9 @@
         estimateSubtotal: estimateState.hasEstimate ? estimateState.pricing.breakdown.subtotal.toFixed(2) : '',
         estimateSalesTax: estimateState.hasEstimate ? estimateState.pricing.breakdown.salesTax.toFixed(2) : '',
         estimateTotal: estimateState.hasEstimate ? estimateState.pricing.breakdown.total.toFixed(2) : '',
-        notes:            (form.querySelector('#t-notes')           || {}).value || ''
+        // The existing Sheet endpoint stores Notes but has no Purpose column.
+        notes:            'Purpose / idea: ' + ((form.querySelector('#t-purpose') || {}).value || '') +
+                          ((form.querySelector('#t-notes') || {}).value ? '\nNotes: ' + form.querySelector('#t-notes').value : '')
       };
 
       submitToGAS(

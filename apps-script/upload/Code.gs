@@ -3,7 +3,7 @@
 // Access: Anyone with a Google account (sign-in required by the deployment).
 var UPLOAD_FOLDER_ID = '1MzYyfqfyOT4Mu5Euv-Rn7uUHtQG5sC87';
 var MAX_UPLOAD_BYTES = 25 * 1024 * 1024;
-var ALLOWED_EXTENSIONS = ['stl', '3mf', 'obj', 'step', 'stp'];
+var ALLOWED_EXTENSIONS = ['stl', '3mf', 'obj', 'step', 'stp', 'png', 'jpg', 'jpeg', 'webp', 'gif', 'heic', 'heif'];
 
 function doGet(e) {
   var template = HtmlService.createTemplateFromFile('Index');
@@ -24,7 +24,7 @@ function uploadPrintFile(form) {
   var originalName = String(blob.getName() || '');
   var extension = originalName.split('.').pop().toLowerCase();
   if (ALLOWED_EXTENSIONS.indexOf(extension) === -1) {
-    throw new Error('Upload an STL, 3MF, OBJ, STEP, or STP file.');
+    throw new Error('Upload a print model or image (STL, 3MF, OBJ, STEP, STP, PNG, JPG, WEBP, GIF, or HEIC).');
   }
   var bytes = blob.getBytes();
   if (!bytes.length || bytes.length > MAX_UPLOAD_BYTES) {

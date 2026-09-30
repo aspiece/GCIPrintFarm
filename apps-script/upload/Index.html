@@ -15,10 +15,10 @@
 </head>
 <body data-form-type="<?= formType ?>" data-state="<?= state ?>">
   <h1>Upload a print file</h1>
-  <p>Sign in with any Google account, then choose an STL, 3MF, OBJ, STEP, or STP file, up to 25 MB. After uploading, return to your request form to attach the file. Your file is stored in the Print Lab’s Drive folder.</p>
+  <p>Sign in with any Google account, then choose a 3D model or an image of your idea (PNG, JPG, WEBP, GIF, or HEIC), up to 25 MB. An image is for review and is not a print-ready model. After uploading, return to your request form to attach the file and describe your idea. Your file is stored in the Print Lab’s Drive folder.</p>
   <form id="upload-form">
-    <label for="printFile">Print file</label>
-    <input id="printFile" name="printFile" type="file" accept=".stl,.3mf,.obj,.step,.stp" required>
+    <label for="printFile">Model or idea image</label>
+    <input id="printFile" name="printFile" type="file" accept=".stl,.3mf,.obj,.step,.stp,.png,.jpg,.jpeg,.webp,.gif,.heic,.heif" required>
     <button id="upload-button" type="submit">Upload file</button>
   </form>
   <div id="result" role="status" aria-live="polite"></div>
