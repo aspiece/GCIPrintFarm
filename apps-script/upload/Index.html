@@ -10,11 +10,12 @@
     button:disabled { opacity: .6; cursor: wait; }
     .result { padding: 1rem; margin-top: 1rem; background: #eef5fa; border-radius: .4rem; overflow-wrap: anywhere; }
     .error { background: #fff0ef; }
+    .return-link { display: inline-block; margin: .75rem 0; padding: .7rem 1rem; background: #164d76; color: white; border-radius: .4rem; text-decoration: none; }
   </style>
 </head>
-<body>
+<body data-form-type="<?= formType ?>" data-state="<?= state ?>">
   <h1>Upload a print file</h1>
-  <p>Sign in with any Google account, then choose an STL, 3MF, OBJ, STEP, or STP file, up to 25 MB. After uploading, copy its link into the Print Lab request form. Your file is stored in the Print Lab’s Drive folder.</p>
+  <p>Sign in with any Google account, then choose an STL, 3MF, OBJ, STEP, or STP file, up to 25 MB. After uploading, return to your request form to attach the file. Your file is stored in the Print Lab’s Drive folder.</p>
   <form id="upload-form">
     <label for="printFile">Print file</label>
     <input id="printFile" name="printFile" type="file" accept=".stl,.3mf,.obj,.step,.stp" required>
@@ -43,13 +44,27 @@
           button.disabled = false;
           result.textContent = '';
           var message = document.createElement('p');
-          message.textContent = uploaded.name + ' is uploaded. Copy this link into the File Link field on your request:';
+          var formType = document.body.dataset.formType;
+          var state = document.body.dataset.state;
+          message.textContent = uploaded.name + ' is uploaded.';
           var link = document.createElement('a');
           link.href = uploaded.url;
           link.target = '_blank';
           link.rel = 'noopener noreferrer';
           link.textContent = uploaded.url;
           result.appendChild(message);
+          if (formType && state) {
+            var returnLink = document.createElement('a');
+            returnLink.className = 'return-link';
+            returnLink.href = 'https://print.geneseelearninglab.com/requests.html#upload=' +
+              encodeURIComponent(uploaded.url) + '&form=' + encodeURIComponent(formType) +
+              '&state=' + encodeURIComponent(state);
+            returnLink.textContent = 'Return to request form';
+            result.appendChild(returnLink);
+          }
+          var fallback = document.createElement('p');
+          fallback.textContent = 'If your request form does not fill automatically, copy this file link into its File Link field:';
+          result.appendChild(fallback);
           result.appendChild(link);
         })
         .withFailureHandler(function (error) {

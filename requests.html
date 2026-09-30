@@ -9,7 +9,7 @@
   <script src="site.js" defer></script>
   <script src="lab-settings.js?v=20260929-upload" defer></script>
   <script src="print-pricing.js" defer></script>
-  <script src="print-workflow.js" defer></script>
+  <script src="print-workflow.js?v=20260929-upload-return" defer></script>
 </head>
 <body>
 
@@ -188,7 +188,8 @@
                   <label class="form-label" for="s-fileLink">File Link <span class="required" aria-hidden="true">*</span></label>
                   <input class="form-input" type="url" id="s-fileLink" name="fileLink" aria-required="true" aria-describedby="s-fileLink-help" required
                     placeholder="https://…" />
-                  <p class="form-help" id="s-fileLink-help">Paste a link directly to the file or model page. Check the sharing steps below before submitting.</p>
+                  <p class="form-help" id="s-fileLink-help">Paste a Google Drive or MakerWorld link, or upload a file using the option below. An uploaded file fills this field automatically.</p>
+                  <p class="form-help" id="s-upload-status" role="status" aria-live="polite"></p>
                 </div>
               </div>
               <div class="alert alert--info" role="note" aria-label="How to share your print file">
@@ -197,7 +198,7 @@
                   <strong>Choose a way to share your print file</strong>
                   <ol>
                     <li><strong>Paste a link:</strong> For Google Drive, open the file’s Share settings. If your school permits it, set General access to “Anyone with the link” and the role to “Viewer.” For MakerWorld, copy the model page address. Check that the lab can open the file or model.</li>
-                    <li><strong>Upload a file:</strong> <a href="#" data-upload-link hidden target="_blank" rel="noopener noreferrer">Open the file upload page</a><span data-upload-pending>File upload is being set up.</span> Sign in with any Google account, upload the file, then paste the returned link in the File Link field above.</li>
+                    <li><strong>Upload a file:</strong> <a href="#" data-upload-link data-upload-form="student" hidden target="_blank" rel="noopener noreferrer">Choose a file to upload</a><span data-upload-pending>File upload is being set up.</span> Sign in with any Google account. After uploading, select “Return to request form” to fill the File Link field automatically.</li>
                   </ol>
                   <p>If you use a Drive or MakerWorld link, check access in a private browser window. The File Link goes to the operator sheet; it is not shown on the public queue.</p>
                 </div>
@@ -366,10 +367,11 @@
                   <label class="form-label" for="t-fileLink">File Link <span class="required" aria-hidden="true">*</span></label>
                   <input class="form-input" type="url" id="t-fileLink" name="fileLink" aria-required="true" required
                     placeholder="https://…" />
-                  <p class="form-help">Paste a Google Drive file link, MakerWorld model page, or a link returned by the file upload page. Use Viewer access for Drive, and check that the lab can open the link.</p>
+                  <p class="form-help">Paste a Google Drive or MakerWorld link, or upload a file using the option below. For your own Drive link, use Viewer access and check that the lab can open it.</p>
+                  <p class="form-help" id="t-upload-status" role="status" aria-live="polite"></p>
                 </div>
               </div>
-              <p class="form-help">Need to upload a file first? <a href="#" data-upload-link hidden target="_blank" rel="noopener noreferrer">Open the file upload page</a><span data-upload-pending>File upload is being set up.</span> Sign in with any Google account and paste the returned link above before submitting.</p>
+              <p class="form-help"><strong>Upload a file instead:</strong> <a href="#" data-upload-link data-upload-form="staff" hidden target="_blank" rel="noopener noreferrer">Choose a file to upload</a><span data-upload-pending>File upload is being set up.</span> Sign in with any Google account. After uploading, select “Return to request form” to fill the File Link field automatically.</p>
             </div>
 
             <!-- Print Preferences -->

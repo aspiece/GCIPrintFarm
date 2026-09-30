@@ -20,10 +20,71 @@
 
   function initUploadLinks() {
     var uploadUrl = cfg('UPLOAD_APP_URL');
+    var resultKey = 'gci-print-upload-result';
+    var pendingKey = 'gci-print-upload-pending';
+
+    function attachUploadedFile(formType, url) {
+      if (formType !== 'student' && formType !== 'staff') return false;
+      var field = document.getElementById(formType === 'student' ? 's-fileLink' : 't-fileLink');
+      var status = document.getElementById(formType === 'student' ? 's-upload-status' : 't-upload-status');
+      if (!field) return false;
+      try {
+        var parsed = new URL(url);
+        if (parsed.protocol !== 'https:' || parsed.hostname !== 'drive.google.com' || !/^\/file\/d\//.test(parsed.pathname)) return false;
+      } catch (error) {
+        return false;
+      }
+      field.value = url;
+      field.dispatchEvent(new Event('input', { bubbles: true }));
+      field.dispatchEvent(new Event('change', { bubbles: true }));
+      if (status) status.textContent = 'Upload complete. The file link has been added to your request.';
+      return true;
+    }
+
+    // The upload tab returns here with a fragment, so the file URL is never sent to the site server.
+    if (global.location.hash.indexOf('#upload=') === 0) {
+      var result = new URLSearchParams(global.location.hash.slice(1));
+      var formType = result.get('form');
+      var url = result.get('upload');
+      var state = result.get('state');
+      if (attachUploadedFile(formType, url)) {
+        try {
+          global.localStorage.setItem(resultKey, JSON.stringify({ form: formType, url: url, state: state }));
+          global.localStorage.removeItem(resultKey);
+        } catch (error) { /* The return tab still has the filled form. */ }
+      }
+      global.history.replaceState(null, '', global.location.pathname + global.location.search +
+        (formType === 'staff' ? '#panel-staff' : '#panel-student'));
+    }
+
+    global.addEventListener('storage', function (event) {
+      if (event.key !== resultKey || !event.newValue) return;
+      try {
+        var uploaded = JSON.parse(event.newValue);
+        var pending = JSON.parse(global.sessionStorage.getItem(pendingKey) || 'null');
+        if (pending && uploaded.state === pending.state && uploaded.form === pending.form &&
+            attachUploadedFile(uploaded.form, uploaded.url)) {
+          global.sessionStorage.removeItem(pendingKey);
+        }
+      } catch (error) { /* Ignore unrelated or malformed storage changes. */ }
+    });
+
     if (!/^https:\/\/script\.google\.com\/macros\/s\//.test(uploadUrl)) return;
     document.querySelectorAll('[data-upload-link]').forEach(function (link) {
       link.href = uploadUrl;
       link.hidden = false;
+      link.addEventListener('click', function () {
+        var formType = link.dataset.uploadForm;
+        var state = global.crypto && global.crypto.randomUUID ? global.crypto.randomUUID() :
+          Date.now().toString(36) + Math.random().toString(36).slice(2);
+        var target = new URL(uploadUrl);
+        target.searchParams.set('form', formType);
+        target.searchParams.set('state', state);
+        link.href = target.toString();
+        try {
+          global.sessionStorage.setItem(pendingKey, JSON.stringify({ form: formType, state: state }));
+        } catch (error) { /* Manual copy remains available. */ }
+      });
     });
     document.querySelectorAll('[data-upload-pending]').forEach(function (message) {
       message.hidden = true;

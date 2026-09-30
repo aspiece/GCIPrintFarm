@@ -5,8 +5,13 @@ var UPLOAD_FOLDER_ID = '1MzYyfqfyOT4Mu5Euv-Rn7uUHtQG5sC87';
 var MAX_UPLOAD_BYTES = 25 * 1024 * 1024;
 var ALLOWED_EXTENSIONS = ['stl', '3mf', 'obj', 'step', 'stp'];
 
-function doGet() {
-  return HtmlService.createHtmlOutputFromFile('Index')
+function doGet(e) {
+  var template = HtmlService.createTemplateFromFile('Index');
+  var formType = e && e.parameter && e.parameter.form;
+  var state = e && e.parameter && e.parameter.state;
+  template.formType = formType === 'student' || formType === 'staff' ? formType : '';
+  template.state = /^[A-Za-z0-9_-]{8,80}$/.test(String(state || '')) ? state : '';
+  return template.evaluate()
     .setTitle('Upload a Print File | GCI Print Lab');
 }
 
