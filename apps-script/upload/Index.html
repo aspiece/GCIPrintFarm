@@ -56,7 +56,8 @@
           if (formType && state) {
             var returnLink = document.createElement('a');
             returnLink.className = 'return-link';
-            returnLink.href = 'https://print.geneseelearninglab.com/requests.html#upload=' +
+            returnLink.href = 'https://print.geneseelearninglab.com/requests.html?upload-return=' +
+              encodeURIComponent(state) + '#upload=' +
               encodeURIComponent(uploaded.url) + '&form=' + encodeURIComponent(formType) +
               '&state=' + encodeURIComponent(state);
             returnLink.textContent = 'Return to request form';
