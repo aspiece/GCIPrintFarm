@@ -9,7 +9,7 @@
   <script src="site.js" defer></script>
   <script src="lab-settings.js?v=20260929-upload" defer></script>
   <script src="print-pricing.js" defer></script>
-  <script src="print-workflow.js?v=20260929-idea-image" defer></script>
+  <script src="print-workflow.js?v=20260929-shorter-form" defer></script>
 </head>
 <body>
 
@@ -68,8 +68,7 @@
           <span class="alert__icon" aria-hidden="true">📋</span>
           <div>
             <strong>Before you submit:</strong> Review the
-            <a href="/print-farm.html#rules">Print Rules &amp; Expectations</a>. For a print-ready model, check your file before submitting. For an idea image, describe what you hope to make. Use this name format:
-            <code style="font-size:var(--text-xs);background:var(--color-surface-2);padding:2px 6px;border-radius:4px;">Lastname_Firstname_Project_v1</code>
+            <a href="/print-farm.html#rules">Print Rules &amp; Expectations</a>. For a print-ready model, check your file before submitting. For an idea image, describe what you hope to make.
           </div>
         </div>
       </div>
@@ -179,10 +178,10 @@
               </div>
               <div class="form-row">
                 <div class="form-group">
-                  <label class="form-label" for="s-fileName">File or Idea Name <span class="required" aria-hidden="true">*</span></label>
+                  <label class="form-label" for="s-fileName">Project or Idea Title <span class="required" aria-hidden="true">*</span></label>
                   <input class="form-input" type="text" id="s-fileName" name="fileName" aria-required="true" required
-                    placeholder="Lastname_Firstname_Project_v1" />
-                  <p class="form-help">Use the format: Lastname_Firstname_Project_v1</p>
+                    placeholder="e.g. Solar system model" />
+                  <p class="form-help">Give the lab a short name for your request. Uploaded files keep their own filenames.</p>
                 </div>
                 <div class="form-group">
                   <label class="form-label" for="s-fileLink">File Link <span class="required" aria-hidden="true">*</span></label>
@@ -205,24 +204,13 @@
               </div>
             </div>
 
-            <!-- Print Settings -->
+            <!-- Optional color preference -->
             <div class="form-section" id="s-print-settings-section">
-              <h3 class="form-section-title"><span aria-hidden="true">⚙️</span> Print Settings</h3>
-              <div class="form-row">
-                <div class="form-group">
-                  <label class="form-label" for="s-estimatedPrint">Estimated Print Time <span class="required" aria-hidden="true">*</span></label>
-                  <select class="form-select" id="s-estimatedPrint" name="estimatedPrintTime" aria-required="true" required>
-                    <option value="">— Select estimated time —</option>
-                    <option value="Under 30 Minutes">Under 30 Minutes</option>
-                    <option value="30–60 Minutes">30–60 Minutes</option>
-                    <option value="1–2 Hours">1–2 Hours</option>
-                    <option value="2+ Hours">2+ Hours</option>
-                  </select>
-                </div>
-                <div class="form-group">
-                  <label class="form-label" for="s-filamentColor">Filament Color Requested <span class="required" aria-hidden="true">*</span></label>
-                  <select class="form-select" id="s-filamentColor" name="filamentColor" aria-required="true" required>
-                    <option value="">— Select color —</option>
+              <h3 class="form-section-title"><span aria-hidden="true">⚙️</span> Color Preference</h3>
+              <div class="form-group">
+                  <label class="form-label" for="s-filamentColor">Preferred Filament Color (optional)</label>
+                  <select class="form-select" id="s-filamentColor" name="filamentColor">
+                    <option value="No Preference">No preference</option>
                     <option value="Black">Black</option>
                     <option value="White">White</option>
                     <option value="Gray">Gray</option>
@@ -232,42 +220,18 @@
                     <option value="Yellow">Yellow</option>
                     <option value="Other">Other (specify in notes)</option>
                   </select>
-                </div>
               </div>
             </div>
 
-            <!-- Pre-Print Checklist -->
+            <!-- Print-ready confirmation -->
             <div class="form-section" id="s-checklist-section">
-              <h3 class="form-section-title"><span aria-hidden="true">✅</span> Pre-Print Checklist</h3>
-              <p style="color:var(--color-text-muted);font-size:var(--text-sm);margin-bottom:var(--space-5);">
-                All items must be confirmed before your request can be submitted.
-              </p>
+              <h3 class="form-section-title"><span aria-hidden="true">✅</span> Model Readiness</h3>
               <fieldset data-checklist style="border:none;padding:0;margin:0;">
-                <legend class="sr-only">Pre-print checklist — all items required</legend>
+                <legend class="sr-only">Model readiness confirmation</legend>
                 <div class="form-checkbox-group">
                   <label class="form-checkbox-item">
-                    <input type="checkbox" value="scaled-correctly" aria-required="true" required />
-                    <span>My model is scaled correctly</span>
-                  </label>
-                  <label class="form-checkbox-item">
-                    <input type="checkbox" value="on-build-plate" aria-required="true" required />
-                    <span>My model is on the build plate</span>
-                  </label>
-                  <label class="form-checkbox-item">
-                    <input type="checkbox" value="checked-supports" aria-required="true" required />
-                    <span>I checked supports</span>
-                  </label>
-                  <label class="form-checkbox-item">
-                    <input type="checkbox" value="checked-print-time" aria-required="true" required />
-                    <span>I checked print time</span>
-                  </label>
-                  <label class="form-checkbox-item">
-                    <input type="checkbox" value="saved-correct-file" aria-required="true" required />
-                    <span>I saved the correct file</span>
-                  </label>
-                  <label class="form-checkbox-item">
-                    <input type="checkbox" value="ready-for-review" aria-required="true" required />
-                    <span>I am ready for review</span>
+                    <input type="checkbox" value="model-reviewed" aria-required="true" required />
+                    <span>I reviewed my model and understand the lab will check it before printing.</span>
                   </label>
                 </div>
               </fieldset>
@@ -338,9 +302,9 @@
                 <input class="form-input" type="text" id="t-projectName" name="projectName" aria-required="true" required />
               </div>
               <div class="form-group">
-                <label class="form-label" for="t-purpose">Purpose of Print or Idea Description <span class="required" aria-hidden="true">*</span></label>
-                <textarea class="form-textarea" id="t-purpose" name="purpose" required
-                  placeholder="Describe what you want to make, what it is for, and how it will be used…"></textarea>
+                <label class="form-label" for="t-purpose">Request Details <span class="required" aria-hidden="true">*</span></label>
+                <textarea class="form-textarea" id="t-purpose" name="purpose" required maxlength="400"
+                  placeholder="Describe what you want to make, how it will be used, and any color or material needs…"></textarea>
               </div>
               <div class="form-row">
                 <div class="form-group">
@@ -357,19 +321,12 @@
             <!-- File Information -->
             <div class="form-section">
               <h3 class="form-section-title"><span aria-hidden="true">📂</span> File Information</h3>
-              <div class="form-row">
-                <div class="form-group">
-                  <label class="form-label" for="t-fileName">File or Idea Name <span class="required" aria-hidden="true">*</span></label>
-                  <input class="form-input" type="text" id="t-fileName" name="fileName" aria-required="true" required
-                    placeholder="Department_ProjectName_v1" />
-                </div>
-                <div class="form-group">
-                  <label class="form-label" for="t-fileLink">File Link <span class="required" aria-hidden="true">*</span></label>
-                  <input class="form-input" type="url" id="t-fileLink" name="fileLink" aria-required="true" required
-                    placeholder="https://…" />
-                  <p class="form-help">Paste a Google Drive or MakerWorld link, or upload a model or idea image below. For your own Drive link, use Viewer access and check that the lab can open it.</p>
-                  <p class="form-help" id="t-upload-status" role="status" aria-live="polite"></p>
-                </div>
+              <div class="form-group">
+                <label class="form-label" for="t-fileLink">File Link <span class="required" aria-hidden="true">*</span></label>
+                <input class="form-input" type="url" id="t-fileLink" name="fileLink" aria-required="true" required
+                  placeholder="https://…" />
+                <p class="form-help">Paste a Google Drive or MakerWorld link, or upload a model or idea image below. For your own Drive link, use Viewer access and check that the lab can open it.</p>
+                <p class="form-help" id="t-upload-status" role="status" aria-live="polite"></p>
               </div>
               <p class="form-help"><strong>Upload a model or idea image instead:</strong> <a href="#" data-upload-link data-upload-form="staff" hidden target="_blank" rel="noopener noreferrer">Choose a file to upload</a><span data-upload-pending>File upload is being set up.</span> Sign in with any Google account. After uploading, select “Return to request form” to fill the File Link field automatically. If sharing an image, describe the idea above.</p>
             </div>
@@ -389,19 +346,9 @@
                     <option value="Red">Red</option>
                     <option value="Green">Green</option>
                     <option value="Yellow">Yellow</option>
-                    <option value="Other">Other (specify in notes)</option>
+                    <option value="Other">Other (describe in Request Details)</option>
                   </select>
                 </div>
-              </div>
-            </div>
-
-            <!-- Notes -->
-            <div class="form-section">
-              <h3 class="form-section-title"><span aria-hidden="true">💬</span> Notes / Special Request</h3>
-              <div class="form-group">
-                <label class="form-label" for="t-notes">Notes</label>
-                <textarea class="form-textarea" id="t-notes" name="notes"
-                  placeholder="Material requirements, color details, deadline context, or other special handling…"></textarea>
               </div>
             </div>
 

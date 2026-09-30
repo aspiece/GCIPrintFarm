@@ -247,13 +247,6 @@
       var idea = projectType && projectType.value === 'Idea / design help';
       if (printSettings) printSettings.hidden = idea;
       if (checklistSection) checklistSection.hidden = idea;
-      ['s-estimatedPrint', 's-filamentColor'].forEach(function (id) {
-        var field = document.getElementById(id);
-        if (field) {
-          field.required = !idea;
-          field.setAttribute('aria-required', String(!idea));
-        }
-      });
       if (checklistSection) checklistSection.querySelectorAll('input[type="checkbox"]').forEach(function (box) {
         box.required = !idea;
         box.setAttribute('aria-required', String(!idea));
@@ -280,16 +273,17 @@
         return;
       }
 
-      // Checklist: all boxes must be checked
+      // Print-ready requests have one model-readiness confirmation.
       var checklistFieldset = form.querySelector('[data-checklist]');
       var checkboxes = checklistFieldset ? checklistFieldset.querySelectorAll('input[type="checkbox"]') : [];
       var unchecked  = Array.from(checkboxes).filter(function (cb) { return cb.required && !cb.checked; });
       if (unchecked.length > 0) {
-        setFeedback(feedback, 'error', 'Please confirm all pre-print checklist items before submitting.');
+        setFeedback(feedback, 'error', 'Please confirm that you reviewed your model before submitting.');
         return;
       }
 
       setButtonLoading(btn, true);
+      var isIdea = projectType && projectType.value === 'Idea / design help';
 
       var payload = {
         requestType:        'student',
@@ -301,10 +295,10 @@
         projectType:        (form.querySelector('#s-projectType')      || {}).value || '',
         fileName:           (form.querySelector('#s-fileName')         || {}).value || '',
         fileLink:           (form.querySelector('#s-fileLink')         || {}).value || '',
-        estimatedPrintTime: (form.querySelector('#s-estimatedPrint')   || {}).value || '',
-        filamentColor:      (form.querySelector('#s-filamentColor')    || {}).value || '',
+        estimatedPrintTime: '', // Operators estimate this after reviewing the model.
+        filamentColor:      isIdea ? '' : (form.querySelector('#s-filamentColor') || {}).value || '',
         printerRequested:   (form.querySelector('#s-printerRequested') || {}).value || '',
-        checklist:          collectChecked(checklistFieldset),
+        checklist:          isIdea ? [] : collectChecked(checklistFieldset),
         notes:              (form.querySelector('#s-notes')            || {}).value || ''
       };
 
@@ -480,6 +474,11 @@
       if (!estimateState.canSubmit) return;
 
       setButtonLoading(btn, true);
+      var quantity = (form.querySelector('#t-quantity') || {}).value || '1';
+      var neededBy = (form.querySelector('#t-neededByDate') || {}).value || '';
+      var details = (form.querySelector('#t-purpose') || {}).value || '';
+      var operatorNotes = 'Quantity: ' + quantity +
+        (neededBy ? '\nNeeded by: ' + neededBy : '') + '\nDetails: ' + details;
 
       var payload = {
         requestType:      'staff',
@@ -491,7 +490,7 @@
         purpose:          (form.querySelector('#t-purpose')         || {}).value || '',
         quantity:         (form.querySelector('#t-quantity')        || {}).value || '',
         neededByDate:     (form.querySelector('#t-neededByDate')    || {}).value || '',
-        fileName:         (form.querySelector('#t-fileName')        || {}).value || '',
+        fileName:         '', // Project Name is the one title staff enter.
         fileLink:         (form.querySelector('#t-fileLink')        || {}).value || '',
         filamentColor:    (form.querySelector('#t-filamentColor')   || {}).value || '',
         materialType:     (document.querySelector('#t-materialType')    || {}).value || '',
@@ -507,9 +506,8 @@
         estimateSubtotal: estimateState.hasEstimate ? estimateState.pricing.breakdown.subtotal.toFixed(2) : '',
         estimateSalesTax: estimateState.hasEstimate ? estimateState.pricing.breakdown.salesTax.toFixed(2) : '',
         estimateTotal: estimateState.hasEstimate ? estimateState.pricing.breakdown.total.toFixed(2) : '',
-        // The existing Sheet endpoint stores Notes but has no Purpose column.
-        notes:            'Purpose / idea: ' + ((form.querySelector('#t-purpose') || {}).value || '') +
-                          ((form.querySelector('#t-notes') || {}).value ? '\nNotes: ' + form.querySelector('#t-notes').value : '')
+        // The existing Sheet endpoint stores these details in its Notes column.
+        notes:            operatorNotes
       };
 
       submitToGAS(
