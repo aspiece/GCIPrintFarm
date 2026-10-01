@@ -28,8 +28,8 @@
         <li><a href="/" class="nav-link">Home</a></li>
         <li><a href="/training/" class="nav-link">Training</a></li>
         <li><a href="/print-farm.html" class="nav-link">Print Farm</a></li>
-        <li><a href="/requests.html" class="nav-link">Submit Request</a></li>
-        <li><a href="/queue.html" class="nav-link">Live Queue</a></li>
+        <li><a href="/requests.html" class="nav-link">Request a Print</a></li>
+        <li><a href="/queue.html" class="nav-link">Print Queue</a></li>
         <li><a href="/resources.html" class="nav-link">Resources</a></li>
         <li><a href="/projects.html" class="nav-link">Projects</a></li>
         <li><a href="/instructor.html" class="nav-link">Instructor</a></li>
@@ -52,7 +52,7 @@
           </h1>
           <p class="hero__subtitle">
             Bambu Lab A1, A1 Mini, and P1S printers — operated by students, open to the campus community.
-            From rapid prototyping to multi-color prints, we've got the tools to bring your ideas to life.
+
           </p>
           <div class="hero__actions">
             <a href="/requests.html" class="btn btn--primary btn--lg">Submit a Print Job →</a>
@@ -72,7 +72,7 @@
         <div class="grid-2" style="align-items: start; gap: var(--space-10);">
           <div>
             <p style="color: var(--color-text-muted); font-size: var(--text-lg); margin-bottom: var(--space-6);">
-              The GCI Print Farm is a student-operated 3D printing lab providing accessible fabrication services for learners and staff across Genesee Community College.
+              The GCI Print Farm is a student-operated 3D printing lab providing accessible fabrication services for learners and staff for the GCI community.
             </p>
             <p style="color: var(--color-text-muted); margin-bottom: var(--space-6);">
               Students manage the full workflow — from model review and slicing to printing, quality inspection, and handoff. Working in the lab builds real-world skills in manufacturing, problem solving, and team operations.
@@ -222,7 +222,7 @@
           <li>
             <div>
               <strong>Prepare your file</strong>
-              <p style="color: var(--color-text-muted); margin: var(--space-1) 0 0;">Export your design as STL or 3MF. If you haven't designed your own, find a model on MakerWorld. Verify it's printable in Bambu Studio before submitting.</p>
+              <p style="color: var(--color-text-muted); margin: var(--space-1) 0 0;">Export your design as STL or 3MF. If you haven't designed your own, find a model on MakerWorld. For design help, share an image and describe your idea.</p>
             </div>
           </li>
           <li>
@@ -262,41 +262,7 @@
       </div>
     </section>
 
-    <!-- ── Submission Expectations ── -->
-    <section class="section section--alt" aria-labelledby="expectations-heading">
-      <div class="container">
-        <div class="section-header">
-          <p class="section-eyebrow">Before You Submit</p>
-          <h2 class="section-title" id="expectations-heading">Submission Expectations</h2>
-        </div>
-        <div class="grid-2">
-          <div>
-            <h3 class="card__title" style="margin-bottom: var(--space-4);">File Requirements</h3>
-            <ul class="feature-list">
-              <li>File must be in STL or 3MF format</li>
-              <li>Model must be manifold (watertight — no holes in geometry)</li>
-              <li>Wall thickness should be at least 1.2 mm for PLA</li>
-              <li>Overhangs beyond 45° should include supports</li>
-              <li>File should be under 100 MB</li>
-            </ul>
-          </div>
-          <div>
-            <h3 class="card__title" style="margin-bottom: var(--space-4);">Print Job Guidelines</h3>
-            <ul class="feature-list">
-              <li>Single jobs should complete within 6 hours</li>
-              <li>Batch jobs should be pre-approved by a lab supervisor</li>
-              <li>Multi-color jobs require AMS-compatible file setup</li>
-              <li>Commercial or for-profit prints require special approval</li>
-              <li>Print jobs are done in order — allow 2–5 business days</li>
-            </ul>
-          </div>
-        </div>
-        <div class="alert alert--info" style="margin-top: var(--space-8);">
-          <span class="alert__icon" aria-hidden="true">ℹ️</span>
-          <p style="margin: 0;"><strong>New to printing?</strong> Complete the 5-day training program before submitting a print job on your own. Trained operators can help with slicing and file prep during open lab hours.</p>
-        </div>
-      </div>
-    </section>
+
 
     <!-- ── Safety ── -->
     <section class="section" aria-labelledby="safety-heading">
@@ -428,24 +394,27 @@
       <div class="container">
         <div class="section-header">
           <p class="section-eyebrow">Student Guidelines</p>
+          <span id="expectations-heading"></span>
           <h2 class="section-title" id="rules-heading">Print Rules &amp; Expectations</h2>
-          <p class="section-subtitle">Follow these rules every time you submit a print job.</p>
+          <p class="section-subtitle">Submit a print-ready model or share an image for design help. Operators review every request.</p>
         </div>
         <div class="grid-2">
           <div>
             <h3 class="card__title" style="margin-bottom: var(--space-4);">📁 File Preparation</h3>
             <ul class="feature-list">
-              <li>Export your file as STL or 3MF — not a Tinkercad project link</li>
+              <li>For print-ready models, use STL or 3MF, not a Tinkercad project link</li>
               <li>Open your file in Bambu Studio before submitting to verify it looks correct</li>
               <li>Place your model on the build plate (not floating in air)</li>
               <li>Scale your model correctly — check dimensions in Bambu Studio</li>
               <li>Enable supports for overhangs greater than 45°</li>
-              <li>Confirm print time in Bambu Studio before submitting</li>
+              <li>Use watertight geometry and walls at least 1.2 mm thick for PLA</li>
+              <li>Uploads must be 25 MB or smaller</li>
+              <li>For design help, share an image and describe your idea in the request</li>
             </ul>
 
             <h3 class="card__title" style="margin-bottom: var(--space-4); margin-top: var(--space-8);">📛 File Naming</h3>
             <p style="color: var(--color-text-muted); font-size: var(--text-sm); margin-bottom: var(--space-3);">
-              All submitted files must follow this naming convention:
+              Name models using this format. Training keychains may use <code>LastName_Keychain.3mf</code>:
             </p>
             <div class="card" style="background: var(--color-surface-2); padding: var(--space-4);">
               <code style="font-size: var(--text-sm); color: var(--color-primary-light);">Lastname_Firstname_Project_v1</code>
@@ -458,11 +427,15 @@
           <div>
             <h3 class="card__title" style="margin-bottom: var(--space-4);">🔍 Review &amp; Approval Process</h3>
             <ul class="feature-list">
-              <li>All jobs are reviewed by a helpdesk operator before printing</li>
+              <li>Operators review files, estimate print time, and confirm materials</li>
+              <li>Single jobs should finish within 6 hours; get supervisor approval for batch jobs</li>
+              <li>Multi-color jobs need AMS-compatible setup</li>
+              <li>Commercial or for-profit prints need prior approval</li>
+              <li>Allow 2–5 business days; jobs print in order</li>
               <li>Files with incorrect naming, scale, or setup will be flagged for revision</li>
               <li>You will be notified if your submission needs changes</li>
               <li>Approved jobs are added to the print queue with a Job ID</li>
-              <li>Track your job status on the <a href="/queue.html">Live Queue</a></li>
+              <li>Track your job status on the <a href="/queue.html">Print Queue</a></li>
             </ul>
 
             <h3 class="card__title" style="margin-bottom: var(--space-4); margin-top: var(--space-8);">📦 Pickup Expectations</h3>
@@ -477,7 +450,7 @@
             <ul class="feature-list">
               <li>Free reprints are available for verified printer errors</li>
               <li>Reprints due to incorrect file setup are the student's responsibility</li>
-              <li>Request a reprint by submitting a new job with project type "Reprint"</li>
+              <li>Submit a new request and describe the reprint in Notes</li>
               <li>Include the original Job ID and reason in the notes field</li>
             </ul>
           </div>
@@ -505,7 +478,7 @@
             <span class="footer-brand-icon" aria-hidden="true">🖨️</span>
             GCI 3D Print Lab
           </a>
-          <p class="footer-tagline">Student-operated 3D printing lab at Genesee Community College. Part of <a href="https://www.geneseelearninglab.com" target="_blank" rel="noopener noreferrer">GeneseeLearningLab.com</a>.</p>
+          <p class="footer-tagline">Student-operated 3D printing lab. Part of <a href="https://www.geneseelearninglab.com" target="_blank" rel="noopener noreferrer">GeneseeLearningLab.com</a>.</p>
         </div>
         <div>
           <p class="footer-heading">Training</p>
@@ -514,8 +487,8 @@
             <li><a href="training/day1.html">Day 1 – Foundations</a></li>
             <li><a href="training/day2.html">Day 2 – Model to Print</a></li>
             <li><a href="training/day3.html">Day 3 – Design</a></li>
-            <li><a href="training/day4.html">Day 4 – Troubleshoot</a></li>
-            <li><a href="training/day5.html">Day 5 – Capstone</a></li>
+            <li><a href="training/day4.html">Day 4 – Logo Keychain</a></li>
+            <li><a href="training/day5.html">Day 5 – Run the Lab</a></li>
           </ul>
         </div>
         <div>
@@ -523,7 +496,7 @@
           <ul class="footer-links">
             <li><a href="/print-farm.html">Print Farm</a></li>
             <li><a href="/requests.html">Submit a Request</a></li>
-            <li><a href="/queue.html">Live Queue</a></li>
+            <li><a href="/queue.html">Print Queue</a></li>
             <li><a href="/resources.html">Resources</a></li>
             <li><a href="training/glossary.html">Glossary</a></li>
           </ul>
@@ -539,7 +512,7 @@
         </div>
       </div>
       <div class="footer-bottom">
-        <p class="footer-copyright">© 2025 GCI 3D Print Lab · Genesee Community College · <a href="https://www.geneseelearninglab.com" target="_blank" rel="noopener noreferrer">GeneseeLearningLab.com</a></p>
+        <p class="footer-copyright">© 2025 GCI 3D Print Lab · <a href="https://www.geneseelearninglab.com" target="_blank" rel="noopener noreferrer">GeneseeLearningLab.com</a></p>
         <div class="footer-meta-links">
           <a href="https://github.com/aspiece/GCIPrintFarm" target="_blank" rel="noopener noreferrer">GitHub</a>
         </div>

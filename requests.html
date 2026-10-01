@@ -31,8 +31,8 @@
         <li><a href="/" class="nav-link">Home</a></li>
         <li><a href="/training/" class="nav-link">Training</a></li>
         <li><a href="/print-farm.html" class="nav-link">Print Farm</a></li>
-        <li><a href="/requests.html" class="nav-link">Submit Request</a></li>
-        <li><a href="/queue.html" class="nav-link">Live Queue</a></li>
+        <li><a href="/requests.html" class="nav-link">Request a Print</a></li>
+        <li><a href="/queue.html" class="nav-link">Print Queue</a></li>
         <li><a href="/resources.html" class="nav-link">Resources</a></li>
         <li><a href="/projects.html" class="nav-link">Projects</a></li>
         <li><a href="/instructor.html" class="nav-link">Instructor</a></li>
@@ -54,15 +54,14 @@
             Submit a<br><span class="highlight">Print Request</span>
           </h1>
           <p class="hero__subtitle">
-            Students and staff can request a print or share an image of an idea.
-            A lab operator will review your request and follow up.
+            Request a print or share a design idea. A lab operator will review it and follow up.
           </p>
         </div>
       </div>
     </section>
 
     <!-- ── Rules Reminder ── -->
-    <section class="section section--alt" aria-labelledby="rules-reminder-heading">
+    <section class="section section--alt" aria-label="Before you submit">
       <div class="container">
         <div class="alert alert--info">
           <span class="alert__icon" aria-hidden="true">📋</span>
@@ -158,25 +157,25 @@
                   <label class="form-label" for="s-fileName">Project or Idea Title <span class="required" aria-hidden="true">*</span></label>
                   <input class="form-input" type="text" id="s-fileName" name="fileName" aria-required="true" required
                     placeholder="e.g. Solar system model" />
-                  <p class="form-help">Give the lab a short name for your request. Uploaded files keep their own filenames.</p>
+                  <p class="form-help">Use a short, descriptive title.</p>
                 </div>
                 <div class="form-group">
                   <label class="form-label" for="s-fileLink">File Link <span class="required" aria-hidden="true">*</span></label>
                   <input class="form-input" type="url" id="s-fileLink" name="fileLink" aria-required="true" aria-describedby="s-fileLink-help" required
                     placeholder="https://…" />
-                  <p class="form-help" id="s-fileLink-help">Paste a Google Drive or <a href="https://makerworld.com/en/3d-models" target="_blank" rel="noopener noreferrer">MakerWorld</a> link, or upload a model or idea image below. An uploaded file fills this field automatically.</p>
+                  <p class="form-help" id="s-fileLink-help">Paste a Drive or MakerWorld link the lab can open, or upload a model or idea image below.</p>
                   <p class="form-help" id="s-upload-status" role="status" aria-live="polite"></p>
                 </div>
               </div>
               <div class="alert alert--info" role="note" aria-label="How to share your print file">
                 <span class="alert__icon" aria-hidden="true">🔗</span>
                 <div>
-                  <strong>Choose a way to share your print file</strong>
+                  <strong>Share your file</strong>
                   <ol>
-                    <li><strong>Paste a link:</strong> For Google Drive, open the file’s Share settings. If your school permits it, set General access to “Anyone with the link” and the role to “Viewer.” For <a href="https://makerworld.com/en/3d-models" target="_blank" rel="noopener noreferrer">MakerWorld</a>, copy the model page address. Check that the lab can open the file or model.</li>
-                    <li><strong>Upload a model or idea image:</strong> <a href="#" data-upload-link data-upload-form="student" hidden target="_blank" rel="noopener noreferrer">Choose a file to upload</a><span data-upload-pending>File upload is being set up.</span> Sign in with any Google account. After uploading, select “Return to request form” to fill the File Link field automatically. If you share an image, choose “Idea / design help” above and describe what you want in Notes.</li>
+                    <li><details><summary>Help with Drive and MakerWorld links</summary><p> For Google Drive, open the file’s Share settings. If your school permits it, set General access to “Anyone with the link” and the role to “Viewer.” For <a href="https://makerworld.com/en/3d-models" target="_blank" rel="noopener noreferrer">MakerWorld</a>, copy the model page address. Check that the lab can open the file or model.</p><p>Check access in a private browser window.</p></details></li>
+                    <li><strong>Upload a model or idea image:</strong> <a href="#" data-upload-link data-upload-form="student" hidden target="_blank" rel="noopener noreferrer">Choose a file to upload</a><span data-upload-pending>File upload is being set up.</span> Sign in with a Google account. Upload up to 25 MB, then select “Return to request form” to add the link. If you share an image, choose “Idea / design help” above and describe what you want in Notes.</li>
                   </ol>
-                  <p>If you use a Drive or <a href="https://makerworld.com/en/3d-models" target="_blank" rel="noopener noreferrer">MakerWorld</a> link, check access in a private browser window. The File Link goes to the operator sheet; it is not shown on the public queue.</p>
+                  <p>File links are shared with operators, not displayed on the public queue.</p>
                 </div>
               </div>
             </div>
@@ -305,7 +304,7 @@
                 <p class="form-help">Paste a Google Drive or <a href="https://makerworld.com/en/3d-models" target="_blank" rel="noopener noreferrer">MakerWorld</a> link, or upload a model or idea image below. For your own Drive link, use Viewer access and check that the lab can open it.</p>
                 <p class="form-help" id="t-upload-status" role="status" aria-live="polite"></p>
               </div>
-              <p class="form-help"><strong>Upload a model or idea image instead:</strong> <a href="#" data-upload-link data-upload-form="staff" hidden target="_blank" rel="noopener noreferrer">Choose a file to upload</a><span data-upload-pending>File upload is being set up.</span> Sign in with any Google account. After uploading, select “Return to request form” to fill the File Link field automatically. If sharing an image, describe the idea above.</p>
+              <p class="form-help"><strong>Upload a model or idea image instead:</strong> <a href="#" data-upload-link data-upload-form="staff" hidden target="_blank" rel="noopener noreferrer">Choose a file to upload</a><span data-upload-pending>File upload is being set up.</span> Sign in with a Google account. Upload up to 25 MB, then select “Return to request form” to add the link. If sharing an image, describe the idea above.</p>
             </div>
 
             <!-- Print Preferences -->
@@ -441,7 +440,7 @@
             <span class="footer-brand-icon" aria-hidden="true">🖨️</span>
             GCI 3D Print Lab
           </a>
-          <p class="footer-tagline">Student-operated 3D printing lab at Genesee Community College. Part of <a href="https://www.geneseelearninglab.com" target="_blank" rel="noopener noreferrer">GeneseeLearningLab.com</a>.</p>
+          <p class="footer-tagline">Student-operated 3D printing lab. Part of <a href="https://www.geneseelearninglab.com" target="_blank" rel="noopener noreferrer">GeneseeLearningLab.com</a>.</p>
         </div>
         <div>
           <p class="footer-heading">Training</p>
@@ -450,8 +449,8 @@
             <li><a href="/training/day1.html">Day 1 – Foundations</a></li>
             <li><a href="/training/day2.html">Day 2 – Model to Print</a></li>
             <li><a href="/training/day3.html">Day 3 – Design</a></li>
-            <li><a href="/training/day4.html">Day 4 – Troubleshoot</a></li>
-            <li><a href="/training/day5.html">Day 5 – Capstone</a></li>
+            <li><a href="/training/day4.html">Day 4 – Logo Keychain</a></li>
+            <li><a href="/training/day5.html">Day 5 – Run the Lab</a></li>
           </ul>
         </div>
         <div>
@@ -459,7 +458,7 @@
           <ul class="footer-links">
             <li><a href="/print-farm.html">Print Farm</a></li>
             <li><a href="/requests.html">Submit a Request</a></li>
-            <li><a href="/queue.html">Live Queue</a></li>
+            <li><a href="/queue.html">Print Queue</a></li>
             <li><a href="/resources.html">Resources</a></li>
             <li><a href="/training/glossary.html">Glossary</a></li>
           </ul>
@@ -475,7 +474,7 @@
         </div>
       </div>
       <div class="footer-bottom">
-        <p class="footer-copyright">© 2025 GCI 3D Print Lab · Genesee Community College · <a href="https://www.geneseelearninglab.com" target="_blank" rel="noopener noreferrer">GeneseeLearningLab.com</a></p>
+        <p class="footer-copyright">© 2025 GCI 3D Print Lab · <a href="https://www.geneseelearninglab.com" target="_blank" rel="noopener noreferrer">GeneseeLearningLab.com</a></p>
         <div class="footer-meta-links">
           <a href="https://github.com/aspiece/GCIPrintFarm" target="_blank" rel="noopener noreferrer">GitHub</a>
         </div>

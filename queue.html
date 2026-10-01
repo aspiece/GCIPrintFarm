@@ -30,8 +30,8 @@
         <li><a href="/" class="nav-link">Home</a></li>
         <li><a href="/training/" class="nav-link">Training</a></li>
         <li><a href="/print-farm.html" class="nav-link">Print Farm</a></li>
-        <li><a href="/requests.html" class="nav-link">Submit Request</a></li>
-        <li><a href="/queue.html" class="nav-link">Live Queue</a></li>
+        <li><a href="/requests.html" class="nav-link">Request a Print</a></li>
+        <li><a href="/queue.html" class="nav-link">Print Queue</a></li>
         <li><a href="/resources.html" class="nav-link">Resources</a></li>
         <li><a href="/projects.html" class="nav-link">Projects</a></li>
         <li><a href="/instructor.html" class="nav-link">Instructor</a></li>
@@ -53,8 +53,7 @@
             Live<br><span class="highlight">Print Queue</span>
           </h1>
           <p class="hero__subtitle">
-            Check the status of active print jobs. Jobs are shown by Job ID only —
-            no names or personal information are displayed.
+            Find your job by ID. Names, emails, and file links are not shown.
           </p>
           <div class="hero__actions">
             <a href="/requests.html" class="btn btn--primary btn--lg">Submit a Request →</a>
@@ -63,18 +62,7 @@
       </div>
     </section>
 
-    <!-- ── Privacy Notice ── -->
-    <section class="section section--alt section--sm" aria-label="Privacy notice">
-      <div class="container">
-        <div class="alert alert--info">
-          <span class="alert__icon" aria-hidden="true">🔒</span>
-          <p style="margin:0;">
-            This queue shows <strong>sanitized data only</strong>. Job IDs, project type, status, printer, and pickup status are displayed.
-            Student and staff names, emails, and file links are never shown here.
-          </p>
-        </div>
-      </div>
-    </section>
+
 
     <!-- ── Queue Section ── -->
     <section class="section" aria-labelledby="queue-heading" id="queue-section">
@@ -82,7 +70,7 @@
         <div class="section-header">
           <p class="section-eyebrow">Active Jobs</p>
           <h2 class="section-title" id="queue-heading">Print Job Status</h2>
-          <p class="section-subtitle">Automatically refreshes every 60 seconds. You can also refresh manually.</p>
+          <p class="section-subtitle">Updates every 60 seconds.</p>
         </div>
 
         <!-- Toolbar: filters + refresh controls -->
@@ -165,51 +153,34 @@
               <span class="badge badge--waiting">Waiting</span>
             </div>
             <h3 class="card__title" style="font-size:var(--text-base);">Waiting</h3>
-            <p class="card__body">Your file has been submitted and is in the queue. A lab operator will review it before printing begins.</p>
+            <p class="card__body">Approved and waiting for a printer.</p>
           </div>
           <div class="card">
             <div class="d-flex items-center gap-3" style="margin-bottom:var(--space-3);">
               <span class="badge badge--printing">Printing</span>
             </div>
             <h3 class="card__title" style="font-size:var(--text-base);">Printing</h3>
-            <p class="card__body">Your job is actively printing on an assigned printer. Check back for completion updates.</p>
+            <p class="card__body">Printing on the assigned printer.</p>
           </div>
           <div class="card">
             <div class="d-flex items-center gap-3" style="margin-bottom:var(--space-3);">
               <span class="badge badge--complete">Complete</span>
             </div>
             <h3 class="card__title" style="font-size:var(--text-base);">Complete</h3>
-            <p class="card__body">Printing is finished. The lab operator will inspect the print and prepare it for pickup.</p>
+            <p class="card__body">Printing finished; awaiting inspection.</p>
           </div>
           <div class="card">
             <div class="d-flex items-center gap-3" style="margin-bottom:var(--space-3);">
               <span class="badge badge--pickup">Ready for Pickup</span>
             </div>
             <h3 class="card__title" style="font-size:var(--text-base);">Ready for Pickup</h3>
-            <p class="card__body">Your print has passed inspection and is ready for you to collect from the lab during open hours.</p>
+            <p class="card__body">Inspected and ready to collect during lab hours.</p>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- ── Submit CTA ── -->
-    <section class="section" aria-labelledby="submit-cta-heading">
-      <div class="container">
-        <div class="card" style="background:linear-gradient(135deg,rgba(0,150,214,0.15) 0%,rgba(126,217,87,0.1) 100%);border-color:rgba(0,150,214,0.3);text-align:center;padding:var(--space-12);">
-          <p class="hero__eyebrow" style="justify-content:center;margin-bottom:var(--space-4);">
-            <span aria-hidden="true">📤</span> Ready to Print?
-          </p>
-          <h2 class="section-title" id="submit-cta-heading" style="margin:0 auto var(--space-4);">Submit a New Print Request</h2>
-          <p style="color:var(--color-text-muted);max-width:480px;margin:0 auto var(--space-8);">
-            Students and staff can submit print jobs through the request form. A lab operator will review and add your job to the queue.
-          </p>
-          <div class="hero__actions" style="justify-content:center;">
-            <a href="/requests.html#panel-student" class="btn btn--primary btn--lg">Student Request →</a>
-            <a href="/requests.html#panel-staff" class="btn btn--secondary btn--lg">Staff Request</a>
-          </div>
-        </div>
-      </div>
-    </section>
+
 
   </main>
 
@@ -222,7 +193,7 @@
             <span class="footer-brand-icon" aria-hidden="true">🖨️</span>
             GCI 3D Print Lab
           </a>
-          <p class="footer-tagline">Student-operated 3D printing lab at Genesee Community College. Part of <a href="https://www.geneseelearninglab.com" target="_blank" rel="noopener noreferrer">GeneseeLearningLab.com</a>.</p>
+          <p class="footer-tagline">Student-operated 3D printing lab. Part of <a href="https://www.geneseelearninglab.com" target="_blank" rel="noopener noreferrer">GeneseeLearningLab.com</a>.</p>
         </div>
         <div>
           <p class="footer-heading">Training</p>
@@ -231,8 +202,8 @@
             <li><a href="/training/day1.html">Day 1 – Foundations</a></li>
             <li><a href="/training/day2.html">Day 2 – Model to Print</a></li>
             <li><a href="/training/day3.html">Day 3 – Design</a></li>
-            <li><a href="/training/day4.html">Day 4 – Troubleshoot</a></li>
-            <li><a href="/training/day5.html">Day 5 – Capstone</a></li>
+            <li><a href="/training/day4.html">Day 4 – Logo Keychain</a></li>
+            <li><a href="/training/day5.html">Day 5 – Run the Lab</a></li>
           </ul>
         </div>
         <div>
@@ -240,7 +211,7 @@
           <ul class="footer-links">
             <li><a href="/print-farm.html">Print Farm</a></li>
             <li><a href="/requests.html">Submit a Request</a></li>
-            <li><a href="/queue.html">Live Queue</a></li>
+            <li><a href="/queue.html">Print Queue</a></li>
             <li><a href="/resources.html">Resources</a></li>
             <li><a href="/training/glossary.html">Glossary</a></li>
           </ul>
@@ -256,7 +227,7 @@
         </div>
       </div>
       <div class="footer-bottom">
-        <p class="footer-copyright">© 2025 GCI 3D Print Lab · Genesee Community College · <a href="https://www.geneseelearninglab.com" target="_blank" rel="noopener noreferrer">GeneseeLearningLab.com</a></p>
+        <p class="footer-copyright">© 2025 GCI 3D Print Lab · <a href="https://www.geneseelearninglab.com" target="_blank" rel="noopener noreferrer">GeneseeLearningLab.com</a></p>
         <div class="footer-meta-links">
           <a href="https://github.com/aspiece/GCIPrintFarm" target="_blank" rel="noopener noreferrer">GitHub</a>
         </div>

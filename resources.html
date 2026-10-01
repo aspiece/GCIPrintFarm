@@ -28,8 +28,8 @@
         <li><a href="/" class="nav-link">Home</a></li>
         <li><a href="/training/" class="nav-link">Training</a></li>
         <li><a href="/print-farm.html" class="nav-link">Print Farm</a></li>
-        <li><a href="/requests.html" class="nav-link">Submit Request</a></li>
-        <li><a href="/queue.html" class="nav-link">Live Queue</a></li>
+        <li><a href="/requests.html" class="nav-link">Request a Print</a></li>
+        <li><a href="/queue.html" class="nav-link">Print Queue</a></li>
         <li><a href="/resources.html" class="nav-link">Resources</a></li>
         <li><a href="/projects.html" class="nav-link">Projects</a></li>
         <li><a href="/instructor.html" class="nav-link">Instructor</a></li>
@@ -84,8 +84,7 @@
         </div>
         <div class="grid-2" style="align-items: start; gap: var(--space-10);">
           <div>
-            <h3 class="card__title" style="margin-bottom: var(--space-4);">Getting Started</h3>
-            <ol class="step-list">
+            <details><summary>Getting started with Bambu Studio</summary><ol class="step-list">
               <li>
                 <div>
                   <strong>Download Bambu Studio</strong>
@@ -116,7 +115,7 @@
                   <p style="color: var(--color-text-muted); margin: var(--space-1) 0 0;">Save the sliced file to an SD card, or send directly to a connected Bambu Lab printer over Wi-Fi.</p>
                 </div>
               </li>
-            </ol>
+            </ol></details>
           </div>
           <div>
             <h3 class="card__title" style="margin-bottom: var(--space-4);">Key Settings to Know</h3>
@@ -283,6 +282,7 @@
           <p class="section-eyebrow">Keep Printers Running</p>
           <h2 class="section-title" id="maintenance-heading">Maintenance Guides</h2>
         </div>
+        <details><summary>View maintenance tasks</summary>
         <div class="grid-3">
           <div class="card">
             <div class="card__icon" aria-hidden="true">🛏️</div>
@@ -318,6 +318,7 @@
         <div style="margin-top: var(--space-6);">
           <a href="https://wiki.bambulab.com/en/maintenance" class="btn btn--secondary" target="_blank" rel="noopener noreferrer">Official Bambu Maintenance Wiki ↗</a>
         </div>
+        </details>
       </div>
     </section>
 
@@ -417,7 +418,7 @@
               <span>Do I need training before I can print?</span>
               <span aria-hidden="true" class="text-muted">▾</span>
             </summary>
-            <p style="margin-top: var(--space-3); color: var(--color-text-muted);">Yes. Students must complete the 5-day training program before operating printers independently. After training, you can submit print jobs, work with lab operators, and eventually become an operator yourself.</p>
+            <p style="margin-top: var(--space-3); color: var(--color-text-muted);">Yes. Students must complete the 5-day training program before operating printers independently. For help with a model or idea, <a href="/requests.html">submit a request</a>.</p>
           </details>
 
           <details class="card" style="cursor: pointer;">
@@ -483,7 +484,7 @@
             <span class="footer-brand-icon" aria-hidden="true">🖨️</span>
             GCI 3D Print Lab
           </a>
-          <p class="footer-tagline">Student-operated 3D printing lab at Genesee Community College. Part of <a href="https://www.geneseelearninglab.com" target="_blank" rel="noopener noreferrer">GeneseeLearningLab.com</a>.</p>
+          <p class="footer-tagline">Student-operated 3D printing lab. Part of <a href="https://www.geneseelearninglab.com" target="_blank" rel="noopener noreferrer">GeneseeLearningLab.com</a>.</p>
         </div>
         <div>
           <p class="footer-heading">Training</p>
@@ -492,8 +493,8 @@
             <li><a href="training/day1.html">Day 1 – Foundations</a></li>
             <li><a href="training/day2.html">Day 2 – Model to Print</a></li>
             <li><a href="training/day3.html">Day 3 – Design</a></li>
-            <li><a href="training/day4.html">Day 4 – Troubleshoot</a></li>
-            <li><a href="training/day5.html">Day 5 – Capstone</a></li>
+            <li><a href="training/day4.html">Day 4 – Logo Keychain</a></li>
+            <li><a href="training/day5.html">Day 5 – Run the Lab</a></li>
           </ul>
         </div>
         <div>
@@ -501,7 +502,7 @@
           <ul class="footer-links">
             <li><a href="/print-farm.html">Print Farm</a></li>
             <li><a href="/requests.html">Submit a Request</a></li>
-            <li><a href="/queue.html">Live Queue</a></li>
+            <li><a href="/queue.html">Print Queue</a></li>
             <li><a href="#bambu-studio">Bambu Studio</a></li>
             <li><a href="training/glossary.html">Glossary</a></li>
           </ul>
@@ -517,7 +518,7 @@
         </div>
       </div>
       <div class="footer-bottom">
-        <p class="footer-copyright">© 2025 GCI 3D Print Lab · Genesee Community College · <a href="https://www.geneseelearninglab.com" target="_blank" rel="noopener noreferrer">GeneseeLearningLab.com</a></p>
+        <p class="footer-copyright">© 2025 GCI 3D Print Lab · <a href="https://www.geneseelearninglab.com" target="_blank" rel="noopener noreferrer">GeneseeLearningLab.com</a></p>
         <div class="footer-meta-links">
           <a href="https://github.com/aspiece/GCIPrintFarm" target="_blank" rel="noopener noreferrer">GitHub</a>
         </div>

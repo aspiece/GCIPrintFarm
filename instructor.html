@@ -28,8 +28,8 @@
         <li><a href="/" class="nav-link">Home</a></li>
         <li><a href="/training/" class="nav-link">Training</a></li>
         <li><a href="/print-farm.html" class="nav-link">Print Farm</a></li>
-        <li><a href="/requests.html" class="nav-link">Submit Request</a></li>
-        <li><a href="/queue.html" class="nav-link">Live Queue</a></li>
+        <li><a href="/requests.html" class="nav-link">Request a Print</a></li>
+        <li><a href="/queue.html" class="nav-link">Print Queue</a></li>
         <li><a href="/resources.html" class="nav-link">Resources</a></li>
         <li><a href="/projects.html" class="nav-link">Projects</a></li>
         <li><a href="/instructor.html" class="nav-link">Instructor</a></li>
@@ -103,7 +103,7 @@
             <h3 class="card__title">Pickup &amp; Handoff</h3>
             <p class="card__body">
               Inspect completed prints for quality. Mark jobs as "Ready for Pickup" in the queue.
-              Organize completed prints by class period for easy distribution.
+              Organize completed prints by Job ID for easy distribution.
             </p>
           </div>
           <div class="card card--accent">
@@ -138,7 +138,7 @@
           <div>
             <h3 class="card__title" style="margin-bottom:var(--space-4);">✅ File &amp; Naming</h3>
             <ul class="feature-list">
-              <li>File is named using the correct format: <code style="font-size:var(--text-xs);background:var(--color-surface-2);padding:2px 6px;border-radius:4px;">Lastname_Firstname_Project_v1</code></li>
+              <li>File is named using the correct format: <code style="font-size:var(--text-xs);background:var(--color-surface-2);padding:2px 6px;border-radius:4px;">Lastname_Firstname_Project_v1</code>, or <code>LastName_Keychain.3mf</code> for training</li>
               <li>File type is .3mf or .stl (not Tinkercad project links)</li>
               <li>File link opens and downloads without error</li>
               <li>Model is not empty, corrupt, or a placeholder</li>
@@ -149,7 +149,7 @@
               <li>Model is scaled to the correct size (not 1 mm or 1,000 mm)</li>
               <li>Model is placed on the build plate (not floating above it)</li>
               <li>No non-manifold geometry or obvious mesh errors</li>
-              <li>Print time shown in Bambu Studio matches the submission estimate</li>
+              <li>Estimate print time in Bambu Studio and check the lab schedule</li>
             </ul>
           </div>
           <div>
@@ -157,7 +157,7 @@
             <ul class="feature-list">
               <li>Supports are correctly configured for overhangs &gt; 45°</li>
               <li>Filament color requested is in stock — check the lab supply</li>
-              <li>Requested printer is available and appropriate for the job</li>
+              <li>Choose an available printer appropriate for the job</li>
               <li>Print time is reasonable for the lab schedule</li>
             </ul>
 
@@ -197,17 +197,24 @@
               <li>Check the Google Sheet for new student submissions</li>
               <li>Review and approve pending files using the checklist above</li>
               <li>Start any jobs that are cleared and ready</li>
-              <li>Update queue statuses: Approved → Waiting → Printing</li>
+              <li>Update queue statuses: Submitted → Waiting → Printing</li>
             </ol>
           </div>
           <div class="card">
-            <h3 class="card__title" style="margin-bottom:var(--space-4);">🌇 End of Class</h3>
+            <h3 class="card__title" style="margin-bottom:var(--space-4);">During Class</h3><ul class="feature-list">
+              <li>Check active prints every 10–15 minutes for quality issues</li>
+              <li>Watch for spaghetti failures on the first few layers</li>
+              <li>Verify filament is feeding properly from the AMS</li>
+              <li>Watch for clogged nozzles (grinding noise, no extrusion)</li>
+              <li>Check bed adhesion on the first layer before walking away</li>
+            </ul><h3 class="card__title" style="margin-bottom:var(--space-4);margin-top:var(--space-6);">🌇 End of Class</h3>
             <ol class="step-list">
               <li>Inspect any completed prints for quality</li>
               <li>Mark completed jobs as "Complete" or "Ready for Pickup" in the sheet</li>
-              <li>Organize completed prints by class period in the pickup area</li>
+              <li>Organize completed prints by Job ID in the pickup area</li>
               <li>Remove failed prints and document the failure reason</li>
-              <li>Clear supports, scraps, and debris from printer beds</li>
+              <li>Clear supports and scraps; wipe printer exteriors and surfaces</li>
+              <li>Check filament supplies and leave printers ready for the next class</li>
               <li>Update the maintenance log if any issues occurred</li>
             </ol>
           </div>
@@ -244,7 +251,7 @@
                 <td><span class="badge badge--amber">Needs Revision</span></td>
                 <td>File failed review — student must fix and resubmit</td>
                 <td>Helpdesk operator</td>
-                <td>Instructor notifies student; student resubmits</td>
+                <td>Email notification is sent; student resubmits</td>
               </tr>
               <tr>
                 <td><span class="badge badge--waiting">Waiting</span></td>
@@ -285,14 +292,6 @@
           <p class="section-subtitle">Training slides, activity files, and supplemental materials for instructors.</p>
         </div>
 
-        <div class="alert alert--info" style="margin-bottom:var(--space-8);">
-          <span class="alert__icon" aria-hidden="true">📎</span>
-          <div>
-            Add links to your Google Drive documents, handouts, rubrics, and grading tools below.
-            Update this section in <code style="font-size:var(--text-xs);background:var(--color-surface-2);padding:2px 6px;border-radius:4px;">instructor.html</code> as your document library grows.
-          </div>
-        </div>
-
         <div class="grid-3">
 
           <!-- Training Slides -->
@@ -306,8 +305,8 @@
                 <a href="/training/slides-day1.html">Day 1 – Foundations</a>
                 <a href="/training/slides-day2.html">Day 2 – Model to Print</a>
                 <a href="/training/slides-day3.html">Day 3 – Design</a>
-                <a href="/training/slides-day4.html">Day 4 – Troubleshoot</a>
-                <a href="/training/slides-day5.html">Day 5 – Capstone</a>
+                <a href="/training/slides-day4.html">Day 4 – Logo Keychain</a>
+                <a href="/training/slides-day5.html">Day 5 – Run the Lab</a>
               </div>
             </div>
           </div>
@@ -359,15 +358,6 @@
             </div>
           </div>
 
-          <!-- Add Your Documents -->
-          <div class="card" style="border-style:dashed;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;min-height:240px;gap:var(--space-3);padding:var(--space-8);">
-            <span style="font-size:2.5rem;" aria-hidden="true">➕</span>
-            <h3 style="font-size:var(--text-base);font-weight:var(--font-bold);">Add Your Documents</h3>
-            <p style="font-size:var(--text-sm);color:var(--color-text-muted);">
-              Edit <code style="font-size:var(--text-xs);">instructor.html</code> to link to rubrics, handouts, grading sheets, and other class materials.
-            </p>
-          </div>
-
           <!-- Print Farm Rules -->
           <div class="card">
             <div class="card__icon" aria-hidden="true">📜</div>
@@ -385,38 +375,7 @@
       </div>
     </section>
 
-    <!-- ── Printer Monitoring ── -->
-    <section class="section" aria-labelledby="monitoring-heading">
-      <div class="container">
-        <div class="section-header">
-          <p class="section-eyebrow">During Class</p>
-          <h2 class="section-title" id="monitoring-heading">Printer Monitoring Expectations</h2>
-        </div>
-        <div class="grid-2">
-          <div>
-            <h3 class="card__title" style="margin-bottom:var(--space-4);">Active Monitoring</h3>
-            <ul class="feature-list">
-              <li>Check active prints every 10–15 minutes for quality issues</li>
-              <li>Watch for spaghetti failures on the first few layers</li>
-              <li>Verify filament is feeding properly from the AMS</li>
-              <li>Watch for clogged nozzles (grinding noise, no extrusion)</li>
-              <li>Check bed adhesion on the first layer before walking away</li>
-            </ul>
-          </div>
-          <div>
-            <h3 class="card__title" style="margin-bottom:var(--space-4);">End-of-Class Cleanup</h3>
-            <ul class="feature-list">
-              <li>Remove all completed prints from the build plates</li>
-              <li>Clear support material and filament scraps from the area</li>
-              <li>Wipe down printer exteriors and surfaces</li>
-              <li>Verify the AMS has adequate filament for upcoming sessions</li>
-              <li>Log any printer issues in the maintenance record</li>
-              <li>Leave printers in a clean, ready state for the next class</li>
-            </ul>
-          </div>
-        </div>
-      </div>
-    </section>
+
 
   </main>
 
@@ -429,7 +388,7 @@
             <span class="footer-brand-icon" aria-hidden="true">🖨️</span>
             GCI 3D Print Lab
           </a>
-          <p class="footer-tagline">Student-operated 3D printing lab at Genesee Community College. Part of <a href="https://www.geneseelearninglab.com" target="_blank" rel="noopener noreferrer">GeneseeLearningLab.com</a>.</p>
+          <p class="footer-tagline">Student-operated 3D printing lab. Part of <a href="https://www.geneseelearninglab.com" target="_blank" rel="noopener noreferrer">GeneseeLearningLab.com</a>.</p>
         </div>
         <div>
           <p class="footer-heading">Training</p>
@@ -438,8 +397,8 @@
             <li><a href="/training/day1.html">Day 1 – Foundations</a></li>
             <li><a href="/training/day2.html">Day 2 – Model to Print</a></li>
             <li><a href="/training/day3.html">Day 3 – Design</a></li>
-            <li><a href="/training/day4.html">Day 4 – Troubleshoot</a></li>
-            <li><a href="/training/day5.html">Day 5 – Capstone</a></li>
+            <li><a href="/training/day4.html">Day 4 – Logo Keychain</a></li>
+            <li><a href="/training/day5.html">Day 5 – Run the Lab</a></li>
           </ul>
         </div>
         <div>
@@ -447,7 +406,7 @@
           <ul class="footer-links">
             <li><a href="/print-farm.html">Print Farm</a></li>
             <li><a href="/requests.html">Submit a Request</a></li>
-            <li><a href="/queue.html">Live Queue</a></li>
+            <li><a href="/queue.html">Print Queue</a></li>
             <li><a href="/resources.html">Resources</a></li>
             <li><a href="/training/glossary.html">Glossary</a></li>
           </ul>
@@ -463,7 +422,7 @@
         </div>
       </div>
       <div class="footer-bottom">
-        <p class="footer-copyright">© 2025 GCI 3D Print Lab · Genesee Community College · <a href="https://www.geneseelearninglab.com" target="_blank" rel="noopener noreferrer">GeneseeLearningLab.com</a></p>
+        <p class="footer-copyright">© 2025 GCI 3D Print Lab · <a href="https://www.geneseelearninglab.com" target="_blank" rel="noopener noreferrer">GeneseeLearningLab.com</a></p>
         <div class="footer-meta-links">
           <a href="https://github.com/aspiece/GCIPrintFarm" target="_blank" rel="noopener noreferrer">GitHub</a>
         </div>
